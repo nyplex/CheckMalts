@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %} Index {% endblock page_title %}
+
+{% block content %}
+
+<!-- Loader Icon -->
+<div id="loader" class="bg-black w-[100vw] h-[100vh] z-50 mx-auto relative">
+    <img src="{% static 'media/loader.gif' %}" alt="loader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+</div>
+
+{% include 'home/header.html' %}
+
+<div class="mt-4 max-w-screen-md mx-auto">
+    <h2 class="text-yellow-400 font-barlow font-medium text-4xl text-center w-full">Cause we make the best cocktails in town, that's why!</h2>
+    <p class="text-white font-barlow text-center font-normal text-xl mt-8">
+        CheckMalt is well known for being the best bar in London (and probably the world). We are offering you the perfect place for after work drinks. People like us because our bar look real good and we sell nice drinks. <br>
+    </p>
+    <p class="font-bold mt-8 text-white font-barlow text-center text-xl mb-4">We are located in central London</p>
+</div>
+
+<!-- Paralax illustration -->
+<div class="w-full home_illustration_1 min-h-[250px]"></div>
+
+
+<div class="w-full mt-8 max-w-screen-md mx-auto">
+    <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
+					class="mx-auto mb-8 w-[50px] md:w-[50px]">
+    <div class="flex flex-col mobile:flex-row justify-between">
+        <h3 class="text-yellow-400 text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">300+ Cocktails served every day</h3>
+        <img src="{% static 'media/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0">
+        <div class="max-w-screen-mobile flex flex-col justify-between">
+            <div>
+                <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">300+ Cocktails served every day</h3>
+                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-left">
+                    I'm a paragraph. Click here to add 
+                    your own text and edit me. 
+                    Let your users get to know you.
+                </p>
+            </div>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto mobile:mx-0 mt-4 mb-0">SEE THE MENU</a>
+        </div>
+    </div>
+
+    <div class="flex flex-col mobile:flex-row  justify-between mt-24">
+        <div class="max-w-screen-mobile text-right flex flex-col justify-between">
+            <div>
+                <h3 class="text-yellow-400 mobile:text-white text-4xl font-barlow font-medium mobile:text-right text-center mb-4 mobile:mb-0">From margaritas to mojitos</h3>
+                <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 mobile:hidden">
+                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-right">
+                    I'm a paragraph. Click here to add 
+                    your own text and edit me. 
+                    Let your users get to know you.
+                </p>
+            </div>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mobile:ml-auto mobile:mr-0 mx-auto mt-4 mb-0">ORDER HERE</a>
+        </div>
+        <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 hidden mobile:block">
+    </div>
+</div>
+
+<div class="w-full mt-16 max-w-screen-md mx-auto">
+    <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
+					class="mx-auto mb-16 w-[50px] md:w-[50px]">
+    <h2 class="text-yellow-400 font-bold text-4xl text-center mb-12">MAKE YOUR VERY OWN COCKTAIL</h2>
+    <div class="flex flex-col mobile:flex-row justify-between">
+        <h3 class="text-white text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">You design, we make!</h3>
+        <img src="{% static 'media/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0 object-cover">
+        <div class="max-w-screen-mobile flex flex-col justify-between">
+            <div>
+                <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">You design, we make!</h3>
+                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-left">
+                    I'm a paragraph. Click here to add 
+                    your own text and edit me. 
+                    Let your users get to know you.
+                </p>
+            </div>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto mobile:mx-0 mt-4 mb-0">DESIGN IT</a>
+        </div>
+    </div>
+</div>
+
+<div class="w-full mt-16 max-w-screen-md mx-auto">
+    <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
+					class="mx-auto mb-12 w-[50px] md:w-[50px]">
+    <h3 class="text-yellow-400 font-extrabold font-barlow text-4xl text-center">Tag us #checkmalt</h3>
+</div>
+
+
+<script src="{% static 'dist/home.bundle.js' %}"></script>
+
+{% endblock content %}

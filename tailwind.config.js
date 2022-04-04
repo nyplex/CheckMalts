@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        IBM: ["IBM Plex Sans", "sans-serif"],
+        barlow: ["Barlow", "sans-serif"],
       },
       colors: {
         darkBg: "#111827",
@@ -21,5 +21,5 @@ module.exports = {
   plugins: [
     require('flowbite/plugin')
   ],
-  darkMode: 'class',
+  darkMode: 'media',
 }

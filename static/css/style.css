@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+
+
+@layer components {
+
+	.navbar-link {
+		@apply block py-2 pr-4 pl-3 text-gray-200 hover:bg-yellow-500 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 text-center font-barlow font-semibold text-xl rounded-lg
+	}
+
+	.active-navbar-link {
+		@apply block py-2 pr-4 pl-3 text-gray-200 md:text-yellow-400 md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-yellow-500 md:bg-transparent
+	}
+
+	.primary-btn {
+		@apply text-yellow-400 hover:text-white border-4 border-yellow-400 bg-black hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+	}
+
+	.secondary-btn {
+		@apply text-black hover:text-white border-4 border-yellow-400 bg-yellow-400 hover:bg-yellow-300 hover:border-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+	}
+}
+
+
+/********** HOME PAGE **********/
+/* Header */
+.headerPin {
+	position: absolute;
+	height: 100vh;
+	max-height: 100vh;
+	margin-top: 0px;
+	overflow-x: hidden;
+	top: 0;
+	max-width: 100vw;
+	width: 100%;
+}
+
+#jagerCanvas {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	max-height: 100vh;
+	overflow-x: hidden;
+	opacity: 0;
+}
+
+
+.header-title {
+	width: 100%;
+	position: relative;
+	top: 40%;
+	transform: translate(0, -50%);
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	color: #fff;
+	font-size: 80px;
+}
+
+.header-title h1 {
+	margin: 0;
+}
+
+/* Paralax illustrations */
+.home_illustration_1 {
+    background-image: url("../media/home_image_1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}

@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="headerPin">
+	<canvas id="jagerCanvas"></canvas>
+	<div class="w-full relative h-full">
+		<div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center w-full container">
+			<div>
+				<h1 class="text-5xl md:text-9xl font-extrabold font-barlow text-white">CHECKMALT</h1>
+				<img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
+					class="mx-auto mb-8 mt-8 mobile:mb-0 mobile:mt-0 w-[5px] md:w-[5px]" id="header_chess_logo">
+			</div>
+			<div class="flex flex-col mobile:flex-row gap-8">
+				<a href="#" class="secondary-btn w-52 mx-auto">ORDER HERE</a>
+				<a href="#" class="primary-btn w-52 mx-auto">SEE THE MENU</a>
+			</div>
+		</div>
+		<div class="absolute bottom-8 left-[50%] translate-x-[-50%] text-center w-full container">
+			<span class="text-white">Scroll down</span>
+		</div>
+	</div>
+</div>

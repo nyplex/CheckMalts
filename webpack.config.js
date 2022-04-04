@@ -5,12 +5,13 @@ const webpack = require("webpack");
 
 
 module.exports = {
-    entry: {
-        main: './templates/js/index.js'
+    entry: { //add js file for each django app here
+        main: './static/js/index.js',
+        home: './home/static/home/js/index.js'
       },
     mode: "development", //change to production
     output: {
-        filename: 'bundle.js',
+        filename: 'dist/[name].bundle.js',
         path: path.resolve(__dirname, "static/"),
     },
     devtool: 'inline-source-map', //remove on production
@@ -40,7 +41,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-          filename: "bundle.css",
+          filename: "dist/bundle.css",
         }),
         new webpack.ProvidePlugin({
           $: 'jquery',

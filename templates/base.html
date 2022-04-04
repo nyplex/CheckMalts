@@ -6,17 +6,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'bundle.css' %}">
-    <title>DJango App</title>
+    <link rel="stylesheet" href="{% static 'dist/bundle.css' %}">
+
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>
+        {% block page_title %}
+        {% endblock page_title %}
+    </title>
 </head>
 <body>
 
-    <h1 class="text-green-700 text-2xl font-bold">DJANGO APP BASE</h1>
+    {% include 'includes/navbar.html' %}
+
 
     {% block content %}
     {% endblock content %}
 
 
-<script src="{% static 'bundle.js' %}"></script>
+<script src="https://kit.fontawesome.com/0fd6fa10db.js" crossorigin="anonymous"></script>
+<script src="{% static 'dist/main.bundle.js' %}"></script>
+
 </body>
 </html>

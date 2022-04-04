@@ -38,6 +38,20 @@ body {
 	.secondary-btn {
 		@apply text-black hover:text-white border-4 border-yellow-400 bg-yellow-400 hover:bg-yellow-300 hover:border-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
+
+}
+
+/********** FORMS COMP **********/
+.primary-input {
+	@apply bg-transparent border-0 border-b-2 border-gray-300 text-white text-sm focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5
+}
+
+.primary-date-picker {
+	@apply bg-transparent border-0 border-b-2 border-gray-300 text-white sm:text-sm focus:ring-yellow-400 focus:border-yellow-400 block w-full pl-10 p-2.5
+}
+
+.primary-select-input {
+	@apply bg-black border-0 border-b-2 border-gray-300 text-white block w-full pl-10 p-2.5 focus:ring-yellow-400 focus:border-yellow-400
 }
 
 

@@ -36,7 +36,7 @@ window.addEventListener('resize', function () {
 
     function init() {
         resize();
-        move(Math.floor(items.length / 2));
+        move(1);
         bindEvents();
 
         timer();

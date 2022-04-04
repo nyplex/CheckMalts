@@ -29,7 +29,7 @@
 					class="mx-auto mb-8 w-[50px] md:w-[50px]">
     <div class="flex flex-col mobile:flex-row justify-between">
         <h3 class="text-yellow-400 text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">300+ Cocktails served every day</h3>
-        <img src="{% static 'media/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0">
+        <img src="{% static 'media/home_page/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0">
         <div class="max-w-screen-mobile flex flex-col justify-between">
             <div>
                 <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">300+ Cocktails served every day</h3>
@@ -47,7 +47,7 @@
         <div class="max-w-screen-mobile text-right flex flex-col justify-between">
             <div>
                 <h3 class="text-yellow-400 mobile:text-white text-4xl font-barlow font-medium mobile:text-right text-center mb-4 mobile:mb-0">From margaritas to mojitos</h3>
-                <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 mobile:hidden">
+                <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 mobile:hidden">
                 <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-right">
                     I'm a paragraph. Click here to add 
                     your own text and edit me. 
@@ -56,7 +56,7 @@
             </div>
             <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mobile:ml-auto mobile:mr-0 mx-auto mt-4 mb-0">ORDER HERE</a>
         </div>
-        <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 hidden mobile:block">
+        <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 hidden mobile:block">
     </div>
 </div>
 
@@ -66,7 +66,7 @@
     <h2 class="text-yellow-400 font-bold text-4xl text-center mb-12">MAKE YOUR VERY OWN COCKTAIL</h2>
     <div class="flex flex-col mobile:flex-row justify-between">
         <h3 class="text-white text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">You design, we make!</h3>
-        <img src="{% static 'media/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0 object-cover">
+        <img src="{% static 'media/home_page/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0 object-cover">
         <div class="max-w-screen-mobile flex flex-col justify-between">
             <div>
                 <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">You design, we make!</h3>
@@ -84,8 +84,16 @@
 <div class="w-full mt-16 max-w-screen-md mx-auto">
     <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
 					class="mx-auto mb-12 w-[50px] md:w-[50px]">
-    <h3 class="text-yellow-400 font-extrabold font-barlow text-4xl text-center">Tag us #checkmalt</h3>
+    <h3 class="text-yellow-400 font-extrabold font-barlow mobile:text-5xl text-4xl text-center mb-8">Tag us #checkmalt</h3>
 </div>
+<!-- 3D Carousel -->
+{% include 'home/carousel.html' %}
+
+<!-- Paralax illustration -->
+<div class="w-full home_illustration_2 min-h-[250px] mt-12"></div>
+
+
+<div class="w-full h-[500px]"></div>
 
 
 <script src="{% static 'dist/home.bundle.js' %}"></script>

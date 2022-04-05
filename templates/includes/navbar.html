@@ -1,12 +1,12 @@
 {% load static %}
 
-<nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-black z-50 fixed w-full">
+<nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 rounded z-50 fixed w-full">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <!-- Checkmalt logo -->
         <a href="https://flowbite.com" class="flex items-center">
             <img src="{% static 'media/logo.png' %}"
                 class="mr-3 first-line:sm:h-9 max-w-[40px] max-h-[40px] w-[40px] h-[40px]" alt="Flowbite Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CheckMalt</span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor">CheckMalt</span>
         </a>
 
         <div class="flex items-center md:order-2">
@@ -21,11 +21,11 @@
             </button>
 
             <!-- Dropdown user menu -->
-            <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+            <div class="hidden z-50 my-4 text-base list-none bg-primaryColor rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="dropdown">
                 <!-- User's details -->
                 <div class="py-3 px-4">
-                    <span class="block text-2xl text-gray-900 dark:text-white">Bonnie Green</span>
+                    <span class="block text-2xl text-gray-900 dark:text-primaryColor">Bonnie Green</span>
                     <span
                         class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
                 </div>
@@ -45,7 +45,7 @@
                     </li>
                     <li>
                         <a href="#"
-                            class="navbar-link text-2xl py-2 text-red-700">Sign
+                            class="navbar-link text-2xl py-2 text-red-700 hover:text-red-500">Sign
                             out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-2"></i></a>
                     </li>
                 </ul>

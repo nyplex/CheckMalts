@@ -6,85 +6,193 @@
 {% block content %}
 
 <!-- Loader Icon -->
-<div id="loader" class="bg-black w-[100vw] h-[100vh] z-50 mx-auto relative">
+<div id="loader" class="bg-contrastColor w-[100vw] h-[100vh] z-50 mx-auto relative">
     <img src="{% static 'media/loader.gif' %}" alt="loader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
 </div>
 
 {% include 'home/header.html' %}
 
 <div class="mt-4 max-w-screen-md mx-auto">
-    <h2 class="text-yellow-400 font-barlow font-medium text-4xl text-center w-full">Cause we make the best cocktails in town, that's why!</h2>
-    <p class="text-white font-barlow text-center font-normal text-xl mt-8">
+    <h2 class="text-secondaryColor font-barlow font-medium text-4xl text-center w-full">Cause we make the best cocktails in town, that's why!</h2>
+    <p class="text-primaryColor font-barlow text-center font-normal text-xl mt-8">
         CheckMalt is well known for being the best bar in London (and probably the world). We are offering you the perfect place for after work drinks. People like us because our bar look real good and we sell nice drinks. <br>
     </p>
-    <p class="font-bold mt-8 text-white font-barlow text-center text-xl mb-4">We are located in central London</p>
+    <p class="font-bold mt-8 text-primaryColor font-barlow text-center text-xl mb-4">We are located in central London</p>
 </div>
 
 <!-- Paralax illustration -->
 <div class="w-full home_illustration_1 min-h-[250px]"></div>
 
-
+<!-- SECTION 1 -->
 <div class="w-full mt-8 max-w-screen-md mx-auto">
+    <!-- Logo divider -->
     <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
 					class="mx-auto mb-8 w-[50px] md:w-[50px]">
-    <div class="flex flex-col mobile:flex-row justify-between">
-        <h3 class="text-yellow-400 text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">300+ Cocktails served every day</h3>
-        <img src="{% static 'media/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0">
-        <div class="max-w-screen-mobile flex flex-col justify-between">
+    
+    <!-- Section 1A -->
+    <div class="flex flex-col md:flex-row justify-between">
+        <h3 class="text-secondaryColor text-4xl font-barlow font-medium md:hidden text-center mb-4 md:mb-0">300+ Cocktails served every day</h3>
+        <img src="{% static 'media/home_page/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 rounded-lg">
+        <div class="max-w-screen-md flex flex-col justify-between">
             <div>
-                <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">300+ Cocktails served every day</h3>
-                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-left">
+                <h3 class="text-primaryColor text-4xl font-barlow font-medium hidden md:block">300+ Cocktails served every day</h3>
+                <p class="text-primaryColor text-lg font-barlow font-light mt-4 md:mt-8 text-center md:text-left">
                     I'm a paragraph. Click here to add 
                     your own text and edit me. 
                     Let your users get to know you.
                 </p>
             </div>
-            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto mobile:mx-0 mt-4 mb-0">SEE THE MENU</a>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto md:mx-0 mt-4 mb-0">SEE THE MENU</a>
         </div>
     </div>
 
-    <div class="flex flex-col mobile:flex-row  justify-between mt-24">
-        <div class="max-w-screen-mobile text-right flex flex-col justify-between">
+    <!-- Section 1B -->
+    <div class="flex flex-col md:flex-row  justify-between mt-24">
+        <div class="max-w-screen-md text-right flex flex-col justify-between md:mr-8">
             <div>
-                <h3 class="text-yellow-400 mobile:text-white text-4xl font-barlow font-medium mobile:text-right text-center mb-4 mobile:mb-0">From margaritas to mojitos</h3>
-                <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 mobile:hidden">
-                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-right">
+                <h3 class="text-secondaryColor md:text-primaryColor text-4xl font-barlow font-medium md:text-right text-center mb-4 md:mb-0">From margaritas to mojitos</h3>
+                <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 md:hidden rounded-lg">
+                <p class="text-primaryColor text-lg font-barlow font-light mt-4 md:mt-8 text-center md:text-right">
                     I'm a paragraph. Click here to add 
                     your own text and edit me. 
                     Let your users get to know you.
                 </p>
             </div>
-            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mobile:ml-auto mobile:mr-0 mx-auto mt-4 mb-0">ORDER HERE</a>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 md:ml-auto md:mr-0 mx-auto mt-4 mb-0">ORDER HERE</a>
         </div>
-        <img src="{% static 'media/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-white mx-auto mobile:mx-0 hidden mobile:block">
+        <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 hidden md:block rounded-lg">
     </div>
 </div>
 
+<!-- SECTION 2 -->
 <div class="w-full mt-16 max-w-screen-md mx-auto">
+    <!-- Logo divider -->
     <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
 					class="mx-auto mb-16 w-[50px] md:w-[50px]">
-    <h2 class="text-yellow-400 font-bold text-4xl text-center mb-12">MAKE YOUR VERY OWN COCKTAIL</h2>
-    <div class="flex flex-col mobile:flex-row justify-between">
-        <h3 class="text-white text-4xl font-barlow font-medium mobile:hidden text-center mb-4 mobile:mb-0">You design, we make!</h3>
-        <img src="{% static 'media/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-white mx-auto mobile:mx-0 object-cover">
-        <div class="max-w-screen-mobile flex flex-col justify-between">
+    <h2 class="text-secondaryColor font-bold text-4xl text-center mb-12">MAKE YOUR VERY OWN COCKTAIL</h2>
+
+    <!-- Section 2A -->
+    <div class="flex flex-col md:flex-row justify-between">
+        <h3 class="text-primaryColor text-4xl font-barlow font-medium md:hidden text-center mb-4 md:mb-0">You design, we make!</h3>
+        <img src="{% static 'media/home_page/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 object-cover rounded-lg">
+        <div class="max-w-screen-md flex flex-col justify-between">
             <div>
-                <h3 class="text-white text-4xl font-barlow font-medium hidden mobile:block">You design, we make!</h3>
-                <p class="text-white text-lg font-barlow font-light mt-4 mobile:mt-8 text-center mobile:text-left">
+                <h3 class="text-primaryColor text-4xl font-barlow font-medium hidden md:block">You design, we make!</h3>
+                <p class="text-primaryColor text-lg font-barlow font-light mt-4 md:mt-8 text-center md:text-left">
                     I'm a paragraph. Click here to add 
                     your own text and edit me. 
                     Let your users get to know you.
                 </p>
             </div>
-            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto mobile:mx-0 mt-4 mb-0">DESIGN IT</a>
+            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto md:mx-0 mt-4 mb-0">DESIGN IT</a>
         </div>
     </div>
 </div>
 
+<!-- SECTION 3 -->
 <div class="w-full mt-16 max-w-screen-md mx-auto">
     <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
 					class="mx-auto mb-12 w-[50px] md:w-[50px]">
-    <h3 class="text-yellow-400 font-extrabold font-barlow text-4xl text-center">Tag us #checkmalt</h3>
+    <h3 class="text-secondaryColor font-extrabold font-barlow mobile:text-5xl text-4xl text-center mb-8">Tag us #checkmalt</h3>
+</div>
+<!-- 3D Carousel -->
+{% include 'home/carousel.html' %}
+
+<!-- Paralax illustration -->
+<div class="w-full home_illustration_2 min-h-[250px] mt-12"></div>
+
+
+<!-- SECTION 4 -->
+<div class="w-full mt-8 max-w-screen-md mx-auto mb-8">
+    <!-- Logo divider -->
+    <img src="{% static 'media/horse-icon.png' %}" alt="chess icon"
+					class="mx-auto mb-8 w-[50px] md:w-[50px]">
+
+
+    <div class="w-full flex flex-col md:flex-row justify-between">
+        <!-- Stay in touch visible only on mobile -->
+        <h2 class="text-secondaryColor text-center font-barlow font-extrabold text-5xl mb-8 md:hidden">STAY IN TOUCH!</h2>
+
+        <!-- Left content -->
+        <div class="md:w-[49%] w-full px-4 md:px-0 mx-auto order-2 md:order-none">
+            <!-- Stay in touch title only visible on large device -->
+            <div>
+                <h2 class="text-secondaryColor text-center font-barlow font-extrabold text-5xl mb-8 hidden md:block">STAY IN TOUCH!</h2>
+            </div>
+            <!-- Location & hours -->
+            <div class="border-4 border-secondaryColor md:max-w-[340px] w-full mx-auto py-4 px-4 order-4 rounded-lg">
+                <h3 class="text-primaryColor font-barlow font-medium text-2xl text-center">Location & Hours</h3>
+                <hr class="border-b-4 border-secondaryColor w-24 my-4 mx-auto">
+                <address class="text-primaryColor font-barlow font-normal text-lg text-center">
+                    500 Canada Saquare, <br>
+                    London, E14 00Z
+                </address>
+                <p class="text-primaryColor font-barlow font-normal text-lg mt-4 text-center">
+                    Mon. to Wed. 2pm - 11pm <br>
+                    Thu. 2pm - 12am <br>
+                    Fri. to Sat. 2pm - 3am <br>
+                    Sun. 4pm - 10pm <br>
+                </p>
+                <!-- Google Map -->
+                <div class="w-full max-w-full mt-8">
+                    <div class="mapouter mx-auto"><div class="gmap_canvas"><iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=canada%20square,%20london&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:300px;width:300px;}</style><a href="https://www.embedgooglemap.net">interactive google maps for website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:300px;}</style></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right content -->
+        <div class="md:w-[49%] w-full px-4 md:px-0 mx-auto order-1 md:order-none mb-12 md:mb-0">
+            <!-- Contact -->
+            <div class="border-4 border-secondaryColor md:max-w-[300px] w-full mx-auto py-4 order-3 rounded-lg">
+                <h3 class="text-primaryColor font-barlow font-medium text-2xl text-center">Contact</h3>
+                <hr class="border-b-4 border-secondaryColor w-24 my-4 mx-auto">
+                <p class="text-primaryColor font-barlow font-normal text-lg text-center">info@checkmalt.com</p>
+                <p class="text-primaryColor font-barlow font-normal text-lg mt-4 text-center">0208 444 767</p>
+            </div>
+            <!-- Reservation form -->
+            <div id="reservationContainer" class="md:max-w-[290px] w-full border-4 border-secondaryColor mx-auto mt-12 py-4 px-4 order-2 rounded-lg">
+                <h3 class="text-primaryColor font-barlow font-medium text-2xl text-center mb-4">Reservations</h3>
+                <form method="POST" action="" class="form mb-2" enctype="multipart/form-data" autocomplete="false" id="reservationForm">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+
+                        <!-- Date Picker Field -->
+                        {% if field.name == 'booking_date' %}
+                            <div class="relative">
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <div class="mb-4">
+                                    {{ field }}
+                                    <!-- Errors container -->
+                                    <div>
+                                        {% for error in field.errors %}
+                                            <p class="input-errors">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!-- All others Fields -->
+                        {% else %}
+                            <div class="mb-4">
+                                {{ field }}
+                                <!-- Errors container -->
+                                <div>
+                                    {% for error in field.errors %}
+                                        <p class="input-errors">{{error}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <button type="submit" class="secondary-btn py-2 px-4 font-normal mx-auto w-full mt-4">Book now</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 

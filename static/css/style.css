@@ -4,6 +4,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+	--crsl-bg: transparent;
+	--box-bg: #11161a;
+	--box-shadow: #0000001c;
+	--box-shadow-border: #0000000f;
+	--box-border: #fff;
+}
+
 body {
 	background-color: black;
 	margin: 0;
@@ -11,25 +19,62 @@ body {
 	overflow-x: hidden;
 }
 
-
-
 @layer components {
 
 	.navbar-link {
-		@apply block py-2 pr-4 pl-3 text-gray-200 hover:bg-yellow-500 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 text-center font-barlow font-semibold text-xl rounded-lg
+		@apply block py-2 pr-4 pl-3 text-primaryColor hover:bg-secondaryHoverDarker md:hover:bg-transparent md:hover:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg
 	}
 
 	.active-navbar-link {
-		@apply block py-2 pr-4 pl-3 text-gray-200 md:text-yellow-400 md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-yellow-500 md:bg-transparent
+		@apply block py-2 pr-4 pl-3 text-primaryColor md:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-secondaryHoverDarker md:bg-transparent
 	}
 
 	.primary-btn {
-		@apply text-yellow-400 hover:text-white border-4 border-yellow-400 bg-black hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+		@apply text-secondaryColor hover:text-primaryColor border-4 border-secondaryColor bg-contrastColor hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
 
 	.secondary-btn {
-		@apply text-black hover:text-white border-4 border-yellow-400 bg-yellow-400 hover:bg-yellow-300 hover:border-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+		@apply text-contrastColor hover:text-primaryColor border-4 border-secondaryColor bg-secondaryColor hover:bg-secondaryHoverLighter hover:border-secondaryHoverLighter focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
+
+}
+
+/********** FORMS COMPONENTS **********/
+.primary-input {
+	@apply bg-transparent border-0 border-b-2 border-primaryColor text-primaryColor text-sm focus:ring-0 focus:border-secondaryColor focus:border-b-2 focus:border-0 block w-full p-2.5
+}
+
+.primary-invalid-input {
+	@apply bg-transparent border-0 border-b-2 border-red-700 text-red-400 text-sm focus:ring-0 focus:border-red-400 block w-full p-2.5
+}
+
+.primary-date-picker {
+	@apply bg-transparent border-0 border-b-2 border-primaryColor text-primaryColor sm:text-sm focus:ring-0 focus:border-secondaryColor block w-full pl-10 p-2.5
+}
+
+.primary-select-input {
+	@apply bg-contrastColor border-0 border-b-2 border-primaryColor text-primaryColor block w-full pl-10 p-2.5 focus:ring-0 focus:border-secondaryColor
+}
+
+.primary-invalid-select-input {
+	@apply bg-contrastColor border-0 border-b-2 border-red-700 text-primaryColor block w-full pl-10 p-2.5 focus:ring-0 focus:border-red-400
+}
+
+.input-errors {
+	@apply text-red-400 text-sm font-barlow font-light
+}
+
+/* Forms Webkit */
+.primary-input:-webkit-autofill,
+.primary-input:-webkit-autofill:hover,
+.primary-input:-webkit-autofill:focus,
+.primary-input:-webkit-autofill:active,
+.primary-invalid-input:-webkit-autofill,
+.primary-invalid-input:-webkit-autofill:hover,
+.primary-invalid-input:-webkit-autofill:focus,
+.primary-invalid-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset !important;
+	-webkit-text-fill-color: #fff !important;
 }
 
 
@@ -76,9 +121,117 @@ body {
 
 /* Paralax illustrations */
 .home_illustration_1 {
-    background-image: url("../media/home_image_1.jpg");
+    background-image: url("../media/home_page/home_image_1.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
     background-attachment: fixed;
+}
+
+.home_illustration_2 {
+    background-image: url("../media/home_page/home_image_5.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+	filter: grayscale(100%);
+}
+
+
+/* Carousel */
+.carousel {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+.carousel__prev, .carousel__next {
+	position: absolute;
+	top: 50%;
+	z-index: 1000;
+	transform: translate(0, -50%);
+	transition: transform 0.25s ease;
+}
+.carousel__prev i, .carousel__next i {
+	font-size: 60px;
+	color: rgb(227, 160, 8);
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.carousel__prev i:hover, .carousel__next i:hover {
+	font-size: 80px;
+}
+
+.carousel__body {
+	width: 100%;
+	padding: 20px 0 50px 0;
+	overflow: hidden;
+}
+.carousel__body .carousel__slider {
+	position: relative;
+	transition: transform 1s ease-in-out;
+	background: var(--crsl-bg);
+}
+.carousel__body .carousel__slider__item {
+	position: relative;
+	display: block;
+	float: left;
+	box-sizing: border-box;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.carousel__body .carousel__slider__item .item__3d-frame {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: transform 1s ease-in-out;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.carousel__body .carousel__slider__item .item__3d-frame:after {
+	content: "";
+	position: absolute;
+	bottom: -15%;
+	width: 100%;
+	height: 40px;
+	background: var(--box-shadow);
+	box-shadow: 0px 0px 5px 5px var(--box-shadow);
+	transform: rotateX(90deg) translate3d(0px, -20px, 0px);
+	opacity: 0.85;
+}
+.carousel__body .carousel__slider__item .item__3d-frame__box {
+	display: flex;
+	align-items: center;
+	vertical-align: middle;
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	border-color: var(--box-border);
+	background: var(--box-bg);
+	border-width: 3px;
+	border-style: solid;
+}
+.carousel__body .carousel__slider__item .item__3d-frame__box h1 {
+	font-size: 7em;
+	width: 100%;
+	color: var(--box-border);
+}
+.carousel__body .carousel__slider__item .item__3d-frame__box--right, .carousel__body .carousel__slider__item .item__3d-frame__box--left {
+	top: 0;
+	width: 40px;
+	backface-visibility: hidden;
+}
+.carousel__body .carousel__slider__item .item__3d-frame__box--left {
+	left: 0;
+	border-left-width: 5px;
+	transform: translate3d(1px, 0, -40px) rotateY(-90deg);
+	transform-origin: 0%;
+}
+.carousel__body .carousel__slider__item .item__3d-frame__box--right {
+	right: 0;
+	border-right-width: 5px;
+	transform: translate3d(-1px, 0, -40px) rotateY(90deg);
+	transform-origin: 100%;
 }

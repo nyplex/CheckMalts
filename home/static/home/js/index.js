@@ -1,109 +1,50 @@
-import {
-    animateCanvas
-} from "./header";
+import {animateCanvas} from './header';
+import {} from './carousel'
+import './forms/form_validator'
+import Datepicker from '@themesberg/tailwind-datepicker/Datepicker';
+
 
 //render the header scroll animation
-animateCanvas("jagerCanvas", 3840, 2160, 150, "static/home/images/jagerFrame/", ".headerPin", "top", "bottom", true, false);
+animateCanvas('jagerCanvas', 3840, 2160, 150, 'static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
 
 // prevent user to scroll while the page is loading
 $('body').css('overflow-y', 'hidden')
 
 // hide the loader icon and active scrolling when the page is loaded
 window.onload = function () {
+    if(localStorage.getItem('bookingFormSubmited')) {
+        localStorage.removeItem('bookingFormSubmited');
+        document.getElementById('reservationContainer').scrollIntoView();
+    }
     $('#loader').hide()
     $('body').css('overflow-y', 'auto')
 }
 
+// Reload the page when user resize the page
 window.addEventListener('resize', function () {
-    "use strict";
+    'use strict';
     window.location.reload();
 });
 
 
-//Carousel on home page 
-(function () {
-    "use strict";
+// Setup and Init the Input Date Picker
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
 
-    var carousel = document.getElementsByClassName('carousel')[0],
-        slider = carousel.getElementsByClassName('carousel__slider')[0],
-        items = carousel.getElementsByClassName('carousel__slider__item'),
-        prevBtn = carousel.getElementsByClassName('carousel__prev')[0],
-        nextBtn = carousel.getElementsByClassName('carousel__next')[0];
+today = dd + '/' + mm + '/' + yyyy;
 
-    var width, height, totalWidth, margin = 20,
-        currIndex = 0,
-        interval, intervalTime = 4800;
+const datepickerEl = document.getElementById('id_booking_date');
+new Datepicker(datepickerEl, {
+    autohide: true,
+    format: 'dd/mm/yyyy',
+    minDate: today.toString(),
+}); 
 
-    function init() {
-        resize();
-        move(1);
-        bindEvents();
-
-        timer();
-    }
-
-    function resize() {
-        width = Math.max(window.innerWidth * .25, 275),
-            height = window.innerHeight * .5,
-            totalWidth = width * items.length;
-
-        slider.style.width = totalWidth + "px";
-
-        for (var i = 0; i < items.length; i++) {
-            let item = items[i];
-            item.style.width = (width - (margin * 2)) + "px";
-            item.style.height = height + "px";
-        }
-    }
-
-    function move(index) {
-
-        if (index < 1) index = items.length;
-        if (index > items.length) index = 1;
-        currIndex = index;
-
-        for (var i = 0; i < items.length; i++) {
-            let item = items[i],
-                box = item.getElementsByClassName('item__3d-frame')[0];
-            if (i == (index - 1)) {
-                item.classList.add('carousel__slider__item--active');
-                box.style.transform = "perspective(1200px)";
-            } else {
-                item.classList.remove('carousel__slider__item--active');
-                box.style.transform = "perspective(1200px) rotateY(" + (i < (index - 1) ? 40 : -40) + "deg)";
-            }
-        }
-
-        slider.style.transform = "translate3d(" + ((index * -width) + (width / 2) + window.innerWidth / 2) + "px, 0, 0)";
-    }
-
-    function timer() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            move(++currIndex);
-        }, intervalTime);
-    }
-
-    function prev() {
-        move(--currIndex);
-        timer();
-    }
-
-    function next() {
-        move(++currIndex);
-        timer();
-    }
+$('#reservationForm').on('submit', (e) => {
+    localStorage.setItem('bookingFormSubmited', true);
+})
 
 
-    function bindEvents() {
-        window.onresize = resize;
-        prevBtn.addEventListener('click', () => {
-            prev();
-        });
-        nextBtn.addEventListener('click', () => {
-            next();
-        });
-    }
 
-    init();
-})();

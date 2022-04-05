@@ -1,6 +1,6 @@
-import { gsap } from "../../../../static/js/gsap/gsap.min.js"
-import { ScrollTrigger } from "../../../../static/js/gsap/ScrollTrigger.min.js";
-import { TextPlugin } from "../../../../static/js/gsap/TextPlugin.min.js";
+import { gsap } from '../../../../static/js/gsap/gsap.min.js'
+import { ScrollTrigger } from '../../../../static/js/gsap/ScrollTrigger.min.js';
+import { TextPlugin } from '../../../../static/js/gsap/TextPlugin.min.js';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
  *@param {number} canvasH insert canvas Height (image height)
  *@param {number} frames insert the number of frames
  *@param {string} path insert the path to the frame, do not insert the file name
- *@param {string} triggerEl insert between "" the class or ID of the triggered Element
+ *@param {string} triggerEl insert between '' the class or ID of the triggered Element
  *@param {string} triggerStart insert where to start the trigger from the triggered Element
  *@param {string} triggerEnd insert where to end the trigger from the triggered Element
  *@param {boolean} pined insert true or false
@@ -19,14 +19,14 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
  */
  export let animateCanvas = (canvasId, canvasW, canvasH, frames, path, triggerEl, triggerStart, triggerEnd, pined, marks) => {
     const canvas = document.getElementById(canvasId);
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
 
     canvas.width = canvasW;
     canvas.height = canvasH;
 
     const frameCount = frames;
     const currentFrame = (index) =>
-        path + (index + 1).toString().padStart(4, "0") + '.jpg';
+        path + (index + 1).toString().padStart(4, '0') + '.jpg';
 
     const images = [];
     const animation = {
@@ -42,7 +42,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     gsap.to(animation, {
         frame: frameCount - 1,
-        snap: "frame",
+        snap: 'frame',
         scrollTrigger: {
             trigger: triggerEl,
             scrub: 2,
@@ -66,9 +66,9 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     const headerTitleAnimation = gsap.timeline( { 
         scrollTrigger: {
-          trigger: ".headerPin",
-          start: "100 top+=150",
-          end: "center top+=250",
+          trigger: '.headerPin',
+          start: '100 top+=150',
+          end: 'center top+=250',
           scrub: 2,
           markers: false
         }  

@@ -19,6 +19,7 @@ body {
 	overflow-x: hidden;
 }
 
+
 @layer components {
 
 	.navbar-link {
@@ -36,7 +37,6 @@ body {
 	.secondary-btn {
 		@apply text-contrastColor hover:text-primaryColor border-4 border-secondaryColor bg-secondaryColor hover:bg-secondaryHoverLighter hover:border-secondaryHoverLighter focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
-
 }
 
 /********** FORMS COMPONENTS **********/
@@ -64,6 +64,7 @@ body {
 	@apply text-red-400 text-sm font-barlow font-light
 }
 
+
 /* Forms Webkit */
 .primary-input:-webkit-autofill,
 .primary-input:-webkit-autofill:hover,
@@ -75,6 +76,47 @@ body {
 .primary-invalid-input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0px 1000px #000 inset !important;
 	-webkit-text-fill-color: #fff !important;
+}
+
+/********** MESSAGES **********/
+.bg-success {
+	@apply flex p-4 mb-4 bg-green-100 rounded-lg z-40 fixed left-[50%] top-[60px] translate-x-[-50%] w-full mobile:max-w-md
+}
+.text-success {
+	@apply text-green-700
+}
+.btn-success {
+	@apply bg-green-100 text-green-500 hover:bg-green-200
+}
+
+.bg-error {
+	@apply flex p-4 mb-4 bg-red-100 rounded-lg z-50 fixed left-[50%] top-[60px] translate-x-[-50%] w-full mobile:max-w-md
+}
+.text-error {
+	@apply text-red-700
+}
+.btn-error {
+	@apply bg-red-100 text-red-500 hover:bg-red-200
+}
+
+.bg-info {
+	@apply flex p-4 mb-4 bg-blue-100 rounded-lg z-50 fixed left-[50%] top-[60px] translate-x-[-50%] w-full mobile:max-w-md
+}
+.text-info {
+	@apply text-blue-700
+}
+.btn-info {
+	@apply bg-blue-100 text-blue-500 hover:bg-blue-200
+}
+
+.bg-warning {
+	@apply flex p-4 mb-4 bg-yellow-100 rounded-lg z-50 fixed left-[50%] top-[60px] translate-x-[-50%] w-full mobile:max-w-md
+}
+.text-warning {
+	@apply text-yellow-700
+}
+.btn-warning {
+	@apply bg-yellow-100 text-yellow-500 hover:bg-yellow-200
 }
 
 

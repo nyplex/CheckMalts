@@ -6,7 +6,7 @@
         <a href="https://flowbite.com" class="flex items-center">
             <img src="{% static 'media/logo.png' %}"
                 class="mr-3 first-line:sm:h-9 max-w-[40px] max-h-[40px] w-[40px] h-[40px]" alt="Flowbite Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor">CheckMalt</span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor hidden lg:block">CheckMalt</span>
         </a>
 
         <div class="flex items-center md:order-2">
@@ -24,13 +24,13 @@
             <div class="hidden z-50 my-4 text-base list-none bg-primaryColor rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="dropdown">
                 <!-- User's details -->
-                <div class="py-3 px-4">
+                <div class="py-3 px-4 z-50">
                     <span class="block text-2xl text-gray-900 dark:text-primaryColor">Bonnie Green</span>
                     <span
                         class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
                 </div>
                 <!-- User menu links -->
-                <ul class="py-2" aria-labelledby="dropdown">
+                <ul class="py-2 z-50" aria-labelledby="dropdown">
                     <li>
                         <a href="#"
                             class="navbar-link text-2xl py-2">My orders</a>
@@ -70,7 +70,7 @@
         </div>
 
         <!-- Navbar main links -->
-        <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+        <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1 md:absolute md:left-[50%] md:translate-x-[-50%]" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
                     <a href="#" class="active-navbar-link" aria-current="page">HOME</a>

@@ -1,45 +1,34 @@
 from django import forms
-from .widgets import SelectCustomWidget
+from .widgets import SelectCustomWidget, DatePickerCustomWidget
 from .models import Booking
-from django.core.exceptions import ValidationError
-from datetime import date
 
 
 class BookingForm(forms.ModelForm):
 
-    def clean_booking_date(self):
-        data = self.cleaned_data['booking_date']
-        today = date.today().strftime('%Y-%d-%m')
-        if data < date.today():
-            raise ValidationError(
-                'Booking date must be in the future')
-        return data
-
     class Meta:
         model = Booking
         fields = '__all__'
-        
-        error_messages = {
-            'booking_name': {
-                'max_length': 'This writer\'s name is too long.',
-                'min_length': 'This writer\'s name is too long.',
-            },
+
+    
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders and classes & custom widgets
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'booking_email': 'john.doe@gmail.com',
+            'booking_name': 'John Doe',
         }
 
-    booking_email = forms.EmailField(label='Your email', max_length=200, widget=forms.TextInput(
-        attrs={'class': 'primary-input', 'placeholder': 'john.doe@gmain.com'}), required=True)
-
-    booking_name = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'primary-input', 'placeholder': 'John Doe'}), required=True, max_length=50, min_length=4, 
-                                   error_messages={
-                                       'min_length': 'blbablaalb'
-                                   })
-
-    booking_date = forms.DateField(widget=forms.TextInput(
-        {'class': 'primary-date-picker', 'placeholder': 'Select date', 'datepicker': '', 'datepicker-buttons': '', 'autocomplete': 'off'}), required=True)
-
-    booking_time = forms.ChoiceField(label='Booking Time', widget=SelectCustomWidget(
-    ), required=True, choices=Booking.BOOKINGTIMEOPTIONS)
-
-    booking_size = forms.ChoiceField(label='Booking Size', widget=SelectCustomWidget(
-    ), required=True, choices=Booking.BOOKINGSIZEOPTIONS)
+        self.fields['booking_size'].widget = SelectCustomWidget(name='booking_size')
+        self.fields['booking_time'].widget = SelectCustomWidget(name='booking_time')
+        
+        
+        for field in self.fields:
+            if field == 'booking_email' or field == 'booking_name':
+                self.fields[field].widget.attrs['class'] = 'primary-input'
+                self.fields[field].widget.attrs['placeholder'] = placeholders[field]
+                self.fields[field].widget.attrs['minlength'] = 4
+                
+    booking_date = forms.DateField(input_formats=['%d/%m/%Y'],
+                                   widget=DatePickerCustomWidget())

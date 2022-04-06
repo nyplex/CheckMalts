@@ -10,7 +10,7 @@ module.exports = {
         secondaryHoverDarker: '#C27803',
         secondaryHoverLighter: '#FACA15',
         primaryColor: '#fff',
-        contrastColor: '#000'
+        contrastColor: '#000',
       }
     },
     screens: {

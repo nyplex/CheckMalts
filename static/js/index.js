@@ -1,4 +1,7 @@
-import '../css/style.css'
+import '../css/main.css'
+import '../css/messages.css'
+import '../css/home_carousel.css'
+import '../css/home.css'
 import 'flowbite'
 
 

@@ -5,6 +5,8 @@ from django.contrib import auth
 from .forms import BookingForm
 from .models import Booking
 from http import HTTPStatus
+from django.contrib.messages import get_messages
+from django.core import mail
 
 class HomeView(TestCase):
     def test_home_view(self):
@@ -30,14 +32,14 @@ class MakeReservationTests(TestCase):
             }
         response = self.client.post('', data=data)
         
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        messages = list(response.context['messages'])
-        self.assertEqual(str(messages[0]), 'We\'ve got your booking! We sent you a confirmation email.')
-        form = BookingForm(data=data)
-        form.save()
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+        self.assertEqual(str(messages[0]), 'We\'ve got your booking! Check your email for the confirmation.')
+
         self.assertEqual(Booking.objects.count(), 1)
         booking = Booking.objects.filter(pk=1).get()
         self.assertEqual(booking.booking_name, 'John Doe')
+        self.assertEqual(len(mail.outbox), 1)
     
     def test_post_error(self):
         data = {

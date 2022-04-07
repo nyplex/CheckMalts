@@ -78,6 +78,10 @@ body {
 	-webkit-text-fill-color: #fff !important;
 }
 
+.modal-bg {
+	background-color: rgb(0,0,0); /* Fallback color */
+  	background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
 
 
 

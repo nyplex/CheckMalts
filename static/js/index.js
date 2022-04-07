@@ -23,3 +23,15 @@ const options = {
 };
 
 const dismiss = new Dismiss(targetEl, options);
+
+
+//hide alert box after 10sec
+if($('*[data-alertbox]').length) {
+  setTimeout(() => {
+      $('*[data-alertbox]').animate({opacity: 0}, 1000)
+      setTimeout(() => {
+        $('*[data-alertbox]').addClass('hide')
+    }, 2000)
+  }, 9000)
+  
+}

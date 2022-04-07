@@ -10,46 +10,49 @@
         </a>
 
         <div class="flex items-center md:order-2">
-            <!-- Icon user's dropdown menu -->
-            <button type="button"
-                class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown">
-                <span class="sr-only">Open user menu</span>
-                <!-- Profile picture -->
-                <img class="rounded-full  max-w-[40px] max-h-[40px] w-[40px] h-[40px]"
-                    src="{{ MEDIA_URL }}default_profile_pic.jpg" alt="user photo">
-            </button>
+            
+            {% if request.user.is_authenticated %}
+                <!-- Icon user's dropdown menu -->
+                <button type="button"
+                    class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                    id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown">
+                    <span class="sr-only">Open user menu</span>
+                    <!-- Profile picture -->
+                    <img class="rounded-full  max-w-[40px] max-h-[40px] w-[40px] h-[40px]"
+                        src="{{ MEDIA_URL }}default_profile_pic.jpg" alt="user photo">
+                </button>
 
-            <!-- Dropdown user menu -->
-            <div class="hidden z-50 my-4 text-base list-none bg-primaryColor rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="dropdown">
-                <!-- User's details -->
-                <div class="py-3 px-4 z-50">
-                    <span class="block text-2xl text-gray-900 dark:text-primaryColor">Bonnie Green</span>
-                    <span
-                        class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                <!-- Dropdown user menu -->
+                <div class="hidden z-50 my-4 text-base list-none bg-primaryColor rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    id="dropdown">
+                    <!-- User's details -->
+                    <div class="py-3 px-4 z-50">
+                        <span class="block text-2xl text-gray-900 dark:text-primaryColor">Bonnie Green</span>
+                        <span
+                            class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                    </div>
+                    <!-- User menu links -->
+                    <ul class="py-2 z-50" aria-labelledby="dropdown">
+                        <li>
+                            <a href="#"
+                                class="navbar-link text-2xl py-2">My orders</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="navbar-link text-2xl py-2">My cocktails</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="navbar-link text-2xl py-2">My account</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="navbar-link text-2xl py-2 text-red-700 hover:text-red-500">Sign
+                                out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-2"></i></a>
+                        </li>
+                    </ul>
                 </div>
-                <!-- User menu links -->
-                <ul class="py-2 z-50" aria-labelledby="dropdown">
-                    <li>
-                        <a href="#"
-                            class="navbar-link text-2xl py-2">My orders</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="navbar-link text-2xl py-2">My cocktails</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="navbar-link text-2xl py-2">My account</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="navbar-link text-2xl py-2 text-red-700 hover:text-red-500">Sign
-                            out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-2"></i></a>
-                    </li>
-                </ul>
-            </div>
+            {% endif %}
 
             <!-- Burger menu icon -->
             <button data-collapse-toggle="mobile-menu-2" type="button"

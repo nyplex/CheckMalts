@@ -13,8 +13,13 @@ $('body').css('overflow-y', 'hidden')
 // hide the loader icon and active scrolling when the page is loaded
 window.onload = function () {
     if(localStorage.getItem('bookingFormSubmited')) {
+        //If booking form has been submited, scrolldown to the form
         localStorage.removeItem('bookingFormSubmited');
-        document.getElementById('reservationContainer').scrollIntoView();
+        document.getElementById('reservationContainer').scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     }
     $('#loader').hide()
     $('body').css('overflow-y', 'auto')
@@ -47,4 +52,9 @@ $('#reservationForm').on('submit', (e) => {
 })
 
 
-
+//Booking modal
+if($('#bookingModal').length) {
+    $('*[data-bookingModal-toggle]').on('click', (e) => {
+      $('#bookingModal').addClass('hidden')
+    })
+  }

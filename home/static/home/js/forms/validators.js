@@ -8,6 +8,7 @@ export let bookingFormValidator = {
             maximum: 50,
             message: 'Your name must be between 4 and 50 characters'
         },
+
     },
     email: {
         length: {

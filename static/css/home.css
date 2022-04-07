@@ -1,0 +1,58 @@
+/********** HOME PAGE **********/
+/* Header */
+.headerPin {
+	position: absolute;
+	height: 100vh;
+	max-height: 100vh;
+	margin-top: 0px;
+	overflow-x: hidden;
+	top: 0;
+	max-width: 100vw;
+	width: 100%;
+}
+
+#jagerCanvas {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	max-height: 100vh;
+	overflow-x: hidden;
+	opacity: 0;
+}
+
+
+.header-title {
+	width: 100%;
+	position: relative;
+	top: 40%;
+	transform: translate(0, -50%);
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	color: #fff;
+	font-size: 80px;
+}
+
+.header-title h1 {
+	margin: 0;
+}
+
+/* Paralax illustrations */
+.home_illustration_1 {
+    background-image: url("../media/home_page/home_image_1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.home_illustration_2 {
+    background-image: url("../media/home_page/home_image_5.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+	filter: grayscale(100%);
+}

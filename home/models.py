@@ -42,3 +42,6 @@ class Booking(models.Model):
         if data < date.today():
             raise ValidationError(
                 {'booking_date': "Booking date must be in the future."})
+    
+    def __str__(self):
+        return self.booking_name

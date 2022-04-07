@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--crsl-bg: transparent;
+	--box-bg: #11161a;
+	--box-shadow: #0000001c;
+	--box-shadow-border: #0000000f;
+	--box-border: #fff;
+}
+
+body {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+
+@layer components {
+
+	.navbar-link {
+		@apply block py-2 pr-4 pl-3 text-primaryColor hover:bg-secondaryHoverDarker md:hover:bg-transparent md:hover:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg
+	}
+
+	.active-navbar-link {
+		@apply block py-2 pr-4 pl-3 text-primaryColor md:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-secondaryHoverDarker md:bg-transparent
+	}
+
+	.primary-btn {
+		@apply text-secondaryColor hover:text-primaryColor border-4 border-secondaryColor bg-contrastColor hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+	}
+
+	.secondary-btn {
+		@apply text-contrastColor hover:text-primaryColor border-4 border-secondaryColor bg-secondaryColor hover:bg-secondaryHoverLighter hover:border-secondaryHoverLighter focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
+	}
+}
+
+/********** FORMS COMPONENTS **********/
+.primary-input {
+	@apply bg-transparent border-0 border-b-2 border-primaryColor text-primaryColor text-sm focus:ring-0 focus:border-secondaryColor focus:border-b-2 focus:border-0 block w-full p-2.5
+}
+
+.primary-invalid-input {
+	@apply bg-transparent border-0 border-b-2 border-red-700 text-red-400 text-sm focus:ring-0 focus:border-red-400 block w-full p-2.5
+}
+
+.primary-date-picker {
+	@apply bg-transparent border-0 border-b-2 border-primaryColor text-primaryColor sm:text-sm focus:ring-0 focus:border-secondaryColor block w-full pl-10 p-2.5
+}
+
+.primary-select-input {
+	@apply bg-contrastColor border-0 border-b-2 border-primaryColor text-primaryColor block w-full pl-10 p-2.5 focus:ring-0 focus:border-secondaryColor
+}
+
+.primary-invalid-select-input {
+	@apply bg-contrastColor border-0 border-b-2 border-red-700 text-primaryColor block w-full pl-10 p-2.5 focus:ring-0 focus:border-red-400
+}
+
+.input-errors {
+	@apply text-red-400 text-sm font-barlow font-light
+}
+
+
+/* Forms Webkit */
+.primary-input:-webkit-autofill,
+.primary-input:-webkit-autofill:hover,
+.primary-input:-webkit-autofill:focus,
+.primary-input:-webkit-autofill:active,
+.primary-invalid-input:-webkit-autofill,
+.primary-invalid-input:-webkit-autofill:hover,
+.primary-invalid-input:-webkit-autofill:focus,
+.primary-invalid-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset !important;
+	-webkit-text-fill-color: #fff !important;
+}
+
+.modal-bg {
+	background-color: rgb(0,0,0); /* Fallback color */
+  	background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+
+

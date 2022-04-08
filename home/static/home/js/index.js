@@ -5,7 +5,7 @@ import Datepicker from '@themesberg/tailwind-datepicker/Datepicker';
 
 
 //render the header scroll animation
-animateCanvas('jagerCanvas', 3840, 2160, 150, 'static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
+animateCanvas('jagerCanvas', 2200, 1238, 150, 'static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
 
 // prevent user to scroll while the page is loading
 $('body').css('overflow-y', 'hidden')
@@ -57,4 +57,10 @@ if($('#bookingModal').length) {
     $('*[data-bookingModal-toggle]').on('click', (e) => {
       $('#bookingModal').addClass('hidden')
     })
-  }
+}
+
+//Show loader when booking form submited and disable submit btn to prevent multiple form submission
+$('#reservationForm').on('submit', (e) => {
+    $('#loader').show()
+    $('#bookingSubmit').attr('disabled', 'disabled')
+})

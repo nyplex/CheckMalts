@@ -1,6 +1,7 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
+const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const webpack = require("webpack");
 
 
 
@@ -8,11 +9,14 @@ module.exports = {
     entry: { //add js file for each django app here
         main: './static/js/index.js',
         home: './home/static/home/js/index.js'
-      },
-    mode: 'development', //change to production
+    },
+    optimization: {
+      usedExports: true, // <- remove unused function
+    },
+    mode: "development", //change to production
     output: {
         filename: 'dist/[name].bundle.js',
-        path: path.resolve(__dirname, 'static/'),
+        path: path.resolve(__dirname, "static/"),
     },
     devtool: 'inline-source-map', //remove on production
     module: {
@@ -36,16 +40,17 @@ module.exports = {
                         },
                     },
                 ],
-            }, 
+            },
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-          filename: 'dist/bundle.css',
+          filename: "dist/bundle.css",
         }),
         new webpack.ProvidePlugin({
           $: 'jquery',
           jQuery: 'jquery',
         }),
-    ]
+        new CompressionPlugin(),
+    ],
 }

@@ -45,3 +45,10 @@ class Booking(models.Model):
     
     def __str__(self):
         return self.booking_name
+    
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the lineitem total
+        and update the order total.
+        """
+        super().save(*args, **kwargs)

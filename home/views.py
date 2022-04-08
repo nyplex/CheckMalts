@@ -6,7 +6,6 @@ from django.conf import settings
 from smtplib import SMTPException
 
 
-
 def home(request):
     """ A view to return the index page """
 

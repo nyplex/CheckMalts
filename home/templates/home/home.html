@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- Loader Icon -->
-<div id="loader" class="bg-contrastColor w-[100vw] h-[100vh] z-50 mx-auto relative">
+<div id="loader" class="bg-contrastColor w-[100vw] h-[100vh] z-50 mx-auto fixed">
     <img src="{% static 'media/loader.gif' %}" alt="loader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
 </div>
 
@@ -64,7 +64,7 @@
     <!-- Section 1A -->
     <div class="flex flex-col md:flex-row justify-between">
         <h3 class="text-secondaryColor text-4xl font-barlow font-medium md:hidden text-center mb-4 md:mb-0">300+ Cocktails served every day</h3>
-        <img src="{% static 'media/home_page/home_image_2.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 rounded-lg">
+        <img src="{% static 'media/home_page/home_image_2.webp' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 rounded-lg">
         <div class="max-w-screen-md flex flex-col justify-between">
             <div>
                 <h3 class="text-primaryColor text-4xl font-barlow font-medium hidden md:block">300+ Cocktails served every day</h3>
@@ -83,7 +83,7 @@
         <div class="max-w-screen-md text-right flex flex-col justify-between md:mr-8">
             <div>
                 <h3 class="text-secondaryColor md:text-primaryColor text-4xl font-barlow font-medium md:text-right text-center mb-4 md:mb-0">From margaritas to mojitos</h3>
-                <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 md:hidden rounded-lg">
+                <img src="{% static 'media/home_page/home_image_3.webp' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 md:hidden rounded-lg">
                 <p class="text-primaryColor text-lg font-barlow font-light mt-4 md:mt-8 text-center md:text-right">
                     I'm a paragraph. Click here to add 
                     your own text and edit me. 
@@ -92,7 +92,7 @@
             </div>
             <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 md:ml-auto md:mr-0 mx-auto mt-4 mb-0">ORDER HERE</a>
         </div>
-        <img src="{% static 'media/home_page/home_image_3.jpg' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 hidden md:block rounded-lg">
+        <img src="{% static 'media/home_page/home_image_3.webp' %}" alt="cocktail illustration" class="w-full max-w-[300px] border-l-8 border-t-8 border-primaryColor mx-auto md:mx-0 hidden md:block rounded-lg">
     </div>
 </div>
 
@@ -106,7 +106,7 @@
     <!-- Section 2A -->
     <div class="flex flex-col md:flex-row justify-between">
         <h3 class="text-primaryColor text-4xl font-barlow font-medium md:hidden text-center mb-4 md:mb-0">You design, we make!</h3>
-        <img src="{% static 'media/home_page/home_image_4.jpg' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 object-cover rounded-lg">
+        <img src="{% static 'media/home_page/home_image_4.webp' %}" alt="cocktail illustration" class="w-full h-auto max-w-[300px] border-r-8 border-b-8 border-primaryColor mx-auto md:mx-0 md:mr-8 object-cover rounded-lg">
         <div class="max-w-screen-md flex flex-col justify-between">
             <div>
                 <h3 class="text-primaryColor text-4xl font-barlow font-medium hidden md:block">You design, we make!</h3>
@@ -220,13 +220,13 @@
                         {% endif %}
                     {% endfor %}
 
-                    <button type="submit" class="secondary-btn py-2 px-4 font-normal mx-auto w-full mt-4">Book now</button>
+                    <button id="bookingSubmit" type="submit" class="secondary-btn py-2 px-4 font-normal mx-auto w-full mt-4">Book now</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script src="{% static 'dist/home.bundle.js' %}"></script>
+<script src="{% static 'dist/home.bundle.js.gz' %}"></script>
 
 {% endblock content %}

@@ -41,7 +41,7 @@
 
 /* Paralax illustrations */
 .home_illustration_1 {
-    background-image: url("../media/home_page/home_image_1.jpg");
+    background-image: url("../media/home_page/home_image_1.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -49,7 +49,7 @@
 }
 
 .home_illustration_2 {
-    background-image: url("../media/home_page/home_image_5.png");
+    background-image: url("../media/home_page/home_image_5.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

@@ -26,7 +26,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     const frameCount = frames;
     const currentFrame = (index) =>
-        path + (index + 1).toString().padStart(4, '0') + '.jpg';
+        path + (index + 1).toString().padStart(4, '0') + '.webp';
 
     const images = [];
     const animation = {

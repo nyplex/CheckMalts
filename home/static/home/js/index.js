@@ -57,4 +57,10 @@ if($('#bookingModal').length) {
     $('*[data-bookingModal-toggle]').on('click', (e) => {
       $('#bookingModal').addClass('hidden')
     })
-  }
+}
+
+//Show loader when booking form submited and disable submit btn to prevent multiple form submission
+$('#reservationForm').on('submit', (e) => {
+    $('#loader').show()
+    $('#bookingSubmit').attr('disabled', 'disabled')
+})

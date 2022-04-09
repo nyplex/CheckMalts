@@ -5,10 +5,7 @@
 
 {% block content %}
 
-<!-- Loader Icon -->
-<div id="loader" class="bg-contrastColor w-[100vw] h-[100vh] z-50 mx-auto fixed">
-    <img src="{% static 'media/loader.gif' %}" alt="loader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-</div>
+
 
 <!-- Booking confirmation modal -->
 {% if messages %}
@@ -74,7 +71,7 @@
                     Let your users get to know you.
                 </p>
             </div>
-            <a href="#" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto md:mx-0 mt-4 mb-0">SEE THE MENU</a>
+            <a href="{% url 'menu' %}" class="primary-btn border-2 w-[200px] font-medium text-xl py-2 px-3 mx-auto md:mx-0 mt-4 mb-0">SEE THE MENU</a>
         </div>
     </div>
 

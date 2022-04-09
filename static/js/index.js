@@ -35,3 +35,11 @@ if($('*[data-alertbox]').length) {
   }, 9000)
   
 }
+
+
+
+// hide the loader icon and active scrolling when the page is loaded
+window.onload = function () {
+  $('#loader').hide()
+  $('body').css('overflow-y', 'auto')
+}

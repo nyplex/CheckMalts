@@ -75,10 +75,18 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
     });
        
     headerTitleAnimation
-    .to('#header_chess_logo', {width: 5, duration: 8}, 8)
-    .to('#header_chess_logo', {width: 100, duration: 8}, 8)
     .to('#jagerCanvas', { opacity: 0, duration: 5 }, 5)
     .to('#jagerCanvas', { opacity: 1, duration: 5 }, 5)
-
 }
 
+
+gsap.to("#header_chess_logo", {
+    width: 100,
+    scrollTrigger: {
+      trigger: ".headerPin",
+      start: "150 top+=150",
+      end: "bottom top+=250",
+      scrub: 1,
+      markers: false,
+    }
+  });

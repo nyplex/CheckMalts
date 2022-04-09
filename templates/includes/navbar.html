@@ -79,13 +79,14 @@
         </div>
 
         <!-- Navbar main links -->
+        {% with request.resolver_match.url_name as url_name %}
         <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1 md:absolute md:left-[50%] md:translate-x-[-50%]" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
-                    <a href="#" class="active-navbar-link" aria-current="page">HOME</a>
+                    <a href="{% url 'home' %}" class="{% if url_name == 'home' %}active-{% endif %}navbar-link" aria-current="page">HOME</a>
                 </li>
                 <li>
-                    <a href="#" class="navbar-link">MENU</a>
+                    <a href="{% url 'menu' %}" class="{% if url_name == 'menu' %}active-{% endif %}navbar-link">MENU</a>
                 </li>
                 <li>
                     <a href="#" class="navbar-link">ORDER</a>
@@ -106,5 +107,6 @@
                 {% endif %}
             </ul>
         </div>
+        {% endwith %}
     </div>
 </nav>

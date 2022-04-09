@@ -21,8 +21,6 @@ window.onload = function () {
             inline: 'center'
         });
     }
-    $('#loader').hide()
-    $('body').css('overflow-y', 'auto')
 }
 
 // Reload the page when user resize the page

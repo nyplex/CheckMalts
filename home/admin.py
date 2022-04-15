@@ -3,7 +3,7 @@ from .models import Booking
 
 # Register your models here.
 
-class ProductAdmin(admin.ModelAdmin):
+class BookingAdmin(admin.ModelAdmin):
     list_display = (
         'booking_name',
         'booking_date',
@@ -15,4 +15,4 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ('booking_date',)
 
 
-admin.site.register(Booking, ProductAdmin)
+admin.site.register(Booking, BookingAdmin)

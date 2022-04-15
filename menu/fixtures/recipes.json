@@ -1,0 +1,38 @@
+[
+    {
+        "model": "menu.recipe",
+        "fields": {
+            "ingredient": 33,
+            "cocktail": 1,
+            "quantity": 6
+
+        }
+    },
+    {
+        "model": "menu.recipe",
+        "fields": {
+            "ingredient": 17,
+            "cocktail": 1,
+            "quantity": 2
+
+        }
+    },
+    {
+        "model": "menu.recipe",
+        "fields": {
+            "ingredient": 11,
+            "cocktail": 1,
+            "quantity": 12
+
+        }
+    },
+    {
+        "model": "menu.recipe",
+        "fields": {
+            "ingredient": 58,
+            "cocktail": 1,
+            "quantity": 2
+
+        }
+    }
+]

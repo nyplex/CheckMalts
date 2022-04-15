@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %} Index {% endblock page_title %}
+
+{% block content %}
+
+<div class="max-w-screen-md mx-auto h-[1200px] pt-[60px]">
+    <h1 class="text-4xl text-white text-center">MENU PAGE</h1>
+    
+    <h1 class="text-4xl text-white text-center">{{ cocktail.name }}</h1>
+    <h1 class="text-4xl text-white text-center">{{ cocktail.description }}</h1>
+    <h1 class="text-4xl text-white text-center">{{ cocktail.price }}</h1>
+    {% for ing in cocktail.recipe.all %}
+        <h1 class="text-xl text-white text-center">{{ ing.ingredient.friendly_name }}({{ing.quantity}}{{ ing.ingredient.unit }})</h1>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

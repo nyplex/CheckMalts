@@ -1,0 +1,50 @@
+[
+    {
+        "pk": 1,
+        "model": "menu.category",
+        "fields": {
+            "name": "cocktails",
+            "friendly_name": "Cocktails"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "menu.category",
+        "fields": {
+            "name": "wines",
+            "friendly_name": "Wines"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "menu.category",
+        "fields": {
+            "name": "beers",
+            "friendly_name": "Beers"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "menu.category",
+        "fields": {
+            "name": "shots",
+            "friendly_name": "Shots"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "menu.category",
+        "fields": {
+            "name": "liqueur",
+            "friendly_name": "Liqueur"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "menu.category",
+        "fields": {
+            "name": "soft",
+            "friendly_name": "Soft drinks"
+        }
+    }
+]

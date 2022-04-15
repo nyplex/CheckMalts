@@ -1,0 +1,98 @@
+[
+    {
+        "pk": 1,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "fancy cocktails",
+            "friendly_name": "Fancy"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "classic cocktails",
+            "friendly_name": "Classic"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "olf fashioned cocktails",
+            "friendly_name": "Old Fashioned"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "popular cocktails",
+            "friendly_name": "Popular"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "non-alcoholic cocktails",
+            "friendly_name": "Vegan Cocktails"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "red wine",
+            "friendly_name": "Red wine"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "white wine",
+            "friendly_name": "White wine"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "sparkling wine",
+            "friendly_name": "Sparkling wine"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "champagne",
+            "friendly_name": "Champagne"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "lager beer",
+            "friendly_name": "Lager"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "pale ale beer",
+            "friendly_name": "Pale Ale"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "IPA beer",
+            "friendly_name": "IPA"
+        }
+    }
+]

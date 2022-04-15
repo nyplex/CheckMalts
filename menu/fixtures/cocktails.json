@@ -1,0 +1,398 @@
+[
+    {
+        "pk": 1,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Regular coke 330ml",
+            "friendly_name": "Coke",
+            "slug": "coke",
+            "price": 2.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 2,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Diet coke 330ml",
+            "friendly_name": "Diet Coke",
+            "slug": "diet-coke",
+            "price": 2.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 3,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Coke zero 330ml",
+            "friendly_name": "Coke Zero",
+            "slug": "coke-zero",
+            "price": 2.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 4,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Fanta orange 330ml",
+            "friendly_name": "Fanta",
+            "slug": "fanta",
+            "price": 2.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 5,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sprite 330ml",
+            "friendly_name": "Sprite",
+            "slug": "sprite",
+            "price": 2.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 6,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Orange juice 330ml",
+            "friendly_name": "Orange juice",
+            "slug": "orange-juice",
+            "price": 2,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 7,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Apple juice 330ml",
+            "friendly_name": "Apple juice",
+            "slug": "apple-juice",
+            "price": 2,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 8,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Still BELU water 330ml",
+            "friendly_name": "BELU still water 330ml",
+            "slug": "belu-small-still",
+            "price": 1.2,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 9,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sparkling BELU water 330ml",
+            "friendly_name": "BELU sparkling water 330ml",
+            "slug": "belu-small-sparkling",
+            "price": 1.2,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": false,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 10,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Amaretto Disarrono",
+            "friendly_name": "Amaretto Disarrono",
+            "slug": "amaretto-disarrono",
+            "price": 4.8,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 5,
+            "has_size": true
+        }
+    },
+    {
+        "pk": 11,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Jack Daniels Whisky",
+            "friendly_name": "Jack Daniels Whisky",
+            "slug": "jack-daniels-whisky",
+            "price": 4.8,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 5,
+            "has_size": true
+        }
+    },
+    {
+        "pk": 12,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Shot Smirnoff red vodka",
+            "friendly_name": "Vodka",
+            "slug": "shot-vodka",
+            "price": 4,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 4,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 13,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Shot Cazcabel Honey Tequila",
+            "friendly_name": "Honey Tequila",
+            "slug": "shot-cazcabel-honey-tequila",
+            "price": 4,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 4,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 14,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Shot Olmeca Altos Tequila Plata",
+            "friendly_name": "Olmeca Altos Tequila",
+            "slug": "shot-olmeca-altos-tequila",
+            "price": 4,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 4,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 15,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Stella Artois Premium Lager 330ml",
+            "friendly_name": "Stella Artois 330ml",
+            "slug": "stella-artois",
+            "price": 4.6,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 22,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Peroni Nastro Azzurro 330ml",
+            "friendly_name": "Peroni 330ml",
+            "slug": "peroni",
+            "price": 4.6,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 16,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Martini Sparkling Rose",
+            "friendly_name": "Martini Sparkling Rose",
+            "slug": "martini-sparkling-rose",
+            "price": 5.2,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.25,
+            "rating": 5,
+            "ordered": 0,
+            "category": 2,
+            "has_size": true
+        }
+    },
+    {
+        "pk": 17,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Mojito",
+            "friendly_name": "Classic Mojito",
+            "slug": "classic-mojito",
+            "price": 10,
+            "description": "White rum, lime, mint, canne syrop and sparkling water",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 2.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 18,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Margarita",
+            "friendly_name": "Classic Margarita",
+            "slug": "classic-margarita",
+            "price": 10,
+            "description": "Tequila, triple sec and lime juice",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 2,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 19,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Blue Lagoon",
+            "friendly_name": "Blue Lagoon",
+            "slug": "blue-lagoon",
+            "price": 10,
+            "description": "Vodka, blue curacao and lime juice",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 2,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 20,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sex on the beach",
+            "friendly_name": "Sex on the beach",
+            "slug": "sex-on-the-beach",
+            "price": 12,
+            "description": "Vodka, melon liqueur, chambord, pineapple juice & cranberry juice",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 2,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false
+        }
+    },
+    {
+        "pk": 21,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Cazcabel Honey Tequila",
+            "friendly_name": "Cazcabel Honey Tequila",
+            "slug": "cazcabel-honey-tequila",
+            "price": 4.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 5,
+            "has_size": false
+        }
+    }         
+]

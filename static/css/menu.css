@@ -1,0 +1,23 @@
+#menuBackground {
+    background-image: url("../media/home_page/home_image_1.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.3;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+
+}
+
+#menuTitle {
+    text-shadow: -1vmin -1vmin 0 white;
+}
+
+@media only screen and (max-width: 768px) {
+    #menuBackground {
+        opacity: 0.2;
+    }
+  }

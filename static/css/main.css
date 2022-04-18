@@ -26,10 +26,6 @@ body {
 		@apply block py-2 pr-4 pl-3 text-primaryColor hover:bg-secondaryHoverDarker md:hover:bg-transparent md:hover:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg
 	}
 
-	.active-navbar-link {
-		@apply block py-2 pr-4 pl-3 text-primaryColor md:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-secondaryHoverDarker md:bg-transparent
-	}
-
 	.primary-btn {
 		@apply text-secondaryColor hover:text-primaryColor border-4 border-secondaryColor bg-contrastColor hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
@@ -37,6 +33,10 @@ body {
 	.secondary-btn {
 		@apply text-contrastColor hover:text-primaryColor border-4 border-secondaryColor bg-secondaryColor hover:bg-secondaryHoverLighter hover:border-secondaryHoverLighter focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
+}
+
+.active-navbar-link {
+	@apply block py-2 pr-4 pl-3 text-primaryColor md:text-secondaryColor md:p-0 text-center font-barlow font-semibold text-xl rounded-lg bg-secondaryHoverDarker md:bg-transparent
 }
 
 /********** FORMS COMPONENTS **********/
@@ -82,6 +82,5 @@ body {
 	background-color: rgb(0,0,0); /* Fallback color */
   	background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
-
 
 

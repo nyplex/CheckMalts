@@ -1,0 +1,1172 @@
+[
+    {
+        "pk": 1,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bareksten Absinthe 1x500ml",
+            "friendly_name": "Bareksten Absinthe",
+            "unit": "cl",
+            "price_per_unit": 0.90,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 60
+        }
+    },
+    {
+        "pk": 2,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Disarrono Amaretto Italian Liqueur, 50cl",
+            "friendly_name": "Amaretto Disarrono",
+            "unit": "cl",
+            "price_per_unit": 0.26,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 28
+        }
+    },
+    {
+        "pk": 3,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Fever-Tree Light Mediterranean Tonic Water, 8 x 150ml",
+            "friendly_name": "Light Tonic Water",
+            "unit": "cl",
+            "price_per_unit": 0.03,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 4,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Absolut Raspberri Flavoured Swedish Vodka, 70cl",
+            "friendly_name": "Absolut Raspberri",
+            "unit": "cl",
+            "price_per_unit": 0.29,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 5,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Absolut Mango Flavoured Swedish Vodka, 70 cl",
+            "friendly_name": "Absolut Mango",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 6,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Volare Espresso Coffee Liqueur, 70 cl",
+            "friendly_name": "Volare Coffee Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.20,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 20
+        }
+    },
+    {
+        "pk": 7,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Peroni Nastro Azzurro Lager Bottle, 330ml",
+            "friendly_name": "Peroni 330ml",
+            "unit": "unit",
+            "price_per_unit": 1.37,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 5.1
+        }
+    },
+    {
+        "pk": 8,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "St Germain Elderflower Liqueur 50 cl",
+            "friendly_name": "St Germain Elderflower Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.42,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 20
+        }
+    },
+    {
+        "pk": 9,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Pineapple Juice 1 Litre",
+            "friendly_name": "Pineapple Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 10,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Tropical Juice, 1l",
+            "friendly_name": "Tropical Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 11,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Highland Spring Sparkling Water",
+            "friendly_name": "Sparkling Water",
+            "unit": "cl",
+            "price_per_unit": 0.01,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 12,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Stella Artois Premium Lager Beer Bottle",
+            "friendly_name": "Stella Artois 330ml",
+            "unit": "unit",
+            "price_per_unit": 1.07,
+            "category": "beer",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 4.6
+        }
+    },
+    {
+        "pk": 13,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "De Kuyper Blue Curacao Liqueur, 50cl",
+            "friendly_name": "Blue Curacao",
+            "unit": "cl",
+            "price_per_unit": 0.2,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 20
+        }
+    },
+    {
+        "pk": 14,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Mango Juice Drink, 1L",
+            "friendly_name": "Mango Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 15,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Apple Juice From Concentrate, 1L",
+            "friendly_name": "Apple Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 16,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Hpnotiq liqueur 70cl",
+            "friendly_name": "Hpnotiq liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.28,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 17
+        }
+    },
+    {
+        "pk": 17,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Premium Pure Cane Sugar Syrup 700 ml",
+            "friendly_name": "Cane Sugar Syrup",
+            "unit": "cl",
+            "price_per_unit": 0.13,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 18,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Coconut Fruit Mix Puree 1L",
+            "friendly_name": "Coconut Fruit Puree",
+            "unit": "cl",
+            "price_per_unit": 0.12,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 19,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Passion Fruit Mix Puree 1L",
+            "friendly_name": "Passion Fruit Puree",
+            "unit": "cl",
+            "price_per_unit": 0.16,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 20,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Mango Fruit Mix Puree 1L",
+            "friendly_name": "Mango Fruit Puree",
+            "unit": "cl",
+            "price_per_unit": 0.15,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 21,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Cazcabel Honey Tequila, 70cl",
+            "friendly_name": "Cazcabel Honey Tequila",
+            "unit": "cl",
+            "price_per_unit": 0.33,
+            "category": "tequila",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 34
+        }
+    },
+    {
+        "pk": 22,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Brugal Añejo Superior Dark Rum, 70cl",
+            "friendly_name": "Brugal Dark Rum",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 38
+        }
+    },
+    {
+        "pk": 23,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "J.J. Whitley London Dry Gin, 70 cl",
+            "friendly_name": "Whitley London Dry Gin",
+            "unit": "cl",
+            "price_per_unit": 0.23,
+            "category": "gin",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 38.6
+        }
+    },
+    {
+        "pk": 24,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bombay Sapphire Distilled London Dry Gin, 70cl",
+            "friendly_name": "Bombay Sapphire Gin",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "gin",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 25,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Aperol Aperitivo 100 cl",
+            "friendly_name": "Aperol Aperitivo",
+            "unit": "cl",
+            "price_per_unit": 0.20,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 11
+        }
+    },
+    {
+        "pk": 26,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Cranberry Classic Juice Drink, 1L",
+            "friendly_name": "Cranberry Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 27,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Schweppes Lemonade, 2L",
+            "friendly_name": "Schweppes Lemonade",
+            "unit": "cl",
+            "price_per_unit": 0.06,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 28,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Jack Daniels Tennessee Whisky, 1L",
+            "friendly_name": "Jack Daniels Whisky",
+            "unit": "cl",
+            "price_per_unit": 0.31,
+            "category": "whiskey",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 29,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "SKYY Vodka 70 cl, Premium Quadruple Distilled American Vodka",
+            "friendly_name": "SKYY Vodka",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 30,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Koko Kanu 70 cl, Jamaica Coconut Rum",
+            "friendly_name": "Jamaica Coconut Rum",
+            "unit": "cl",
+            "price_per_unit": 0.27,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 37.5
+        }
+    },
+    {
+        "pk": 31,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Olmeca Altos Tequila Plata, 70 cl",
+            "friendly_name": "Altos Tequila",
+            "unit": "cl",
+            "price_per_unit": 0.33,
+            "category": "tequila",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 38
+        }
+    },
+    {
+        "pk": 32,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Teisseire Sirop Grenadine, 600ml",
+            "friendly_name": "Grenadine Sirop",
+            "unit": "cl",
+            "price_per_unit": 0.11,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 33,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bacardi Carta Blanca Premium White Rum, 70 cl",
+            "friendly_name": "Bacardi White Rum",
+            "unit": "cl",
+            "price_per_unit": 0.21,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 37.5
+        }
+    },
+    {
+        "pk": 34,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Red Bull Energy Drink, 250 ml",
+            "friendly_name": "Red Bull",
+            "unit": "unit",
+            "price_per_unit": 0.92,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 35,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Martini Sparkling Rose, 75cl",
+            "friendly_name": "Martini Sparkling Rose",
+            "unit": "cl",
+            "price_per_unit": 0.17,
+            "category": "wine",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 8
+        }
+    },
+    {
+        "pk": 36,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Cointreau Liqueur, 50cl",
+            "friendly_name": "Cointreau",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 37,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Orange Juice 1.35L",
+            "friendly_name": "Orange Juice",
+            "unit": "cl",
+            "price_per_unit": 0.02,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 38,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Smirnoff Red Label Vodka, 70cl",
+            "friendly_name": "Smirnoff Red Vodka",
+            "unit": "cl",
+            "price_per_unit": 0.19,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 37.5
+        }
+    },
+    {
+        "pk": 39,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Brugal Blanco Supremo White Rum, 70cl",
+            "friendly_name": "Brugal White Rum",
+            "unit": "cl",
+            "price_per_unit": 0.30,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 40,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Tequila Rose Strawberry Cream Liqueur, 50 cl",
+            "friendly_name": "Tequila Rose Strawberry Cream",
+            "unit": "cl",
+            "price_per_unit": 0.31,
+            "category": "tequila",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 15
+        }
+    },
+    {
+        "pk": 41,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Absolut Vanilla Flavoured Swedish Vodka, 70cl",
+            "friendly_name": "Absolut Vanilla",
+            "unit": "cl",
+            "price_per_unit": 0.29,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 42,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Passoã Passion Fruit Liqueur, 70cl",
+            "friendly_name": "Passoã Passion Fruit Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.17,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 17
+        }
+    },
+    {
+        "pk": 43,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Absolut Swedish Vodka, 70cl",
+            "friendly_name": "Absolut Vodka",
+            "unit": "cl",
+            "price_per_unit": 0.29,
+            "category": "vodka",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 44,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Monin Blueberry Puree 1 Litre",
+            "friendly_name": "Blueberry Puree",
+            "unit": "cl",
+            "price_per_unit": 0.23,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 45,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Peach Fruit Mix Puree 1L",
+            "friendly_name": "Peach Fruit Puree",
+            "unit": "cl",
+            "price_per_unit": 0.15,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 46,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Premium Violet Syrup 700 ml",
+            "friendly_name": "Violet Syrup",
+            "unit": "cl",
+            "price_per_unit": 0.14,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 47,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "MONIN Premium Lavender Syrup 700 ml",
+            "friendly_name": "Lavender Syrup",
+            "unit": "cl",
+            "price_per_unit": 0.17,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 48,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "De Kuyper Apricot Brandy, 50cl",
+            "friendly_name": "Apricot Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.44,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 24
+        }
+    },
+    {
+        "pk": 49,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Jägermeister Herbal Liqueur, 70cl",
+            "friendly_name": "Jägermeister",
+            "unit": "cl",
+            "price_per_unit": 0.24,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 35
+        }
+    },
+    {
+        "pk": 48,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "De Kuyper Apricot Brandy, 50cl",
+            "friendly_name": "Apricot Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.44,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 24
+        }
+    },
+    {
+        "pk": 49,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bacardi Spiced Rum, 70cl",
+            "friendly_name": "Bacardi Spiced Rum",
+            "unit": "cl",
+            "price_per_unit": 0.20,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 35
+        }
+    },
+    {
+        "pk": 50,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Cinzano Prosecco D.O.C. 75cl",
+            "friendly_name": "Prosecco",
+            "unit": "cl",
+            "price_per_unit": 0.13,
+            "category": "wine",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 11
+        }
+    },
+    {
+        "pk": 51,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bols Strawberry Liqueur, 50cl",
+            "friendly_name": "Strawberry Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.29,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 17
+        }
+    },
+    {
+        "pk": 52,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Martini Bianco Vermouth 75 cl",
+            "friendly_name": "Martini Bianco",
+            "unit": "cl",
+            "price_per_unit": 0.12,
+            "category": "wine",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 15
+        }
+    },
+    {
+        "pk": 53,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bols Creme De Cassis Nw Liqueur 50 cl",
+            "friendly_name": "Creme De Cassis",
+            "unit": "cl",
+            "price_per_unit": 0.32,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 17
+        }
+    },
+    {
+        "pk": 54,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Bols Cherry Brandy Liqueur, 50 cl",
+            "friendly_name": "Cherry Brandy Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.29,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 24
+        }
+    },
+    {
+        "pk": 55,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Kahlua Coffee Liqueur, 700ml",
+            "friendly_name": "Kahlua Coffee Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.17,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 16
+        }
+    },
+    {
+        "pk": 56,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Gordon's Special London Dry Gin, 1 Litre",
+            "friendly_name": "Gordon's Gin",
+            "unit": "cl",
+            "price_per_unit": 0.16,
+            "category": "gin",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 37.5
+        }
+    },
+    {
+        "pk": 57,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Volare Banana Liqueur, 70 cl",
+            "friendly_name": "Banana Liqueur",
+            "unit": "cl",
+            "price_per_unit": 0.23,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 22
+        }
+    },
+    {
+        "pk": 58,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Lime Juice",
+            "friendly_name": "Lime Juice",
+            "unit": "cl",
+            "price_per_unit": 0.06,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 59,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Lemon Juice",
+            "friendly_name": "Lemon Juice",
+            "unit": "cl",
+            "price_per_unit": 0.06,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 60,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Angostura Orange Bitters, 100ml",
+            "friendly_name": "Angostura Orange Bitters",
+            "unit": "cl",
+            "price_per_unit": 0.7,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 28
+        }
+    },
+    {
+        "pk": 61,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Midori Melon Liquor, 70cl",
+            "friendly_name": "Melon Liquor",
+            "unit": "cl",
+            "price_per_unit": 0.27,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 20
+        }
+    },
+    {
+        "pk": 62,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Baileys Chocolat Luxe Liqueur 50cl",
+            "friendly_name": "Baileys Chocolat",
+            "unit": "cl",
+            "price_per_unit": 0.36,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 15.7
+        }
+    },
+    {
+        "pk": 63,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Cointreau Triple Sec, Orange Liqueur, 70cl",
+            "friendly_name": "Cointreau Triple Sec",
+            "unit": "cl",
+            "price_per_unit": 0.31,
+            "category": "liqueur",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 64,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Don Papa rum 70cl, Premium dark aged sipping rum",
+            "friendly_name": "Don Papa, Premium dark aged rum",
+            "unit": "cl",
+            "price_per_unit": 0.46,
+            "category": "rum",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 40
+        }
+    },
+    {
+        "pk": 65,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Regular coca-cola 1L",
+            "friendly_name": "Regular coke",
+            "unit": "cl",
+            "price_per_unit": 0.03,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 66,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Diet coca-cola 1L",
+            "friendly_name": "Diet coke",
+            "unit": "cl",
+            "price_per_unit": 0.03,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 67,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Coca-cola Zero 1L",
+            "friendly_name": "Coke Zero",
+            "unit": "cl",
+            "price_per_unit": 0.03,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": true,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 68,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Fanta 330ml",
+            "friendly_name": "Fanta 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.7,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 69,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Regular coke 330ml",
+            "friendly_name": "Coke 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.7,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 70,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Diet coke 330ml",
+            "friendly_name": "Diet coke 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.7,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 71,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Coke Zero 330ml",
+            "friendly_name": "Coke Zero 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.7,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 72,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Sprite 330ml",
+            "friendly_name": "Sprite 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.7,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 73,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Orange Juice 330ml",
+            "friendly_name": "Orange Juice 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.55,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 74,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Apple Juice 330ml",
+            "friendly_name": "Apple Juice 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.55,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 75,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Still water BELU 330ml",
+            "friendly_name": "Still Water 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.35,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    },
+    {
+        "pk": 76,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Sparkling water BELU 330ml",
+            "friendly_name": "Sparkling Water 330ml",
+            "unit": "unit",
+            "price_per_unit": 0.35,
+            "category": "soft",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": false,
+            "alcohol_volume": 0
+        }
+    }
+]

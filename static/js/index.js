@@ -2,6 +2,7 @@ import '../css/main.css'
 import '../css/messages.css'
 import '../css/home_carousel.css'
 import '../css/home.css'
+import '../css/menu.css'
 import 'flowbite'
 
 

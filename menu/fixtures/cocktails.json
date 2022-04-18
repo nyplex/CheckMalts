@@ -1,0 +1,23 @@
+[
+    {
+        "pk": 49,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Peroni 330ml",
+            "friendly_name": "Peroni 330ml",
+            "slug": "peroni-330",
+            "price": 4.5,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 1.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false,
+            "sub_category": 11
+        }
+    }
+
+]
+

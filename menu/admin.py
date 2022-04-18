@@ -9,6 +9,12 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'name',
+    )
+
 class CocktailAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -31,4 +37,4 @@ admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Cocktail, CocktailAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(SubCategory)
+admin.site.register(SubCategory, SubCategoryAdmin)

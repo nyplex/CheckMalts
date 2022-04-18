@@ -6,13 +6,25 @@ from django.core import serializers
 def menu(request):
     """ A view to return the menu page """
     
-    cocktail = Cocktail.objects.get(pk=1)
+    cocktails = Cocktail.objects.all().order_by('category')
+    categories = Category.objects.all()
+    subCategories = SubCategory.objects.all()
 
     context = {
-        'cocktail': cocktail
+        'cocktails': cocktails,
+        'categories': categories,
+        'subCategories': subCategories
     }
     
     return render(request, 'menu/menu.html', context)
+
+
+
+
+
+
+
+
 
 
 def admin(request):

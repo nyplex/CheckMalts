@@ -74,6 +74,7 @@ class Recipe(models.Model):
 class Category(models.Model):
     name = models.CharField(null=False, blank=False, max_length=50)
     friendly_name = models.CharField(null=True, blank=True, max_length=50)
+    sub_categories = models.ManyToManyField('SubCategory')
     
     def __str__(self):
         return self.name

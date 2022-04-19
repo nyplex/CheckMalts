@@ -23,9 +23,9 @@
 <div class="max-w-screen-md mx-auto w-full mt-[100px]">
     <!-- Load each menu's category -->
 {% for category in categories %}
-<h2 class="text-5xl text-primaryColor mb-4 font-barlow font-extrabold text-center" id="{{ category.name }}SectionTitle">{{ category.name|upper }}</h2>
+<h2 class="text-5xl text-primaryColor mb-4 font-barlow font-extrabold text-center" id="{{ category.name }}SectionTitle" data-sectiontitle>{{ category.name|upper }}</h2>
 <div class="flex flex-row mb-20 items-center relative md:static md:justify-between justify-start overflow-x-hidden md:overflow-x-visible">
-    <div class=":w-[70%]  border-l-4 border-secondaryColor px-4 h-full max-h-full z-30 md:z-0" id="{{ category.name }}Section">
+    <div class=":w-[70%]  border-l-4 border-secondaryColor px-4 h-full max-h-full z-30 md:z-0" id="{{ category.name }}Section" data-sectioncontent>
         
         <!-- Check if the category has a sub_category -->
         {% if category.sub_categories.all %}
@@ -64,7 +64,7 @@
         {% endif %}
 
     </div>
-    <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration">
+    <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration" data-sectionimage>
         <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-50 md:opacity-1">
     </div>
 </div>

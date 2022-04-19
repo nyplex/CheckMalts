@@ -22,6 +22,30 @@ window.addEventListener('resize', function () {
     window.location.reload();
 });
 
+//Check if scroll position is in local storage and scroll to saved position when page is loaded
+$(document).ready(function() {
+    if(localStorage.getItem('scrollPositon')) {
+        console.log(localStorage.getItem('scrollPositon'));
+        $(window).scrollTop(localStorage.getItem('scrollPositon'))
+        localStorage.removeItem('scrollPositon');
+    }
+});
+
+//Save the scroll position when user open cocktail link 
+$('*[data-menulink]').on('click', (e) => {
+    localStorage.setItem('scrollPositon', $(document).scrollTop());
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 

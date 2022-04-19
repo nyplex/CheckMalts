@@ -5,70 +5,80 @@
 
 {% block content %}
 
-
+<!-- Background image -->
 <div id="menuBackground" class="w-full h-[100vh] fixed z-[-100]"></div>
 
+<!-- Main header -->
 <div class="h-[100vh] w-full relative overflow-x-hidden" id="menuHeaderContainer">
 	<h1 class="top-[-5%] left-[50%] text-8xl font-barlow font-extrabold text-secondaryColor absolute translate-x-[-50%] translate-y-[-50%] z-0 text-center" id="menuTitle">OUR MENU</h1>
     <div class="w-full flex flex-row justify-center max-w-full pt-[100px] z-30 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
         <img src="{% static 'menu/images/knight.png' %}" alt="Chess Knight Illustration" class="w-[40%] scale-x-[-1] z-50 max-w-[300px]" id="chessIllustrationHeader1">
         <img src="{% static 'menu/images/knight.png' %}" alt="Chess Knight Illustration" class="w-[40%] z-50 max-w-[300px]" id="chessIllustrationHeader2">
     </div>
-    <div class="absolute bottom-8 left-[50%] translate-x-[-50%] text-center w-full container">
-        <span class="text-primaryColor">Scroll down</span>
+    <div class="absolute bottom-8 left-[50%] translate-x-[-50%] text-center w-full container z-50">
+        <span class="text-secondaryColor text-lg">Scroll down</span>
     </div>
 </div>
 
 
+<!-- Menu container -->
 <div class="max-w-screen-md mx-auto w-full mt-[100px]">
     <!-- Load each menu's category -->
-{% for category in categories %}
-<h2 class="text-5xl text-primaryColor mb-4 font-barlow font-extrabold text-center" id="{{ category.name }}SectionTitle">{{ category.name|upper }}</h2>
-<div class="flex flex-row mb-20 items-center relative md:static md:justify-between justify-start overflow-x-hidden md:overflow-x-visible">
-    <div class=":w-[70%]  border-l-4 border-secondaryColor px-4 h-full max-h-full z-30 md:z-0" id="{{ category.name }}Section">
+    {% for category in categories %}
+        <h2 class="text-5xl text-primaryColor mb-4 font-barlow font-extrabold text-center" id="{{ category.name }}SectionTitle" data-sectiontitle>{{ category.friendly_name|upper }}</h2>
+        <div class="flex flex-row mb-20 items-center relative md:static md:justify-between justify-start overflow-x-hidden md:overflow-x-visible">
+            <div class=":w-[70%]  border-l-4 border-secondaryColor px-4 h-full max-h-full z-30 md:z-0" id="{{ category.name }}Section" data-sectioncontent>
         
-        <!-- Check if the category has a sub_category -->
-        {% if category.sub_categories.all %}
-            <!-- load the cocktails inside the category that do NOT have any sub_category -->
-            {% for cocktail in cocktails %}
-                {% if cocktail.category.name == category.name and cocktail.sub_category == none %}
-                    <div class="text-primaryColor flex flex-row md:justify-start justify-between font-barlow font-normal text-xl w-full">
-                        <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
-                        <h3 class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</h3>
-                    </div>
-                {% endif %}
-            {% endfor %}
-            <!-- Load each sub_categories in the category -->
-            {% for sub_category in category.sub_categories.all %}
-                <h3 class="text-2xl text-secondaryColor mb-2 font-barlow font-bold mt-4"><i class="fa-solid fa-circle-dot text-lg align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
-                <!-- load the cocktails inside the category and inside the sub_category -->
-                {% for cocktail in cocktails %}
-                    {% if cocktail.category.name == category.name and cocktail.sub_category.name == sub_category.name %}
-                        <div class="text-primaryColor flex flex-row font-barlow font-normal text-xl w-full justify-start">
-                            <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
-                            <h3 class="ml-auto mr-20">£{{ cocktail.price }}</h3>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        {% else %}
-            <!-- Load the cocktail if the category does NOT have any sub_categories -->
-            {% for cocktail in cocktails %}
-                {% if cocktail.category.name == category.name %}
-                    <div class="text-primaryColor flex flex-row md:justify-start justify-between font-barlow font-normal text-xl w-full">
-                        <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
-                        <h3 class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</h3>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+                <!-- Check if the category has a sub_category -->
+                {% if category.sub_categories.all %}
+                    <!-- load the cocktails inside the category that do NOT have any sub_category -->
+                    {% for cocktail in cocktails %}
+                        {% if cocktail.category.name == category.name and cocktail.sub_category == none %}
+                            <a href="{% url 'home' %}" class="text-primaryColor font-barlow font-normal text-xl w-full hover:text-secondaryHoverDarker" data-menulink>
+                                <div class=" flex flex-row md:justify-start justify-between w-full">
+                                    <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
+                                    <h3 class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</h3>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
 
-    </div>
-    <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration">
-        <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-50 md:opacity-1">
-    </div>
-</div>
-{% endfor %}
+                    <!-- Load each sub_categories in the category -->
+                    {% for sub_category in category.sub_categories.all %}
+                        <h3 class="text-2xl text-secondaryColor mb-2 font-barlow font-bold mt-4"><i class="fa-solid fa-circle-dot text-lg align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
+                        <!-- load the cocktails inside the category and inside the sub_category -->
+                        {% for cocktail in cocktails %}
+                            {% if cocktail.category.name == category.name and cocktail.sub_category.name == sub_category.name %}
+                                <a href="{% url 'home' %}" class="text-primaryColor font-barlow font-normal text-xl w-full hover:text-secondaryHoverDarker" data-menulink>
+                                    <div class=" flex flex-row md:justify-start justify-between w-full">
+                                        <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
+                                        <h3 class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</h3>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <!-- Load the cocktail if the category does NOT have any sub_categories -->
+                    {% for cocktail in cocktails %}
+                        {% if cocktail.category.name == category.name %}
+                            <a href="{% url 'home' %}" class="text-primaryColor font-barlow font-normal text-xl w-full hover:text-secondaryHoverDarker" data-menulink>
+                                <div class=" flex flex-row md:justify-start justify-between w-full">
+                                    <h3 class="mr-4">{{ cocktail.friendly_name }}</h3>
+                                    <h3 class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</h3>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+            <!-- Illustration for each categories -->
+            <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration" data-sectionimage>
+                <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-50 md:opacity-1">
+            </div>
+        </div>
+    {% endfor %}
 </div>
 
 

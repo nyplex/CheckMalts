@@ -52,7 +52,7 @@ class Cocktail(models.Model):
     has_size = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
-        return self.name
+        return self.friendly_name
 
     
     def recipe(self):

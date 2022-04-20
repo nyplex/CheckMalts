@@ -5,7 +5,7 @@ from django.contrib import messages
 
 
 def menu(request, product_id=None):
-    """ A view to return the menu page """
+    """ A view to return the menu page & product details modal """
     
     if request.method == 'GET':
         if product_id:

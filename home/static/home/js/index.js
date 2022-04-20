@@ -7,8 +7,6 @@ import Datepicker from '@themesberg/tailwind-datepicker/Datepicker';
 //render the header scroll animation
 animateCanvas('jagerCanvas', 2200, 1238, 150, 'static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
 
-// prevent user to scroll while the page is loading
-$('body').css('overflow-y', 'hidden')
 
 // hide the loader icon and active scrolling when the page is loaded
 $(document).ready((e) => {

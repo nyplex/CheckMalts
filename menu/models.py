@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.core.validators import MinLengthValidator, validate_slug, MinValueValidator, MaxValueValidator
 
@@ -43,7 +44,7 @@ class Cocktail(models.Model):
     out_of_stock = models.BooleanField(null=False, blank=False, default=False)
     has_alcohol = models.BooleanField(null=False, blank=False, default=False)
     prep_time = models.IntegerField(null=False, blank=False, validators=[MinValueValidator(0), MaxValueValidator(1000)])
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=False, blank=True, upload_to='products_images/', default='products_images/default.png')
     rating = models.FloatField(null=True, blank=True, validators=[MaxValueValidator(5), MinValueValidator(0)])
     ordered = models.IntegerField(null=False, blank=True, default=0)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)

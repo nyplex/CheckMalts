@@ -25,6 +25,7 @@ window.addEventListener('resize', function () {
 //Check if scroll position is in local storage and scroll to saved position when page is loaded
 $(document).ready(function() {
     if(localStorage.getItem('scrollPositon')) {
+        window.history.pushState('page2', 'Title', '/menu');
         console.log(localStorage.getItem('scrollPositon'));
         $(window).scrollTop(localStorage.getItem('scrollPositon'))
         localStorage.removeItem('scrollPositon');
@@ -32,12 +33,22 @@ $(document).ready(function() {
 });
 
 //Save the scroll position when user open cocktail link 
-$('*[data-menulink]').on('click', (e) => {
+$('*[data-product-link]').on('click', (e) => {
     localStorage.setItem('scrollPositon', $(document).scrollTop());
 })
 
 
-
+//Product modal
+if($('#productModal').length) {
+    $('*[data-productModal-toggle]').on('click', (e) => {
+      $('#productModal').addClass('hidden')
+    })
+    $(window).on('click', (e) => {
+        if(e.target.id == 'productModal') {
+            $('#productModal').addClass('hidden')
+        }
+    })
+}
 
 
 

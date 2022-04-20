@@ -5,6 +5,8 @@ import '../css/home.css'
 import '../css/menu.css'
 import 'flowbite'
 
+// prevent user to scroll while the page is loading
+$('body').css('overflow-y', 'hidden')
 
 // target element that will be dismissed
 const targetEl = document.getElementById('alert-1');

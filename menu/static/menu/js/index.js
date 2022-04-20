@@ -1,20 +1,16 @@
 import './animation.js'
 
-// prevent user to scroll while the page is loading
-$('body').css('overflow-y', 'hidden')
 
-// hide the loader icon and active scrolling when the page is loaded
-window.onload = function () {
-    if(localStorage.getItem('bookingFormSubmited')) {
-        //If booking form has been submited, scrolldown to the form
-        localStorage.removeItem('bookingFormSubmited');
-        document.getElementById('reservationContainer').scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center'
-        });
+
+
+$(document).ready((e) => {
+    if(localStorage.getItem('scrollPositon')) {
+        window.history.pushState('page2', 'Title', '/menu');
+        $(window).scrollTop(localStorage.getItem('scrollPositon'))
+        localStorage.removeItem('scrollPositon');
     }
-}
+})
+
 
 // Reload the page when user resize the page
 window.addEventListener('resize', function () {
@@ -22,15 +18,6 @@ window.addEventListener('resize', function () {
     window.location.reload();
 });
 
-//Check if scroll position is in local storage and scroll to saved position when page is loaded
-$(document).ready(function() {
-    if(localStorage.getItem('scrollPositon')) {
-        window.history.pushState('page2', 'Title', '/menu');
-        console.log(localStorage.getItem('scrollPositon'));
-        $(window).scrollTop(localStorage.getItem('scrollPositon'))
-        localStorage.removeItem('scrollPositon');
-    }
-});
 
 //Save the scroll position when user open cocktail link 
 $('*[data-product-link]').on('click', (e) => {
@@ -41,11 +28,13 @@ $('*[data-product-link]').on('click', (e) => {
 //Product modal
 if($('#productModal').length) {
     $('*[data-productModal-toggle]').on('click', (e) => {
-      $('#productModal').addClass('hidden')
+        localStorage.setItem('scrollPositon', $(document).scrollTop());
+        window.location.reload();
     })
     $(window).on('click', (e) => {
         if(e.target.id == 'productModal') {
-            $('#productModal').addClass('hidden')
+            localStorage.setItem('scrollPositon', $(document).scrollTop());
+            window.location.reload();
         }
     })
 }

@@ -5,34 +5,6 @@
 
 {% block content %}
 
-<!-- Product details modal -->
-{% if messages %}
-    {% for message in messages %}
-        {% if message.extra_tags == 'product_modal' %}
-            <div id="productModal" tabindex="-1" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-full modal-bg">
-                <div class="relative p-4 w-full max-w-md h-auto top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-                    <!-- Modal content -->
-                    <div class="relative bg-contrastColor rounded-lg shadow border-4 border-primaryColor">
-                        <!-- Modal header -->
-                        <div class="flex justify-end p-2">
-                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-productModal-toggle>
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                            </button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="p-6 pt-0 flex flex-row justify-between items-center">
-                            <div class="w-[70%] max-w-[70%]">
-                                <h3 class="mb-4 text-3xl font-bold text-secondaryColor font-barlow">{{ message.message.name }}</h3>
-                                <p class="mb-4 text-xl font-extralight italic text-primaryColor font-barlow">{{ message.message.description }}</p>
-                            </div>
-                            <img src="{{ message.message.image.url }}" alt="chess icon" class="mx-auto max-w-[30%] w-[30%] h-fit">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
 
 <!-- Background image -->
 <div id="menuBackground" class="w-full h-[100vh] fixed z-[-100]"></div>
@@ -63,12 +35,13 @@
                     <!-- load the cocktails inside the category that do NOT have any sub_category -->
                     {% for cocktail in cocktails %}
                         {% if cocktail.category.name == category.name and cocktail.sub_category == none %}
-                            <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                                <a href="{% url 'menu' product_id=cocktail.id %}" data-product-link>
-                                    <span class="mr-4 hover:text-secondaryHoverDarker">{{ cocktail.friendly_name }}</span>
-                                </a>
-                                <span class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</span>
-                            </div>  
+                            <div class="w-full">
+                                <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
+                                    <span class="mr-4">{{ cocktail.friendly_name }}</span>
+                                    <span class="ml-auto">£{{ cocktail.price }}</span>
+                                </div>
+                                <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
+                            </div> 
                         {% endif %}
                     {% endfor %}
 
@@ -78,11 +51,12 @@
                         <!-- load the cocktails inside the category and inside the sub_category -->
                         {% for cocktail in cocktails %}
                             {% if cocktail.category.name == category.name and cocktail.sub_category.name == sub_category.name %}
-                                <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                                    <a href="{% url 'menu' product_id=cocktail.id %}" data-product-link>
-                                        <span class="mr-4 hover:text-secondaryHoverDarker">{{ cocktail.friendly_name }}</span>
-                                    </a>
-                                    <span class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</span>
+                                <div class="w-full">
+                                    <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
+                                        <span class="mr-4">{{ cocktail.friendly_name }}</span>
+                                        <span class="ml-auto">£{{ cocktail.price }}</span>
+                                    </div>
+                                    <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
                                 </div>
                             {% endif %}
                         {% endfor %}
@@ -91,12 +65,13 @@
                     <!-- Load the cocktail if the category does NOT have any sub_categories -->
                     {% for cocktail in cocktails %}
                         {% if cocktail.category.name == category.name %}                                
-                            <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                                <a href="{% url 'menu' product_id=cocktail.id %}" data-product-link>
-                                    <span class="mr-4 hover:text-secondaryHoverDarker">{{ cocktail.friendly_name }}</span>
-                                </a>
-                                <span class="ml-auto md:mr-20 mr-0">£{{ cocktail.price }}</span>
-                            </div>                                                            
+                            <div class="w-full">
+                                <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
+                                    <span class="mr-4">{{ cocktail.friendly_name }}</span>
+                                    <span class="ml-auto">£{{ cocktail.price }}</span>
+                                </div>
+                                <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
+                            </div>                                                         
                         {% endif %}
                     {% endfor %}
                 {% endif %}

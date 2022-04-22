@@ -1,17 +1,11 @@
 from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
-from django.contrib import messages
 
 
 def menu(request, product_id=None):
     """ A view to return the menu page & product details modal """
-    
-    if request.method == 'GET':
-        if product_id:
-            cocktail = Cocktail.objects.get(pk=product_id)
-            messages.add_message(request, messages.SUCCESS, message=cocktail, extra_tags='product_modal')
-    
+
     cocktails = Cocktail.objects.all().order_by('category')
     categories = Category.objects.all()
     subCategories = SubCategory.objects.all()
@@ -21,8 +15,6 @@ def menu(request, product_id=None):
         'categories': categories,
         'subCategories': subCategories
     }
-    
-    
     
     return render(request, 'menu/menu.html', context)
 

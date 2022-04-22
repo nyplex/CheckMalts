@@ -3,6 +3,7 @@ import '../css/messages.css'
 import '../css/home_carousel.css'
 import '../css/home.css'
 import '../css/menu.css'
+import '../css/order.css'
 import 'flowbite'
 
 // prevent user to scroll while the page is loading
@@ -39,6 +40,11 @@ if($('*[data-alertbox]').length) {
   
 }
 
+// Reload the page when user resize the page
+window.addEventListener('resize', function () {
+  'use strict';
+  window.location.reload();
+});
 
 
 // hide the loader icon and active scrolling when the page is loaded

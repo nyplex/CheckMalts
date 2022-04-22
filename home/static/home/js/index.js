@@ -21,12 +21,6 @@ $(document).ready((e) => {
     }
 })
 
-// Reload the page when user resize the page
-window.addEventListener('resize', function () {
-    'use strict';
-    window.location.reload();
-});
-
 
 // Setup and Init the Input Date Picker
 var today = new Date();

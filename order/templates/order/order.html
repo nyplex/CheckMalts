@@ -6,6 +6,7 @@
 {% block content %}
 
 
+<!-- Alert modal if bar is closed -->
 <div class="pt-[70px]">
     {% if not open %}
         <div class="max-w-screen-md mx-auto w-full bg-red-300 py-4 md:rounded-md fixed top-[70px] left-[50%] translate-x-[-50%]">
@@ -16,11 +17,13 @@
     {% endif %}
 </div>
 
+<!-- Header -->
 <div class="max-w-screen-md mx-auto w-full mt-12 px-2">
     <h1 class="text-secondaryColor font-barlow font-bold text-4xl text-left">MENU</h1>
     <p class="text-primaryColor font-barlow font-normal text-lg text-left mt-2">
         At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
     </p>
+    <!-- Menu category -->
     <select id="category_select_input" class="primary-select-input w-full md:max-w-[200px] mt-2 text-lg">
         {% for category in categories %}
             {% if selected == category.id %}
@@ -32,70 +35,29 @@
     </select>
 </div>
 
-<!-- Menu container -->
+<!-- Order container -->
 <div class="max-w-screen-md mx-auto w-full mt-8 mb-24 px-2 md:px-0">
     <!-- Check if the category has a sub_category -->
     {% if sub_categories %}
-        <!-- load the cocktails inside the category that do NOT have any sub_category -->
-        {% for cocktail in cocktails %}
-            {% if cocktail.category.name == category.name and cocktail.sub_category == none %}
-                <div class="w-full">
-                    <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                        <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                        <span class="ml-auto">£{{ cocktail.price }}</span>
-                    </div>
-                    <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
-                </div> 
-            {% endif %}
-        {% endfor %}
-
-        <!-- Load each sub_categories in the category -->
+        <!-- Load each sub_categories -->
         {% for sub_category in sub_categories %}
             <h3 class="text-2xl text-secondaryColor mb-6 font-barlow font-bold mt-12"><i class="fa-solid fa-circle-dot text-lg align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
-            <!-- load the cocktails inside the category and inside the sub_category -->
+            <!-- load the cocktails inside the sub_category -->
             <div class="flex flex-row w-full gap-8 flex-wrap justify-evenly">
                 {% for cocktail in cocktails %}
                     {% if cocktail.sub_category.name == sub_category.name %}
-                        <div class="w-full md:w-[47%] min-h-[150px] p-2 mr-auto cursor-pointer border-2 hover:border-secondaryColor border-primaryColor transition-all flex flex-col justify-around">
-                            <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                                <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                                <span class="ml-auto">£{{ cocktail.price }}</span>
-                            </div>
-                            <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2 max-w-[70%]">{{ cocktail.description }}</p>
-                            <div class="flex flex-row justify-around items-center">
-                                {% if cocktail.has_size %}
-                                    <div class="w-[30%] md:max-w-[200px]">
-                                        <select class="border-2 border-secondaryHoverDarker bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2" style="padding:4px">
-                                            {% for size in cocktail.sizes.all %}
-                                                <option value="{{size}}">{{ size|title }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                {% endif %}
-                                <div class="h-full">
-                                    <div class="flex flex-row justify-between items-center text-primaryColor h-full">
-                                        <i class="fa-solid fa-circle-minus text-2xl"></i>
-                                        <input type="text" class="border-2 border-secondaryHoverDarker rounded-lg max-w-[50px] p-0 h-full bg-contrastColor focus:ring-0 focus:border-secondaryColor focus:border-2">
-                                        <i class="fa-solid fa-circle-plus text-2xl"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'order/includes/individual_item.html' %}
                     {% endif %}
                 {% endfor %}
             </div>
         {% endfor %}
     {% else %}
         <!-- Load the cocktail if the category does NOT have any sub_categories -->
-        {% for cocktail in cocktails %}                           
-                <div class="w-full">
-                    <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
-                        <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                        <span class="ml-auto">£{{ cocktail.price }}</span>
-                    </div>
-                    <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
-                </div>                                                         
-        {% endfor %}
+        <div class="flex flex-row w-full gap-8 flex-wrap justify-evenly">
+            {% for cocktail in cocktails %}                           
+                {% include 'order/includes/individual_item.html' %}                                      
+            {% endfor %}
+        </div>
     {% endif %}
 </div>
 

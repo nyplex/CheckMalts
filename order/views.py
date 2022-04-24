@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.contrib import messages
 from menu.models import *
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -26,3 +29,12 @@ def order(request):
     }
         
     return render(request, 'order/order.html', context)
+
+def item_detail(request):
+    if request.method == "POST":
+        # get the form data
+        cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
+
+
+    html = render_to_string('order/includes/item_modal.html', {'cocktail': cocktail})
+    return HttpResponse(html)

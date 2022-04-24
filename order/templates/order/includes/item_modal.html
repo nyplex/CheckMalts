@@ -1,0 +1,55 @@
+{% load static %}
+
+<!-- The Modal -->
+<div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
+    <!-- Modal content -->
+    <div class="bg-black border-2 border-primaryColor rounded-lg p-2 w-full md:max-w-[600px] min-h-[200px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor md:h-auto max-h-[100vh]">
+        <!-- Modal loader -->
+        <img src="{% static 'media/loader.gif' %}" alt="loader" id="itemModelLoader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 max-h-full">
+
+        <div class="hidden" id="itemModaBodyContainer">
+            <div class="flex justify-end p-2">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-6 pt-0 text-center">
+                <h3 class="mb-4 text-2xl font-bold text-primaryColor font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
+                <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto mb-4">
+                <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[70%] text-center mx-auto">{{ cocktail.description }}</p>
+                <p class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price }}</p>
+
+                <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-8">
+                    <!-- Item Size -->
+                    {% if cocktail.has_size %}
+                        <div class="w-[30%] md:max-w-[200px] mr-4">
+                            <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                {% for size in cocktail.sizes.all %}
+                                    <option value="{{size}}">{{ size|title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                    <div class="w-full md:max-w-[200px] flex flex-row gap-3 justify-between">
+                        <!-- Item Quantity -->
+                        <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg focus:ring-0 focus:border-secondaryColor focus:border-2 w-[30%] hover:border-secondaryHoverDarker cursor-pointer">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                        </select>
+                        <!-- Add to basket button -->
+                        <button class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

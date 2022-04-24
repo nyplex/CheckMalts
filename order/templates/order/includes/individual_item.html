@@ -1,12 +1,13 @@
 <div class="w-full md:w-[47%] min-h-[150px] p-2 mr-auto border-2 border-primaryColor transition-all flex flex-col justify-around bg-black rounded-lg">
     <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full items-center">
-        <span class="mr-2 cocktail-name cursor-pointer transition-all">{{ cocktail.friendly_name }}</span><i class="fa-solid fa-circle-info text-sm transition-all"></i>
+        <span class="mr-2 cocktail-name cursor-pointer transition-all" data-order-item-modal="{{ cocktail.id }}">{{ cocktail.friendly_name }}</span><i class="fa-solid fa-circle-info text-sm transition-all"></i>
         <span class="ml-auto transition-all">£{{ cocktail.price }}</span>
     </div>
     <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2 max-w-[70%]">{{ cocktail.description }}</p>
     <div class="flex flex-row justify-around items-center">
+        <!-- Item Size -->
         {% if cocktail.has_size %}
-            <div class="w-[30%] md:max-w-[200px]">
+            <div class="w-[30%] md:max-w-[200px] mr-4">
                 <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
                     {% for size in cocktail.sizes.all %}
                         <option value="{{size}}">{{ size|title }}</option>
@@ -15,6 +16,7 @@
             </div>
         {% endif %}
         <div class="w-[70%] md:max-w-[200px] flex flex-row gap-3 justify-between">
+            <!-- Item Quantity -->
             <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg focus:ring-0 focus:border-secondaryColor focus:border-2 w-[30%] hover:border-secondaryHoverDarker cursor-pointer">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -27,6 +29,7 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
             </select>
+            <!-- Add to basket button -->
             <button class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
         </div>
     </div>

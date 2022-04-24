@@ -5,6 +5,11 @@
 
 {% block content %}
 
+{% include 'order/includes/item_modal.html' %}
+
+
+{% csrf_token %}
+
 
 <!-- Alert modal if bar is closed -->
 <div class="pt-[70px]">

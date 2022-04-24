@@ -17,21 +17,18 @@
             <div class="p-6 pt-0 text-center">
                 <h3 class="mb-4 text-2xl font-bold text-primaryColor font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
                 <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto mb-4">
-                <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[70%] text-center mx-auto">{{ cocktail.description }}</p>
+                <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">{{ cocktail.description }}</p>
                 <p class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price }}</p>
 
-                <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-8">
+                <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-4">
                     <!-- Item Size -->
                     {% if cocktail.has_size %}
-                        <div class="w-[30%] md:max-w-[200px] mr-4">
-                            <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                            <select class="border-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
                                 {% for size in cocktail.sizes.all %}
                                     <option value="{{size}}">{{ size|title }}</option>
                                 {% endfor %}
                             </select>
-                        </div>
                     {% endif %}
-                    <div class="w-full md:max-w-[200px] flex flex-row gap-3 justify-between">
                         <!-- Item Quantity -->
                         <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg focus:ring-0 focus:border-secondaryColor focus:border-2 w-[30%] hover:border-secondaryHoverDarker cursor-pointer">
                                 <option value="1">1</option>
@@ -45,10 +42,12 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                         </select>
-                        <!-- Add to basket button -->
-                        <button class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
-                    </div>
                 </div>
+                <div class="max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
+                    <textarea name="" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
+                </div>
+                 <!-- Add to basket button -->
+                 <button class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
             </div>
         </div>
     </div>

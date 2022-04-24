@@ -25,10 +25,8 @@
                         <div class="p-6 pt-0 text-center">
                             <img src="{% static 'media/horse-icon.png' %}" alt="chess icon" class="max-w-[70px] mx-auto mb-4">
                             <h3 class="mb-4 text-xl font-normal text-primaryColor font-barlow">{{ message }}</h3>
-                            <button type="button" class="secondary-btn font-semibold text-lg px-2 py-0.5">
-                                See our menu
-                            </button>
-                            <button type="button" class="primary-btn font-semibold text-lg px-2 py-1 border-2">Create cocktail</button>
+                            <a href="{% url 'menu' %}" class="secondary-btn font-semibold text-lg px-2 py-0.5">See our menu</a>
+                            <a href="" class="primary-btn font-semibold text-lg px-2 py-1 border-2">Create cocktail</a>
                         </div>
                     </div>
                 </div>

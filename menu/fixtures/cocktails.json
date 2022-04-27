@@ -910,6 +910,44 @@
             "has_size": false,
             "sub_category": 11
         }
+    },
+    {
+        "pk": 50,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Pint of Peroni",
+            "friendly_name": "Pint of Peroni",
+            "slug": "pint-peroni",
+            "price": 5.75,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false,
+            "sub_category": 14
+        }
+    },
+    {
+        "pk": 51,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "1/2 Pint of Peroni",
+            "friendly_name": "1/2 Pint of Peroni",
+            "slug": "helf-pint-peroni",
+            "price": 3.75,
+            "description": "",
+            "out_of_stock": false,
+            "has_alcohol": true,
+            "prep_time": 0.5,
+            "rating": 5,
+            "ordered": 0,
+            "category": 1,
+            "has_size": false,
+            "sub_category": 14
+        }
     }
 
 ]

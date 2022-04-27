@@ -12,7 +12,7 @@
         {% csrf_token %}
         <select name="cocktail" id="cocktail" class="mb-4">
             {% for cocktail in cocktails %}
-                <option value="{{ cocktail.id }}">{{ cocktail.friendly_name }} {{ cocktail.category.name }}</option>
+                <option value="{{ cocktail.id }}">{{ cocktail.name }} || {{ cocktail.category.name }}</option>
             {% endfor %}
         </select>
         <br>
@@ -21,7 +21,7 @@
         <select name="ingredient_1" id="ingredient_1" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_1" id="quantity_1" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -29,7 +29,7 @@
         <select name="ingredient_2" id="ingredient_2" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_2" id="quantity_2" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -37,7 +37,7 @@
         <select name="ingredient_3" id="ingredient_3" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_3" id="quantity_3" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -45,7 +45,7 @@
         <select name="ingredient_4" id="ingredient_4" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_4" id="quantity_4" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -53,7 +53,7 @@
         <select name="ingredient_5" id="ingredient_5" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_5" id="quantity_5" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -61,7 +61,7 @@
         <select name="ingredient_6" id="ingredient_6" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_6" id="quantity_6" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -69,7 +69,7 @@
         <select name="ingredient_7" id="ingredient_7" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_7" id="quantity_7" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -77,7 +77,7 @@
         <select name="ingredient_8" id="ingredient_8" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_8" id="quantity_8" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -85,7 +85,7 @@
         <select name="ingredient_9" id="ingredient_9" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_9" id="quantity_9" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -93,7 +93,7 @@
         <select name="ingredient_10" id="ingredient_10" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_10" id="quantity_10" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -101,7 +101,7 @@
         <select name="ingredient_11" id="ingredient_11" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_11" id="quantity_11" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -109,7 +109,7 @@
         <select name="ingredient_12" id="ingredient_12" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_12" id="quantity_12" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -117,7 +117,7 @@
         <select name="ingredient_13" id="ingredient_13" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_13" id="quantity_13" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -125,7 +125,7 @@
         <select name="ingredient_14" id="ingredient_14" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_14" id="quantity_14" placeholder="Qty" class="w-[80px] mb-2" data-qantity>
@@ -133,7 +133,7 @@
         <select name="ingredient_15" id="ingredient_15" class="w-[400px]" data-ingredient>
             <option value="" selected disabled>Choose here</option>
             {% for ingredient in ingredients %}
-                <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                <option value="{{ ingredient.id }}">{{ ingredient.name }} || {{ ingredient.category }}</option>
             {% endfor %}
         </select>
         <input type="text" name="quantity_15" id="quantity_15" placeholder="Qty" class="w-[80px] mb-2" data-qantity>

@@ -3,7 +3,7 @@
 <!-- The Modal -->
 <div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
     <!-- Modal content -->
-    <div class="bg-black border-2 border-primaryColor rounded-lg p-2 w-full md:max-w-[600px] min-h-[200px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor md:h-auto max-h-[100vh]">
+    <div id="itemModalContainer" class="bg-black border-2 border-primaryColor rounded-lg p-2 w-full md:max-w-[600px] min-h-[200px] h-[100vh] md:h-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor max-h-[100vh]">
         <!-- Modal loader -->
         <img src="{% static 'media/loader.gif' %}" alt="loader" id="itemModelLoader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 max-h-full">
 
@@ -15,33 +15,53 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 pt-0 text-center">
-                <h3 class="mb-4 text-2xl font-bold text-primaryColor font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
-                <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto mb-4">
-                <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">{{ cocktail.description }}</p>
-                <p class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price }}</p>
+                <div class="block md:hidden">
+                    <h3 class="mb-4 text-2xl font-bold text-primaryColor font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
+                    <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto mb-4 rounded-lg">
+                    <div>
+                        <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">{{ cocktail.description }}</p>
+                        <p data-price-item class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex flex-row justify-between items-center mb-8">
+                    <div class="mr-4 h-full">
+                        <h3 class="mb-2 text-3xl font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
+                        <div>
+                            <p class="text-lg mb-2 font-barlow font-light italic text-primaryColor max-w-[90%] text-center mx-auto">{{ cocktail.description }}</p>
+                            <p data-price-item class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
+                        </div>
+                    </div>
+                    <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto rounded-lg">
+                </div>
 
                 <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-4">
                     <!-- Item Size -->
                     {% if cocktail.has_size %}
-                            <select class="border-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
-                                {% for size in cocktail.sizes.all %}
-                                    <option value="{{size}}">{{ size|title }}</option>
-                                {% endfor %}
-                            </select>
+                            <div>
+                                <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>
+                                <select data-size-option data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                    {% for size in cocktail.sizes.all %}
+                                        <option value="{{size}}">{{ size.get_sizes_display|title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                     {% endif %}
                         <!-- Item Quantity -->
-                        <select class="border-2 rounded-lg py-[3px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg focus:ring-0 focus:border-secondaryColor focus:border-2 w-[30%] hover:border-secondaryHoverDarker cursor-pointer">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                        </select>
+                        <div>
+                            <span class="text-primaryColor text-sm font-barlow font-light">Quantity:</span>
+                            <select data-qty-item data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                            </select>
+                        </div>
                 </div>
                 <div class="max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
                     <textarea name="" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>

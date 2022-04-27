@@ -1,4 +1,5 @@
 import { item_modal } from "./ajax/item_modal";
+import { update_price } from "./ajax/update_price";
 
 //Reload the page and pass category value in the URL
 $('#category_select_input').on('change', (e) => {
@@ -7,43 +8,26 @@ $('#category_select_input').on('change', (e) => {
 })
 
 
-//change border color on item when ser hover it
-$('.cocktail-name').on('mouseover', (e) => {
-    let parent = $(e.target).parent()
-    let grand_parent = $(parent).parent()
+//Show and hide the item modal
+export let getItemModal = () => {
+	let modal = $('#itemModal')
+	let btn = $('*[data-toggle-modal]')
+	let span = $('#closeItemModal')
 
-    $(grand_parent).css({'border-color': '#C27803'})
-    $(parent).css('color', '#C27803')
-})
-
-//change border color on item when ser hover it
-$('.cocktail-name').on('mouseleave', (e) => {
-    let parent = $(e.target).parent()
-    let grand_parent = $(parent).parent()
-
-    $(grand_parent).css('border-color', 'white')
-    $(parent).css('color', 'white')
-})
-
-
-// Get the item modal
-var modal = document.getElementById("itemModal");
-var btn = $('*[data-order-item-modal]')
-var span = document.getElementById("closeItemModal");
-
-//Open modal when user click on item
-$(btn).on('click', (e) =>{
-    let item_id =  $(e.currentTarget).attr('data-order-item-modal')
-    item_modal(item_id)
-    modal.style.display = "block";
-})
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+	$(btn).on('click', (e) =>{
+		let item_id =  $(e.currentTarget).attr('data-order-item-modal')
+		item_modal(item_id, e)
+		$(modal).show()
+	})
+	$(window, span).on('click', (e) => {
+		if (e.target == modal) {
+			$(modal).hide()
+		}
+	})
 }
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+
+getItemModal()
+
+$('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
+  update_price(e)
+})

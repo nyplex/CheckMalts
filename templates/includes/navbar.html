@@ -1,6 +1,7 @@
 {% load static %}
 
 <nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 rounded z-50 fixed w-full">
+    {% with request.resolver_match.url_name as url_name %}
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <!-- Checkmalt logo -->
         <a href="{% url 'home' %}" class="flex items-center">
@@ -10,7 +11,6 @@
         </a>
 
         <div class="flex items-center md:order-2">
-            
             {% if request.user.is_authenticated %}
                 <!-- Icon user's dropdown menu -->
                 <button type="button"
@@ -79,7 +79,6 @@
         </div>
 
         <!-- Navbar main links -->
-        {% with request.resolver_match.url_name as url_name %}
         <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1 md:absolute md:left-[50%] md:translate-x-[-50%]" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
@@ -101,9 +100,11 @@
                     <li class="hidden md:block">
                         <a href="#" class="navbar-link relative">
                             <i class="fa-solid fa-basket-shopping"></i>
-                            <div class="absolute right-[-15px] bottom-[-15px] rounded-full bg-secondaryHoverDarker w-6 h-6 flex flex-row justify-center items-center">
-                                <span class="text-white font-barlow text-lg">3</span>
-                            </div>
+                            {% if bag_item %}
+                                <div class="absolute right-[-15px] bottom-[-15px] rounded-full bg-secondaryHoverDarker w-6 h-6 flex flex-row justify-center items-center">
+                                    <span class="text-white font-barlow text-lg">{{ bag_item }}</span>
+                                </div>
+                            {% endif %}
                         </a>
                     </li>
                 {% endif %}
@@ -118,6 +119,6 @@
                 {% endif %}
             </ul>
         </div>
-        {% endwith %}
     </div>
+    {% endwith %}
 </nav>

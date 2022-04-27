@@ -44,7 +44,9 @@ class Cocktail(models.Model):
         max_length=50, null=True, blank=True, unique=True, validators=[MinLengthValidator(4)])
     slug = models.SlugField(max_length=100, null=False,
                             unique=True, validators=[validate_slug])
-    price = models.FloatField(blank=False, null=False, validators=[
+    price = models.FloatField(blank=False, null=False, default=0, validators=[
+                              MinValueValidator(0), MaxValueValidator(10000)])
+    net_price = models.FloatField(blank=True, null=True, validators=[
                               MinValueValidator(0), MaxValueValidator(10000)])
     description = models.TextField(blank=True, null=True, max_length=5000)
     ingredients = models.ManyToManyField(Ingredient, through='Recipe')
@@ -69,6 +71,17 @@ class Cocktail(models.Model):
 
     def recipe(self):
         return Recipe.objects.filter(cocktail=self)
+    
+    def save(self, *args, **kwargs):
+        recipe = Recipe.objects.filter(cocktail=self.id)
+        net_price = 0
+        
+        for r in recipe:
+            net_price += r.ingredient.price_per_unit * r.quantity
+
+        self.net_price = net_price
+        
+        super().save(*args, **kwargs)
 
 
 class Recipe(models.Model):
@@ -103,8 +116,8 @@ class SubCategory(models.Model):
 
 
 class CocktailsSize(models.Model):
-    SIZESOPTIONS = [('small', 'small'), ('medium', 'medium'), ('large', 'large'),
-               ('simple', 'simple'), ('double', 'double'), ('triple', 'triple')]
+    SIZESOPTIONS = [('small', '125ml'), ('medium', '175ml'), ('large', '250ml'),
+               ('single', 'single'), ('double', 'double'), ('triple', 'triple')]
     
     sizes = models.CharField(choices=SIZESOPTIONS, null=True, blank=True, max_length=10)
     

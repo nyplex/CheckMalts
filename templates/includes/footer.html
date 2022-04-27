@@ -1,3 +1,20 @@
+{% with request.resolver_match.url_name as url_name %}
+    {% if url_name == 'order' %}
+
+            <a href="#" class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryHoverDarker rounded-lg">
+                <div class="flex flex-row justify-around items-center h-full">
+                    <div class="text-primaryColor text-2xl font-barlow font-medium text-center">
+                        <p>5x items: £30.8</p>
+                    </div>
+                    <div>
+                        <button class="border-4 border-white px-2 py-1 text-2xl font-barlow font-semibold rounded-lg">PAY <i class="fa-solid fa-credit-card text-4xl"></i></button>
+                    </div>
+                </div>
+            </a>
+
+    {% endif %}
+{% endwith %}
+
 <div class="w-full bg-secondaryColor py-6">
     <p class="text-contrastColor font-barlow font-medium text-center text-lg">© 2023 by Alex Nypels.</p>
 </div>

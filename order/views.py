@@ -18,7 +18,7 @@ def order(request):
         category = 1
     else:
         category = int(request.GET.get('category'))
-        
+
     cocktails = Cocktail.objects.filter(category=category)
     sub_categories = SubCategory.objects.filter(category__id=category)
 
@@ -37,8 +37,10 @@ def item_detail(request):
     """ A view to return the item modal from the Ajax call """
 
     if request.method == "POST":
-        # get the form data
-        cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
+        try:
+            cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
+        except Cocktail.DoesNotExist:
+            return JsonResponse({}, status=404)
         
     html = render_to_string(
         'order/includes/item_modal.html', {'cocktail': cocktail})
@@ -49,29 +51,27 @@ def calculate_size_price(request):
     """ A view that return the updated price of a item to the ajax call depending of its size & qty """
 
     if request.method == "POST":
-        
         try:
             cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
-            net_price = cocktail.net_price
-            diff = cocktail.price - net_price
-            price = cocktail.price
-            
         except Cocktail.DoesNotExist:
-            print('first error')
             return JsonResponse({}, status=404)
         
-        
+        net_price = cocktail.net_price
+        diff = cocktail.price - net_price
+        price = cocktail.price
+
         if cocktail.has_size == True:
-            if(request.POST['size'] 
-               and request.POST['size'] 
+            if(request.POST['size']
+               and request.POST['size']
                in ['small', 'medium', 'large', 'single', 'double', 'triple']):
-                
+
                 size = request.POST['size']
                 match size:
                     case 'small' | 'single':
                         price = price
                     case 'medium':
-                        price =  price = round((((net_price * 2) / 3) * 2) + diff, 1)
+                        price = price = round(
+                            (((net_price * 2) / 3) * 2) + diff, 1)
                     case 'large':
                         price = round((net_price * 2) + diff, 1)
                     case 'double':
@@ -79,18 +79,16 @@ def calculate_size_price(request):
                     case 'triple':
                         price = round(price * 3, 1)
                     case _:
-                        print('second error')
                         return JsonResponse({}, status=404)
             else:
-                print('error here')
                 return JsonResponse({}, status=404)
-        
+
         if request.POST['quantity']:
+            if int(request.POST['quantity']) <= 0 or int(request.POST['quantity']) > 10:
+                return JsonResponse({}, status=404)
             qty = int(request.POST['quantity'])
         else:
             qty = 1
-            
+
         price = round(price * qty, 1)
-        return JsonResponse({"response": price}, status=200)        
-            
-        
+        return JsonResponse({"response": price}, status=200)

@@ -24,11 +24,23 @@ export let item_modal = (item_id, e) => {
             $('*[data-size-option]', container).val(size)
             $('*[data-qty-item]', container).val(qty)
             $('#closeItemModal').on('click', (e) => {
-                location.reload()
+                $('#itemModal').hide()
+            })
+            $(window).on('click', (e) => {
+                let modal = $('#itemModal')
+                if($(modal).attr('id') == $(e.target).attr('id')) {
+                    $(modal).hide()
+                }
             })
             $('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
                 update_price(e)
             })
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            if(xhr.status != 200) {
+                location.reload()
+                return
+            }
         }
     })
 }

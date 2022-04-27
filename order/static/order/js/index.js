@@ -8,23 +8,6 @@ $('#category_select_input').on('change', (e) => {
 })
 
 
-//change border color on item when mouse hover it
-$('.cocktail-name').on('mouseover', (e) => {
-    let parent = $(e.target).parent()
-    let grand_parent = $(parent).parent()
-    $(grand_parent).css({'border-color': '#C27803'})
-    $(parent).css('color', '#C27803')
-})
-
-//When mouse leave item change border color
-$('.cocktail-name').on('mouseleave', (e) => {
-    let parent = $(e.target).parent()
-    let grand_parent = $(parent).parent()
-    $(grand_parent).css('border-color', 'white')
-    $(parent).css('color', 'white')
-})
-
-
 //Show and hide the item modal
 export let getItemModal = () => {
 	let modal = $('#itemModal')

@@ -19,6 +19,7 @@ class CocktailAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'friendly_name',
+        'has_size'
     )
 
 class IngredientAdmin(admin.ModelAdmin):

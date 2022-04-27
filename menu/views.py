@@ -47,6 +47,6 @@ def postRecipe(request):
         quantity = request.POST['quantity']
         recipe = Recipe(ingredient=ingredient, cocktail=cocktail, quantity=quantity)
         recipe.save()
-
+        return JsonResponse({"response": "GOOD"}, status=400)
     # some error occured
     return JsonResponse({"error": ""}, status=400)

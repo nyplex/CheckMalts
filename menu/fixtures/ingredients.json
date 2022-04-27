@@ -1168,5 +1168,20 @@
             "has_alcohol": false,
             "alcohol_volume": 0
         }
+    },
+    {
+        "pk": 77,
+        "model": "menu.ingredient",
+        "fields": {
+            "name": "Peroni Nastro Azzurro Beer Keg (30L)",
+            "friendly_name": "Peroni Keg (30L)",
+            "unit": "cl",
+            "price_per_unit": 0.11,
+            "category": "beer",
+            "out_of_stock": false,
+            "allowed_for_creation": false,
+            "has_alcohol": true,
+            "alcohol_volume": 5.1
+        }
     }
 ]

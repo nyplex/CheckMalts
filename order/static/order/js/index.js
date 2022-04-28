@@ -26,8 +26,7 @@ export let getItemModal = () => {
 	})
 }
 
+//Get the item modal
 getItemModal()
 
-$('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
-  update_price(e)
-})
+

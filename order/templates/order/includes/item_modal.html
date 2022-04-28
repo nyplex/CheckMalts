@@ -20,7 +20,7 @@
                     <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto mb-4 rounded-lg">
                     <div>
                         <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">{{ cocktail.description }}</p>
-                        <p data-price-item class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
+                        <p data-price-item class="text-3xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
                     </div>
                 </div>
                 <div class="hidden md:flex flex-row justify-between items-center mb-8">
@@ -28,7 +28,7 @@
                         <h3 class="mb-2 text-3xl font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">{{ cocktail.friendly_name|upper }}</h3>
                         <div>
                             <p class="text-lg mb-2 font-barlow font-light italic text-primaryColor max-w-[90%] text-center mx-auto">{{ cocktail.description }}</p>
-                            <p data-price-item class="text-2xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
+                            <p data-price-item class="text-3xl font-barlow font-bold mt-2 text-primaryColor">£{{ cocktail.price|floatformat }}</p>
                         </div>
                     </div>
                     <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto rounded-lg">

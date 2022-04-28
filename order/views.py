@@ -1,21 +1,20 @@
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from django.contrib import messages
+from requests import Response
 from menu.models import *
-from django.http import HttpResponse, JsonResponse, Http404
-import math
+from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
 
-
-# Create your views here.
 
 
 def order(request):
     """ A view to render the order page """
 
     categories = Category.objects.all()
-
-    if not Category.objects.filter(pk=request.GET.get('category')).exists() or request.GET.get('category') is None:
+    
+    if request.GET.get('category') is None:
         category = 1
+    elif not Category.objects.filter(pk=request.GET.get('category')).exists():
+        raise Http404
     else:
         category = int(request.GET.get('category'))
 
@@ -29,7 +28,6 @@ def order(request):
         'cocktails': cocktails,
         'selected': category
     }
-
     return render(request, 'order/order.html', context)
 
 
@@ -48,7 +46,8 @@ def item_detail(request):
 
 
 def calculate_size_price(request):
-    """ A view that return the updated price of a item to the ajax call depending of its size & qty """
+    """ A view that return the updated price of a item 
+        to the ajax call depending of its size & qty """
 
     if request.method == "POST":
         try:

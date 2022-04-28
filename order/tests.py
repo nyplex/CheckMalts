@@ -58,7 +58,7 @@ class OrderView(TestCase):
     def test_invalid_category_change(self):
         client = Client()
         response = client.get('/order?category=4535435435735')
-        self.assertEqual(1, response.context['selected'])
+        self.assertEquals(response.status_code, 404)
         
     
     def test_open_valid_modal(self):

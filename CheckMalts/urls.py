@@ -24,3 +24,5 @@ urlpatterns = [
     path('menu', include('menu.urls')),
     path('order', include('order.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "CheckMalts.views.page_not_found_view"

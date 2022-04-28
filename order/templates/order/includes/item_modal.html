@@ -1,5 +1,4 @@
 {% load static %}
-
 <!-- The Modal -->
 <div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
     <!-- Modal content -->
@@ -34,40 +33,50 @@
                     <img src="{{ cocktail.image.url }}" alt="chess icon" class="max-w-[150px] mx-auto rounded-lg">
                 </div>
 
-                <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-4">
-                    <!-- Item Size -->
-                    {% if cocktail.has_size %}
+                <!-- Add to basket form -->
+                {% if cocktail %}
+                    <form action="{% url 'add_to_basket' cocktail.id %}" method="POST">
+                {% endif %}
+                        {% csrf_token %}
+                        <input type="hidden" name="redirect_url" class="p-2 text-black" value="{{ cocktail.category.id }}">
+                        <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-4">
+                            <!-- Item Size -->
+                            {% if cocktail.has_size %}
+                                    <div>
+                                        <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>
+                                        <select name="cocktail_size" data-size-option data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                            {% for size in cocktail.sizes.all %}
+                                                <option value="{{size}}">{{ size.get_sizes_display|title }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                            {% endif %}
+                            <!-- Item Quantity -->
                             <div>
-                                <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>
-                                <select data-size-option data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
-                                    {% for size in cocktail.sizes.all %}
-                                        <option value="{{size}}">{{ size.get_sizes_display|title }}</option>
-                                    {% endfor %}
+                                <span class="text-primaryColor text-sm font-barlow font-light">Quantity:</span>
+                                <select name="cocktail_quantity" data-qty-item data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                 </select>
                             </div>
-                    {% endif %}
-                        <!-- Item Quantity -->
-                        <div>
-                            <span class="text-primaryColor text-sm font-barlow font-light">Quantity:</span>
-                            <select data-qty-item data-order-item-modal="{{ cocktail.id }}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                            </select>
                         </div>
-                </div>
-                <div class="max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
-                    <textarea name="" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
-                </div>
-                 <!-- Add to basket button -->
-                 <button class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
+                        <!--Special note input -->
+                        <div class="max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
+                            <textarea name="cocktail_note" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
+                        </div>
+                        
+                        <!-- Submit button -->
+                        <button type="submit" class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">ADD</button>
+                    </form>
+                
             </div>
         </div>
     </div>

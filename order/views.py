@@ -1,8 +1,10 @@
+import django
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from requests import Response
 from menu.models import *
 from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
+from django.middleware import csrf
 
 
 
@@ -41,7 +43,7 @@ def item_detail(request):
             return JsonResponse({}, status=404)
         
     html = render_to_string(
-        'order/includes/item_modal.html', {'cocktail': cocktail})
+        'order/includes/item_modal.html', {'cocktail': cocktail, 'csrf_token': csrf.get_token(request)})
     return HttpResponse(html)
 
 

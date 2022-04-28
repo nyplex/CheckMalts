@@ -100,9 +100,9 @@
                     <li class="hidden md:block">
                         <a href="{% url 'basket' %}" class="navbar-link relative">
                             <i class="fa-solid fa-basket-shopping"></i>
-                            {% if basket_item %}
+                            {% if basket_items %}
                                 <div class="absolute right-[-15px] bottom-[-15px] rounded-full bg-secondaryHoverDarker w-6 h-6 flex flex-row justify-center items-center">
-                                    <span class="text-white font-barlow text-lg">{{ basket_product_count }}</span>
+                                    <span class="text-white font-barlow text-lg">{{ product_count }}</span>
                                 </div>
                             {% endif %}
                         </a>

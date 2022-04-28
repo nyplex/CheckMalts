@@ -96,13 +96,13 @@
                 <li>
                     <a href="#" class="navbar-link">CONTACT</a>
                 </li>
-                {% if url_name == 'order' %}
+                {% if url_name == 'order' or url_name == 'basket' %}
                     <li class="hidden md:block">
-                        <a href="#" class="navbar-link relative">
+                        <a href="{% url 'basket' %}" class="navbar-link relative">
                             <i class="fa-solid fa-basket-shopping"></i>
-                            {% if bag_item %}
+                            {% if basket_item %}
                                 <div class="absolute right-[-15px] bottom-[-15px] rounded-full bg-secondaryHoverDarker w-6 h-6 flex flex-row justify-center items-center">
-                                    <span class="text-white font-barlow text-lg">{{ bag_item }}</span>
+                                    <span class="text-white font-barlow text-lg">{{ basket_product_count }}</span>
                                 </div>
                             {% endif %}
                         </a>

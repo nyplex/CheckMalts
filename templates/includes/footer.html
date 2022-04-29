@@ -1,17 +1,16 @@
 {% with request.resolver_match.url_name as url_name %}
     {% if url_name == 'order' or url_name == 'basket' %}
-
-            <a href="{% url 'basket' %}" class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryHoverDarker rounded-lg">
-                <div class="flex flex-row justify-around items-center h-full">
-                    <div class="text-primaryColor text-2xl font-barlow font-medium text-center">
-                        <p>5x items: £30.8</p>
+        {% if product_count and product_count > 0 %}
+            <a href="{% url 'basket' %}" class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor">
+                <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
+                    <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
+                        <span>{{ product_count }}</span>
                     </div>
-                    <div>
-                        <button class="border-4 border-white px-2 py-1 text-2xl font-barlow font-semibold rounded-lg">PAY <i class="fa-solid fa-credit-card text-4xl"></i></button>
-                    </div>
+                    <p class="text-center font-bold">View Basket</p>
+                    <span class="text-center font-semibold text-2xl">£{{ total|floatformat }}</span>
                 </div>
             </a>
-
+        {% endif %}
     {% endif %}
 {% endwith %}
 

@@ -28,16 +28,27 @@
     <p class="text-primaryColor font-barlow font-normal text-lg text-left mt-2">
         At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
     </p>
-    <!-- Menu category -->
-    <select id="category_select_input" class="primary-select-input w-full md:max-w-[200px] mt-2 text-lg">
-        {% for category in categories %}
-            {% if selected == category.id %}
-                <option selected value="{{ category.id }}">{{ category|title }}</option>
-            {% else %}
-                <option value="{{ category.id }}">{{ category|title }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
+    <div class="flex flex-row justify-between items-center mt-4">
+        <!-- Menu category -->
+        <select id="category_select_input" class="primary-select-input w-full md:max-w-[200px] mt-2 text-lg">
+            {% for category in categories %}
+                {% if selected == category.id %}
+                    <option selected value="{{ category.id }}">{{ category|title }}</option>
+                {% else %}
+                    <option value="{{ category.id }}">{{ category|title }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        {% if product_count and product_count > 0 %}
+            <a href="{% url 'basket' %}" class="md:flex-row md:flex hidden justify-around items-center h-full text-primaryColor font-barlow text-lg hover:bg-secondaryHoverLighter cursor-pointer transition-all bg-secondaryColor py-1 px-2 rounded-lg">
+                <div class="font-semibold text-center bg-secondaryHoverDarker px-2 py-1 rounded-lg">
+                    <span>{{ product_count }}</span>
+                </div>
+                <p class="text-center font-semibold mx-4">View Basket</p>
+                <span class="text-center font-semibold">£{{ total|floatformat }}</span>
+            </a>
+        {% endif %}
+    </div>
 </div>
 
 <!-- Order container -->

@@ -1,7 +1,7 @@
 
 export let update_price = (e) => {
     let item_id =  $(e.currentTarget).attr('data-order-item-modal')
-    let parent = $(e.target).parent().parent().parent()
+    let parent = $(e.target).parent().parent().parent().parent()
     let token = $('[name=csrfmiddlewaretoken]').val()
     let qty = 1
     let size

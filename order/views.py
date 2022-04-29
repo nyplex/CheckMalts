@@ -67,20 +67,8 @@ def calculate_size_price(request):
                in ['small', 'medium', 'large', 'single', 'double', 'triple']):
 
                 size = request.POST['size']
-                match size:
-                    case 'small' | 'single':
-                        price = price
-                    case 'medium':
-                        price = price = round(
-                            (((net_price * 2) / 3) * 2) + diff, 1)
-                    case 'large':
-                        price = round((net_price * 2) + diff, 1)
-                    case 'double':
-                        price = round(price * 2, 1)
-                    case 'triple':
-                        price = round(price * 3, 1)
-                    case _:
-                        return JsonResponse({}, status=404)
+                price = calculate_price_by_size(price, net_price, size)
+                
             else:
                 return JsonResponse({}, status=404)
 
@@ -92,4 +80,26 @@ def calculate_size_price(request):
             qty = 1
 
         price = round(price * qty, 1)
+        print(price)
         return JsonResponse({"response": price}, status=200)
+    
+
+
+def calculate_price_by_size(price, net_price, size):
+    diff = price - net_price
+    match size:
+        case 'small' | 'single':
+            price = price
+        case 'medium':
+            price = price = round(
+                (((net_price * 2) / 3) * 2) + diff, 1)
+        case 'large':
+            price = round((net_price * 2) + diff, 1)
+        case 'double':
+            price = round(price * 2, 1)
+        case 'triple':
+            price = round(price * 3, 1)
+        case _:
+            raise Http404
+    
+    return price

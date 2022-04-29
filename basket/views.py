@@ -8,8 +8,12 @@ from django.http import Http404, HttpResponseRedirect
 
 def view_bag(request):
     """ A view that renders the bag contents page """
+    
+    context = {
+        'open': True,
+    }
 
-    return render(request, 'basket/basket.html')
+    return render(request, 'basket/basket.html', context)
 
 
 def add_to_basket(request, item_id):

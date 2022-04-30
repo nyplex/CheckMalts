@@ -30,3 +30,17 @@ export let getItemModal = () => {
 getItemModal()
 
 
+// Change the max character span on textarea special note input when user type
+export let update_span_comter = () => {
+	$("#cocktail_note").on("input", (e) => {
+		console.log('hello');
+		let len = $(e.target).val().length
+		let total = 80 - len
+		if(total <= 0) {
+			$("#noteCharCompter").text(0)
+		}else{
+			$("#noteCharCompter").text(total)
+		}
+		
+	})
+}

@@ -20,7 +20,6 @@ def basket_contents(request):
         cocktail = get_object_or_404(Cocktail, pk=item_id)
         if 'item' in item_data:
             if 'quantity' in item_data['item']:
-                print(cocktail.name + ' ' + str(item_data['item']['quantity']['quantity']) + 'x')
                 product_count += item_data['item']['quantity']['quantity']
                 total += item_data['item']['quantity']['quantity'] * cocktail.price
                 basket_items.append({
@@ -31,7 +30,6 @@ def basket_contents(request):
                 })
             if 'size' in item_data['item']:
                 for size, value in item_data['item']['size'].items():
-                    print(cocktail.name + ' ' + str(size) + ', ' + str(value) + 'x')
                     product_count += value
                     price = calculate_price_by_size(cocktail.price, cocktail.net_price, size)
                     total += price * value
@@ -47,7 +45,6 @@ def basket_contents(request):
         if 'items_by_note' in item_data:
             for i in item_data['items_by_note']:
                 if 'size' in i:
-                    print(cocktail.name + ' ' + str(i['size']) + ' ' + str(i['quantity']) + 'x => ' + str(i['note']))
                     product_count += i['quantity']
                     price = calculate_price_by_size(cocktail.price, cocktail.net_price, i['size'])
                     total += price * i['quantity']
@@ -60,7 +57,6 @@ def basket_contents(request):
                         'sub_total': price * i['quantity']
                     })
                 else:
-                    print(cocktail.name + ' ' + str(i['quantity']) + 'x => ' + str(i['note']))
                     product_count += i['quantity']
                     total += cocktail.price * i['quantity']
                     basket_items.append({

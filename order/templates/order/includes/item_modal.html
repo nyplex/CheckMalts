@@ -69,8 +69,11 @@
                             </div>
                         </div>
                         <!--Special note input -->
-                        <div class="max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
-                            <textarea name="cocktail_note" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
+                        <div class="relative max-h-[80px] h-[80px] w-full md:max-w-[350px] mx-auto my-4">
+                            <div class="flex absolute inset-y-0 right-2 items-end bottom-2 pointer-events-none">
+                                <span id="noteCharCompter" class="text-primaryColor text-sm font-barlow font-medium px-1 py-[2px] bg-secondaryHoverDarker rounded-full">80</span>
+                            </div>
+                            <textarea id="cocktail_note" name="cocktail_note" maxlength="80" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
                         </div>
                         
                         <!-- Submit button -->

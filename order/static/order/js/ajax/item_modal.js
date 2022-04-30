@@ -1,3 +1,4 @@
+import { update_span_comter } from ".."
 import { update_price } from "./update_price"
 
 export let item_modal = (item_id, e) => {
@@ -35,6 +36,7 @@ export let item_modal = (item_id, e) => {
             $('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
                 update_price(e)
             })
+            update_span_comter()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             if(xhr.status != 200) {

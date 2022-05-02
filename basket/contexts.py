@@ -9,12 +9,11 @@ from order.views import calculate_price_by_size
 
 
 def basket_contents(request):
+
     basket_items = []
     total = 0
     product_count = 0
     basket = request.session.get('basket', {})
-
-    print(basket)
     
     for item_id, item_data in basket.items():
         cocktail = get_object_or_404(Cocktail, pk=item_id)

@@ -1,7 +1,7 @@
 <div data-toggle-modal data-order-item-modal="{{ cocktail.id }}" class="w-full md:w-[47%] min-h-[100px] p-2 mr-auto border-2 border-primaryColor transition-all flex flex-col justify-around bg-black rounded-lg hover:border-secondaryHoverDarker cursor-pointer text-primaryColor hover:text-secondaryHoverDarker">
     <div class="flex flex-row md:justify-start justify-between font-barlow font-normal text-xl w-full items-center">
         <span class="mr-2">{{ cocktail.friendly_name }}</span><i class="fa-solid fa-circle-info text-sm"></i>
-        <span data-price-item class="ml-auto">£{{ cocktail.price|floatformat }}</span>
+        <span data-price-item class="ml-auto">£{{ cocktail.price|floatformat:2 }}</span>
     </div>
     <p class="text-sm italic font-barlow font-thin mb-2 max-w-[70%]">{{ cocktail.description }}</p>
 </div>

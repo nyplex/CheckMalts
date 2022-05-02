@@ -38,7 +38,7 @@
                             <div class="w-full">
                                 <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
                                     <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                                    <span class="ml-auto">£{{ cocktail.price }}</span>
+                                    <span class="ml-auto">£{{ cocktail.price|floatformat:2 }}</span>
                                 </div>
                                 <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
                             </div> 
@@ -54,7 +54,7 @@
                                 <div class="w-full">
                                     <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
                                         <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                                        <span class="ml-auto">£{{ cocktail.price }}</span>
+                                        <span class="ml-auto">£{{ cocktail.price|floatformat:2 }}</span>
                                     </div>
                                     <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
                                 </div>
@@ -68,7 +68,7 @@
                             <div class="w-full">
                                 <div class="flex flex-row md:justify-start justify-between text-primaryColor font-barlow font-normal text-xl w-full">
                                     <span class="mr-4">{{ cocktail.friendly_name }}</span>
-                                    <span class="ml-auto">£{{ cocktail.price }}</span>
+                                    <span class="ml-auto">£{{ cocktail.price|floatformat:2 }}</span>
                                 </div>
                                 <p class="text-gray-300 text-sm italic font-barlow font-thin mb-2">{{ cocktail.description }}</p>
                             </div>                                                         

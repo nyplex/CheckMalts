@@ -15,7 +15,7 @@ export let update_price = (e) => {
 
     $.ajax({
         type: 'POST',
-        url: 'order/size-price',
+        url: '/order/size-price',
         data: {
             'item_id': item_id,
             'size': size,
@@ -23,14 +23,15 @@ export let update_price = (e) => {
             'csrfmiddlewaretoken': token
         },
         success: function (response) {
-            $('*[data-price-item]', parent).text('£' + response.response)
+            $('*[data-price-item]', parent).text('£' + (Math.round(response.response * 100) / 100).toFixed(2))
+            
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            if(xhr.status != 200) {
-                location.reload()
-                return
-            }
-        }
+        // error: function (xhr, ajaxOptions, thrownError) {
+        //     if(xhr.status != 200) {
+        //         location.reload()
+        //         return
+        //     }
+        // }
     })
 }
 

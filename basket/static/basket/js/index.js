@@ -1,29 +1,29 @@
-import { update_span_counter } from ".."
-import { update_price } from "./update_price"
+import { update_span_counter } from "../../../../order/static/order/js"
+import { update_price } from "../../../../order/static/order/js/ajax/update_price"
 
-export let item_modal = (item_id, e) => {
+$('*[data-item]').on('click', (e) => {
+    let item_id = $(e.target).data('item-id')
+    let qty = $(e.target).data('item-quantity')
+    let size = $(e.target).data('item-size')
+    let note = $(e.target).data('item-note')
+    console.log(qty, size, note);
     let token = $('[name=csrfmiddlewaretoken]').val()
-    let parent = $(e.target).parent().parent()
-    let qty = $('*[data-qty-item]', parent).val()
-    let size = $('*[data-size-option]', parent).val()
-    let price = $('*[data-price-item]', parent).text()
     $.ajax({
         type: 'POST',
-        url: 'order/item-detail',
+        url: 'modal/' + item_id,
         data: {
             'item_id': item_id,
+            'qty': qty,
+            'size': size,
+            'note': note,
             'csrfmiddlewaretoken': token
         },
         success: function (response) {
-            let container = $('#itemModalContainer')
-
             $('#itemModal').replaceWith(response)
             $('#itemModal').show()
             $('#itemModelLoader').hide()
             $('#itemModaBodyContainer').show()
-            $('*[data-price-item]', container).text(price)
-            $('*[data-size-option]', container).val(size)
-            $('*[data-qty-item]', container).val(qty)
+
             $('#closeItemModal').on('click', (e) => {
                 $('#itemModal').hide()
             })
@@ -37,6 +37,7 @@ export let item_modal = (item_id, e) => {
                 update_price(e)
             })
             update_span_counter()
+
         },
         error: function (xhr, ajaxOptions, thrownError) {
             if(xhr.status != 200) {
@@ -45,9 +46,4 @@ export let item_modal = (item_id, e) => {
             }
         }
     })
-}
-
-
-
-
-
+})

@@ -5,6 +5,7 @@ from django.http import Http404, HttpResponseRedirect, JsonResponse, HttpRespons
 from django.template.loader import render_to_string
 from django.middleware import csrf
 from django.conf import settings
+import re
 
 from order.views import calculate_price_by_size
 
@@ -13,13 +14,22 @@ from order.views import calculate_price_by_size
 
 def add_to_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
-    quantity = int(request.POST.get('cocktail_quantity'))
+    quantity = request.POST.get('cocktail_quantity').replace(' ', '')
     redirect_url = '/order?category=' + request.POST.get('redirect_url')
     size = None
     note = ''
     
-    if not quantity or quantity <= 0 or quantity == '':
+    if not quantity:
         raise Http404
+    if quantity == '':
+        raise Http404
+    if not re.match(r'^([\s\d]+)$', quantity):
+        raise Http404
+    if int(quantity) <= 0:
+        raise Http404
+    
+    quantity = int(quantity)
+    
     if 'cocktail_size' in request.POST:
         if cocktail.has_size == False:
             raise Http404
@@ -95,8 +105,8 @@ def format_add_basket(item_id=None, basket=None, size=None, note=None, quantity=
 
 def update_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
-    qty = int(request.POST.get('cocktail_quantity'))
-    original_qty = int(request.POST.get('original_qty'))
+    qty = request.POST.get('cocktail_quantity').replace(' ', '')
+    original_qty = request.POST.get('original_qty').replace(' ', '')
     
     basket = request.session.get('basket', {})
     size = None
@@ -104,10 +114,20 @@ def update_basket(request, item_id):
     note = None
     original_note = None
     
-    if basket == {} or basket is None:
-        return JsonResponse({}, status=500)
     if not qty or not original_qty:
         return JsonResponse({}, status=500)
+    if qty == '' or original_qty == '':
+        return JsonResponse({}, status=500)
+    if not re.match(r'^([\s\d]+)$', qty) or not re.match(r'^([\s\d]+)$', original_qty):
+        return JsonResponse({}, status=500)
+    if int(qty) <= 0 or int(original_qty) <= 0:
+        return JsonResponse({}, status=500)
+    qty = int(qty)
+    original_qty = int(original_qty)
+    
+    if basket == {} or basket is None:
+        return JsonResponse({}, status=500)
+
         
     if 'original_note' in request.POST:
         original_note = request.POST['original_note']
@@ -160,19 +180,26 @@ def item_modal(request, item_id):
 def remove_from_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     basket = request.session.get('basket')
+    quantity = request.POST.get('item_quantity').replace(' ', '')
     size = None
     note = None
     
-    if basket == {}:
+    if basket == {} or basket == None:
         raise Http404
     if 'item_size' in request.POST:
         size = request.POST.get('item_size')
     if 'item_note' in request.POST:
-        note = request.POST.get('item_note')
-    if not 'item_quantity' in request.POST:
+        note = request.POST.get('item_note')    
+    if not quantity:
         raise Http404
-    else:
-        quantity = request.POST.get('item_quantity')
+    if quantity == '':
+        raise Http404
+    if not re.match(r'^([\s\d]+)$', quantity):
+        raise Http404
+    if int(quantity) <= 0:
+        raise Http404
+    
+    quantity = int(quantity)
     
     if item_id in list(basket.keys()):
         basket = format_remove_from_basket(item_id, basket, size, note, quantity)

@@ -12,6 +12,7 @@ from django.core import mail
 
 class BasketView(TestCase):
 
+
     @classmethod
     def setUpTestData(cls):
         Category.objects.create(name='test1', friendly_name='test1')
@@ -31,6 +32,7 @@ class BasketView(TestCase):
         cocktail2.sizes.add(size2)
         cocktail2.sizes.add(size3)
 
+
     def test_empty_basket_view(self):
         response = self.client.get(reverse('order'))
         self.assertEquals(response.status_code, 200)
@@ -39,6 +41,7 @@ class BasketView(TestCase):
             response, 'Browse our menu and start adding items to your order')
         self.assertContains(response, '<p>£0.00</p>')
         self.assertContains(response, '(0 item)')
+
 
     def test_non_empty_basket_view(self):
         basket = self.client.session
@@ -55,6 +58,7 @@ class BasketView(TestCase):
         self.assertContains(
             response, '<p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "test note"</p>')
 
+
     def test_add_item_noSize_noNote_valid(self):
         response = self.client.post(
             '/basket/add/1/', data={'cocktail_quantity': '3', 'redirect_url': '1'})
@@ -65,6 +69,7 @@ class BasketView(TestCase):
         self.assertEqual(self.client.session.get('basket'), basket)
         self.assertEqual(str(messages[0]), 'Added 3 `TEST1` to your bag')
 
+
     def test_add_item_Size_noNote_valid(self):
         response = self.client.post(
             '/basket/add/2/', data={'cocktail_quantity': '2', 'redirect_url': '2', 'cocktail_size': 'small'})
@@ -74,6 +79,7 @@ class BasketView(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertEqual(self.client.session.get('basket'), basket)
         self.assertEqual(str(messages[0]), 'Added 2 `TEST2` to your bag')
+
 
     def test_add_item_noSize_Note_valid(self):
         response = self.client.post(
@@ -86,6 +92,7 @@ class BasketView(TestCase):
         self.assertEqual(self.client.session.get('basket'), basket)
         self.assertEqual(str(messages[0]), 'Added 2 `TEST1` to your bag')
 
+
     def test_add_item_Size_Note_valid(self):
         response = self.client.post(
             '/basket/add/2/', data={'cocktail_quantity': '2', 'redirect_url': '2', 'cocktail_note': 'test note', 'cocktail_size': 'large'})
@@ -96,6 +103,7 @@ class BasketView(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertEqual(self.client.session.get('basket'), basket)
         self.assertEqual(str(messages[0]), 'Added 2 `TEST2` to your bag')
+
 
     def test_add_mulitple_item_valid(self):
         response = self.client.post(
@@ -121,7 +129,25 @@ class BasketView(TestCase):
     
     def test_add_item_without_qty(self):
         response = self.client.post(
+            '/basket/add/1/', data={'cocktail_quantity': '', 'redirect_url': '1'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_add_item_zero_qty(self):
+        response = self.client.post(
             '/basket/add/1/', data={'cocktail_quantity': '0', 'redirect_url': '1'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_add_item_negative_qty(self):
+        response = self.client.post(
+            '/basket/add/1/', data={'cocktail_quantity': '-1', 'redirect_url': '1'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_add_item_invalid_qty(self):
+        response = self.client.post(
+            '/basket/add/1/', data={'cocktail_quantity': 'dgsdf', 'redirect_url': '1'})
         self.assertEquals(response.status_code, 404)
     
     
@@ -129,3 +155,150 @@ class BasketView(TestCase):
         response = self.client.post(
             '/basket/add/3/', data={'cocktail_quantity': '2', 'redirect_url': '1'})
         self.assertEquals(response.status_code, 404)
+    
+    
+    def test_add_invalid_note_item(self):
+        response = self.client.post(
+            '/basket/add/1/', data={'cocktail_quantity': '2', 'redirect_url': '1', 'cocktail_note': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'})
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertEqual(str(messages[0]), 'Special note must between 0 and 80 characters')
+    
+    
+    def test_update_basket(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/update/1', data={'cocktail_quantity': '3', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        new_basket = {'1': {'item': {'quantity': {'quantity': 3}}}}
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertEqual(str(messages[0]), 'Added 3 `TEST1` to your bag')
+        self.assertEqual(self.client.session.get('basket'), new_basket)
+
+    
+    def test_update_empty_basket(self):
+        response = self.client.post(
+            '/basket/update/1', data={'cocktail_quantity': '3', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        self.assertEquals(response.status_code, 500)
+    
+    
+    def test_update_basket_invalid_item(self):
+        response = self.client.post(
+            '/basket/update/3', data={'cocktail_quantity': '3', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_update_basket_invalid_qty(self):
+        response = self.client.post(
+            '/basket/update/1', data={'cocktail_quantity': 'a', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        self.assertEquals(response.status_code, 500)
+    
+    
+    def test_update_basket_without_qty(self):
+        response = self.client.post(
+            '/basket/update/1', data={'cocktail_quantity': '', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        self.assertEquals(response.status_code, 500)
+    
+    
+    def test_update_basket_negative_qty(self):
+        response = self.client.post(
+            '/basket/update/1', data={'cocktail_quantity': '-1', 'redirect_url': '1', 'original_qty': 2, 'original_note': 'test note'})
+        self.assertEquals(response.status_code, 500)
+    
+    
+    def test_empty_all_basket(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/remove/1/', data={'item_quantity': 2, 'item_note': 'test note'})
+        new_basket = {}
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertEqual(str(messages[0]), 'Your basket is empty!')
+        self.assertEqual(self.client.session.get('basket'), new_basket)
+    
+    
+    def test_remove_item_basket(self):
+        basket = self.client.session
+        basket['basket'] = {'2': {'items_by_note': [{'note': 'test note', 'quantity': 2, 'size': 'large'}, {'note': 'test note', 'quantity': 1, 'size': 'small'}], 'item': {
+            'size': {'small': 3}}}, '1': {'item': {'quantity': {'quantity': 3}}, 'items_by_note': [{'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        
+        response = self.client.post(
+            '/basket/remove/2/', data={'item_quantity': 2, 'item_note': 'test note', 'item_size': 'large'})
+        new_basket = {'2': {'items_by_note': [{'note': 'test note', 'quantity': 1, 'size': 'small'}], 'item': {
+            'size': {'small': 3}}}, '1': {'item': {'quantity': {'quantity': 3}}, 'items_by_note': [{'note': 'test note', 'quantity': 2}]}}
+        
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertEqual(str(messages[0]), 'Removed 2x `test2`')
+        self.assertEqual(self.client.session.get('basket'), new_basket)
+    
+    
+    def test_remove_invalid_item(self):        
+        response = self.client.post(
+            '/basket/remove/5/', data={'item_quantity': 2, 'item_note': 'test note', 'item_size': 'large'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_remove_item_from_empty_basket(self):        
+        response = self.client.post(
+            '/basket/remove/1/', data={'item_quantity': 2, 'item_note': 'test note', 'item_size': 'large'})
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_remove_item_invalid_qty(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/remove/1/', data={'item_quantity': 'a', 'item_note': 'test note'})
+
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_remove_item_negative_qty(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/remove/1/', data={'item_quantity': -1, 'item_note': 'test note'})
+
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_remove_item_without_qty(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/remove/1/', data={'item_quantity': '', 'item_note': 'test note'})
+
+        self.assertEquals(response.status_code, 404)
+    
+    
+    def test_remove_item_not_in_basket(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'items_by_note': [
+            {'note': 'test note', 'quantity': 2}]}}
+        basket.save()
+        response = self.client.post(
+            '/basket/remove/2/', data={'item_quantity': '2', 'item_note': 'test note'})
+        
+        messages = [msg for msg in get_messages(response.wsgi_request)]
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEqual(str(messages[0]), 'Error removing item')
+

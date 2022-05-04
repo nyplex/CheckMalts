@@ -14,15 +14,13 @@ const targetEl = document.getElementById('alert-1');
 
 // options object
 const options = {
-  triggerEl: document.getElementById('triggerEl'),
+  triggerEl: document.getElementById('alert-1'),
   transition: 'transition-opacity',
   duration: 1000,
   timing: 'ease-out',
 
-  // callback functions
-  onHide: (targetEl) => {
-    console.log('element has been dismissed')
-    console.log(targetEl)
+  onHide: (context, targetEl) => {
+    $('#alert-1').css('display', 'none')
   }
 };
 
@@ -34,7 +32,7 @@ if($('*[data-alertbox]').length) {
   setTimeout(() => {
       $('*[data-alertbox]').animate({opacity: 0}, 1000)
       setTimeout(() => {
-        $('*[data-alertbox]').addClass('hide')
+        $('*[data-alertbox]').css('display', 'none')
     }, 2000)
   }, 9000)
   
@@ -51,4 +49,20 @@ window.addEventListener('resize', function () {
 window.onload = function () {
   $('#loader').hide()
   $('body').css('overflow-y', 'auto')
+  if(localStorage.getItem('basketModal')) {
+    $('#basketContainer').removeClass('hidden')
+    $('#basketItemCloseBtn').removeClass('hidden').addClass('flex')
+  }
 }
+
+
+$('#basketItemFooter').on('click', (e) => {
+  $('#basketContainer').removeClass('hidden')
+  $('#basketItemCloseBtn').removeClass('hidden').addClass('flex')
+  localStorage.setItem('basketModal', true)
+})
+
+$('#basketItemCloseBtn').on('click', (e) => {
+  $('#basketContainer').addClass('hidden')
+  localStorage.removeItem('basketModal')
+})

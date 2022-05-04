@@ -1,5 +1,5 @@
 import { item_modal } from "./ajax/item_modal";
-import { update_price } from "./ajax/update_price";
+import "./ajax/basket_item_modal"
 
 //Reload the page and pass category value in the URL
 $('#category_select_input').on('change', (e) => {
@@ -43,3 +43,13 @@ export let update_span_counter = () => {
 		
 	})
 }
+
+$(document).ready((e) => {
+	$('.subCategoryCollapse').first().addClass('bg-secondaryColor text-primaryColor').removeClass('text-secondaryColor').next().show()
+})
+
+$('.subCategoryCollapse').on('click', (e) => {
+	let content = $(e.target).next()
+	$(e.target).toggleClass('bg-secondaryColor').toggleClass('text-primaryColor').toggleClass('text-secondaryColor')
+	$(content).slideToggle('slow')
+})

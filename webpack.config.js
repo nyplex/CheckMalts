@@ -10,8 +10,7 @@ module.exports = {
         main: './static/js/index.js',
         home: './home/static/home/js/index.js',
         menu: './menu/static/menu/js/index.js',
-        order: './order/static/order/js/index.js',
-        basket: './basket/static/basket/js/index.js',
+        order: './order/static/order/js/index.js'
     },
     optimization: {
       usedExports: true, // <- remove unused function

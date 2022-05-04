@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from menu.models import Cocktail
 from django.contrib import messages
-from django.http import Http404, HttpResponseRedirect, JsonResponse, HttpResponse
+from django.http import Http404, HttpResponseRedirect, JsonResponse, HttpResponse, HttpResponseServerError
 from django.template.loader import render_to_string
 from django.middleware import csrf
 from django.conf import settings
@@ -9,20 +9,6 @@ from django.conf import settings
 from order.views import calculate_price_by_size
 
 # Create your views here.
-
-
-def view_bag(request):
-    """ A view that renders the bag contents page """
-    
-    basket = request.session.get('basket')
-    if basket == {} or basket is None:
-        return redirect('/order')
-    
-    context = {
-        'open': settings.OPEN,
-    }
-
-    return render(request, 'basket/basket.html', context)
 
 
 def add_to_basket(request, item_id):
@@ -35,7 +21,7 @@ def add_to_basket(request, item_id):
 
     if 'cocktail_size' in request.POST:
         if cocktail.has_size == False:
-            raise Http404()
+            raise HttpResponseServerError()
         size = request.POST['cocktail_size']
     if 'cocktail_note' in request.POST:
         note = request.POST['cocktail_note']

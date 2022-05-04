@@ -44,10 +44,12 @@ export let update_span_counter = () => {
 	})
 }
 
+
+//On the order page when page is ready, open the first sub_category if exists.
 $(document).ready((e) => {
 	$('.subCategoryCollapse').first().addClass('bg-secondaryColor text-primaryColor').removeClass('text-secondaryColor').next().show()
 })
-
+//Subcategory collapsible function
 $('.subCategoryCollapse').on('click', (e) => {
 	let content = $(e.target).next()
 	$(e.target).toggleClass('bg-secondaryColor').toggleClass('text-primaryColor').toggleClass('text-secondaryColor')

@@ -17,6 +17,7 @@ def basket_contents(request):
     
     for item_id, item_data in basket.items():
         cocktail = get_object_or_404(Cocktail, pk=item_id)
+
         if 'item' in item_data:
             if 'quantity' in item_data['item']:
                 product_count += item_data['item']['quantity']['quantity']
@@ -39,7 +40,6 @@ def basket_contents(request):
                         'cocktail': cocktail,
                         'sub_total': price * value
                     })
-
                 
         if 'items_by_note' in item_data:
             for i in item_data['items_by_note']:

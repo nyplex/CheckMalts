@@ -16,8 +16,9 @@
     {% endif %}
 </div>
 
+<!-- Main container -->
 <div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">
-
+    <!-- Main menu categories => invisible on small device -->
     <div class="md:w-[20%] hidden md:block">
         {% for category in categories %}
             {% if selected == category.id %}
@@ -28,13 +29,16 @@
         {% endfor %}
     </div>
 
+    <!-- Items container -->
     <div class="md:w-[55%] pb-20 md:border-x-2 md:px-2 border-secondaryHoverDarker">
+        <!-- Page header -->
         <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
             <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center">Order Here</h1>
             <p class="text-primaryColor font-barlow font-normal text-base text-center mx-auto w-[80%] mt-2">
                 At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
             </p>
         </div>
+        <!-- Menu categories => only visible on small device -->
         <select id="category_select_input" class="w-full md:hidden mt-2 md:text-lg text-3xl bg-secondaryHoverDarker font-semibold font-barlow text-primaryColor">
             {% for category in categories %}
                 {% if selected == category.id %}

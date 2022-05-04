@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponseRedirect, JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from django.middleware import csrf
+from django.conf import settings
 
 from order.views import calculate_price_by_size
 
@@ -14,11 +15,11 @@ def view_bag(request):
     """ A view that renders the bag contents page """
     
     basket = request.session.get('basket')
-    if basket == {}:
-        return redirect('order')
+    if basket == {} or basket is None:
+        return redirect('/order')
     
     context = {
-        'open': True,
+        'open': settings.OPEN,
     }
 
     return render(request, 'basket/basket.html', context)
@@ -135,7 +136,7 @@ def update_basket(request, item_id):
     
     request.session['basket'] = basket
     messages.success(request, f'Added {qty} `{cocktail.friendly_name.upper()}` to your bag', extra_tags='alert')
-    return redirect('basket')
+    return redirect('order')
 
 def item_modal(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=request.POST.get('item_id'))
@@ -197,7 +198,7 @@ def remove_from_basket(request, item_id):
         return redirect('order')
     
     messages.warning(request, f'Removed {quantity}x `{cocktail.friendly_name}`', extra_tags='alert')
-    return redirect('basket')
+    return redirect('order')
 
 
 def format_remove_from_basket(item_id=None, basket=None, size=None, note=None, quantity=None):

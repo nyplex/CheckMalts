@@ -68,7 +68,7 @@ class OrderView(TestCase):
         self.assertContains(
             response, '<div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">')
         self.assertContains(
-            response, '<select data-qty-item data-order-item-modal="1"')
+            response, '<select name="cocktail_quantity" data-qty-item data-order-item-modal="1"')
         self.assertIn('cocktail', response.context)
         cocktail = Cocktail.objects.get(pk=1)
         self.assertEqual(response.context['cocktail'], cocktail)

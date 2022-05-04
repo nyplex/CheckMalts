@@ -27,3 +27,24 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+
+/* custom scrollbar on basket container */
+#basket_container::-webkit-scrollbar {
+  width: 20px;
+}
+
+#basket_container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#basket_container::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 8px solid transparent;
+  background-clip: content-box;
+}
+
+#basket_container::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}

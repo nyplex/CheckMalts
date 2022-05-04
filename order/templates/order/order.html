@@ -1,15 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
-{% block page_title %} Menu | CheckMalt {% endblock page_title %}
-
+{% block page_title %} Order | CheckMalt {% endblock page_title %}
 {% block content %}
 
-{% include 'order/includes/item_modal.html' %}
-
-
 {% csrf_token %}
-
 
 <!-- Alert modal if bar is closed -->
 <div class="pt-[70px]">
@@ -22,15 +16,26 @@
     {% endif %}
 </div>
 
-<!-- Header -->
-<div class="max-w-screen-md mx-auto w-full mt-12 px-2" id="orderHeader">
-    <h1 class="text-secondaryColor font-barlow font-bold text-4xl text-left">MENU</h1>
-    <p class="text-primaryColor font-barlow font-normal text-lg text-left mt-2">
-        At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
-    </p>
-    <div class="flex flex-row justify-between items-center mt-4">
-        <!-- Menu category -->
-        <select id="category_select_input" class="primary-select-input w-full md:max-w-[200px] mt-2 text-lg">
+<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">
+
+    <div class="md:w-[20%] hidden md:block">
+        {% for category in categories %}
+            {% if selected == category.id %}
+            <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-secondaryHoverDarker pl-2 cursor-pointer">{{ category|upper }}</a>
+            {% else %}
+                <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 hover:bg-secondaryColor border-l-8 border-transparent pl-2 cursor-pointer">{{ category|upper }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="md:w-[55%] pb-20 md:border-x-2 md:px-2 border-secondaryHoverDarker">
+        <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
+            <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center">Order Here</h1>
+            <p class="text-primaryColor font-barlow font-normal text-base text-center mx-auto w-[80%] mt-2">
+                At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
+            </p>
+        </div>
+        <select id="category_select_input" class="w-full md:hidden mt-2 md:text-lg text-3xl bg-secondaryHoverDarker font-semibold font-barlow text-primaryColor">
             {% for category in categories %}
                 {% if selected == category.id %}
                     <option selected value="{{ category.id }}">{{ category|title }}</option>
@@ -39,44 +44,37 @@
                 {% endif %}
             {% endfor %}
         </select>
-        {% if product_count and product_count > 0 %}
-            <a href="{% url 'basket' %}" class="md:flex-row md:flex hidden justify-around items-center h-full text-primaryColor font-barlow text-lg hover:bg-secondaryHoverLighter cursor-pointer transition-all bg-secondaryColor py-1 px-2 rounded-lg">
-                <div class="font-semibold text-center bg-secondaryHoverDarker px-2 py-1 rounded-lg">
-                    <span>{{ product_count }}</span>
-                </div>
-                <p class="text-center font-semibold mx-4">View Basket</p>
-                <span class="text-center font-semibold">£{{ total|floatformat:2 }}</span>
-            </a>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Order container -->
-<div class="max-w-screen-md mx-auto w-full mt-8 mb-24 px-2 md:px-0">
-    <!-- Check if the category has a sub_category -->
-    {% if sub_categories %}
-        <!-- Load each sub_categories -->
-        {% for sub_category in sub_categories %}
-            <h3 class="text-2xl text-secondaryColor mb-6 font-barlow font-bold mt-12"><i class="fa-solid fa-circle-dot text-lg align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
-            <!-- load the cocktails inside the sub_category -->
-            <div class="flex flex-row w-full gap-8 flex-wrap justify-evenly">
-                {% for cocktail in cocktails %}
-                    {% if cocktail.sub_category.name == sub_category.name %}
-                        {% include 'order/includes/individual_item.html' %}
-                    {% endif %}
+        <!-- Order container -->
+        <div class="max-w-full mx-auto w-full mt-8">
+            <!-- Check if the category has a sub_category -->
+            {% if sub_categories %}
+                <!-- Load each sub_categories -->
+                {% for sub_category in sub_categories %}
+                    <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-3xl pl-2 text-secondaryColor focus:bg-transparent hover:text-primaryColor cursor-pointer hover:bg-secondaryColor font-barlow font-semibold py-2 subCategoryCollapse"><i class="fa-solid fa-circle-dot text-base align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
+                    <!-- load the cocktails inside the sub_category -->
+                    <div class="w-full hidden">
+                        {% for cocktail in cocktails %}
+                            {% if cocktail.sub_category.name == sub_category.name %}
+                                {% include 'order/includes/individual_item.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 {% endfor %}
-            </div>
-        {% endfor %}
-    {% else %}
-        <!-- Load the cocktail if the category does NOT have any sub_categories -->
-        <div class="flex flex-row w-full gap-8 flex-wrap justify-evenly">
-            {% for cocktail in cocktails %}                           
-                {% include 'order/includes/individual_item.html' %}                                      
-            {% endfor %}
+            {% else %}
+                <!-- Load the cocktail if the category does NOT have any sub_categories -->
+                <div class="w-full">
+                    {% for cocktail in cocktails %}                           
+                        {% include 'order/includes/individual_item.html' %}                                      
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
+    {% include 'basket/basket.html' %}
+    
 </div>
 
 <script src="{% static 'dist/order.bundle.js.gz' %}"></script>
+
 
 {% endblock content %}

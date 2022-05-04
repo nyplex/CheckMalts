@@ -1,10 +1,10 @@
-import django
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from requests import Response
 from menu.models import *
 from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.middleware import csrf
+from django.conf import settings
 
 
 
@@ -24,7 +24,7 @@ def order(request):
     sub_categories = SubCategory.objects.filter(category__id=category)
 
     context = {
-        'open': True,
+        'open': settings.OPEN,
         'categories': categories,
         'sub_categories': sub_categories,
         'cocktails': cocktails,

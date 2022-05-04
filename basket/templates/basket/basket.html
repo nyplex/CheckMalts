@@ -1,41 +1,36 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block page_title %} Menu | CheckMalt {% endblock page_title %}
-
-{% block content %}
-
-{% include 'order/includes/item_modal.html' %}
-
-<!-- Alert modal if bar is closed -->
-<div class="pt-[70px]">
-    {% if not open %}
-        <div class="max-w-screen-md mx-auto w-full bg-red-300 py-4 md:rounded-md fixed top-[70px] left-[50%] translate-x-[-50%]">
-            <p class="text-red-900 font-barlow text-lg text-center font-medium">
-                Oups! We are not taking orders at the moment.
-            </p>
-        </div>
-    {% endif %}
-</div>
-
-<div class="max-w-screen-md mx-auto mt-12 mb-24">
-    <div class="w-full px-2 md:px-0">
-        <h1 class="text-secondaryColor font-barlow font-bold text-4xl text-left">YOUR BASKET</h1>
+<div class="md:w-[25%] md:flex flex-col fixed md:static top-0 left-0 max-h-[100vh] h-full w-full  max-w-[100vw] border-2 border-primaryColor pb-4 md:pb-0 md:border-0 bg-contrastColor z-[100] md:z-0 overflow-auto hidden px-2 md:px-0" id="basketContainer">
+    <div class="justify-end p-2 md:hidden hidden" id="basketItemCloseBtn">
+        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+        </button>
     </div>
-    <div class="max-w-[450px] min-h-[500px] mt-8 mr-auto w-full px-2 border-2 border-primaryColor rounded-lg py-2">
+    <!-- Basket header -->
+    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal mb-6 md:mb-0 md:text-base text-3xl text-primaryColor border-b-2 border-secondaryHoverDarker py-4">
+        <p>My Order</p>
+        <p>
+            {% if product_count > 1 %}
+                ({{ product_count }} items)
+            {% else %}
+                ({{ product_count }} item)
+            {% endif %}
+        </p>
+    </div>
+    <!-- Basket content -->
+    <div class="md:max-h-[350px] md:min-h-[200px] overflow-auto" id="basket_container">
         {% if basket_items %}
+            <!-- Each item in basket -->
             {% for item in basket_items %}
-                <div class="w-full min-h-[100px] p-2 mr-auto flex flex-col justify-start bg-black text-primaryColor mb-2">
-                    <div class="flex flex-row md:justify-start justify-between font-barlow font-normal text-xl w-full items-center">
-                        <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-bold">{{ item.cocktail.friendly_name|upper }} {% if item.size %}({{ item.size }}){% endif %}</span></span>
+                <div class="w-full p-2 mr-auto bg-black text-primaryColor">
+                    <div class="flex flex-row md:justify-start justify-between font-barlow font-normal md:text-base text-xl w-full items-center">
+                        <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">{{ item.cocktail.friendly_name|upper }} {% if item.size %}({{ item.size }}){% endif %}</span></span>
                         <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
                     </div>
                     <div>
                         {% if item.note %}
-                            <p class="text-sm text-gray-400 font-barlow font-normal mb-2 max-w-[70%] mt-1">"{{ item.note }}"</p>
+                            <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
                         {% endif %}
-                        <div class="ml-4 mt-2 text-base max-w-[70%]">
-                            <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %}data-item-size="{{ item.size }}"{% endif %} {% if item.note %}data-item-note="{{ item.note }}"{% endif %} class="text-center text-secondaryHoverDarker font-barlow font-semibold hover:text-secondaryColor">Edit</button>
+                        <div class="ml-4 mt-1 text-lg max-w-[70%]">
+                            <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %}data-item-size="{{ item.size }}"{% endif %} {% if item.note %}data-item-note="{{ item.note }}"{% endif %} class="text-center text-secondaryHoverDarker font-barlow font-medium hover:text-secondaryColor">Edit</button>
                             <form action="{% url 'remove_from_basket' item.item_id %}" method="POST" class="inline-block">
                                 {% csrf_token %}
                                 {% if item.size %}
@@ -45,19 +40,31 @@
                                     <input type="hidden" name="item_note" value="{{ item.note }}">
                                 {% endif %}
                                     <input type="hidden" name="item_quantity" value="{{ item.quantity }}">
-                                <button type="submit" class="text-center text-red-800 font-barlow font-semibold ml-8 hover:text-red-700">Remove</button>
+                                <button type="submit" class="text-center text-red-800 font-barlow font-medium ml-8 hover:text-red-700">Remove</button>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
-                <hr class="border-b-1 border-b-white w-[30%] mx-auto mb-4">
             {% endfor %}
+        {% else %}
+        <?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 483.1 483.1" style="fill:rgb(116, 116, 116);width:30%;margin-left:auto;margin-right:auto; margin-top:20px;margin-bottom:20px" xml:space="preserve">
+            <g><path d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6 c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3 C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1 c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"/>
+            </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+        </svg>
+        <p class="text-[#747474] px-8 text-center mb-8 text-sm">Browse our menu and start adding items to your order</p>
+        {% endif %}
+    </div>
+    <hr class="border-white w-full mx-auto">
+    <div class="w-full bg-contrastColor">
+        <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor border-b-2 border-secondaryHoverDarker py-4">
+            <p>Subtotal</p>
+            <p>£{{ total|floatformat:2 }}</p>
+        </div>
+        <!-- Checkout button -->
+        {% if basket_items %}
+            <div class="w-full px-2">
+                <a href="" class="text-center md:text-lg text-3xl md:bg-primaryColor bg-secondaryColor px-4 py-4 md:py-2 w-full rounded-sm flex flex-row justify-around items-center font-barlow font-bold md:font-semibold mt-4">CHECKOUT <i class="fa-regular fa-credit-card"></i></a>
+            </div>
         {% endif %}
     </div>
 </div>
-
-
-<script src="{% static 'dist/basket.bundle.js.gz' %}"></script>
-
-{% endblock content %}

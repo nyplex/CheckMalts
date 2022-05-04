@@ -39,7 +39,7 @@ class OrderView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'order/order.html')
         self.assertContains(
-            response, '<div class="max-w-screen-md mx-auto w-full mt-12 px-2" id="orderHeader">')
+            response, '<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">')
         self.assertEqual(
             1, response.context['selected'])
         self.assertIn('cocktails', response.context)

@@ -56,6 +56,9 @@ def calculate_size_price(request):
             cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
         except Cocktail.DoesNotExist:
             return JsonResponse({}, status=404)
+        
+        net_price = cocktail.net_price
+        price = cocktail.price
 
         if cocktail.has_size == True:
             if(request.POST['size']
@@ -63,8 +66,8 @@ def calculate_size_price(request):
                in ['small', 'medium', 'large', 'single', 'double', 'triple']):
 
                 size = request.POST['size']
-                price = calculate_price_by_size(cocktail.price, cocktail.net_price, size)
-        
+                price = calculate_price_by_size(price, net_price, size)
+                
             else:
                 return JsonResponse({}, status=404)
 

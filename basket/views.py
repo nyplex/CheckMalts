@@ -12,16 +12,19 @@ from order.views import calculate_price_by_size
 
 
 def add_to_basket(request, item_id):
-
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     quantity = int(request.POST.get('cocktail_quantity'))
     redirect_url = '/order?category=' + request.POST.get('redirect_url')
     size = None
     note = ''
-
+    
+    if not quantity or quantity <= 0 or quantity == '':
+        raise Http404
     if 'cocktail_size' in request.POST:
         if cocktail.has_size == False:
-            raise HttpResponseServerError()
+            raise Http404
+        # elif request.POST['cocktail_size'] not in list(cocktail.sizes.all()):
+        #     raise Http404
         size = request.POST['cocktail_size']
     if 'cocktail_note' in request.POST:
         note = request.POST['cocktail_note']

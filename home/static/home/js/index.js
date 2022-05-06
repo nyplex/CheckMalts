@@ -8,20 +8,6 @@ import Datepicker from '@themesberg/tailwind-datepicker/Datepicker';
 animateCanvas('jagerCanvas', 2200, 1238, 150, 'static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
 
 
-// hide the loader icon and active scrolling when the page is loaded
-$(document).ready((e) => {
-    if(localStorage.getItem('bookingFormSubmited')) {
-        //If booking form has been submited, scrolldown to the form
-        localStorage.removeItem('bookingFormSubmited');
-        document.getElementById('reservationContainer').scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center'
-        });
-    }
-})
-
-
 // Setup and Init the Input Date Picker
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -40,7 +26,6 @@ new Datepicker(datepickerEl, {
 $('#reservationForm').on('submit', (e) => {
     $('#loader').show()
     $('#bookingSubmit').attr('disabled', 'disabled')
-    localStorage.setItem('bookingFormSubmited', true);
 })
 
 

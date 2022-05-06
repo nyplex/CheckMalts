@@ -1,0 +1,30 @@
+{% load static %}
+<!-- The Item Modal -->
+<div id="loginModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
+    <!-- Modal content -->
+    <div id="itemModalContainer" class="bg-black border-2 border-primaryColor rounded-lg p-2 w-full md:max-w-[600px] min-h-[200px] h-[100vh] md:h-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor max-h-[100vh]">
+        <!-- Modal loader icon -->
+
+        <!-- Modal body container -->
+        <div id="itemModaBodyContainer">
+            <!--Close modal icon -->
+            <div class="flex justify-end p-2">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-6 pt-0 text-center">
+                <!-- Display on largr screen -->
+                <div class="hidden md:flex flex-row justify-between items-center mb-8">
+                    <div class="mr-4 h-full">
+                        <h3 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Ready to order?</h3>
+                        <p class="text-center font-barlow font-normal text-base text-primaryColor w-[80%] mb-8 mx-auto">You need to create an account to place your order. Don't worry it takes only 2 minutes and you only have to do it once.</p>
+                        <button type="button" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor" >Sign in with Google</button>
+                        <button type="button" class="text-white block mx-auto hover:text-secondaryHoverDarker" >Continue with email</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

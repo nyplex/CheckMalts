@@ -32,9 +32,9 @@
                     id="dropdown">
                     <!-- User's details -->
                     <div class="py-3 px-4 z-50">
-                        <span class="block text-2xl text-gray-900 dark:text-primaryColor">Bonnie Green</span>
+                        <span class="block text-2xl text-gray-900 dark:text-primaryColor">{{ user.first_name }}</span>
                         <span
-                            class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                            class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">{{ user.email }}</span>
                     </div>
                     <!-- User menu links -->
                     <ul class="py-2 z-50" aria-labelledby="dropdown">
@@ -51,7 +51,7 @@
                                 class="navbar-link text-2xl py-2">My account</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{% url 'account_logout' %}"
                                 class="navbar-link text-2xl py-2 text-red-700 hover:text-red-500">Sign
                                 out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-2"></i></a>
                         </li>
@@ -60,7 +60,7 @@
             {% else %}
                 <div class="hidden md:block">
                     <ul>
-                        <a href="#" class="primary-btn border-2 px-2 py-1 text-lg font-medium font-barlow">SIGN IN <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                        <a href="{% url 'account_login' %}" class="primary-btn border-2 px-2 py-1 text-lg font-medium font-barlow">SIGN IN <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
                     </ul>
                 </div>
             {% endif %}

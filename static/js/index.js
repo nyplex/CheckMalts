@@ -66,3 +66,7 @@ $('#basketItemCloseBtn').on('click', (e) => {
   $('#basketContainer').addClass('hidden')
   localStorage.removeItem('basketModal')
 })
+
+$('*[data-checkoutButton]').on('click', (e) => {
+	localStorage.removeItem('basketModal')
+})

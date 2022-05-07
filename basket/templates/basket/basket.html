@@ -73,7 +73,7 @@
         </div>
         <!-- Checkout button -->
         {% if basket_items %}
-            <div class="w-full px-2">
+            <div data-checkoutButton class="w-full px-2">
                 <!-- <button data-checkoutButton class="text-center md:text-lg text-3xl md:bg-primaryColor bg-secondaryColor px-4 py-4 md:py-2 w-full rounded-sm flex flex-row justify-around items-center font-barlow font-bold md:font-semibold mt-4">CHECKOUT <i class="fa-regular fa-credit-card"></i></button> -->
                 <a href="{% url 'checkout' %}" class="text-center md:text-lg text-3xl md:bg-primaryColor bg-secondaryColor px-4 py-4 md:py-2 w-full rounded-sm flex flex-row justify-around items-center font-barlow font-bold md:font-semibold mt-4">CHECKOUT <i class="fa-regular fa-credit-card"></i></a>
             </div>

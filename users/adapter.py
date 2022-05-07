@@ -8,5 +8,5 @@ class MyAccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
         print(request)
-        path = "/test"
+        path = "/order"
         return path

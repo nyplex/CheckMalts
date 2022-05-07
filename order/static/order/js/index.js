@@ -55,10 +55,3 @@ $('.subCategoryCollapse').on('click', (e) => {
 	$(e.target).toggleClass('bg-secondaryColor').toggleClass('text-primaryColor').toggleClass('text-secondaryColor')
 	$(content).slideToggle('slow')
 })
-
-
-$('*[data-checkoutButton]').on('click', (e) => {
-	console.log('hello world');
-	let modal = $('#loginModal')
-	$(modal).show()
-})

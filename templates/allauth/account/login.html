@@ -7,9 +7,9 @@
 
 {% block content %}
 
-<div class="max-w-screen-md mx-auto w-full pt-[100px]">
-	<div class="mb-12 text-primaryColor border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
-		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Ready to order?</h1>
+<div class="max-w-screen-md mx-auto w-full pt-[100px] min-h-[100vh]">
+	<div class="mb-12 text-primaryColor md:border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
+		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Login</h1>
 		{% get_providers as socialaccount_providers %}
 		<p class="text-center font-barlow font-normal text-base text-primaryColor w-[70%] mb-8 mx-auto">
 			Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">SIGN UP</a>
@@ -17,7 +17,7 @@
 		</p>
 
 		{% if socialaccount_providers %}
-			<div class="socialaccount_ballot w-[40%] mx-auto">
+			<div class="socialaccount_ballot md:w-[40%] w-[90%] mx-auto">
 				<ul class="socialaccount_providers">
 					{% include "socialaccount/snippets/provider_list.html" with process="login" %}
 				</ul>
@@ -39,7 +39,7 @@
 				<strong>{{ errors|escape }}</strong>
 			</div>
 		{% endfor %}
-		<form class="login text-center w-[40%] mx-auto" method="POST" action="{% url 'account_login' %}">
+		<form class="login text-center md:w-[40%] w-[90%] mx-auto" method="POST" action="{% url 'account_login' %}">
 			{% csrf_token %}
 			<input type="email" name="login" placeholder="E-mail address" autocomplete="email" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_login">
 			<div class="mb-4">

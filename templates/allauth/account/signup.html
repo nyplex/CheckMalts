@@ -6,8 +6,8 @@
 
 {% block content %}
 
-<div class="max-w-screen-md mx-auto w-full pt-[100px]">
-	<div class="mb-12 text-primaryColor border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
+<div class="max-w-screen-md mx-auto w-full pt-[100px] min-h-[100vh]">
+	<div class="mb-12 text-primaryColor md:border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
 		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Sign Up</h1>
 		<p class="text-center font-barlow font-normal text-base text-primaryColor w-[70%] mb-8 mx-auto">
 			Already have an account? Then please <a href="{{ login_url }}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">LOG IN</a>.
@@ -19,7 +19,7 @@
 			</div>
 		{% endfor %}
 
-		<form class="login text-center w-[40%] mx-auto signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+		<form class="login text-center md:w-[40%] w-[90%] mx-auto signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
 			{% csrf_token %}
 			<input type="email" name="email" placeholder="E-mail address" autocomplete="email" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_email">
 			<div class="mb-4">
@@ -30,28 +30,28 @@
 
 			<input type="text" name="first_name" placeholder="First name" maxlength="30" required="" id="id_first_name" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
 			<div class="mb-4">
-				{% for error in form.email.errors %}
+				{% for error in form.first_name.errors %}
 					<p class="input-errors">{{error}}</p>
 				{% endfor %}
 			</div>
 
 			<input type="text" name="last_name" maxlength="30" placeholder="Last name" required="" id="id_last_name" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
 			<div class="mb-4">
-				{% for error in form.email.errors %}
+				{% for error in form.last_name.errors %}
 					<p class="input-errors">{{error}}</p>
 				{% endfor %}
 			</div>
 
 			<input type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
 			<div class="mb-4">
-				{% for error in form.email.errors %}
+				{% for error in form.password1.errors %}
 					<p class="input-errors">{{error}}</p>
 				{% endfor %}
 			</div>
 
 			<input type="password" name="password2" placeholder="Password (again)" autocomplete="new-password" required="" id="id_password2" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
 			<div class="mb-4">
-				{% for error in form.email.errors %}
+				{% for error in form.password2.errors %}
 					<p class="input-errors">{{error}}</p>
 				{% endfor %}
 			</div>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block page_title %}Signup | CheckMalt{% endblock page_title%}
+
+{% block content %}
+
+<div class="max-w-screen-md mx-auto w-full pt-[100px]">
+	<div class="mb-12 text-primaryColor border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
+		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Sign Up</h1>
+		<p class="text-center font-barlow font-normal text-base text-primaryColor w-[70%] mb-8 mx-auto">
+			Already have an account? Then please <a href="{{ login_url }}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">LOG IN</a>.
+		</p>
+
+		{% for errors in form.non_field_errors %}
+			<div class="font-barlow font-normal text-red-700 text-center text-base w-[70%] mx-auto mb-2">
+				<strong>{{ errors|escape }}</strong>
+			</div>
+		{% endfor %}
+
+		<form class="login text-center w-[40%] mx-auto signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+			{% csrf_token %}
+			<input type="email" name="email" placeholder="E-mail address" autocomplete="email" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_email">
+			<div class="mb-4">
+				{% for error in form.email.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+
+			<input type="text" name="first_name" placeholder="First name" maxlength="30" required="" id="id_first_name" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
+			<div class="mb-4">
+				{% for error in form.email.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+
+			<input type="text" name="last_name" maxlength="30" placeholder="Last name" required="" id="id_last_name" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
+			<div class="mb-4">
+				{% for error in form.email.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+
+			<input type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
+			<div class="mb-4">
+				{% for error in form.email.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+
+			<input type="password" name="password2" placeholder="Password (again)" autocomplete="new-password" required="" id="id_password2" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0">
+			<div class="mb-4">
+				{% for error in form.email.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+
+			{% if redirect_field_value %}
+			<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+			{% endif %}
+			<button type="submit" class="text-white block bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">SIGN UP</button>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

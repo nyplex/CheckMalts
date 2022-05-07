@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block page_title %}Login | CheckMalt{% endblock page_title%}
+
+{% block content %}
+
+<div class="max-w-screen-md mx-auto w-full pt-[100px]">
+	<div class="mb-12 text-primaryColor border-2 border-primaryColor rounded-md max-w-screen-sm mx-auto px-2 py-4 w-full">
+		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Ready to order?</h1>
+		{% get_providers as socialaccount_providers %}
+		<p class="text-center font-barlow font-normal text-base text-primaryColor w-[70%] mb-8 mx-auto">
+			Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">SIGN UP</a>
+			to create a new account and sign in below.
+		</p>
+
+		{% if socialaccount_providers %}
+			<div class="socialaccount_ballot w-[40%] mx-auto">
+				<ul class="socialaccount_providers">
+					{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+				</ul>
+				<div class="login-or mx-auto text-center font-barlow text-lg mb-2">{% trans 'or' %}</div>
+			</div>
+			{% include "socialaccount/snippets/login_extra.html" %}
+		
+		{% else %}
+			<p>
+				{% blocktrans %}If you have not created an account yet, then please
+				<a href="{{ signup_url }}" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor">Sign in with Google</a> first.{% endblocktrans %}
+			</p>
+		{% endif %}
+
+
+
+		{% for errors in form.non_field_errors %}
+			<div class="font-barlow font-extralight text-red-500 text-center text-sm w-[40%] mx-auto mb-2">
+				<strong>{{ errors|escape }}</strong>
+			</div>
+		{% endfor %}
+		<form class="login text-center w-[40%] mx-auto" method="POST" action="{% url 'account_login' %}">
+			{% csrf_token %}
+			<input type="email" name="login" placeholder="E-mail address" autocomplete="email" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_login">
+			<div class="mb-4">
+				{% for error in form.login.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+			<input type="password" name="password" placeholder="Password" autocomplete="current-password" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_password">
+			<div class="mb-4">
+				{% for error in form.password.errors %}
+					<p class="input-errors">{{error}}</p>
+				{% endfor %}
+			</div>
+			{% if redirect_field_value %}
+				<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+			{% endif %}
+			<a class="text-white text-sm text-right font-barlow font-thin block mt-1 mb-4 hover:text-secondaryColor" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+			<button type="submit" class="text-white block bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Log In</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

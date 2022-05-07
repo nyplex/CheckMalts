@@ -1,4 +1,7 @@
 {% load static %}
+{% load socialaccount %}
+{% load i18n %}
+
 <!-- The Item Modal -->
 <div id="loginModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
     <!-- Modal content -->
@@ -15,12 +18,14 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 pt-0 text-center">
-                <!-- Display on largr screen -->
-                <div class="hidden md:flex flex-row justify-between items-center mb-8">
                     <div class="mr-4 h-full">
                         <h3 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Ready to order?</h3>
                         <p class="text-center font-barlow font-normal text-base text-primaryColor w-[80%] mb-8 mx-auto">You need to create an account to place your order. Don't worry it takes only 2 minutes and you only have to do it once.</p>
-                        <button type="button" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor" >Sign in with Google</button>
+                        <form method="post" action="accounts/google/login/?process=login">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="/checkout" />
+                            <button type="submit" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor" >Sign in with Google</button>
+                        </form>
                         <button type="button" class="text-white block mx-auto hover:text-secondaryHoverDarker" >Continue with email</button>
                     </div>
                 </div>

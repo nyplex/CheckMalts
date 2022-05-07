@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'menu',
     'order',
     'basket',
+    'checkout',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -180,12 +183,16 @@ AUTHENTICATION_BACKENDS = [
 
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/order'
+
+ACCOUNT_ADAPTER = 'users.adapter.MyAccountAdapter'
+ACCOUNT_FORMS = {'signup': 'users.forms.CustomSignupForm', 'login': 'users.forms.CustomLoginForm'}
 
 SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_LOGOUT_ON_GET= False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

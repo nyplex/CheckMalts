@@ -3,8 +3,8 @@ from allauth.account.decorators import login_required
 
 
 @login_required()
-def checkout(request):
+def checkout_details(request):
     """ A view to render the order page """
 
 
-    return render(request, 'home/home.html')
+    return render(request, 'checkout/place_order.html')

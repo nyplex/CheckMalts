@@ -1,0 +1,20 @@
+{% with request.resolver_match.url_name as url_name %}
+<div class="max-w-screen-lg mx-auto w-full min-h-[100vh] pt-[100px]">
+    <div class="flex flex-row items-center gap-20 px-4 font-barlow text-lg">
+        <a href="{% url 'order' %}" class="text-white hover:text-secondaryColor"><i class="fa-solid fa-angle-left"></i> My order ({{ product_count }} items)</a>
+        <div class="flex flex-row items-center gap-16">
+            <div>
+                <p class="{% if url_name == 'checkout_1' %} text-secondaryColor {% else %} text-white {% endif %}"><i class="fa-regular fa-circle-check mr-1"></i> Details</p>
+            </div>
+            <div>
+                <p class="text-white"><i class="fa-regular fa-circle-check mr-1"></i> Payment</p>
+            </div>
+            <div>
+                <p class="text-white"><i class="fa-regular fa-circle-check mr-1"></i> Confirmation</p>
+            </div>
+        </div>
+    </div>
+    <hr class="border-white mt-4">
+</div>
+
+{% endwith %}

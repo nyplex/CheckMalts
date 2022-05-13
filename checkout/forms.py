@@ -8,6 +8,7 @@ import re
 class CheckoutOneForm(forms.Form):
     mobileNumber = forms.CharField(required=True, max_length=25, min_length=7)
     tableNumber = forms.IntegerField(required=False, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    tips = forms.DecimalField(required=False, validators=[MinValueValidator(0), MaxValueValidator(99000)], decimal_places=2, max_digits=7)
     
     def __init__(self, *args, **kwargs):
         """
@@ -21,9 +22,11 @@ class CheckoutOneForm(forms.Form):
             self.fields['mobileNumber'].widget.attrs['value'] = user.mobile
         if checkout_session:
            self.fields['tableNumber'].widget.attrs['value'] = checkout_session['table']
+           self.fields['tips'].widget.attrs['value'] = checkout_session['tips']
             
         self.fields['mobileNumber'].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
         self.fields['tableNumber'].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
+        self.fields['tips'].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
     
     
     def clean_mobileNumber(self):

@@ -29,9 +29,17 @@
                 </div>
                 <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto">
                 <div class="w-full bg-contrastColor">
-                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor py-4">
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pt-4 pb-2">
                         <p>Subtotal</p>
-                        <p>£{{ total|floatformat:2 }}</p>
+                        <p id="subtotal">£{{ total|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                        <p>Tips</p>
+                        <p id="subtotal">£{{ tips|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                        <p>Total</p>
+                        <p id="subtotal">£{{ grandTotal|floatformat:2 }}</p>
                     </div>
                 </div>
             </div>
@@ -44,10 +52,10 @@
                     <div id="payment-message" class="hidden"></div>
                 </form>
                 <div class="flex flex-row justify-between items-center w-full self-end pb-4">
-                    <a href="{% url 'order' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO DETAILS</a>
-                    <button id="submit" form="payment-form" class="max-w-[45%] w-full">
-                        <div class="spinner hidden" id="spinner"></div>
-                        <span id="button-text" class="text-white hidden md:block bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">PAY NOW <i class="fa-solid fa-angle-right ml-1"></i></span>
+                    <a href="{% url 'checkout_1' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO DETAILS</a>
+                    <button id="submitPayment" type="submit" form="payment-form" class="max-w-[45%] w-full hidden md:block">
+                        <div class="spinner" id="spinner"></div>
+                        <span id="button-text" class="text-white block bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">PAY NOW <i class="fa-solid fa-angle-right ml-1"></i></span>
                     </button>
                 </div>
             </div> 
@@ -63,7 +71,10 @@
                             <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
                                 <a href="{% url 'checkout_1' %}"><i class="fa-solid fa-angle-left mr-1"></i> BACK</a>
                             </div>
-                            <a href="{% url 'checkout_3' %}" class="text-center font-bold">CONTINUE</a>
+                            <button class="text-center font-bold" id="submitPayment" type="submit" form="payment-form">
+                                <div class="spinner hidden" id="spinner"></div>
+                                <span>PAY NOW <i class="fa-solid fa-angle-right ml-1"></i></span>
+                            </button>
                         </div>
                     </div>
                 {% endif %}
@@ -77,5 +88,5 @@
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'dist/checkout.bundle.js.gz' %}"></script>
+    <script src="{% static 'dist/stripe.bundle.js.gz' %}"></script>
 {% endblock %}

@@ -23,8 +23,7 @@ async function initialize() {
 
   const appearance = {
     theme: 'night',
-    labels: 'floating',
-    spacingGridColumn: '25px'
+    labels: 'floating'
   };
   elements = stripe.elements({ appearance, clientSecret });
 
@@ -40,7 +39,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://localhost:4242/checkout.html",
+      return_url: "http://127.0.0.1:8000/checkout/confirmation",
     },
   });
 
@@ -92,23 +91,20 @@ function showMessage(messageText) {
   const messageContainer = document.querySelector("#payment-message");
 
   messageContainer.classList.remove("hidden");
+  messageContainer.classList.add("text-red-700")
   messageContainer.textContent = messageText;
 
-  setTimeout(function () {
-    messageContainer.classList.add("hidden");
-    messageText.textContent = "";
-  }, 4000);
 }
 
 // Show a spinner on payment submission
 function setLoading(isLoading) {
   if (isLoading) {
     // Disable the button and show a spinner
-    document.querySelector("#submit").disabled = true;
+    document.querySelector("#submitPayment").disabled = true;
     document.querySelector("#spinner").classList.remove("hidden");
     document.querySelector("#button-text").classList.add("hidden");
   } else {
-    document.querySelector("#submit").disabled = false;
+    document.querySelector("#submitPayment").disabled = false;
     document.querySelector("#spinner").classList.add("hidden");
     document.querySelector("#button-text").classList.remove("hidden");
   }

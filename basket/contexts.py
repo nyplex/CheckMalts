@@ -65,10 +65,18 @@ def basket_contents(request):
                         'cocktail': cocktail,
                         'sub_total': cocktail.price * i['quantity']
                     })
-    
     context = {
         'basket_items': basket_items,
         'total': total,
         'product_count': product_count,
+        'tips': 0,
+        'grandTotal': total
     }
+    
+    if request.session.get('checkout_session'):
+        checkout_session = request.session.get('checkout_session')
+        if checkout_session['tips'] and checkout_session['tips'] != 0:
+            context['tips'] = float(checkout_session['tips'])
+            context['grandTotal'] = float(checkout_session['tips']) + total
+    
     return context

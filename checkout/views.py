@@ -6,6 +6,7 @@ from profiles.models import UserProfile
 from .forms import CheckoutOneForm
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from basket.contexts import basket_contents
 import json
 import stripe
 
@@ -28,12 +29,17 @@ def checkout_details(request):
         form = CheckoutOneForm(request.POST, user=current_user, checkout_session=request.session.get('checkout_session'))
         if form.is_valid():
             tableNumber = request.POST.get('tableNumber').strip()
+            tips = request.POST.get('tips').strip()
             current_user.mobile = request.POST.get('mobileNumber').strip()
             current_user.save()
             
             if request.POST.get('tableNumber').strip() == '':
                 tableNumber = 0
+            if request.POST.get('tips').strip() == '':
+                tips = 0
+                
             checkout_session['table'] = int(tableNumber)
+            checkout_session['tips'] = float(tips)
             checkout_session['step1'] = True
             request.session['checkout_session'] = checkout_session
             return redirect('checkout_2')
@@ -75,12 +81,13 @@ def checkout_payment(request):
 
 @method_decorator(csrf_exempt)
 def create_payment(request):
+    current_bag = basket_contents(request)
     stripe.api_key = 'sk_test_51KyyMtEUSVW7Sz1sSFyAssUs1mdh7w1WtM5V3fAdX6BMSxUPraeEnyh2zk4DoX0biZezk52mxMXc6Cicx2lhhWJf00n7x0acLi'
     try:
         # data = json.loads(request.POST)
         # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
-            amount=10000,
+            amount=round(current_bag['total'] * 100),
             currency='gbp',
             payment_method_types=[
                 'card'

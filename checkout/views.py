@@ -7,8 +7,10 @@ from .forms import CheckoutOneForm
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from basket.contexts import basket_contents
-import json
 import stripe
+import os
+if os.path.exists("env.py"):
+    import env
 
 
 
@@ -69,20 +71,15 @@ def checkout_payment(request):
     if checkout_session['step1'] != True:
         return redirect('checkout_1')
 
-    
-    context = {
-        'stripe_public_key': 'pk_test_51KyyMtEUSVW7Sz1sy5Jl5Lu3V8WargxHJh4yfUGKupPIRwZ7oxurpMWedQ9z1SXipvxMTdKk5U2CxnXVVQ2cV05S00WBkcxrrj',
-        'client_secret': 'test secret client'
-    }
 
     
-    return render(request, 'checkout/checkout_payment.html', context)
+    return render(request, 'checkout/checkout_payment.html')
 
 
 @method_decorator(csrf_exempt)
 def create_payment(request):
     current_bag = basket_contents(request)
-    stripe.api_key = 'sk_test_51KyyMtEUSVW7Sz1sSFyAssUs1mdh7w1WtM5V3fAdX6BMSxUPraeEnyh2zk4DoX0biZezk52mxMXc6Cicx2lhhWJf00n7x0acLi'
+    stripe.api_key = os.environ.get('STRIPE_SECRET_CLIENT')
     try:
         # data = json.loads(request.POST)
         # Create a PaymentIntent with the order amount and currency

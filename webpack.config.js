@@ -11,7 +11,8 @@ module.exports = {
         home: './home/static/home/js/index.js',
         menu: './menu/static/menu/js/index.js',
         order: './order/static/order/js/index.js',
-        checkout: './checkout/static/js/index.js'
+        stripe: './checkout/static/js/stripe_elements.js',
+        checkout_detail: './checkout/static/js/index.js'
     },
     optimization: {
       usedExports: true, // <- remove unused function

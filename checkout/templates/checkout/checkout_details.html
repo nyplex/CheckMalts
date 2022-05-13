@@ -30,9 +30,17 @@
                 </div>
                 <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto">
                 <div class="w-full bg-contrastColor">
-                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor py-4">
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pt-4 pb-2">
                         <p>Subtotal</p>
-                        <p>£{{ total|floatformat:2 }}</p>
+                        <p id="subtotal">£{{ total|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                        <p>Tips</p>
+                        <p id="tips">£{{ tips|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                        <p>Total</p>
+                        <p id="grandTotal">£{{ grandTotal|floatformat:2 }}</p>
                     </div>
                 </div>
             </div>
@@ -62,6 +70,29 @@
                                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Table Number</span>
                             </div>
                         </div>
+                        <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
+                            <div class="md:w-[45%] w-full flex flex-row justify-between items-start text-primaryColor text-xl relative">
+                                <div data-standardTips="10" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                    <p>10%</p>
+                                </div>
+                                <div data-standardTips="12" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                    <span>12%</span>
+                                </div>
+                                <div data-standardTips="15" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                    <span>15%</span>
+                                </div>
+                                <!-- <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Add Service Charge</span> -->
+                            </div>
+                            <div class="md:w-[45%] w-full relative">
+                                {{form.tips}}
+                                <div>
+                                    {% for error in form.tips.errors %}
+                                        <p class="input-errors">{{error}}</p>
+                                    {% endfor %}
+                                </div>
+                                <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Service Charge £</span>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="flex flex-row justify-between items-center w-full self-end pb-4">
@@ -89,3 +120,9 @@
         {% endif %}
     {% endwith %}
 {% endblock content %}
+
+
+
+{% block extrajs %}
+    <script src="{% static 'dist/checkout_detail.bundle.js.gz' %}"></script>
+{% endblock %}

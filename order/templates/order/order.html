@@ -78,7 +78,8 @@
     
 </div>
 
-<script src="{% static 'dist/order.bundle.js.gz' %}"></script>
-
-
 {% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'dist/order.bundle.js.gz' %}"></script>
+{% endblock extrajs %}

@@ -222,6 +222,9 @@
     </div>
 </div>
 
-<script src="{% static 'dist/home.bundle.js.gz' %}"></script>
 
 {% endblock content %}
+
+{% block extrajs %}
+<script src="{% static 'dist/home.bundle.js.gz' %}"></script>
+{% endblock extrajs %}

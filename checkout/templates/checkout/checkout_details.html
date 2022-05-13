@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+    <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        {% include 'checkout/checkout.html' %}
+
+        <div class="max-w-screen-lg mx-auto w-full flex flex-row justify-between pb-8">
+            <!-- Basket Container -->
+            <div class="w-[30%] pt-4 border-r-2 border-secondaryHoverDarker hidden md:block">
+                <div class="md:max-h-[350px] md:min-h-[200px] overflow-auto" id="basket_container">
+                    <!-- Each item in basket -->
+                    {% for item in basket_items %}
+                        <div class="w-full p-2 mr-auto bg-black text-primaryColor">
+                            <!-- Item qty + item title & item subtotal -->
+                            <div class="flex flex-row md:justify-start justify-between font-barlow font-normal md:text-base text-xl w-full items-center">
+                                <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">{{ item.cocktail.friendly_name|upper }} {% if item.size %}({{ item.size }}){% endif %}</span></span>
+                                <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
+                            </div>
+                            <div>
+                                {% if item.note %}
+                                    <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto">
+                <div class="w-full bg-contrastColor">
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor py-4">
+                        <p>Subtotal</p>
+                        <p>£{{ total|floatformat:2 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-20">
+                <div>
+                    <h2 class="font-medium font-barlow text-primaryColor text-3xl">Let's add some details</h2>
+                    <p class="font-light font-barlow text-primaryColor text-base max-w-[70%] mt-2">
+                        If you don't have a table and wish to grap your drinks at the counter yourself, leave the table number field blank or 0.
+                    </p>
+                    <form action="#" method="POST" class="mt-12" id="detailsForm">
+                        {% csrf_token %}
+                        <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
+                            <div class="md:w-[45%] w-full relative">
+                                {{form.mobileNumber}}
+                                <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Phone Number *</span>
+                                {% for error in form.mobileNumber.errors %}
+                                    <p class="input-errors">{{error}}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="md:w-[45%] w-full relative">
+                                {{form.tableNumber}}
+                                <div>
+                                    {% for error in form.tableNumber.errors %}
+                                        <p class="input-errors">{{error}}</p>
+                                    {% endfor %}
+                                </div>
+                                <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Table Number</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="flex flex-row justify-between items-center w-full self-end pb-4">
+                    <a href="{% url 'order' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO MENU</a>
+                    <button type="submit" form="detailsForm" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">CONTINUE <i class="fa-solid fa-angle-right ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% with request.resolver_match.url_name as url_name %}
+        {% if url_name == 'checkout_1' %}
+            {% if basket_items %}
+                {% if product_count and product_count > 0 %}
+                    <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
+                        <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
+                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
+                                <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> MENU</a>
+                            </div>
+                            <button type="submit" form="detailsForm" class="text-center font-bold">CONTINUE</button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endwith %}
+{% endblock content %}

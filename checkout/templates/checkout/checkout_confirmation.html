@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+    <div class="min-h-[100vh] mb-20 mx-2">
+        {% include 'checkout/checkout.html' %}
+    </div>
+
+
+    {% with request.resolver_match.url_name as url_name %}
+        {% if url_name == 'checkout_3' %}
+            {% if basket_items %}
+                {% if product_count and product_count > 0 %}
+                    <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
+                        <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
+                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
+                                <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> BACK</a>
+                            </div>
+                            <a href="{% url 'checkout_3' %}" class="text-center font-bold">CONFIRM</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock content %}

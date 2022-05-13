@@ -1,6 +1,5 @@
 from allauth.account.forms import SignupForm, LoginForm
 from django import forms
-from pkg_resources import require
 
 
 class CustomSignupForm(SignupForm):

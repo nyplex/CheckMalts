@@ -86,7 +86,11 @@
 </div>
 
 
-<script src="{% static 'dist/menu.bundle.js.gz' %}"></script>
+
 
 
 {% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'dist/menu.bundle.js.gz' %}"></script>   
+{% endblock extrajs %}

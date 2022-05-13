@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'order',
     'basket',
     'checkout',
-    'users',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -185,8 +185,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-ACCOUNT_ADAPTER = 'users.adapter.MyAccountAdapter'
-ACCOUNT_FORMS = {'signup': 'users.forms.CustomSignupForm', 'login': 'users.forms.CustomLoginForm'}
+ACCOUNT_ADAPTER = 'profiles.adapter.MyAccountAdapter'
+ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm', 'login': 'profiles.forms.CustomLoginForm'}
 
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET= False

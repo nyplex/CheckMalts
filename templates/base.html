@@ -13,6 +13,9 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://kit.fontawesome.com/0fd6fa10db.js" crossorigin="anonymous"></script>
+
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -62,8 +65,14 @@
 
     {% include 'includes/footer.html' %}
 
-<script src="https://kit.fontawesome.com/0fd6fa10db.js" crossorigin="anonymous"></script>
-<script src="{% static 'dist/main.bundle.js.gz' %}"></script>
+    {% block corejs %}
+        <script src="{% static 'dist/main.bundle.js.gz' %}"></script>
+    {% endblock corejs %}
+
+    
+    {% block extrajs %}
+    {% endblock extrajs %}
+
 
 </body>
 </html>

@@ -10,6 +10,9 @@ from django.conf import settings
 
 def order(request):
     """ A view to render the order page """
+    
+    if request.session.get('checkout_session'):
+        del request.session['checkout_session']
 
     categories = Category.objects.all()
     

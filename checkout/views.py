@@ -16,7 +16,11 @@ if os.path.exists("env.py"):
 
 @login_required()
 def checkout_details(request):
-    """ A view to render the first step of the checkout process """
+    """
+    A view to render the first step of the checkout process,
+    and create a checkout session to store tips & table Number.
+    Finally will store True into session if this first step is completed
+    """
     #request.session['checkout_session'] = {}
     current_user = UserProfile.objects.get(user=request.user.id)
     checkout_session = {}
@@ -48,6 +52,7 @@ def checkout_details(request):
         
         else:
             checkout_session['table'] = 0
+            checkout_session['tips'] = 0
             checkout_session['step1'] = False
             request.session['checkout_session'] = checkout_session
             messages.add_message(request, messages.ERROR, 'We found an error in the form!', extra_tags='alert')
@@ -70,21 +75,25 @@ def checkout_payment(request):
     checkout_session = request.session.get('checkout_session')
     if checkout_session['step1'] != True:
         return redirect('checkout_1')
-
-
+    if not request.session.get('basket'):
+        return redirect('order')
+    if request.session.get('basket') == {}:
+        return redirect('order')
     
+
     return render(request, 'checkout/checkout_payment.html')
 
 
+@login_required
 @method_decorator(csrf_exempt)
 def create_payment(request):
+    """ A view to create the stripe payment """
+    
     current_bag = basket_contents(request)
     stripe.api_key = os.environ.get('STRIPE_SECRET_CLIENT')
     try:
-        # data = json.loads(request.POST)
-        # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
-            amount=round(current_bag['total'] * 100),
+            amount= round(float(current_bag['grandTotal']) * 100),
             currency='gbp',
             payment_method_types=[
                 'card'
@@ -94,7 +103,6 @@ def create_payment(request):
             'clientSecret': intent['client_secret']
         })
     except Exception as e:
-        print(e)
         return JsonResponse({'e': 'error'}), 403    
 
 

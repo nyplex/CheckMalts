@@ -5,37 +5,6 @@ from profiles.models import UserProfile
 from datetime import date
 
 
-# class Booking(models.Model):
-
-
-#     booking_email = models.EmailField(null=False, blank=False, max_length=200)
-
-#     booking_name = models.CharField(
-#         null=False, blank=False, max_length=50, validators=[MinLengthValidator(4)])
-
-#     booking_date = models.DateField(null=False, blank=False, max_length=50)
-
-
-#     def clean(self):
-#         data = self.booking_date
-#         if data == None:
-#             return
-#         if data < date.today():
-#             raise ValidationError(
-#                 {'booking_date': "Booking date must be in the future."})
-    
-#     def __str__(self):
-#         return self.booking_name
-    
-#     def save(self, *args, **kwargs):
-#         """
-#         Override the original save method to set the lineitem total
-#         and update the order total.
-#         """
-#         super().save(*args, **kwargs)
-
-
-
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,

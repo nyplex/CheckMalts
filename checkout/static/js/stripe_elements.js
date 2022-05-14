@@ -1,7 +1,6 @@
 const stripe = Stripe("pk_test_51KyyMtEUSVW7Sz1sy5Jl5Lu3V8WargxHJh4yfUGKupPIRwZ7oxurpMWedQ9z1SXipvxMTdKk5U2CxnXVVQ2cV05S00WBkcxrrj");
 
-// The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
+
 
 let elements;
 
@@ -16,14 +15,19 @@ document
 async function initialize() {
   const response = await fetch("create-payment-intent", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items }),
+    headers: { "Content-Type": "application/json" }
   });
   const { clientSecret } = await response.json();
 
   const appearance = {
     theme: 'night',
-    labels: 'floating'
+    labels: 'floating',
+    variables: {
+      colorPrimary: '#ffffff',
+      colorBackground: '#000000',
+      colorDanger: '#ff5858',
+      colorDangerText: '#ff5858'
+    },
   };
   elements = stripe.elements({ appearance, clientSecret });
 

@@ -7,8 +7,8 @@ import re
 
 class CheckoutOneForm(forms.Form):
     mobileNumber = forms.CharField(required=True, max_length=25, min_length=7)
-    tableNumber = forms.IntegerField(required=False, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    tips = forms.DecimalField(required=False, validators=[MinValueValidator(0), MaxValueValidator(99000)], decimal_places=2, max_digits=7)
+    tableNumber = forms.DecimalField(required=False, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=0, max_digits=3, min_value=0, max_value=100)
+    tips = forms.DecimalField(required=False, validators=[MinValueValidator(0), MaxValueValidator(99999.99)], decimal_places=2, max_digits=7, min_value=0, max_value=99999.99)
     
     def __init__(self, *args, **kwargs):
         """

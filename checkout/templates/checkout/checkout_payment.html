@@ -19,6 +19,7 @@
                                 <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">{{ item.cocktail.friendly_name|upper }} {% if item.size %}({{ item.size }}){% endif %}</span></span>
                                 <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
                             </div>
+                            <!-- Item note -->
                             <div>
                                 {% if item.note %}
                                     <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
@@ -28,6 +29,7 @@
                     {% endfor %}
                 </div>
                 <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto">
+                <!-- Subtotal, Tips & Grand Total -->
                 <div class="w-full bg-contrastColor">
                     <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pt-4 pb-2">
                         <p>Subtotal</p>
@@ -43,14 +45,16 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-20">
+            <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-10">
+                <h2 class="font-medium font-barlow text-primaryColor text-3xl">Total: £{{ grandTotal|floatformat:2 }}</h2>
+                <!-- Payment form -->
                 <form id="payment-form" class="w-full">
                     <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                     </div>
-                    
                     <div id="payment-message" class="hidden"></div>
                 </form>
+                <!-- Back and submit button -->
                 <div class="flex flex-row justify-between items-center w-full self-end pb-4">
                     <a href="{% url 'checkout_1' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO DETAILS</a>
                     <button id="submitPayment" type="submit" form="payment-form" class="max-w-[45%] w-full hidden md:block">
@@ -62,6 +66,7 @@
         </div>
     </div>
 
+    <!-- Back and submit button on small devices -->
     {% with request.resolver_match.url_name as url_name %}
         {% if url_name == 'checkout_2' %}
             {% if basket_items %}
@@ -85,8 +90,5 @@
 {% endblock content %}
 
 {% block extrajs %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'dist/stripe.bundle.js.gz' %}"></script>
 {% endblock %}

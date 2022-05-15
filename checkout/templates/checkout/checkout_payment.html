@@ -46,9 +46,24 @@
                 </div>
             </div>
             <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-10">
-                <h2 class="font-medium font-barlow text-primaryColor text-3xl">Total: £{{ grandTotal|floatformat:2 }}</h2>
+                <div class="md:hidden">
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-xl text-primaryColor pt-2 pb-1">
+                        <p>Subtotal</p>
+                        <p id="subtotal">£{{ total|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-xl text-primaryColor pb-1">
+                        <p>Tips</p>
+                        <p id="subtotal">£{{ tips|floatformat:2 }}</p>
+                    </div>
+                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-xl text-primaryColor pb-1">
+                        <p>Total</p>
+                        <p id="subtotal">£{{ grandTotal|floatformat:2 }}</p>
+                    </div>
+                </div>
+                <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto md:hidden">
+                <h2 class="font-medium font-barlow text-primaryColor text-3xl hidden md:block">Total: £{{ grandTotal|floatformat:2 }}</h2>
                 <!-- Payment form -->
-                <form id="payment-form" class="w-full">
+                <form id="payment-form" class="w-full mb-20 md:mb-0">
                     <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                     </div>

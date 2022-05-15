@@ -1,13 +1,19 @@
 {% with request.resolver_match.url_name as url_name %}
 <div class="max-w-screen-lg mx-auto w-full pt-[100px]">
     <div class="flex flex-row items-center gap-20 px-4 font-barlow text-lg">
-        <a href="{% url 'order' %}" class="text-white hover:text-secondaryColor hidden md:block md:w-[30%]"><i class="fa-solid fa-angle-left mr-1"></i> My order ({{ product_count }} items)</a>
+        {% if url_name == 'checkout_3' %}
+            <a href="{% url 'order' %}" class="text-white hover:text-secondaryColor hidden md:block md:w-[30%]"><i class="fa-solid fa-angle-left mr-1"></i> Back to menu</a>
+        {% else %}
+            <a href="{% url 'order' %}" class="text-white hover:text-secondaryColor hidden md:block md:w-[30%]"><i class="fa-solid fa-angle-left mr-1"></i> My order ({{ product_count }} items)</a>
+        {% endif %}
         <div class="flex flex-row items-center gap-16 md:w-full md:pl-4">
             <div>
                 {% if url_name == 'checkout_1' %}
                     <p class="text-secondaryColor"><span class="bg-secondaryHoverDarker text-white px-2 rounded-full border-2 border-secondaryHoverDarker">1</span> Details</p>
-                {% elif url_name == 'checkout_2' or url_name == 'checkout_3' %}
+                {% elif url_name == 'checkout_2' %}
                     <a href="{% url 'checkout_1' %}" class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Details</a>
+                {% elif url_name == 'checkout_3' %}
+                    <p href="{% url 'checkout_1' %}" class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Details</p>
                 {% else %}
                     <p class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Details</p>
                 {% endif %}
@@ -16,14 +22,14 @@
                 {% if url_name == 'checkout_2' %}
                 <p class="text-secondaryColor"><span class="bg-secondaryHoverDarker text-white px-2 rounded-full border-2 border-secondaryHoverDarker">2</span> Payment</p>
                 {% elif url_name == 'checkout_3' %}
-                <a href="{% url 'checkout_2' %}" class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Payment</a>
+                <p class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Payment</p>
                 {% else %}
                 <p class=" text-white"><span class="text-white px-2 rounded-full border-2 border-white">2</span> Payment</p>
                 {% endif %}
             </div>
             <div>
                 {% if url_name == 'checkout_3' %}
-                    <p class="text-secondaryColor"><span class="bg-secondaryHoverDarker text-white px-2 rounded-full border-2 border-secondaryHoverDarker">3</span> Confirmation</p>
+                    <p class="text-secondaryHoverDarker"><i class="fa-solid fa-circle-check mr-1"></i> Confirmation</p>
                 {% else %}
                     <p class="text-white"><span class="text-white px-2 rounded-full border-2 border-white">3</span> Confirmation</p>
                 {% endif %}

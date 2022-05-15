@@ -3,6 +3,7 @@ const stripe = Stripe("pk_test_51KyyMtEUSVW7Sz1sy5Jl5Lu3V8WargxHJh4yfUGKupPIRwZ7
 
 
 let elements;
+let orderID;
 
 initialize();
 checkStatus();
@@ -17,7 +18,8 @@ async function initialize() {
     method: "POST",
     headers: { "Content-Type": "application/json" }
   });
-  const { clientSecret } = await response.json();
+  const { clientSecret, order_id } = await response.json();
+  orderID = order_id
 
   const appearance = {
     theme: 'night',
@@ -43,7 +45,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://127.0.0.1:8000/checkout/confirmation",
+      return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderID,
     },
   });
 

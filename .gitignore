@@ -6,6 +6,7 @@ __pycache__
 db.sqlite3
 mydatabase
 env.py
+stripe.exe
 
 # Backup files # 
 *.bak 

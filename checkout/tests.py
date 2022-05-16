@@ -24,10 +24,12 @@ class CheckoutDetailsView(TestCase):
         size1.save()
         size2.save()
         size3.save()
-        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1', price=10, net_price=5,
-                                prep_time=1, category=Category.objects.get(pk=1))
-        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', price=15, net_price=7,
-                             prep_time=1, category=Category.objects.get(pk=2), has_size=True)
+        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1',
+                                price=10, net_price=5, prep_time=1, 
+                                category=Category.objects.get(pk=1))
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', 
+                             price=15, net_price=7, prep_time=1, category=Category.objects.get(pk=2), 
+                             has_size=True)
         cocktail2.save()
         cocktail2.sizes.add(size1)
         cocktail2.sizes.add(size2)
@@ -259,10 +261,12 @@ class CheckoutPaymentView(TestCase):
         size1.save()
         size2.save()
         size3.save()
-        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1', price=10, net_price=5,
+        Cocktail.objects.create(name='test1', friendly_name='test1', 
+                                slug='test-1', price=10, net_price=5,
                                 prep_time=1, category=Category.objects.get(pk=1))
-        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', price=15, net_price=7,
-                             prep_time=1, category=Category.objects.get(pk=2), has_size=True)
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2',
+                             price=15, net_price=7, prep_time=1, category=Category.objects.get(pk=2), 
+                             has_size=True)
         cocktail2.save()
         cocktail2.sizes.add(size1)
         cocktail2.sizes.add(size2)
@@ -277,21 +281,289 @@ class CheckoutPaymentView(TestCase):
         user_profile.save()
         
         
+    def test_checkout_payment_view_without_checkout_session(self):
+        self.client.login(username='testuser', password='12345')
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+
+        response = self.client.get(reverse('checkout_2'))
         
-        #Check without checkout_session
-        
-        #check witout bag 
-        
-        #check with empty bag 
-        
-        #check with false checkout_session step 1
-        
-        #check valid view 
-        
-        #check when not logged in 
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, reverse('checkout_1'), 
+                             status_code=302, target_status_code=200, 
+                             msg_prefix='', fetch_redirect_response=True)
         
 
+    def test_checkout_payment_view_without_bag(self):
+        self.client.login(username='testuser', password='12345')
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+
+        response = self.client.get(reverse('checkout_2'))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, reverse('order'), 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True) 
+        
+        
+    def test_checkout_payment_view_with_empty_bag(self):
+        self.client.login(username='testuser', password='12345')
+        basket = self.client.session
+        basket['basket'] = {}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+
+        response = self.client.get(reverse('checkout_2'))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, reverse('order'), 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True)  
+        
+
+    def test_checkout_payment_view_with_false_checkout_session(self):
+        self.client.login(username='testuser', password='12345')
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': False
+        }
+        checkout_session.save()
+
+        response = self.client.get(reverse('checkout_2'))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, reverse('checkout_1'), 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True) 
+    
+
+    def test_checkout_payment_view(self):
+        self.client.login(username='testuser', password='12345')
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+
+        response = self.client.get(reverse('checkout_2'))
+        
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'checkout/checkout_payment.html')
+        self.assertContains(response, '<h2 class="font-medium font-barlow text-primaryColor text-3xl hidden md:block">Total: £30.00</h2>') 
+
+
+    def test_checkout_payment_view_not_login(self):
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': False
+        }
+        checkout_session.save()
+
+        response = self.client.get(reverse('checkout_2'))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/checkout/payment', 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True) 
+        
+
+class CheckoutConfirmationView(TestCase):
+    
+    @classmethod
+    def setUpTestData(cls):
+        Category.objects.create(name='test1', friendly_name='test1')
+        Category.objects.create(name='test2', friendly_name='test2')
+        size1 = CocktailsSize(sizes='small')
+        size2 = CocktailsSize(sizes='medium')
+        size3 = CocktailsSize(sizes='large')
+        size1.save()
+        size2.save()
+        size3.save()
+        Cocktail.objects.create(name='test1', friendly_name='test1', 
+                                slug='test-1', price=10, net_price=5,
+                                prep_time=1, category=Category.objects.get(pk=1))
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2',
+                             price=15, net_price=7, prep_time=1, category=Category.objects.get(pk=2), 
+                             has_size=True)
+        cocktail2.save()
+        cocktail2.sizes.add(size1)
+        cocktail2.sizes.add(size2)
+        cocktail2.sizes.add(size3)
+
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+
+        user_profile = UserProfile.objects.get(user=user)
+        user_profile.mobile = '07808808808'
+        user_profile.save()
     
     
+    def test_valid_checkout_confirmation_view(self):
+        self.client.login(username='testuser', password='12345')
+        user_profile = UserProfile.objects.get(pk=1)
+        
+        new_order = Order.objects.create(
+            user_profile=user_profile,
+            grand_total=100,
+            subtotal=100,
+            serivce_amount=10,
+            table_number=0,
+            original_bag='bag',
+            is_paid = True,
+            is_cancelled = False,
+            is_pending = True,
+            is_done = False
+        )
+        new_order.save()
+        order_number = new_order.order_number
+        
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+        
+        response = self.client.get(reverse('checkout_3', kwargs={'order_number':order_number}))
+        
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'checkout/checkout_confirmation.html')
+        self.assertContains(response, '<span>#1</span>')
+        messages = list(response.context['messages'])
+        self.assertEqual(str(messages[0]), 'Order confirmed!')
+    
+
+    def test_checkout_confirmation_with_invalid_order_number(self):
+        self.client.login(username='testuser', password='12345')
+        user_profile = UserProfile.objects.get(pk=1)
+        
+        new_order = Order.objects.create(
+            user_profile=user_profile,
+            grand_total=100,
+            subtotal=100,
+            serivce_amount=10,
+            table_number=0,
+            original_bag='bag',
+            is_paid = True,
+            is_cancelled = False,
+            is_pending = True,
+            is_done = False
+        )
+        new_order.save()
+        
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+        
+        response = self.client.get(reverse('checkout_3', kwargs={'order_number':1}))
+        
+        self.assertEquals(response.status_code, 404)
+    
+
+    def test_checkout_confirmation_with_non_pending_order(self):
+        self.client.login(username='testuser', password='12345')
+        user_profile = UserProfile.objects.get(pk=1)
+        
+        new_order = Order.objects.create(
+            user_profile=user_profile,
+            grand_total=100,
+            subtotal=100,
+            serivce_amount=10,
+            table_number=0,
+            original_bag='bag',
+            is_paid = True,
+            is_cancelled = False,
+            is_pending = False,
+            is_done = False
+        )
+        new_order.save()
+        order_number = new_order.order_number
+        
+        basket = self.client.session
+        basket['basket'] = {'1': {'item': {'quantity': {
+            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
+        basket.save()
+        
+        checkout_session = self.client.session
+        checkout_session['checkout_session'] = {
+            'table': 0,
+            'tips': 0,
+            'step1': True
+        }
+        checkout_session.save()
+        
+        response = self.client.get(reverse('checkout_3', kwargs={'order_number':order_number}))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, reverse('order'), 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True) 
+    
+
+    def test_checkout_confirmation_non_login(self):
+        
+        response = self.client.get(reverse('checkout_3', kwargs={'order_number':1}))
+        
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/checkout/confirmation/1', 
+                                status_code=302, target_status_code=200, 
+                                msg_prefix='', fetch_redirect_response=True) 
+    
+    
+
+        
+
     
     

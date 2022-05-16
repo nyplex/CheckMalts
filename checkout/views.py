@@ -22,12 +22,13 @@ def checkout_details(request):
     and create a checkout session to store tips & table Number.
     Finally will store True into session if this first step is completed
     """
+    
     #request.session['checkout_session'] = {}
     current_user = UserProfile.objects.get(user=request.user.id)
     checkout_session = {}
     form = CheckoutOneForm(
         user=current_user, checkout_session=request.session.get('checkout_session'))
-
+    
     if not request.session.get('basket'):
         return redirect('order')
     if request.session.get('basket') == {}:
@@ -39,7 +40,7 @@ def checkout_details(request):
         if form.is_valid():
             tableNumber = request.POST.get('tableNumber').strip()
             tips = request.POST.get('tips').strip()
-            current_user.mobile = request.POST.get('mobileNumber').strip()
+            current_user.mobile = request.POST.get('mobileNumber').replace(' ', '')
             current_user.save()
 
             if request.POST.get('tableNumber').strip() == '':

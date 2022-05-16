@@ -16,7 +16,7 @@ if os.path.exists("env.py"):
 @require_POST
 @csrf_exempt
 def webhook(request):
-    endpoint_secret = 'whsec_7aa19b71685e252b4b1ba8bfe01edabac797c8966938180cd24f09d0df5fb77d'
+    endpoint_secret = os.environ.get('STRIPE_WH_ENDPOINT_SECRET')
     event = None
 
     payload = request.body

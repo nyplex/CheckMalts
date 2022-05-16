@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from allauth.account.decorators import login_required
 from django.contrib import messages
@@ -92,6 +93,11 @@ def create_payment(request):
     """ A view to create the stripe payment """
 
     current_bag = basket_contents(request)
+    bag = current_bag['basket_items']
+    for i in bag:
+        del i['cocktail']
+    bag = json.dumps(bag)
+
     checkout_session = request.session.get('checkout_session')
     user_profile = UserProfile.objects.get(user=request.user.id)
     stripe.api_key = os.environ.get('STRIPE_SECRET_CLIENT')
@@ -108,7 +114,7 @@ def create_payment(request):
             subtotal=current_bag['total'],
             serivce_amount=current_bag['tips'],
             table_number=checkout_session['table'],
-            original_bag=current_bag['basket_items']
+            original_bag=bag
         )
         new_order.save()
         

@@ -1,3 +1,4 @@
+from email import message
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -31,7 +32,11 @@ class StripeWH_Handler:
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
-        )        
+        )
+    
+    def _send_confirmation_sms(self, order):
+        """ Send the user a confirmation SMS """
+        print("SMS sent!")        
 
     def handle_event(self, event):
         """
@@ -45,16 +50,40 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
+        # Update the order to pending=False, send SMS and email to confirm order  + estimation time
         intent = event['data']['object']
         pid = intent['id']
-        
-        print(intent['metadata'])
-        #order_id = intent['metadata'].order_id
-        
-        order = Order.objects.get(pk=8)
-        order.grand_total = 50
-        order.save()
 
+        order_id = intent['metadata']['order_id']
+        order = Order.objects.get(pk=order_id)
+        bag = order.original_bag
+        bag.replace('[', '{')
+        bag.replace(']', '}')
+        
+        order.is_paid = True
+        order.is_pending = False
+        order.stripe_pid = pid
+        order.save()
+        
+        for i in json.loads(bag):
+            try:
+                cocktail = Cocktail.objects.get(pk=int(i['item_id']))
+                quantity = int(i['quantity'])
+                subtotal = float(i['sub_total'])
+                size = None
+                note = None
+                if 'size' in i:
+                    size = i['size']
+                if 'note' in i:
+                    note = i['note']
+                
+                orderLine = OrderLine(order=order, cocktail=cocktail, cocktail_size=size, note=note, lineitem_total=subtotal)
+                orderLine.save()
+            
+            except Cocktail.DoesNotExist:
+                print('One of the products in your bag wasn\'t found in our database.')
+                
+                
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)

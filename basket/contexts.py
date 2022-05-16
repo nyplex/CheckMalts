@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from menu.models import Cocktail
+from django.forms.models import model_to_dict
 from order.views import calculate_price_by_size
 
 
@@ -25,7 +26,7 @@ def basket_contents(request):
                 basket_items.append({
                     'item_id': item_id,
                     'quantity': item_data['item']['quantity']['quantity'],
-                    'cocktail': cocktail,
+                    'cocktail': model_to_dict(cocktail),
                     'sub_total': item_data['item']['quantity']['quantity'] * cocktail.price
                 })
             if 'size' in item_data['item']:
@@ -37,7 +38,7 @@ def basket_contents(request):
                         'item_id': item_id,
                         'quantity': value,
                         'size': size,
-                        'cocktail': cocktail,
+                        'cocktail': model_to_dict(cocktail),
                         'sub_total': price * value
                     })
                 
@@ -52,7 +53,7 @@ def basket_contents(request):
                         'quantity': i['quantity'],
                         'size': i['size'],
                         'note': i['note'],
-                        'cocktail': cocktail,
+                        'cocktail': model_to_dict(cocktail),
                         'sub_total': price * i['quantity']
                     })
                 else:
@@ -62,7 +63,7 @@ def basket_contents(request):
                         'item_id': item_id,
                         'quantity': i['quantity'],
                         'note': i['note'],
-                        'cocktail': cocktail,
+                        'cocktail': model_to_dict(cocktail),
                         'sub_total': cocktail.price * i['quantity']
                     })
     context = {

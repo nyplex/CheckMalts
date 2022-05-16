@@ -275,4 +275,23 @@ class CheckoutPaymentView(TestCase):
         user_profile = UserProfile.objects.get(user=user)
         user_profile.mobile = '07808808808'
         user_profile.save()
+        
+        
+        
+        #Check without checkout_session
+        
+        #check witout bag 
+        
+        #check with empty bag 
+        
+        #check with false checkout_session step 1
+        
+        #check valid view 
+        
+        #check when not logged in 
+        
+
+    
+    
+    
     

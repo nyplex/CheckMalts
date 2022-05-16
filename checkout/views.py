@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from allauth.account.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
@@ -101,9 +101,9 @@ def create_payment(request):
     checkout_session = request.session.get('checkout_session')
     user_profile = UserProfile.objects.get(user=request.user.id)
     stripe.api_key = os.environ.get('STRIPE_SECRET_CLIENT')
-    
+
     try:
-        
+
         # Delete previous pending orders
         Order.objects.filter(user_profile=user_profile,
                              is_pending=True).delete()
@@ -117,35 +117,50 @@ def create_payment(request):
             original_bag=bag
         )
         new_order.save()
-        
-        #Create Payment Intent
+
+        # Create Payment Intent
         intent = stripe.PaymentIntent.create(
             amount=round(float(current_bag['grandTotal']) * 100),
             currency='gbp',
             payment_method_types=[
                 'card'
             ],
-            metadata={'order_id':new_order.id}
+            metadata={'order_id': new_order.id}
         )
 
         return JsonResponse({
             'clientSecret': intent['client_secret'],
-            'order_id': new_order.id
+            'order_id': new_order.id,
+            'order_number': new_order.order_number
         })
     except Exception as e:
         return JsonResponse({'e': 'error'}), 403
 
 
 @login_required()
-def checkout_confirmation(request, order_id):
+def checkout_confirmation(request, order_number):
     """ A view to render the order page """
-    
+
     user_profile = UserProfile.objects.get(user=request.user.id)
-    order = Order.objects.get(pk=order_id)
-    
+    order = get_object_or_404(Order, order_number=order_number)
+
     if order.user_profile != user_profile:
         return redirect('order')
-    if order.is_pending != True:
+    if order.is_cancelled == True or order.is_pending == False:
+        return redirect('order')
+    if not request.session.get('checkout_session'):
+        return redirect('order')
+    if not request.session.get('basket'):
         return redirect('order')
 
-    return render(request, 'checkout/checkout_confirmation.html')
+    del request.session['basket']
+    del request.session['checkout_session']
+
+    context = {
+        'order': order
+    }
+
+    messages.add_message(
+        request, messages.SUCCESS, 'Order confirmed!', extra_tags='alert')
+
+    return render(request, 'checkout/checkout_confirmation.html', context)

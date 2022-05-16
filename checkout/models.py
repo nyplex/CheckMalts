@@ -64,5 +64,3 @@ class OrderLine(models.Model):
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
-    def __str__(self):
-        return f'SKU {self.cocktail.name} on order {self.order.order_number}'

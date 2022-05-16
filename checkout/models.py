@@ -59,9 +59,10 @@ class OrderLine(models.Model):
     cocktail = models.ForeignKey(
         Cocktail, null=False, blank=False, on_delete=models.CASCADE)
     cocktail_size = models.CharField(max_length=10, null=True, blank=True)
+    note = models.TextField(blank=True, null=True, default='', max_length=10000)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'SKU {self.cocktail.name} on order {self.order.order_number}'

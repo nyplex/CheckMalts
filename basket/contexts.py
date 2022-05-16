@@ -15,6 +15,7 @@ def basket_contents(request):
     total = 0
     product_count = 0
     basket = request.session.get('basket', {})
+
     
     for item_id, item_data in basket.items():
         cocktail = get_object_or_404(Cocktail, pk=item_id)

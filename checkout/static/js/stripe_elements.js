@@ -3,7 +3,7 @@ const stripe = Stripe("pk_test_51KyyMtEUSVW7Sz1sy5Jl5Lu3V8WargxHJh4yfUGKupPIRwZ7
 
 
 let elements;
-let orderID;
+let orderNumber;
 
 initialize();
 checkStatus();
@@ -18,8 +18,8 @@ async function initialize() {
     method: "POST",
     headers: { "Content-Type": "application/json" }
   });
-  const { clientSecret, order_id } = await response.json();
-  orderID = order_id
+  const { clientSecret, order_number } = await response.json();
+  orderNumber = order_number
 
   const appearance = {
     theme: 'night',
@@ -45,7 +45,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderID,
+      return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber,
     },
   });
 
@@ -104,14 +104,20 @@ function showMessage(messageText) {
 
 // Show a spinner on payment submission
 function setLoading(isLoading) {
-  if (isLoading) {
+  if (isLoading) { 
     // Disable the button and show a spinner
     document.querySelector("#submitPayment").disabled = true;
+    document.querySelector("#submitPaymentMobile").disabled = true;
     document.querySelector("#spinner").classList.remove("hidden");
+    document.querySelector("#spinnerMobile").classList.remove("hidden");
     document.querySelector("#button-text").classList.add("hidden");
+    document.querySelector("#button-text-mobile").classList.add("hidden");
   } else {
     document.querySelector("#submitPayment").disabled = false;
+    document.querySelector("#submitPaymentMobile").disabled = false;
     document.querySelector("#spinner").classList.add("hidden");
+    document.querySelector("#spinnerMobile").classList.add("hidden");
     document.querySelector("#button-text").classList.remove("hidden");
+    document.querySelector("#button-text-mobile").classList.add("hidden");
   }
 }

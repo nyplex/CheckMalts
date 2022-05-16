@@ -7,36 +7,31 @@
 {% block content %}
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
         {% include 'checkout/checkout.html' %}
-        <div class="max-w-screen-lg mx-auto w-full flex flex-row justify-between pb-8">
-            <div class="w-[30%] pt-4 hidden md:block"></div>
+        <div class="max-w-screen-lg mx-auto w-full flex md:flex-row flex-col md:justify-between pb-8">
+            <div class="md:w-[30%] pt-4 flex flex-row md:flex-col justify-around md:justify-start">
+                <div class="text-white font-barlow text-center border-2 border-secondaryHoverDarker rounded-md py-8 px-4 text-3xl font-medium">
+                    <h3>ORDER ID:</h3>
+                    <span>#{{ order.id }}</span>
+                </div>
+                <div class="text-white font-barlow text-center border-2 border-secondaryHoverDarker rounded-md py-8 px-4 text-3xl font-medium md:mt-4">
+                    <h3>READY IN:</h3>
+                    <p>15min</p>
+                </div>
+            </div>
             <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col">
-                <h2 class="font-medium font-barlow text-primaryColor text-3xl hidden md:block mb-4">We've got your order <i class="fa-solid fa-champagne-glasses text-secondaryHoverDarker"></i></h2>
-                <p class="font-medium font-barlow text-primaryColor text-lg hidden md:block mb-8">
-                    You should receive an email and a SMS to confirm your order. If you do NOT receive any messages, please check with a member of staff.
+                <h2 class="font-medium font-barlow text-primaryColor text-3xl mb-4">We've got your order <i class="fa-solid fa-champagne-glasses text-secondaryHoverDarker"></i></h2>
+                <p class="font-medium font-barlow text-primaryColor text-lg mb-8">
+                    We've sent you an confirmation email. You will receive a SMS when 
+                    your order is ready to picked up. 
+                    If you are seatted at a table, we will come to you with your order.
                 </p>
-                <div>
-                    <button class="primary-btn">NEW ORDER</button>
-                    <button class="secondary-btn">MAKE YOUR OWN</button>
+                <div class="flex md:flex-row flex-col gap-4 justify-around items-center">
+                    <button class="font-barlow transition-all text-secondaryHoverDarker text-2xl font-semibold border-2 rounded-md border-secondaryHoverDarker px-4 py-2 hover:bg-secondaryHoverDarker hover:text-white">New Order</button>
+                    <button class="font-barlow bg-secondaryHoverDarker text-contrastColor text-2xl font-semibold px-4 py-2 rounded-md border-2 border-secondaryHoverDarker hover:border-secondaryColor hover:bg-secondaryColor hover:text-white">Design your Cocktail</button>
                 </div>
             </div>
         </div>
     </div>
 
-    {% with request.resolver_match.url_name as url_name %}
-        {% if url_name == 'checkout_1' %}
-            {% if basket_items %}
-                {% if product_count and product_count > 0 %}
-                    <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
-                        <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
-                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
-                                <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> MENU</a>
-                            </div>
-                            <button type="submit" form="detailsForm" class="text-center font-bold">CONTINUE</button>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endif %}
-        {% endif %}
-    {% endwith %}
 
 {% endblock content %}

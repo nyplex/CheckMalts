@@ -1,5 +1,7 @@
 from allauth.account.forms import SignupForm, LoginForm
+from .models import UserProfile
 from django import forms
+from django.contrib.auth.models import User
 
 
 class CustomSignupForm(SignupForm):
@@ -21,3 +23,31 @@ class CustomLoginForm(LoginForm):
             field.widget.attrs.update({
                 'class': 'login-form-input'
             })
+        
+        
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        exclude = ('user',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'mobile': 'Phone Number',
+        }
+        self.fields['mobile'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
+            
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'

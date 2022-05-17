@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %} Order | CheckMalt {% endblock page_title %}
+{% block content %}
+
+{% csrf_token %}
+
+{% include 'profiles/header.html' %}
+
+<!-- Main container -->
+<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">
+    <div class="text-white">
+        {{user_profile_form}}
+    </div>
+    <div class="text-white">
+        {{user_form}}
+    </div>
+    
+</div>
+
+{% endblock content %}
+
+{% block extrajs %}
+    
+{% endblock extrajs %}

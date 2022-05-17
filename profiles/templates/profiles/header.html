@@ -1,0 +1,36 @@
+<!-- Account Header -->
+{% with request.resolver_match.url_name as url_name %}
+<div class="pt-[70px]">
+    <div class="mx-auto w-full max-w-screen-lg bg-secondaryHoverDarker pt-8">
+        <div class="max-w-screen-md mx-auto flex flex-col justify-between h-full min-h-full">
+            <div class="flex flex-row items-end h-[50%] mb-6">
+                <!-- Profile picture -->
+                {% if user.socialaccount_set.all.0.get_avatar_url %}
+                <img class="rounded-full  max-w-[100px] max-h-[100px] w-[100px] h-[100px]"
+                    src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="user photo">
+                {% else %}
+                <img class="rounded-full  max-w-[100px] max-h-[100px] w-[100px] h-[100px]"
+                    src="{{ MEDIA_URL }}default_profile_pic.jpg" alt="user photo">
+                {% endif %}
+                <h2 class="font-barlow text-white font-semibold text-2xl ml-4 pb-4">{{ user.first_name }} {{ user.last_name }}</h2>
+            </div>
+            <div class="h-[50%]">
+                <div class="flex flex-row justify-between items-center text-lg font-barlow font-semibold">
+                    <a href="{% url 'account' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'account' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                        My Account
+                    </a>
+                    <a href="{% url 'my_cocktails' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_cocktails' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                        My Cocktails
+                    </a>
+                    <a href="{% url 'my_orders' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_orders' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                        My Orders
+                    </a>
+                    <a href="{% url 'account_logout' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 border-secondaryHoverDarker">
+                        Sign Out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}

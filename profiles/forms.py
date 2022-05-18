@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 
+
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name', required=True)
     last_name = forms.CharField(max_length=30, label='Last Name', required=True)
@@ -28,6 +29,7 @@ class CustomLoginForm(LoginForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
+        fields = ('mobile',)
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
@@ -43,6 +45,7 @@ class UserProfileForm(forms.ModelForm):
             
 
 class UserForm(forms.ModelForm):
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
@@ -51,3 +54,4 @@ class UserForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
+            self.fields[field].widget.attrs['required'] = True

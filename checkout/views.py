@@ -147,7 +147,7 @@ def checkout_confirmation(request, order_number):
 
     if order.user_profile != user_profile:
         return redirect('order')
-    if order.is_cancelled == True or order.is_pending == False:
+    if order.is_cancelled == True:
         return redirect('order')
     if not request.session.get('checkout_session'):
         return redirect('order')

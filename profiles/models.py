@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.core.exceptions import ValidationError
 from django.dispatch import receiver
+import phonenumbers
+import re
 
 
 
@@ -15,6 +18,25 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.email
+
+    
+    def clean(self):
+        mobileNumber = self.mobile.replace(' ', '')
+        try:
+            phone_number = phonenumbers.parse(mobileNumber, "GB")
+        except:
+            raise ValidationError(
+                {'mobile': "Invalid Mobile Number"})
+    
+        if not re.match(r'^\d+$', mobileNumber):
+            raise ValidationError(
+                {'mobile': "Invalid Mobile Number"})
+        if not phonenumbers.is_possible_number(phone_number):
+            raise ValidationError(
+                {'mobile': "Invalid Mobile Number"})
+        if len(self.mobile) < 11:
+            raise ValidationError(
+                {'mobile': "Invalid Mobile Number"})
 
 
 @receiver(post_save, sender=User)

@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.account, name='account'),
     path('cocktails', views.my_cocktails, name='my_cocktails'),
     path('orders', views.my_orders, name='my_orders'),
+    path('password', views.MyPasswordChangeView.as_view(), name='password')
 ]

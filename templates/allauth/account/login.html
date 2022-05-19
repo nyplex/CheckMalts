@@ -41,18 +41,24 @@
 		{% endfor %}
 		<form class="login text-center md:w-[40%] w-[90%] mx-auto" method="POST" action="{% url 'account_login' %}">
 			{% csrf_token %}
-			<input type="email" name="login" placeholder="E-mail address" autocomplete="email" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_login">
-			<div class="mb-4">
-				{% for error in form.login.errors %}
-					<p class="input-errors">{{error}}</p>
-				{% endfor %}
-			</div>
-			<input type="password" name="password" placeholder="Password" autocomplete="current-password" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_password">
-			<div class="mb-4">
-				{% for error in form.password.errors %}
-					<p class="input-errors">{{error}}</p>
-				{% endfor %}
-			</div>
+
+			<div class="relative w-full">
+                <input type="email" name="login" placeholder="Email Address" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_login">
+                <div class="mb-4">
+					{% for error in form.login.errors %}
+						<p class="input-errors">{{error}}</p>
+					{% endfor %}
+				</div>
+            </div>
+
+			<div class="relative w-full">
+                <input type="password" name="password" placeholder="Password" autocomplete="current-password" class="login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0" required="" id="id_password">
+                <div class="mb-4">
+					{% for error in form.login.errors %}
+						<p class="input-errors">{{error}}</p>
+					{% endfor %}
+				</div>
+            </div>
 			{% if redirect_field_value %}
 				<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 			{% endif %}

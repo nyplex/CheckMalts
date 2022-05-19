@@ -11,32 +11,32 @@
 <div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 min-h-[100vh] px-2 md:px-0">
     <div class="md:max-w-[70%]">
         <h1 class="text-primaryColor font-barlow font-semibold text-3xl mb-4" >My Account</h1>
-        <p class="text-primaryColor font-barlow font-normal text-xl">
-            Change and update your personal information. Keep in mind that by changing your email adress, you will have to use the new one to login.
+        <p class="text-primaryColor font-barlow font-normal text-lg">
+            Change and update your personal information. Keep in mind that by changing your email adress, you will have to use the new one to log in.
         </p>
     </div>
     <form action="{% url 'account' %}" method="POST" class="mx-auto w-full">
         {% csrf_token %}
         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8 w-full">
-            <!-- User's mobile number -->
+            <!-- user's first name -->
             <div class="relative md:w-[45%] w-full">
                 {{user_form.first_name}}
                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">First Name *</span>
-                {% for error in user_profile_form.mobile.errors %}
+                {% for error in user_form.first_name.errors %}
                     <p class="input-errors">{{error}}</p>
                 {% endfor %}
             </div>
-            <!-- Table Number -->
+            <!-- user's last name -->
             <div class="relative md:w-[45%] w-full">
                 {{user_form.last_name}}
                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Last Name *</span>
-                {% for error in user_profile_form.mobile.errors %}
+                {% for error in user_form.last_name.errors %}
                     <p class="input-errors">{{error}}</p>
                 {% endfor %}
             </div>
         </div>
         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
-            <!-- User's mobile number -->
+            <!-- user's mobile number -->
             <div class="relative md:w-[45%] w-full">
                 {{user_profile_form.mobile}}
                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Phone Number *</span>
@@ -44,17 +44,20 @@
                     <p class="input-errors">{{error}}</p>
                 {% endfor %}
             </div>
-            <!-- Table Number -->
+            <!-- user's email -->
             <div class="relative md:w-[45%] w-full">
                 {{user_form.email}}
                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Email Address *</span>
-                {% for error in user_profile_form.mobile.errors %}
+                {% for error in user_form.email.errors %}
                     <p class="input-errors">{{error}}</p>
                 {% endfor %}
             </div>
         </div>
+        <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
+            <a href="{% url 'password' %}" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">Change Password</a>
 
-        <button type="submit" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center mt-8 ml-auto">Update</button>
+            <button type="submit" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">Update my Data</button>
+        </div>
     </form>
 </div>
 

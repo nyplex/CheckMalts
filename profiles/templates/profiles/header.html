@@ -16,16 +16,16 @@
             </div>
             <div class="h-[50%]">
                 <div class="flex flex-row justify-between items-center text-lg font-barlow font-semibold">
-                    <a href="{% url 'account' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'account' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                    <a href="{% url 'account' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'account' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
                         My Account
                     </a>
-                    <a href="{% url 'my_cocktails' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_cocktails' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                    <a href="{% url 'my_cocktails' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_cocktails' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
                         My Cocktails
                     </a>
-                    <a href="{% url 'my_orders' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_orders' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
+                    <a href="{% url 'my_orders' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_orders' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">
                         My Orders
                     </a>
-                    <a href="{% url 'account_logout' %}" class="hover:border-white cursor-pointer  border-t-4 px-2 border-secondaryHoverDarker">
+                    <a href="{% url 'account_logout' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 border-secondaryHoverDarker">
                         Sign Out <i class="fa-solid fa-arrow-right-from-bracket align-middle ml-1"></i>
                     </a>
                 </div>

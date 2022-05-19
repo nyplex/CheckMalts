@@ -186,7 +186,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 ACCOUNT_ADAPTER = 'profiles.adapter.MyAccountAdapter'
-ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm', 'login': 'profiles.forms.CustomLoginForm'}
+ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm', 'login': 'profiles.forms.CustomLoginForm', 'change_password': 'profiles.forms.CustomPasswordChangeForm'}
 
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET= False

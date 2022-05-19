@@ -1,7 +1,9 @@
-from allauth.account.forms import SignupForm, LoginForm
+from allauth.account.forms import SignupForm, LoginForm, ChangePasswordForm
 from .models import UserProfile
 from django import forms
+from django.forms import PasswordInput, CharField
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 
@@ -22,9 +24,19 @@ class CustomLoginForm(LoginForm):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
         for fieldname, field in self.fields.items():
             field.widget.attrs.update({
-                'class': 'login-form-input'
+                'class': 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
             })
-        
+
+
+class CustomPasswordChangeForm(ChangePasswordForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        for fieldname, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg',
+                'placeholder': ''
+            })
+            
         
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -34,14 +46,9 @@ class UserProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        placeholders = {
-            'mobile': 'Phone Number',
-        }
-        self.fields['mobile'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
+            self.fields[field].required = True
             
 
 class UserForm(forms.ModelForm):
@@ -54,4 +61,18 @@ class UserForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
-            self.fields[field].widget.attrs['required'] = True
+            self.fields[field].required = True
+            self.fields[field].minlength = 4
+    
+    
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        if len(first_name) < 3 or len(first_name) > 150:
+            raise forms.ValidationError("Must have between 2 and 150 characters")
+        return self.cleaned_data['first_name']
+    
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        if len(last_name) < 3 or len(last_name) > 150:
+            raise forms.ValidationError("Must have between 2 and 150 characters")
+        return self.cleaned_data['last_name']

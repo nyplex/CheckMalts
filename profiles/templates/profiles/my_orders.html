@@ -8,69 +8,106 @@
 {% include 'profiles/header.html' %}
 
 <!-- Main container -->
-<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">
-    <!-- Main menu categories => invisible on small device -->
-    <div class="md:w-[20%] hidden md:block border-2 border-secondaryHoverDarker">
-        {% for category in categories %}
-            {% if selected == category.id %}
-            <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-secondaryHoverDarker pl-2 cursor-pointer">{{ category|upper }}</a>
-            {% else %}
-                <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 hover:bg-secondaryColor border-l-8 border-transparent pl-2 cursor-pointer">{{ category|upper }}</a>
-            {% endif %}
-        {% endfor %}
+<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 min-h-[100vh] px-2 md:px-0">
+    <div class="md:max-w-[70%]">
+        <h1 class="text-primaryColor font-barlow font-semibold text-3xl mb-4" >My Orders</h1>
+        <p class="text-primaryColor font-barlow font-normal text-lg">
+            Check your past orders here, click on the order to have see the full order.
+        </p>
     </div>
-
-    <!-- Items container -->
-    <div class="md:w-[55%] pb-20 md:border-x-2 md:px-2 border-secondaryHoverDarker">
-        <!-- Page header -->
-        <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
-            <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center">Order Here</h1>
-            <p class="text-primaryColor font-barlow font-normal text-base text-center mx-auto w-[80%] mt-2">
-                At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
-            </p>
-        </div>
-        <!-- Menu categories => only visible on small device -->
-        <select id="category_select_input" class="w-full md:hidden mt-2 md:text-lg text-3xl bg-secondaryHoverDarker font-semibold font-barlow text-primaryColor">
-            {% for category in categories %}
-                {% if selected == category.id %}
-                    <option selected value="{{ category.id }}">{{ category|title }}</option>
-                {% else %}
-                    <option value="{{ category.id }}">{{ category|title }}</option>
-                {% endif %}
-            {% endfor %}
-        </select>
-        <!-- Order container -->
-        <div class="max-w-full mx-auto w-full mt-8">
-            <!-- Check if the category has a sub_category -->
-            {% if sub_categories %}
-                <!-- Load each sub_categories -->
-                {% for sub_category in sub_categories %}
-                    <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-3xl pl-2 text-secondaryColor focus:bg-transparent hover:text-primaryColor cursor-pointer hover:bg-secondaryColor font-barlow font-semibold py-2 subCategoryCollapse"><i class="fa-solid fa-circle-dot text-base align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
-                    <!-- load the cocktails inside the sub_category -->
-                    <div class="w-full hidden">
-                        {% for cocktail in cocktails %}
-                            {% if cocktail.sub_category.name == sub_category.name %}
-                                {% include 'order/includes/individual_item.html' %}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+    <div class="mt-8 font-barlow">
+        <table class="w-full text-lg text-left px-2 text-primaryColor">
+            <thead class="text-base text-secondaryHoverDarker uppercase border-b-2 border-secondaryColor">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Order ID
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Total
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Full order
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr class="border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
+                            {{order.date}}
+                        </th>
+                        <td class="px-6 py-4">
+                            #{{order.id}}
+                        </td>
+                        <td class="px-6 py-4">
+                            £{{order.grand_total}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <button class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <div>
+                            
+                        </div>
+                    </tr>
                 {% endfor %}
-            {% else %}
-                <!-- Load the cocktail if the category does NOT have any sub_categories -->
-                <div class="w-full">
-                    {% for cocktail in cocktails %}                           
-                        {% include 'order/includes/individual_item.html' %}                                      
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+
+
+
+
+
+                <tr class="border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
+                        Feb 22, 2022
+                    </th>
+                    <td class="px-6 py-4">
+                        #74
+                    </td>
+                    <td class="px-6 py-4">
+                        £47.50
+                    </td>
+                    <td class="px-6 py-4">
+                        <button class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
+                    </td>
+                </tr>
+                <tr class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
+                    <div class="w-full bg-red-500">
+                        <div></div>
+                    </div>
+                </tr>
+                <tr class="border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
+                        May 05, 2022
+                    </th>
+                    <td class="px-6 py-4">
+                        #144
+                    </td>
+                    <td class="px-6 py-4">
+                        £16.40
+                    </td>
+                </tr>
+                <tr class="">
+                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
+                        May 12, 2022
+                    </th>
+                    <td class="px-6 py-4">
+                        #1768
+                    </td>
+                    <td class="px-6 py-4">
+                        £68.20
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    {% include 'basket/basket.html' %}
-    
 </div>
 
 {% endblock content %}
 
 {% block extrajs %}
-    <script src="{% static 'dist/order.bundle.js.gz' %}"></script>
+    
 {% endblock extrajs %}

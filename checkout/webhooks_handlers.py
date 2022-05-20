@@ -107,8 +107,8 @@ class StripeWH_Handler:
             except Cocktail.DoesNotExist:
                 print('One of the products in your bag wasn\'t found in our database.')
 
-        self._send_confirmation_email(order)
-        self._send_confirmation_sms(order)
+        #self._send_confirmation_email(order)
+        #self._send_confirmation_sms(order)
 
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',

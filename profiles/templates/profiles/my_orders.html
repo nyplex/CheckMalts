@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 {% for order in orders %}
-                    <tr class="border-b">
+                    <tr class="border-b-2 border-secondaryHoverDarker">
                         <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
                             {{order.date}}
                         </th>
@@ -46,61 +46,52 @@
                             £{{order.grand_total}}
                         </td>
                         <td class="px-6 py-4">
-                            <button class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
+                            <button data-td-order class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
                         </td>
                     </tr>
-                    <tr>
-                        <div>
-                            
-                        </div>
+                    <tr class="hidden border-b-2 border-secondaryHoverDarker">
+                        <td colspan=100% class="px-2">
+                            <div class="w-full flex flex-row justify-between gap-12">
+                                <div class="w-[40%] max-w-[350px]">
+                                    {% for item in order.lineitems.all %}
+                                        <div class="w-full p-2 mr-auto bg-black text-primaryColor">
+                                            <!-- Item qty + item title & item subtotal -->
+                                            <div class="flex flex-row md:justify-start justify-between font-barlow font-normal md:text-sm text-lg w-full items-center">
+                                                <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">{{ item.cocktail.friendly_name|upper }} {% if item.cocktail_size %}({{ item.cocktail_size }}){% endif %}</span></span>
+                                                <span class="ml-auto">£{{ item.lineitem_total|floatformat:2 }}</span>
+                                            </div>
+                                            <div>
+                                                {% if item.note %}
+                                                    <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                
+                                <div class="w-[25%] bg-contrastColor border-x-2 border-white px-4">
+                                    <div class="flex flex-row items-center justify-between px-2 pt-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                                        <p>Subtotal:</p>
+                                        <p id="subtotal">£{{ order.subtotal|floatformat:2 }}</p>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                                        <p>Tips:</p>
+                                        <p id="tips">£{{ order.serivce_amount|floatformat:2 }}</p>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
+                                        <p>Total:</p>
+                                        <p id="grandTotal">£{{ order.grand_total|floatformat:2 }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="w-[34%] bg-contrastColor">
+                                    <p class="text-white">TODO: payment info</p>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 {% endfor %}
 
-
-
-
-
-                <tr class="border-b">
-                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
-                        Feb 22, 2022
-                    </th>
-                    <td class="px-6 py-4">
-                        #74
-                    </td>
-                    <td class="px-6 py-4">
-                        £47.50
-                    </td>
-                    <td class="px-6 py-4">
-                        <button class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
-                    </td>
-                </tr>
-                <tr class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
-                    <div class="w-full bg-red-500">
-                        <div></div>
-                    </div>
-                </tr>
-                <tr class="border-b">
-                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
-                        May 05, 2022
-                    </th>
-                    <td class="px-6 py-4">
-                        #144
-                    </td>
-                    <td class="px-6 py-4">
-                        £16.40
-                    </td>
-                </tr>
-                <tr class="">
-                    <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">
-                        May 12, 2022
-                    </th>
-                    <td class="px-6 py-4">
-                        #1768
-                    </td>
-                    <td class="px-6 py-4">
-                        £68.20
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -109,5 +100,7 @@
 {% endblock content %}
 
 {% block extrajs %}
+
+<script src="{% static 'dist/profiles.bundle.js.gz' %}"></script>
     
 {% endblock extrajs %}

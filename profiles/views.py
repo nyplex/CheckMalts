@@ -46,7 +46,7 @@ def account(request):
 def my_orders(request):
     
     profile = get_object_or_404(UserProfile, user=request.user)
-    orders = Order.objects.filter(user_profile=profile)
+    orders = Order.objects.filter(user_profile=profile, is_pending=False).order_by('-date')
     
     context = {
         'orders': orders

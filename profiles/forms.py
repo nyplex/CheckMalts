@@ -1,9 +1,7 @@
-from allauth.account.forms import SignupForm, LoginForm, ChangePasswordForm
+from allauth.account.forms import SignupForm, LoginForm, ChangePasswordForm, SetPasswordForm
 from .models import UserProfile
 from django import forms
-from django.forms import PasswordInput, CharField
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import PasswordChangeForm
 
 
 
@@ -35,6 +33,15 @@ class CustomPasswordChangeForm(ChangePasswordForm):
             field.widget.attrs.update({
                 'class': 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg',
                 'placeholder': ''
+            })
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+     def __init__(self, *args, **kwargs):
+        super(CustomSetPasswordForm, self).__init__(*args, **kwargs)
+        for fieldname, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
             })
             
         

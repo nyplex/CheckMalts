@@ -4,9 +4,10 @@ from checkout.models import Order
 from .models import UserProfile
 from .forms import UserForm, UserProfileForm
 from allauth.account.models import EmailAddress
-from allauth.account.views import PasswordChangeView
+from allauth.account.views import PasswordChangeView, LogoutView, LoginView, SignupView, PasswordSetView
 from django.contrib import messages
 from allauth.account.decorators import login_required
+from django.contrib.auth.signals import user_logged_out
 
 
 @login_required()
@@ -32,6 +33,8 @@ def account(request):
             new_email = EmailAddress(user=request.user, email=request.POST.get('email'), verified=True, primary=True)
             EmailAddress.objects.get(pk=current_email.id).delete()
             new_email.save()
+            
+            messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
 
     
     context = {
@@ -66,16 +69,48 @@ def my_cocktails(request):
 
 
 
-
-
-
 class MyPasswordChangeView(PasswordChangeView):
     """
     Custom class to override the password change view 
     """
     success_url = "/profile/"
-    # Override form valid view to keep user logged i
+    # Override form valid view to keep user logged in
     def form_valid(self, form):
         form.save()
         messages.success(self.request, 'Your password has been changed.', extra_tags='alert')
         return super().form_valid(form)
+    
+
+class LogoutCustomView(LogoutView):
+    """
+    Custom class to override the logout view 
+    """
+
+
+class LoginCustomView(LoginView):
+    """
+    Custom class to override the login view
+    """
+
+class SignUpCustomView(SignupView):
+    """
+    Custom class to override the signup view
+    """
+
+
+class SetPasswordCustomView(PasswordSetView):
+    success_url = "/profile/"
+    # Override form valid view to keep user logged in
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Your password has been set.', extra_tags='alert')
+        return super().form_valid(form)
+
+
+
+def show_message(sender, user, request, **kwargs):
+    """ Display success message on logout """
+    messages.success(request, 'You have logged out.', extra_tags='alert')
+    
+
+user_logged_out.connect(show_message)

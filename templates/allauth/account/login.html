@@ -12,7 +12,7 @@
 		<h1 class="mb-2 text-3xl text-center font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">Login</h1>
 		{% get_providers as socialaccount_providers %}
 		<p class="text-center font-barlow font-normal text-base text-primaryColor w-[70%] mb-8 mx-auto">
-			Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">SIGN UP</a>
+			Please sign in with one of your existing third party accounts. Or, <a href="{% url 'account_signup' %}" class="text-center text-secondaryColor hover:text-secondaryHoverDarker cursor-pointer font-barlow">SIGN UP</a>
 			to create a new account and sign in below.
 		</p>
 
@@ -27,8 +27,8 @@
 		
 		{% else %}
 			<p>
-				{% blocktrans %}If you have not created an account yet, then please
-				<a href="{{ signup_url }}" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor">Sign in with Google</a> first.{% endblocktrans %}
+				If you have not created an account yet, then please
+				<a href="{% url 'account_signup' %}" class="login-with-google-btn block mx-auto mb-4 hover:text-secondaryColor">Sign in with Google</a> first.
 			</p>
 		{% endif %}
 

@@ -9,6 +9,7 @@
 
 <!-- Main container -->
 <div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 min-h-[100vh] px-2 md:px-0">
+    <!-- Account header -->
     <div class="md:max-w-[70%]">
         <h1 class="text-primaryColor font-barlow font-semibold text-3xl mb-4" >My Account</h1>
         <p class="text-primaryColor font-barlow font-normal text-lg">
@@ -54,8 +55,9 @@
             </div>
         </div>
         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
+            <!-- Change password btn --> 
             <a href="{% url 'password' %}" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">Change Password</a>
-
+            <!-- Update data btn -->
             <button type="submit" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">Update my Data</button>
         </div>
     </form>

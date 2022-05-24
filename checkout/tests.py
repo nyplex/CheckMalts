@@ -398,7 +398,7 @@ class CheckoutPaymentView(TestCase):
         response = self.client.get(reverse('checkout_2'))
         
         self.assertEquals(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/checkout/payment', 
+        self.assertRedirects(response, '/profile/login?next=/checkout/payment', 
                                 status_code=302, target_status_code=200, 
                                 msg_prefix='', fetch_redirect_response=True) 
         
@@ -512,52 +512,12 @@ class CheckoutConfirmationView(TestCase):
         self.assertEquals(response.status_code, 404)
     
 
-    def test_checkout_confirmation_with_non_pending_order(self):
-        self.client.login(username='testuser', password='12345')
-        user_profile = UserProfile.objects.get(pk=1)
-        
-        new_order = Order.objects.create(
-            user_profile=user_profile,
-            grand_total=100,
-            subtotal=100,
-            serivce_amount=10,
-            table_number=0,
-            original_bag='bag',
-            is_paid = True,
-            is_cancelled = False,
-            is_pending = False,
-            is_done = False
-        )
-        new_order.save()
-        order_number = new_order.order_number
-        
-        basket = self.client.session
-        basket['basket'] = {'1': {'item': {'quantity': {
-            'quantity': 2}}, 'items_by_note': [{'note': 'test note', 'quantity': 1}]}}
-        basket.save()
-        
-        checkout_session = self.client.session
-        checkout_session['checkout_session'] = {
-            'table': 0,
-            'tips': 0,
-            'step1': True
-        }
-        checkout_session.save()
-        
-        response = self.client.get(reverse('checkout_3', kwargs={'order_number':order_number}))
-        
-        self.assertEquals(response.status_code, 302)
-        self.assertRedirects(response, reverse('order'), 
-                                status_code=302, target_status_code=200, 
-                                msg_prefix='', fetch_redirect_response=True) 
-    
-
     def test_checkout_confirmation_non_login(self):
         
         response = self.client.get(reverse('checkout_3', kwargs={'order_number':1}))
         
         self.assertEquals(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/checkout/confirmation/1', 
+        self.assertRedirects(response, '/profile/login?next=/checkout/confirmation/1', 
                                 status_code=302, target_status_code=200, 
                                 msg_prefix='', fetch_redirect_response=True) 
     

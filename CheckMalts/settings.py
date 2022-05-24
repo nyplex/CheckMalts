@@ -172,7 +172,7 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
-LOGOUT_REDIRECT_URL = '/order'
+
 
 OPEN = True
 
@@ -186,7 +186,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 ACCOUNT_ADAPTER = 'profiles.adapter.MyAccountAdapter'
-ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm', 'login': 'profiles.forms.CustomLoginForm', 'change_password': 'profiles.forms.CustomPasswordChangeForm'}
+ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm', 'login': 'profiles.forms.CustomLoginForm', 'change_password': 'profiles.forms.CustomPasswordChangeForm', 'set_password': 'profiles.forms.CustomSetPasswordForm'}
 
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET= False
@@ -194,6 +194,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_EMAIL_VERIFICATION  = "none"
+LOGOUT_REDIRECT_URL = '/order'
+LOGIN_REDIRECT_URL = '/order'
+LOGIN_URL = '/profile/login'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

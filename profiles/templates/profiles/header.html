@@ -12,8 +12,9 @@
                 <img class="rounded-full  max-w-[100px] max-h-[100px] w-[100px] h-[100px]"
                     src="{{ MEDIA_URL }}default_profile_pic.jpg" alt="user photo">
                 {% endif %}
-                <h2 class="font-barlow text-white font-semibold text-2xl ml-4 pb-4">{{ user.first_name }} {{ user.last_name }}</h2>
+                <h2 class="font-barlow text-white font-semibold text-2xl ml-4 pb-4">{{ user.first_name|title }} {{ user.last_name|title }}</h2>
             </div>
+            <!-- Navbar -->
             <div class="h-[50%]">
                 <div class="flex flex-row justify-between items-center text-lg font-barlow font-semibold">
                     <a href="{% url 'account' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'account' %}border-white text-white{% else %}border-secondaryHoverDarker{% endif %}">

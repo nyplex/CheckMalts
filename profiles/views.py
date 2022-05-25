@@ -1,5 +1,5 @@
 
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from checkout.models import Order
 from .models import UserProfile
 from .forms import UserForm, UserProfileForm
@@ -8,6 +8,7 @@ from allauth.account.views import PasswordChangeView, LogoutView, LoginView, Sig
 from django.contrib import messages
 from allauth.account.decorators import login_required
 from django.contrib.auth.signals import user_logged_out
+from django.contrib.auth.models import User
 
 
 @login_required()
@@ -22,20 +23,29 @@ def account(request):
         
         if user_form.is_valid() and user_profile_form.is_valid():
             current_email = EmailAddress.objects.get(user=request.user)
-            
-            update = user_form.save(commit=False)
-            update.user = request.user
-            update.save()
-            
-            f = UserProfileForm(request.POST, instance=profile)
-            user_profile_form.save()
-            
-            new_email = EmailAddress(user=request.user, email=request.POST.get('email'), verified=True, primary=True)
-            EmailAddress.objects.get(pk=current_email.id).delete()
-            new_email.save()
-            
-            messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
-
+            new_email = user_form.cleaned_data.get('email')
+            if current_email.email.strip() != new_email.strip():
+                email_in_db = User.objects.filter(email=new_email)
+                if len(email_in_db) > 0:
+                    user_form.add_error("email", 'This email already exists!')
+                    messages.error(request, 'There is an error in the form!', extra_tags='alert')
+                else:
+                    update = user_form.save(commit=False)
+                    update.user = request.user
+                    update.save()
+                    
+                    f = UserProfileForm(request.POST, instance=profile)
+                    user_profile_form.save()
+                    
+                    new_email = EmailAddress(user=request.user, email=request.POST.get('email'), verified=True, primary=True)
+                    EmailAddress.objects.get(pk=current_email.id).delete()
+                    new_email.save()
+                    
+                    messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
+            else:
+                messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
+        else:
+            messages.error(request, 'There is an error in the form!', extra_tags='alert')
     
     context = {
         'user_profile_form': user_profile_form,

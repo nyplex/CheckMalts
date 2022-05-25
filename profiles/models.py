@@ -21,8 +21,8 @@ class UserProfile(models.Model):
 
     
     def clean(self):
-        mobileNumber = self.mobile.replace(' ', '')
         try:
+            mobileNumber = self.mobile.replace(' ', '')
             phone_number = phonenumbers.parse(mobileNumber, "GB")
         except:
             raise ValidationError(

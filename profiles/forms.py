@@ -83,3 +83,4 @@ class UserForm(forms.ModelForm):
         if len(last_name) < 3 or len(last_name) > 150:
             raise forms.ValidationError("Must have between 2 and 150 characters")
         return self.cleaned_data['last_name']
+    

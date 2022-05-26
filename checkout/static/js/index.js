@@ -34,3 +34,67 @@ $('#id_tips').on('input', (e) => {
     $('#tips').text('£' + tips)
     $('#grandTotal').text('£' + parseFloat(grandTotal).toFixed(2))
 })
+
+
+
+// $('#recipeForm').on('submit', (e) => {
+//     e.preventDefault()
+//     let cocktail = $('#cocktail option:selected').val()
+//     let ingredientsArray = $('*[data-ingredient]')
+//     let quanityArray = $('*[data-qantity]')
+    
+//     for(let i = 0; i < 15; i++) {
+//         let ingredient = $(ingredientsArray[i]).val()
+//         let token = $('[name="csrfmiddlewaretoken"]').val()
+//         if(ingredient == null) {
+//             continue
+//         }
+//         let quantity = $(quanityArray[i]).val()
+//         if(quantity == '' || quantity == null) {
+//             continue
+//         }
+
+//         $.ajax({
+//             type: 'POST',
+//             url: '/menu/admin/postRecipe',
+//             data: {
+//                 'csrfmiddlewaretoken': token,
+//                 'cocktail': cocktail, 
+//                 'ingredient': ingredient,
+//                 'quantity': quantity
+//             },
+//             success: function (response) {
+//                 $('#recipeForm').trigger("reset");
+//             }
+//         })
+//     }
+// })
+
+function getPrepTime(){
+    $.ajax({
+     url: '/checkout/preptime',
+     type: 'post',
+     data: {
+         'order': 120
+     },
+     success: function(response){
+      // Perform operation on the return value
+      if(response.e) {
+          console.log('error!!');
+      }else{
+        $('#prepTimeTxt').text(response.time + 'min')
+        $('#prepTimeLoader').addClass('hidden')
+        $('#prepTimeData').removeClass('hidden')
+        clearInterval(PrepTimeAjaxInterval)
+      }
+     }
+    });
+   }
+   
+$(document).ready(function(){
+    let loader = $('#prepTimeLoader').hasClass('hidden')
+    let prepTimeData = $('#prepTimeData').hasClass('hidden')
+    if(!loader && prepTimeData){
+        PrepTimeAjaxInterval = setInterval(getPrepTime,2000);
+    }
+});

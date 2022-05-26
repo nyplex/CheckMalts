@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import Textarea
-from .models import Order, OrderLine
+from .models import Order, OrderLine, PendingOrders
 from django.db import models
 
 # Register your models here.
@@ -29,7 +29,15 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-date',)
     
     
+class PendingOrdersAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'order',
+        'date',
+        'is_ready',
+    )
 
 
-
+admin.site.register(PendingOrders, PendingOrdersAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderLine)

@@ -134,7 +134,7 @@ class NavbarView(TestCase):
         response = client.get(reverse('home'))
         self.assertEquals(response.status_code, 200)
         self.assertContains(
-            response, '<a href="#" class="navbar-link">CREATE</a>')
+            response, '<a href="#" class="navbar-link">MATCH</a>')
     
 
 

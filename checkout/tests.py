@@ -1,12 +1,8 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
-from django.http import HttpRequest
-from django.contrib import auth
 from .models import *
 from menu.models import *
 from http import HTTPStatus
-from django.contrib.messages import get_messages
-from django.core import mail
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
 # Create your tests here.

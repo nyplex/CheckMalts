@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import Order, OrderLine
+from .models import Order, OrderLine, PendingOrders
+from .utils import *
 from menu.models import Cocktail
 import json
 import os
@@ -14,49 +15,6 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
-
-    def _send_confirmation_email(self, order):
-        """Send the user a confirmation email"""
-        cust_email = order.user_profile.user.email
-        subject = f'CheckMalt Confirmation for Order #{order.id}'
-        context = {
-            'order': order
-        }
-        message = get_template(
-            'checkout/emails/confirm_order.html').render(context)
-        msg = EmailMessage(subject, message, to=[
-                           cust_email], from_email=settings.DEFAULT_FROM_EMAIL)
-        msg.content_subtype = 'html'
-        msg.send()
-
-    def _send_confirmation_sms(self, order):
-        """ Send the user a confirmation SMS """
-        account_sid = os.environ['TWILIO_ACCOUNT_SID']
-        auth_token = os.environ['TWILIO_AUTH_TOKEN']
-        client = Client(account_sid, auth_token)
-        user_phone = order.user_profile.mobile
-
-        message = client.messages \
-                        .create(
-                            body=f"CheckMalt - Order Confirmation. Your order ID is #{order.id}. \
-                            Your order should be ready in approx. 15min. We will send you \
-                            a message when it's time to get your order.",
-                            from_='+17752563749',
-                            to=f'+44{user_phone}'
-                        )
-
-    def _send_order_failed_email(self, order):
-        cust_email = order.user_profile.user.email
-        subject = f'CheckMalt Order Cancelled!'
-        context = {
-            'order': order
-        }
-        message = get_template(
-            'checkout/emails/failed_order.html').render(context)
-        msg = EmailMessage(subject, message, to=[
-                           cust_email], from_email=settings.DEFAULT_FROM_EMAIL)
-        msg.content_subtype = 'html'
-        msg.send()
 
     def handle_event(self, event):
         """
@@ -107,8 +65,13 @@ class StripeWH_Handler:
             except Cocktail.DoesNotExist:
                 print('One of the products in your bag wasn\'t found in our database.')
 
-        self._send_confirmation_email(order)
-        self._send_confirmation_sms(order)
+        # Add the order to the PendingOrders in DB & get prep time
+        PendingOrders.objects.create(
+            order=order, estim_prep_time=calculate_prep_time_per_order(order))
+        total_prep_time = calculate_total_prep_time(order)
+
+        # send_confirmation_email(order, total_prep_time)
+        # send_confirmation_sms(order, total_prep_time)
 
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
@@ -131,7 +94,7 @@ class StripeWH_Handler:
         order.stripe_pid = pid
         order.save()
 
-        self._send_order_failed_email(order)
+        send_order_failed_email(order)
 
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',

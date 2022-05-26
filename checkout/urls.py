@@ -8,4 +8,5 @@ urlpatterns = [
     path('create-payment-intent', views.create_payment, name='create_payment_intent'),
     path('confirmation/<order_number>', views.checkout_confirmation, name='checkout_3'),
     path('wh', webhook, name='webhook'),
+    path('preptime', views.get_prep_time, name='prep_time')
 ]

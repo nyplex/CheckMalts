@@ -14,8 +14,11 @@
                     <span>#{{ order.id }}</span>
                 </div>
                 <div class="text-white font-barlow text-center border-2 border-secondaryHoverDarker rounded-md py-8 px-4 text-3xl font-medium md:mt-4">
-                    <h3>READY IN:</h3>
-                    <p>15min</p>
+                    <img src="{% static 'media/loader_2.gif' %}" alt="loader" class="max-w-[80px] mx-auto" id="prepTimeLoader">
+                    <div class="hidden" id="prepTimeData">
+                        <h3>READY IN:</h3>
+                        <p id="prepTimeTxt">15min</p>
+                    </div>
                 </div>
             </div>
             <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col">
@@ -35,3 +38,7 @@
 
 
 {% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'dist/checkout_detail.bundle.js.gz' %}"></script>
+{% endblock %}

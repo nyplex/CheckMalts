@@ -1,3 +1,4 @@
+from hashlib import blake2b
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -32,13 +33,15 @@ class Order(models.Model):
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(
         max_length=254, null=True, blank=True, default='')
-    
+    prep_time = models.FloatField(null=True, default=0, blank=True, validators=[
+                                    MinValueValidator(0), MaxValueValidator(1000)])
+
     def _generate_order_number(self):
         """
         Generate a random, unique order number using UUID
         """
         return uuid.uuid4().hex.upper()
-    
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
@@ -59,8 +62,25 @@ class OrderLine(models.Model):
     cocktail = models.ForeignKey(
         Cocktail, null=False, blank=False, on_delete=models.CASCADE)
     cocktail_size = models.CharField(max_length=10, null=True, blank=True)
-    note = models.TextField(blank=True, null=True, default='', max_length=10000)
+    note = models.TextField(blank=True, null=True,
+                            default='', max_length=10000)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
+
+class PendingOrders(models.Model):
+    order = models.ForeignKey(
+        Order, null=False, blank=False, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    is_ready = models.BooleanField(
+        'Order ready?', blank=False, null=False, default=False)
+    estim_prep_time = models.FloatField(null=True, default=0, blank=True, validators=[
+                                    MinValueValidator(0), MaxValueValidator(1000)])
+    
+    def save(self, *args, **kwargs):
+        if self.is_ready == True:
+            self.delete()
+        else:
+            super().save(*args, **kwargs)
+        

@@ -52,7 +52,7 @@ class Cocktail(models.Model):
     ingredients = models.ManyToManyField(Ingredient, through='Recipe')
     out_of_stock = models.BooleanField(null=False, blank=False, default=False)
     has_alcohol = models.BooleanField(null=False, blank=False, default=False)
-    prep_time = models.IntegerField(null=False, blank=False, validators=[
+    prep_time = models.FloatField(null=False, blank=False, validators=[
                                     MinValueValidator(0), MaxValueValidator(1000)])
     image = models.ImageField(
         null=False, blank=True, upload_to='products_images/', default='products_images/default.png')

@@ -20,12 +20,3 @@ class MenuView(TestCase):
         self.assertIn('cocktails', response.context)
         self.assertIn('categories', response.context)
         self.assertIn('subCategories', response.context)
-    
-
-class NavbarView(TestCase):
-    def test_navbar_logged_out(self):
-        client = Client()
-        response = client.get(reverse('home'))
-        self.assertEquals(response.status_code, 200)
-        self.assertContains(
-            response, '<a href="#" class="navbar-link">CREATE</a>')

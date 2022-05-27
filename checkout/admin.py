@@ -36,6 +36,7 @@ class PendingOrdersAdmin(admin.ModelAdmin):
         'date',
         'is_ready',
     )
+    list_editable=['is_ready']
 
 
 admin.site.register(PendingOrders, PendingOrdersAdmin)

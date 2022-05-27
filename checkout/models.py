@@ -80,6 +80,10 @@ class PendingOrders(models.Model):
     
     def save(self, *args, **kwargs):
         if self.is_ready == True:
+            pk = self.order.id
+            order = Order.objects.get(pk=pk)
+            order.is_done = True
+            order.save()
             self.delete()
         else:
             super().save(*args, **kwargs)

@@ -91,30 +91,6 @@ def checkout_payment(request):
 
 @login_required
 @method_decorator(csrf_exempt)
-def get_prep_time(request):
-    """ A view to send the prep time to the Ajax call """
-
-    if request.method == 'POST':
-        user_profile = UserProfile.objects.get(user=request.user)
-        order_id = request.POST.get('order')
-        order = Order.objects.get(pk=int(order_id))
-        pending_order = PendingOrders.objects.filter(order=order).first()
-        if pending_order == None:
-            return JsonResponse({'e': 'error'}), 403
-        else:
-            if order.user_profile != user_profile:
-                return JsonResponse({'e': 'error'}), 403
-            else:
-                print(order)
-                return JsonResponse({
-                    'time': pending_order.estim_prep_time
-                })
-    else:
-        return JsonResponse({'e': 'error'}), 403
-
-
-@login_required
-@method_decorator(csrf_exempt)
 def create_payment(request):
     """ A view to create the stripe payment """
 
@@ -170,17 +146,17 @@ def checkout_confirmation(request, order_number):
     user_profile = UserProfile.objects.get(user=request.user.id)
     order = get_object_or_404(Order, order_number=order_number)
 
-    # if order.user_profile != user_profile:
-    #     return redirect('order')
-    # if order.is_cancelled == True:
-    #     return redirect('order')
-    # if not request.session.get('checkout_session'):
-    #     return redirect('order')
-    # if not request.session.get('basket'):
-    #     return redirect('order')
+    if order.user_profile != user_profile:
+        return redirect('order')
+    if order.is_cancelled == True:
+        return redirect('order')
+    if not request.session.get('checkout_session'):
+        return redirect('order')
+    if not request.session.get('basket'):
+        return redirect('order')
 
-    # del request.session['basket']
-    # del request.session['checkout_session']
+    del request.session['basket']
+    del request.session['checkout_session']
 
     context = {
         'order': order
@@ -190,3 +166,29 @@ def checkout_confirmation(request, order_number):
         request, messages.SUCCESS, 'Order confirmed!', extra_tags='alert')
 
     return render(request, 'checkout/checkout_confirmation.html', context)
+
+
+@login_required
+@method_decorator(csrf_exempt)
+def get_prep_time(request):
+    """ A view to send the prep time to the Ajax call """
+
+    if request.method == 'POST':
+        user_profile = UserProfile.objects.get(user=request.user)
+        order_id = request.POST.get('order')
+        order = Order.objects.get(order_number=order_id)
+        try:
+            pending_order = PendingOrders.objects.get(order=order)
+        except Exception as e:
+            return JsonResponse({'e': 'error1'})
+            
+        if pending_order == None:
+            return JsonResponse({'e': 'error2'})
+        else:
+            if order.user_profile != user_profile:
+                return JsonResponse({'e': 'error3'})
+            else:
+                prep_time = calculate_total_prep_time(order)
+                return JsonResponse({'time': prep_time})
+    else:
+        return JsonResponse({'e': 'error4'})

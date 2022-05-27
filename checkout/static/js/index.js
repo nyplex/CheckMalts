@@ -1,4 +1,4 @@
-
+var PrepTimeAjaxInterval;
 
 //Update serivce charge when user click on tips buttons
 $('*[data-standardTips]').on('click', (e) => {
@@ -37,49 +37,18 @@ $('#id_tips').on('input', (e) => {
 
 
 
-// $('#recipeForm').on('submit', (e) => {
-//     e.preventDefault()
-//     let cocktail = $('#cocktail option:selected').val()
-//     let ingredientsArray = $('*[data-ingredient]')
-//     let quanityArray = $('*[data-qantity]')
-    
-//     for(let i = 0; i < 15; i++) {
-//         let ingredient = $(ingredientsArray[i]).val()
-//         let token = $('[name="csrfmiddlewaretoken"]').val()
-//         if(ingredient == null) {
-//             continue
-//         }
-//         let quantity = $(quanityArray[i]).val()
-//         if(quantity == '' || quantity == null) {
-//             continue
-//         }
-
-//         $.ajax({
-//             type: 'POST',
-//             url: '/menu/admin/postRecipe',
-//             data: {
-//                 'csrfmiddlewaretoken': token,
-//                 'cocktail': cocktail, 
-//                 'ingredient': ingredient,
-//                 'quantity': quantity
-//             },
-//             success: function (response) {
-//                 $('#recipeForm').trigger("reset");
-//             }
-//         })
-//     }
-// })
-
-function getPrepTime(){
+// Ajax call to get prep time & display it on order confirmation page
+function getPrepTime(orderID){
     $.ajax({
      url: '/checkout/preptime',
      type: 'post',
      data: {
-         'order': 120
+         'order': orderID
      },
      success: function(response){
       // Perform operation on the return value
       if(response.e) {
+          console.log(response);
           console.log('error!!');
       }else{
         $('#prepTimeTxt').text(response.time + 'min')
@@ -87,14 +56,22 @@ function getPrepTime(){
         $('#prepTimeData').removeClass('hidden')
         clearInterval(PrepTimeAjaxInterval)
       }
-     }
+     },
+     error: function (xhr, ajaxOptions, thrownError) {
+        if(xhr.status == 500) {
+            window.location.replace("/order");
+        }
+    }
     });
-   }
+}
    
+
 $(document).ready(function(){
     let loader = $('#prepTimeLoader').hasClass('hidden')
     let prepTimeData = $('#prepTimeData').hasClass('hidden')
     if(!loader && prepTimeData){
-        PrepTimeAjaxInterval = setInterval(getPrepTime,2000);
+        let orderURL = window.location.pathname.split('/')
+        let orderID = orderURL[3]
+        PrepTimeAjaxInterval = setInterval(getPrepTime(orderID),1000);
     }
 });

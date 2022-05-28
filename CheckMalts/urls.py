@@ -36,6 +36,7 @@ urlpatterns = [
     path('order', include('order.urls')),
     path('basket/', include('basket.urls')),
     path('checkout/', include('checkout.urls')),
+    path('cocktail-match/', include('match.urls')),
     
     # path("signup/$", allauth_views.signup, name="account_signup"),
     # path("login", allauth_views.login, name="account_login"),

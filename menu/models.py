@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, validate_slug, MinValueValidator, MaxValueValidator
+from match.models import MatchingQuestions
 
 # Create your models here.
 
@@ -65,6 +66,7 @@ class Cocktail(models.Model):
         'SubCategory', null=True, blank=True, on_delete=models.SET_NULL)
     has_size = models.BooleanField(null=False, blank=False, default=False)
     sizes = models.ManyToManyField('CocktailsSize', blank=True, null=True)
+    matching_questions = models.ManyToManyField(MatchingQuestions, blank=True, null=True)
 
     def __str__(self):
         return self.friendly_name

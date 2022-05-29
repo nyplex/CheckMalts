@@ -1,12 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="text-red-500 text-3xl">HELLO MATCH</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+    <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        {% include 'match/header.html' %}
+        <div class="max-w-screen-lg mx-auto w-full min-h-[350px]">
+            <!-- Basket Container -->
+            <div class="w-full">
+                <div id="matchIntro" class="w-full mx-auto text-center min-h-[300px] flex flex-col justify-around">
+                    <p class="font-medium font-barlow text-primaryColor text-lg block text-center">
+                        To get the perfect match answer each question honneslty. <br>
+                        When you are ready just press start and start answering all the questions. 
+                    </p>
+                    <button id="matchStartBtn" type="button" form="detailsForm" class="std-btn mx-auto">START <i class="fa-solid fa-angle-right ml-1"></i></button>
+                </div>
+                
+                <form action="" id="matchForm">
+                    <div id="matchFirst" class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                            <div class="">
+                                <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                    Dry or Sweet? 
+                                </p>
+                                <div class="mb-8 flex flex-row items-center justify-center gap-12">
+                                    
+                                    <label for="dry" class="match-btn">
+                                        <input data-match-answer-btn type="checkbox" name="dry" id="dry" class="hidden"> DRY
+                                    </label>
+                                    
+                                    <label for="sweet" class="match-btn">
+                                        <input data-match-answer-btn type="checkbox" name="sweet" id="sweet" class="hidden"> SWEET
+                                    </label>
+                                </div>
+                            </div>
+                        
+
+                        <div class="flex flex-row justify-between">
+                            <button type="submit" form="detailsForm" class="std-btn">BACK <i class="fa-solid fa-angle-left ml-1"></i></button>
+                            <button type="submit" form="detailsForm" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'dist/match.bundle.js.gz' %}"></script>
+{% endblock %}

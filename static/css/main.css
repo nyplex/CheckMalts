@@ -34,6 +34,10 @@ body {
 	.secondary-btn {
 		@apply text-contrastColor hover:text-primaryColor border-4 border-secondaryColor bg-secondaryColor hover:bg-secondaryHoverLighter hover:border-secondaryHoverLighter focus:ring-4 focus:outline-none focus:ring-secondaryHoverLighter font-extrabold rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ease-linear duration-300
 	}
+
+	.std-btn {
+		@apply text-white block max-w-[350px] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center
+	}
 }
 
 .active-navbar-link {
@@ -63,6 +67,14 @@ body {
 
 .input-errors {
 	@apply text-red-400 text-sm font-barlow font-light
+}
+
+.match-btn {
+	@apply hover:text-black max-w-[200px] inline-block bg-transparent text-white border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-medium rounded-sm text-lg w-full py-2.5 text-center
+}
+
+.match-active-btn {
+	@apply hover:text-black max-w-[200px] inline-block bg-secondaryHoverDarker border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-medium rounded-sm text-lg w-full py-2.5 text-center
 }
 
 

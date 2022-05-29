@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'basket',
     'checkout',
     'profiles',
+    'match',
 ]
 
 MIDDLEWARE = [

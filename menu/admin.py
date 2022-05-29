@@ -19,7 +19,9 @@ class CocktailAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'friendly_name',
-        'has_size'
+        'has_size',
+        'category',
+        'sub_category',
     )
 
 class IngredientAdmin(admin.ModelAdmin):

@@ -13,7 +13,8 @@ module.exports = {
         order: './order/static/order/js/index.js',
         stripe: './checkout/static/js/stripe_elements.js',
         checkout_detail: './checkout/static/js/index.js',
-        profiles: './profiles/static/js/index.js'
+        profiles: './profiles/static/js/index.js',
+        match: './match/static/match/js/index.js'
     },
     optimization: {
       usedExports: true, // <- remove unused function

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load match_tags %}
 
 
 
@@ -10,40 +11,220 @@
         <div class="max-w-screen-lg mx-auto w-full min-h-[350px]">
             <!-- Basket Container -->
             <div class="w-full">
-                <div id="matchIntro" class="w-full mx-auto text-center min-h-[300px] flex flex-col justify-around">
-                    <p class="font-medium font-barlow text-primaryColor text-lg block text-center">
-                        To get the perfect match answer each question honneslty. <br>
-                        When you are ready just press start and start answering all the questions. 
-                    </p>
-                    <button id="matchStartBtn" type="button" form="detailsForm" class="std-btn mx-auto">START <i class="fa-solid fa-angle-right ml-1"></i></button>
-                </div>
-                
-                <form action="" id="matchForm">
+                <form action="" method="POST" id="matchForm">
+                    {% csrf_token %}
+                    <div id="matchIntro" class="w-full mx-auto text-center min-h-[300px] flex flex-col justify-around">
+                        <p class="font-medium font-barlow text-primaryColor text-lg block text-center">
+                            To get the perfect match answer each question honneslty. <br>
+                            When you are ready just press start and start answering all the questions. 
+                        </p>
+                        <button id="matchStartBtn" type="button" class="std-btn mx-auto">START <i class="fa-solid fa-angle-right ml-1"></i></button>
+                    </div>
+                    <!-- 1st match question -->
                     <div id="matchFirst" class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
-                            <div class="">
-                                <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
-                                    Dry or Sweet? 
-                                </p>
-                                <div class="mb-8 flex flex-row items-center justify-center gap-12">
-                                    
-                                    <label for="dry" class="match-btn">
-                                        <input data-match-answer-btn type="checkbox" name="dry" id="dry" class="hidden"> DRY
-                                    </label>
-                                    
-                                    <label for="sweet" class="match-btn">
-                                        <input data-match-answer-btn type="checkbox" name="sweet" id="sweet" class="hidden"> SWEET
-                                    </label>
-                                </div>
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Cocktail, wine or beer? 
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="cocktail" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_cocktail" id="cocktail" class="hidden"> COCKTAIL
+                                </label>
+                                <label for="wine" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_wine" id="wine" class="hidden"> WINE
+                                </label>
+                                <label for="beer" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_beer" id="beer" class="hidden"> BEER
+                                </label>
                             </div>
-                        
-
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
                         <div class="flex flex-row justify-between">
-                            <button type="submit" form="detailsForm" class="std-btn">BACK <i class="fa-solid fa-angle-left ml-1"></i></button>
-                            <button type="submit" form="detailsForm" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                            <button data-match-next type="button" class="std-btn ml-auto">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 2nd match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Dry or Sweet? 
+                            </p>
+                            <div class="mb-4 flex flex-row items-center justify-center gap-12">
+                                <label for="dry" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_dry" id="dry" class="hidden"> DRY
+                                </label>
+                                <label for="sweet" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_sweet" id="sweet" class="hidden"> SWEET
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-next type="button" class="std-btn ml-auto">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 3rd match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Single or Double? 
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-12">
+                                <label for="single" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_single" id="single" class="hidden"> SINGLE
+                                </label>
+                                <label for="double" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_double" id="double" class="hidden"> DOUBLE
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 4th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Party Hard or Party Calm? 
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-12">
+                                <label for="hard" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_hard" id="hard" class="hidden"> HARD
+                                </label>
+                                <label for="calm" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_calm" id="calm" class="hidden"> CALM
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 5th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Why are you here today?
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="romanticDate" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_romantic" id="romanticDate" class="hidden"> ROMANTIC DATE
+                                </label>
+                                <label for="afterWork" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_work" id="afterWork" class="hidden"> AFTER WORK
+                                </label>
+                                <label for="party" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_party" id="party" class="hidden"> PARTY
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 6th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Vodka, Rum or Tequilla ?
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="vodka" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_vodka" id="vodka" class="hidden"> VODKA
+                                </label>
+                                <label for="rum" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_rum" id="rum" class="hidden"> RUM
+                                </label>
+                                <label for="tequila" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_tequilla" id="tequila" class="hidden"> TEQUILLA
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 7th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                {{ random|random_letter }}
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="nameYes" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_no_letter" id="nameYes" class="hidden"> YES
+                                </label>
+                                <label for="nameNo" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_yes_letter" id="nameNo" class="hidden"> NO
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 8th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Are you working tomorrow?
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="workingYes" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_yes_working" id="workingYes" class="hidden"> YES
+                                </label>
+                                <label for="workingNo" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_no_working" id="workingNo" class="hidden"> NO
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 9th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Do you enjoy your time at CheckMalt?
+                            </p>
+                            <div class="mb-8 flex flex-row items-center justify-center gap-8">
+                                <label for="enjoyYes" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_yes_enjoy" id="enjoyYes" class="hidden"> YES
+                                </label>
+                                <label for="enjoyNo" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="match_no_enjoy" id="enjoyNo" class="hidden"> NO
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <button data-match-back type="button" class="std-btn"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button type="submit" class="std-btn">GET THE RESULT <i class="fa-solid fa-angle-right ml-1"></i></button>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

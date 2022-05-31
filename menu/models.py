@@ -66,6 +66,7 @@ class Cocktail(models.Model):
         'SubCategory', null=True, blank=True, on_delete=models.SET_NULL)
     has_size = models.BooleanField(null=False, blank=False, default=False)
     sizes = models.ManyToManyField('CocktailsSize', blank=True, null=True)
+    allow_match = models.BooleanField(null=False, blank=False, default=False)
     matching_questions = models.ManyToManyField(MatchingQuestions, blank=True, null=True)
 
     def __str__(self):

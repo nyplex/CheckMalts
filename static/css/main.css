@@ -70,11 +70,11 @@ body {
 }
 
 .match-btn {
-	@apply hover:text-black max-w-[200px] inline-block bg-transparent text-white border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-medium rounded-sm text-lg w-full py-2.5 text-center
+	@apply hover:text-black max-w-[200px] inline-block bg-transparent text-white border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-medium hover:font-semibold rounded-sm text-lg w-full py-2.5 text-center
 }
 
 .match-active-btn {
-	@apply hover:text-black max-w-[200px] inline-block bg-secondaryHoverDarker border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-medium rounded-sm text-lg w-full py-2.5 text-center
+	@apply hover:text-black max-w-[200px] inline-block bg-secondaryHoverDarker border-2 border-white hover:bg-secondaryHoverDarker cursor-pointer font-semibold rounded-sm text-lg w-full py-2.5 text-center
 }
 
 

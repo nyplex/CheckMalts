@@ -22,6 +22,7 @@ class CocktailAdmin(admin.ModelAdmin):
         'has_size',
         'category',
         'sub_category',
+        'allow_match',
     )
 
 class IngredientAdmin(admin.ModelAdmin):

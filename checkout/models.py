@@ -91,7 +91,7 @@ class PendingOrders(models.Model):
 
 class Payment(models.Model):
     order = models.ForeignKey(
-        Order, null=True, blank=False, on_delete=models.SET_NULL)
+        Order, null=True, blank=False, on_delete=models.SET_NULL, related_name='payment')
     date = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(blank=False, null=False, default=False)
     payment_intent = models.CharField(

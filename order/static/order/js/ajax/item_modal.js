@@ -10,10 +10,11 @@ export let item_modal = (item_id, e) => {
 
     $.ajax({
         type: 'POST',
-        url: 'order/item-detail',
+        url: '/order/item-detail',
         data: {
             'item_id': item_id,
-            'csrfmiddlewaretoken': token
+            'csrfmiddlewaretoken': token,
+            'match_modal': matchModal
         },
         success: function (response) {
             let container = $('#itemModalContainer')

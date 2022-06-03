@@ -44,9 +44,14 @@ def item_detail(request):
             cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
         except Cocktail.DoesNotExist:
             return JsonResponse({}, status=404)
+    
+    if request.POST['match_modal'] == 'true':
+        match = True
+    else:
+        match = False
         
     html = render_to_string(
-        'order/includes/item_modal.html', {'cocktail': cocktail, 'csrf_token': csrf.get_token(request)})
+        'order/includes/item_modal.html', {'cocktail': cocktail, 'csrf_token': csrf.get_token(request), 'match': match})
     return HttpResponse(html)
 
 

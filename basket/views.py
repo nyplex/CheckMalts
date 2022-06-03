@@ -15,7 +15,11 @@ from order.views import calculate_price_by_size
 def add_to_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     quantity = request.POST.get('cocktail_quantity').replace(' ', '')
-    redirect_url = '/order?category=' + request.POST.get('redirect_url')
+    
+    if request.POST.get('redirect_url') == 'match_result':
+        redirect_url = '/cocktail-match/result'
+    else:
+        redirect_url = '/order?category=' + request.POST.get('redirect_url')
     size = None
     note = ''
     

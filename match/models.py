@@ -8,7 +8,5 @@ class MatchingQuestions(models.Model):
     answer = models.CharField(null=True, blank=False, max_length=255)
     
     def __str__(self):
-        print(self.answer)
         return self.answer.capitalize()
-        #return self.answer.capitalize()
     

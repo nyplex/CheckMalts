@@ -25,7 +25,7 @@
                             {{ response.cocktail.friendly_name|upper }}
                         {% endif %}
                     </h3>
-                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="chess icon" class="max-w-[150px] mx-auto rounded-lg">
+                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="drink image" class="max-w-[150px] mx-auto rounded-lg">
                     <div>
                         <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">
                             {% if cocktail %}
@@ -83,7 +83,11 @@
                         {% if response.note %}<input type="hidden" name="original_note" value="{{response.note}}">{% endif %}
                 {% endif %}
                         {% csrf_token %}
-                        <input type="hidden" name="redirect_url" class="p-2 text-black" value="{{ cocktail.category.id }}">
+                        {% if match %}
+                            <input type="hidden" name="redirect_url" class="p-2 text-black" value="match_result">
+                        {% else %}
+                            <input type="hidden" name="redirect_url" class="p-2 text-black" value="{{ cocktail.category.id }}">
+                        {% endif %}
                         <div class="flex flex-row justify-around items-center max-w-[350px] mx-auto mt-4">
                             <!-- Item Size -->
                             {% if cocktail.has_size %}
@@ -147,7 +151,6 @@
                             {% endif %}
                         </button>
                     </form>
-                
             </div>
         </div>
     </div>

@@ -3,17 +3,49 @@
 
 
 {% block content %}
+{% csrf_token %}
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
         {% include 'match/header.html' %}
         <div class="max-w-screen-lg mx-auto w-full min-h-[350px]">
             <!-- Basket Container -->
             <div class="w-full">
-                <div id="matchIntro" class="w-full mx-auto text-center min-h-[300px] flex flex-col justify-around">
-                    <p class="font-medium font-barlow text-primaryColor text-lg block text-center">
-                        To get the perfect match answer each question honneslty. <br>
-                        When you are ready just press start and start answering all the questions. 
+                <div class="w-full mx-auto text-center">
+                    <p class="font-medium font-barlow text-primaryColor text-xl block text-center mb-8">
+                        Here are your matches. Not happy with the result?<br>
+                        Click <a href="{% url 'match' %}" class="text-bold text-secondaryHoverDarker">HERE</a> to try again! 
                     </p>
-                    <button id="matchStartBtn" type="button" class="std-btn mx-auto">START <i class="fa-solid fa-angle-right ml-1"></i></button>
+                    <!-- {{ cocktail.0.name }} £{{cocktail.0.price}} => {{cocktail.1}}% -->
+                </div>
+                <div class="flex flex-row items-center justify-between gap-12 flex-wrap">
+                    {% for cocktail in cocktails %}
+                        <div data-toggle-modal data-order-item-modal="{{ cocktail.0.id }}" class="min-w-[220px] md:max-w-[220px] w-[70%] mx-auto min-h-[220px] rounded p-4 border-2 border-secondaryHoverDarker">
+                            {% if cocktail.1 >= 70 %}
+                                <button class="text-lg bg-green-700 px-2 rounded mb-4 text-white font-barlow font-normal cursor-default">
+                                    {{cocktail.1}}% MATCH
+                                </button>
+                            {% elif cocktail.1 >= 50 %}
+                                <button class="text-lg bg-secondaryHoverDarker mb-4 px-2 rounded text-white font-barlow font-normal cursor-default">
+                                    {{cocktail.1}}% MATCH
+                                </button>
+                            {% else  %}
+                                <button class="text-lg bg-red-800 px-2 rounded mb-4 text-white font-barlow font-normal cursor-default">
+                                    {{cocktail.1}}% MATCH
+                                </button>
+                            {% endif %}
+                            <img src="{{ cocktail.0.image.url }}" alt="drink image" class="max-w-[100px] mx-auto rounded">
+                            <p class="font-medium font-barlow text-primaryColor text-xl block text-center mt-2">
+                                {% if cocktail.0.name|length > 15 %}
+                                    {{ cocktail.0.name|slice:15 }}...
+                                {% else %}
+                                    {{ cocktail.0.name }}
+                                {% endif %}
+                            </p>
+                            <p class="font-medium font-barlow text-secondaryHoverDarker text-xl block text-center mt-1">
+                                £{{ cocktail.0.price }}
+                            </p>
+                            <button class="border-2 rounded border-secondaryColor bg-secondaryColor px-2 py-1 mt-2 w-full font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">Add</button>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -23,5 +55,9 @@
 {% endblock content %}
 
 {% block extrajs %}
+    <script>
+        let matchModal = true
+    </script>
     <script src="{% static 'dist/match.bundle.js.gz' %}"></script>
+    <script src="{% static 'dist/order.bundle.js.gz' %}"></script>
 {% endblock %}

@@ -10,7 +10,6 @@ from allauth.account.decorators import login_required
 from django.contrib.auth.signals import user_logged_out
 from django.contrib.auth.models import User
 
-
 @login_required()
 def account(request):
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -106,7 +105,6 @@ class SignUpCustomView(SignupView):
     """
     Custom class to override the signup view
     """
-
 
 class SetPasswordCustomView(PasswordSetView):
     success_url = "/profile/"

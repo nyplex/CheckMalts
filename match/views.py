@@ -1,6 +1,8 @@
 from ast import match_case
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+from match.models import EnjoyCheckMalt
 from .utils import match_calcul
 
 from menu.models import Cocktail
@@ -35,7 +37,15 @@ def match(request):
             if data == 'no_working_tomorrow' or data == 'csrfmiddlewaretoken':
                 continue
             if data == 'no_enjoy' or data == 'enjoy':
-                # save enjoy data in DB
+                enjoyDB = EnjoyCheckMalt.objects.get(pk=1)
+                if data == 'enjoy':
+                    numberEnjoy = enjoyDB.enjoy
+                    enjoyDB.enjoy = (numberEnjoy + 1)
+                else:
+                    numberEnjoy = enjoyDB.non_enjoy
+                    enjoyDB.non_enjoy = (numberEnjoy + 1)
+                enjoyDB.save()
+                
                 continue
             data_match.append(data)
         match_calcul(request, data_match)

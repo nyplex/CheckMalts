@@ -105,7 +105,6 @@ def create_payment(request):
     stripe.api_key = os.environ.get('STRIPE_SECRET_CLIENT')
 
     try:
-
         # Delete previous pending orders
         Order.objects.filter(user_profile=user_profile,
                              is_pending=True).delete()
@@ -121,7 +120,9 @@ def create_payment(request):
         new_order.save()
 
         # Create Payment Intent
+        customer = stripe.Customer.create()
         intent = stripe.PaymentIntent.create(
+            customer=customer['id'],
             amount=round(float(current_bag['grandTotal']) * 100),
             currency='gbp',
             payment_method_types=[

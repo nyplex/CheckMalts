@@ -88,3 +88,31 @@ class PendingOrders(models.Model):
         else:
             super().save(*args, **kwargs)
         
+
+class Payment(models.Model):
+    order = models.ForeignKey(
+        Order, null=True, blank=False, on_delete=models.SET_NULL)
+    date = models.DateTimeField(auto_now_add=True)
+    paid = models.BooleanField(blank=False, null=False, default=False)
+    payment_intent = models.CharField(
+        max_length=254, null=True, blank=True, default='')
+    currency = models.CharField(
+        max_length=25, null=True, blank=True, default='')
+    amount = models.IntegerField(null=False, default=0, blank=False, validators=[
+                                       MinValueValidator(0), MaxValueValidator(999999999)])
+    amount_captured = models.IntegerField(null=False, default=0, blank=False, validators=[
+                                       MinValueValidator(0), MaxValueValidator(999999999)])
+    amount_refunded = models.IntegerField(null=False, default=0, blank=False, validators=[
+                                       MinValueValidator(0), MaxValueValidator(999999999)])
+    card_brand = models.CharField(
+        max_length=255, null=True, blank=True, default='')
+    cvc_check = models.CharField(
+        max_length=255, null=True, blank=True, default='')
+    card_country = models.CharField(
+        max_length=255, null=True, blank=True, default='')
+    card_exp_month = models.IntegerField(null=False, default=0, blank=False, validators=[
+                                       MinValueValidator(0), MaxValueValidator(13)])
+    card_exp_year = models.IntegerField(null=False, default=0, blank=False, validators=[
+                                       MinValueValidator(0), MaxValueValidator(3333)])
+    card_last4 = models.CharField(
+        max_length=10, null=True, blank=True, default='')

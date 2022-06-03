@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import Textarea
-from .models import Order, OrderLine, PendingOrders
+from .models import Order, OrderLine, Payment, PendingOrders
 from django.db import models
 
 # Register your models here.
@@ -42,3 +42,4 @@ class PendingOrdersAdmin(admin.ModelAdmin):
 admin.site.register(PendingOrders, PendingOrdersAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderLine)
+admin.site.register(Payment)

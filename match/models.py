@@ -9,4 +9,8 @@ class MatchingQuestions(models.Model):
     
     def __str__(self):
         return self.answer.capitalize()
-    
+
+
+class EnjoyCheckMalt(models.Model):
+    non_enjoy = models.IntegerField(null=False, blank=True, default=0)
+    enjoy = models.IntegerField(null=False, blank=True, default=0)

@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import Order, OrderLine, PendingOrders
+from .models import Order, OrderLine, Payment, PendingOrders
 from .utils import *
 from menu.models import Cocktail
 import json
@@ -32,6 +32,7 @@ class StripeWH_Handler:
         intent = event['data']['object']
         pid = intent['id']
         order_id = intent['metadata']['order_id']
+        payment_details = intent['charges']['data'][0]
 
         order = Order.objects.get(pk=order_id)
         bag = order.original_bag
@@ -70,8 +71,19 @@ class StripeWH_Handler:
             order=order, estim_prep_time=calculate_prep_time_per_order(order))
         total_prep_time = calculate_total_prep_time(order)
 
-        # send_confirmation_email(order, total_prep_time)
-        # send_confirmation_sms(order, total_prep_time)
+        # Save the payment details in DB
+        card = payment_details['payment_method_details']['card']
+        Payment.objects.create(order=order, paid=True,
+                               payment_intent=payment_details['payment_intent'],
+                               currency=payment_details['currency'], amount=payment_details['amount'],
+                               amount_captured=payment_details['amount_captured'],
+                               amount_refunded=payment_details['amount_refunded'],
+                               card_brand=card['brand'], cvc_check=card['checks']['cvc_check'],
+                               card_country=card['country'], card_exp_month=card['exp_month'],
+                               card_exp_year=card['exp_year'], card_last4=card['last4'])
+
+        send_confirmation_email(order, total_prep_time)
+        send_confirmation_sms(order, total_prep_time)
 
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
@@ -84,6 +96,8 @@ class StripeWH_Handler:
         # Send an email & SMS of failed payment and cancelled order
         intent = event['data']['object']
         pid = intent['id']
+        payment_details = intent['charges']['data'][0]
+
         order_id = intent['metadata']['order_id']
         order = Order.objects.get(pk=order_id)
 
@@ -95,6 +109,16 @@ class StripeWH_Handler:
         order.save()
 
         send_order_failed_email(order)
+        
+        card = payment_details['payment_method_details']['card']
+        Payment.objects.create(order=order, paid=False,
+                               payment_intent=payment_details['payment_intent'],
+                               currency=payment_details['currency'], amount=payment_details['amount'],
+                               amount_captured=payment_details['amount_captured'],
+                               amount_refunded=payment_details['amount_refunded'],
+                               card_brand=card['brand'], cvc_check=card['checks']['cvc_check'],
+                               card_country=card['country'], card_exp_month=card['exp_month'],
+                               card_exp_year=card['exp_year'], card_last4=card['last4'])
 
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',

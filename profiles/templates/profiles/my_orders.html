@@ -24,13 +24,13 @@
                     <th scope="col" class="px-6 py-3">
                         Date
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Order ID
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Total
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="md:px-6 py-3">
                         Full order
                     </th>
                 </tr>
@@ -40,8 +40,12 @@
                 {% for order in orders %}
                     <tr class="border-b-2 border-secondaryHoverDarker">
                         <th scope="row" class="px-6 py-4 font-medium text-primaryColor whitespace-nowrap">{{order.date}}</th>
-                        <td class="px-6 py-4">#{{order.id}}</td>
-                        <td class="px-6 py-4">£{{order.grand_total}}</td>
+                        <td class="px-6 py-4 hidden md:block">#{{order.id}}</td>
+                        {% if order.is_paid %}
+                            <td class="px-6 py-4 hidden md:table-cell">£{{order.grand_total}}</td>
+                        {% else %}
+                            <td class="px-6 py-4 hidden md:table-cell">£0</td>
+                        {% endif %}
                         <td class="px-6 py-4">
                             <button data-td-order class="bg-secondaryHoverDarker hover:bg-secondaryColor cursor-pointer px-2 py-0 rounded">View <i class="fa-solid fa-angle-down ml-2"></i></button>
                         </td>
@@ -49,9 +53,9 @@
                     <!-- Dropdown for order's details -->
                     <tr class="hidden border-b-2 border-secondaryHoverDarker">
                         <td colspan=100% class="px-2">
-                            <div class="w-full flex flex-row justify-between gap-12">
+                            <div class="w-full flex flex-col md:flex-row justify-between gap-12">
                                 <!-- line items -->
-                                <div class="w-[40%] max-w-[350px]">
+                                <div class="w-full md:w-[40%] max-w-[350px]">
                                     {% for item in order.lineitems.all %}
                                         <div class="w-full p-2 mr-auto bg-black text-primaryColor">
                                             <!-- Item qty + item title & item subtotal -->
@@ -68,7 +72,7 @@
                                     {% endfor %}
                                 </div>
                                 <!-- total, subtotal & tips -->
-                                <div class="w-[25%] bg-contrastColor border-x-2 border-white px-4">
+                                <div class="w-full md:w-[25%] bg-contrastColor border-x-2 border-white px-4">
                                     <div class="flex flex-row items-center justify-between px-2 pt-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pb-2">
                                         <p>Subtotal:</p>
                                         <p id="subtotal">£{{ order.subtotal|floatformat:2 }}</p>
@@ -83,8 +87,38 @@
                                     </div>
                                 </div>
                                 <!-- payment info -->
-                                <div class="w-[34%] bg-contrastColor">
-                                    <p class="text-white">TODO: payment info</p>
+                                <div class="w-full md:w-[34%] bg-contrastColor">
+                                    {% for payment in order.payment.all %}
+                                        <div class="font-barlow font-medium text-base py-2 text-white">
+                                            <div class="flex flex-row items-center gap-4">
+                                                <span class="">
+                                                    {{payment.card_brand|upper }}
+                                                </span>
+                                                {% if payment.card_brand == 'visa' %}
+                                                    <img src="https://js.stripe.com/v3/fingerprinted/img/visa-729c05c240c4bdb47b03ac81d9945bfe.svg" alt="visa logo">
+                                                {% elif payment.card_brand == 'mastercard' %}
+                                                    <img src="https://js.stripe.com/v3/fingerprinted/img/mastercard-4d8844094130711885b5e41b28c9848f.svg" alt="visa logo">
+                                                {% endif %}
+                                            </div>
+                                            <div class="flex flex-row gap-8 items-center mt-2">
+                                                <div>
+                                                    <p>Card End.</p>
+                                                    <p class="font-normal text-base text-gray-300">{{payment.card_last4}}</p>
+                                                </div>
+                                                <div>
+                                                    <p>Card Exp.</p>
+                                                    <p class="font-normal text-base text-gray-300">{{payment.card_exp_month}}/{{payment.card_exp_year}}</p>
+                                                </div>
+                                            </div>
+                                            {% if payment.paid %}
+                                            {% else %}
+                                                <p class="text-white text-base font-barlow">
+                                                    Payment declined! Please contact us if you were charged.
+                                                </p>
+                                            {% endif %}
+                                            
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </td>

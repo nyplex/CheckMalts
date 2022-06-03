@@ -103,7 +103,7 @@ class StripeWH_Handler:
 
         # Update the order in DB
         order.is_paid = False
-        order.is_pending = True
+        order.is_pending = False
         order.is_cancelled = False
         order.stripe_pid = pid
         order.save()

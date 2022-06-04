@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 if os.path.exists("env.py"):
     import env
@@ -96,16 +97,10 @@ WSGI_APPLICATION = 'CheckMalts.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if os.environ.get('DEVELOPMENT') == 'False':
+if 'DATABASE_URL' in os.environ:
+    DATABASE_URL = os.environ.get('DATABASE_URL')
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ.get('POSTGRES_DB_NAME'), 
-            'USER': os.environ.get('POSTGRES_DB_USER'), 
-            'PASSWORD': os.environ.get('POSTGRES_DB_PASSWORD'),
-            'HOST': os.environ.get('POSTGRES_DB_HOST'), 
-            'PORT': os.environ.get('POSTGRES_DB_PORT'),
-        }
+        'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
     DATABASES = {

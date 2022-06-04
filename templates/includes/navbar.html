@@ -43,8 +43,8 @@
                                 class="navbar-link text-2xl py-2">My orders</a>
                         </li>
                         <li>
-                            <a href="{% url 'my_cocktails' %}"
-                                class="navbar-link text-2xl py-2">My cocktails</a>
+                            <a href="{% url 'my_favourites' %}"
+                                class="navbar-link text-2xl py-2">My Favourites</a>
                         </li>
                         <li>
                             <a href="{% url 'account' %}"
@@ -85,7 +85,7 @@
 
         <!-- Navbar main links -->
         <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1 md:absolute md:left-[50%] md:translate-x-[-50%]" id="mobile-menu-2">
-            <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+            <ul class="flex flex-col mt-4 md:flex-row md:space-x-12 md:mt-0 md:text-sm md:font-medium">
                 <li>
                     <a href="{% url 'home' %}" class="{% if url_name == 'home' %}active-{% endif %}navbar-link" aria-current="page">HOME</a>
                 </li>
@@ -97,9 +97,6 @@
                 </li>
                 <li>
                     <a href="{% url 'match' %}" class="navbar-link">MATCH</a>
-                </li>
-                <li>
-                    <a href="#" class="navbar-link">CONTACT</a>
                 </li>
                 {% if basket_items %}
                     <li class="hidden md:block">

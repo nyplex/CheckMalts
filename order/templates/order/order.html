@@ -8,7 +8,7 @@
 <!-- Alert modal if bar is closed -->
 <div class="pt-[70px]">
     {% if not open %}
-        <div class="max-w-screen-md mx-auto w-full bg-red-300 py-4 md:rounded-md fixed top-[70px] left-[50%] translate-x-[-50%]">
+        <div class="max-w-screen-md z-[1000] mx-auto w-full bg-red-300 py-4 md:rounded-md fixed top-[70px] left-[50%] translate-x-[-50%]">
             <p class="text-red-900 font-barlow text-lg text-center font-medium">
                 Oups! We are not taking orders at the moment.
             </p>
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Items container -->
-    <div class="md:w-[55%] pb-20 md:border-x-2 md:px-2 border-secondaryHoverDarker">
+    <div class="md:w-[55%] pb-20 md:border-x-2 border-secondaryHoverDarker">
         <!-- Page header -->
         <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
             <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center">Order Here</h1>

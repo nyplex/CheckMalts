@@ -16,6 +16,9 @@ def add_to_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     quantity = request.POST.get('cocktail_quantity').replace(' ', '')
     
+    if settings.OPEN == False:
+        return redirect('order')
+    
     if request.POST.get('redirect_url') == 'match_result':
         redirect_url = '/cocktail-match/result'
     else:

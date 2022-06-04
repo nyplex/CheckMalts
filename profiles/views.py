@@ -71,8 +71,8 @@ def my_orders(request):
 
 
 @login_required()
-def my_cocktails(request):
-    return render(request, 'profiles/my_cocktails.html')
+def my_favourites(request):
+    return render(request, 'profiles/my_favourites.html')
 
 
 

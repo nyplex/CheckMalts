@@ -80,13 +80,13 @@
                         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
                             <!-- Standard service charge -->
                             <div class="md:w-[45%] w-full flex flex-row justify-between items-start text-primaryColor text-xl relative">
-                                <div data-standardTips="10" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                <div data-standardTips="10" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
                                     <p>10%</p>
                                 </div>
-                                <div data-standardTips="12" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                <div data-standardTips="12" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
                                     <span>12%</span>
                                 </div>
-                                <div data-standardTips="15" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded-sm cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                <div data-standardTips="15" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
                                     <span>15%</span>
                                 </div>
                             </div>
@@ -105,8 +105,8 @@
                 </div>
                 <!-- Back and submit button -->
                 <div class="flex flex-row justify-between items-center w-full self-end pb-4">
-                    <a href="{% url 'order' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO MENU</a>
-                    <button type="submit" form="detailsForm" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full py-2.5 text-center">CONTINUE <i class="fa-solid fa-angle-right ml-1"></i></button>
+                    <a href="{% url 'order' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO MENU</a>
+                    <button type="submit" form="detailsForm" class="text-white hidden md:block max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-lg w-full py-2.5 text-center">CONTINUE <i class="fa-solid fa-angle-right ml-1"></i></button>
                 </div>
             </div>
         </div>
@@ -119,7 +119,7 @@
                 {% if product_count and product_count > 0 %}
                     <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
                         <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
-                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
+                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded">
                                 <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> MENU</a>
                             </div>
                             <button type="submit" form="detailsForm" class="text-center font-bold">CONTINUE</button>

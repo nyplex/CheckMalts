@@ -1,6 +1,6 @@
 /********** MESSAGES **********/
 .bg-success {
-	@apply flex p-4 mb-4 bg-green-100 rounded-lg z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
+	@apply flex p-4 mb-4 bg-green-100 rounded z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
 }
 .text-success {
 	@apply text-green-700
@@ -10,7 +10,7 @@
 }
 
 .bg-error {
-	@apply flex p-4 mb-4 bg-red-100 rounded-lg z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
+	@apply flex p-4 mb-4 bg-red-100 rounded z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
 }
 .text-error {
 	@apply text-red-700
@@ -20,7 +20,7 @@
 }
 
 .bg-info {
-	@apply flex p-4 mb-4 bg-blue-100 rounded-lg z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
+	@apply flex p-4 mb-4 bg-blue-100 rounded z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
 }
 .text-info {
 	@apply text-blue-700
@@ -30,7 +30,7 @@
 }
 
 .bg-warning {
-	@apply flex p-4 mb-4 bg-yellow-100 rounded-lg z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
+	@apply flex p-4 mb-4 bg-yellow-100 rounded z-[10000] fixed left-[50%] md:top-[60px] top-0 translate-x-[-50%] w-full mobile:max-w-md
 }
 .text-warning {
 	@apply text-yellow-700

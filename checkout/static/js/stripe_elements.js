@@ -35,6 +35,7 @@ async function initialize() {
 
   const paymentElement = elements.create("payment");
   paymentElement.mount("#payment-element");
+  $('#paymentLoader').hide()
 }
 
 async function handleSubmit(e) {

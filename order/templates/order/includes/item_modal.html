@@ -2,7 +2,7 @@
 <!-- The Item Modal -->
 <div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
     <!-- Modal content -->
-    <div id="itemModalContainer" class="bg-black border-2 border-primaryColor rounded-lg p-2 w-full md:max-w-[600px] min-h-[200px] h-[100vh] md:h-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor max-h-[100vh]">
+    <div id="itemModalContainer" class="bg-black border-2 border-primaryColor rounded p-2 w-full md:max-w-[600px] min-h-[200px] h-[100vh] md:h-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-primaryColor max-h-[100vh]">
         <!-- Modal loader icon -->
         <img src="{% static 'media/loader.gif' %}" alt="loader" id="itemModelLoader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 max-h-full">
 
@@ -10,7 +10,7 @@
         <div class="hidden" id="itemModaBodyContainer">
             <!--Close modal icon -->
             <div class="flex justify-end p-2">
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                 </button>
             </div>
@@ -25,7 +25,7 @@
                             {{ response.cocktail.friendly_name|upper }}
                         {% endif %}
                     </h3>
-                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="drink image" class="max-w-[150px] mx-auto rounded-lg">
+                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="drink image" class="max-w-[150px] mx-auto rounded">
                     <div>
                         <p class="text-xl font-barlow font-light italic text-primaryColor max-w-[100%] text-center mx-auto">
                             {% if cocktail %}
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                     </div>
-                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="chess icon" class="max-w-[150px] mx-auto rounded-lg">
+                    <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="chess icon" class="max-w-[150px] mx-auto rounded">
                 </div>
 
                 <!-- Add to basket form -->
@@ -93,7 +93,7 @@
                             {% if cocktail.has_size %}
                                 <div>
                                     <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>
-                                    <select name="cocktail_size" data-size-option data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                    <select name="cocktail_size" data-size-option data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
                                         {% for size in cocktail.sizes.all %}
                                             <option value="{{size}}">{{ size.get_sizes_display|title }}</option>
                                         {% endfor %}
@@ -102,7 +102,7 @@
                             {% elif response.size %}
                                 <div>
                                     <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>
-                                    <select name="cocktail_size" data-size-option data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                    <select name="cocktail_size" data-size-option data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
                                         {% for response_size in response.cocktail.sizes.all %}
                                             {% if response_size.sizes == response.size %}
                                                 <option selected value="{{response_size}}">{{ response_size.get_sizes_display|title }}</option>
@@ -116,7 +116,7 @@
                             <!-- Item Quantity -->
                             <div>
                                 <span class="text-primaryColor text-sm font-barlow font-light">Quantity:</span>
-                                <select name="cocktail_quantity" data-qty-item data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded-lg py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                <select name="cocktail_quantity" data-qty-item data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
                                         <option {% if response.qty == 1 %}selected{% endif %} value="1">1</option>
                                         <option {% if response.qty == 2 %}selected{% endif %} value="2">2</option>
                                         <option {% if response.qty == 3 %}selected{% endif %} value="3">3</option>
@@ -136,14 +136,14 @@
                                 <span id="noteCharCompter" class="text-primaryColor text-sm font-barlow font-medium px-1 py-[2px] bg-secondaryHoverDarker rounded-full">80</span>
                             </div>
                             {% if response.note %}
-                                <textarea id="cocktail_note" name="cocktail_note" maxlength="80" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here...">{{ response.note }}</textarea>
+                                <textarea id="cocktail_note" name="cocktail_note" maxlength="80" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here...">{{ response.note }}</textarea>
                             {% else %}
-                                <textarea id="cocktail_note" name="cocktail_note" maxlength="80" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded-lg focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
+                                <textarea id="cocktail_note" name="cocktail_note" maxlength="80" class="h-full w-full resize-none bg-contrastColor text-primaryColor rounded focus:border-secondaryColor border-2 border-secondaryColor" placeholder="Add a special note here..."></textarea>
                             {% endif %}
                         </div>
                         
                         <!-- Submit button -->
-                        <button type="submit" class="border-2 rounded-lg border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">
+                        <button type="submit" class="border-2 rounded border-secondaryColor bg-secondaryColor px-2 py-1 w-[50%] font-medium font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-contrastColor transition-all duration-300">
                             {% if cocktail %}
                                 Add
                             {% else %}

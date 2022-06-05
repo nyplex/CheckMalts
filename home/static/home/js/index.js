@@ -5,7 +5,7 @@ import Datepicker from '@themesberg/tailwind-datepicker/Datepicker';
 
 
 //render the header scroll animation
-animateCanvas('jagerCanvas', 2200, 1238, 150, 'https://checkmalt.s3.amazonaws.com/static/media/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
+animateCanvas('jagerCanvas', 2200, 1238, 150, 'https://checkmalt.s3.amazonaws.com/static/home/images/jagerFrame/', '.headerPin', 'top', 'bottom', true, false);
 
 
 

@@ -32,6 +32,8 @@ DEBUG = os.environ.get('DEVELOPMENT')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'checkmalt.herokuapp.com']
 
+if os.environ.get('DEVELOPMENT') == 'False':
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
 
 

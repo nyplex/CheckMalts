@@ -11,7 +11,9 @@ animateCanvas('jagerCanvas', 2200, 1238, 150, 'https://checkmalt.s3.amazonaws.co
 
 
 // Reload the page when user resize the page
-window.addEventListener('resize', function () {
-    'use strict';
-    window.location.reload();
-});
+if ($(window).width() > 960) {
+    window.addEventListener('resize', function () {
+        'use strict';
+        window.location.reload();
+    });
+}

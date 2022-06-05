@@ -64,9 +64,6 @@
                 <h2 class="font-medium font-barlow text-primaryColor text-3xl hidden md:block">Total: £{{ grandTotal|floatformat:2 }}</h2>
                 <!-- Payment form -->
                 <form id="payment-form" class="w-full mb-20 md:mb-0">
-                    <div id="paymentLoader">
-                        <img src="{% static 'media/loader.gif' %}" alt="loader" class="w-full">
-                    </div>
                     <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                     </div>

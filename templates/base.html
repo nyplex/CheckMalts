@@ -28,6 +28,7 @@
         <img src="{% static 'media/loader.gif' %}" alt="loader" class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
     </div>
 
+    <!-- Navbar -->
     {% include 'includes/navbar.html' %}
 
     <!-- Item modal -->
@@ -36,6 +37,7 @@
     <!-- Login modal -->
     {% include 'includes/login_modal.html' %}
 
+    <!-- Basket modal on mobile -->
     <div class="md:hidden">
         {% include 'basket/basket.html' %}
     </div>

@@ -14,17 +14,18 @@ module.exports = {
         stripe: './checkout/static/js/stripe_elements.js',
         checkout_detail: './checkout/static/js/index.js',
         profiles: './profiles/static/js/index.js',
-        match: './match/static/match/js/index.js'
+        match: './match/static/match/js/index.js',
+        booking: './home/static/home/js/booking.js'
     },
     optimization: {
       usedExports: true, // <- remove unused function
     },
-    mode: "development", //change to production
+    mode: "production", //change to production
     output: {
         filename: 'dist/[name].bundle.js',
         path: path.resolve(__dirname, "static/"),
     },
-    devtool: 'inline-source-map', //remove on production
+    //devtool: 'inline-source-map', //remove on production
     module: {
         rules: [
             {

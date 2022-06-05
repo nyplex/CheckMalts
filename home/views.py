@@ -9,6 +9,12 @@ from smtplib import SMTPException
 def home(request):
     """ A view to return the index page """
 
+    return render(request, 'home/home.html')
+
+
+def booking(request):
+    """ A view to return the index page """
+
     form = BookingForm()
 
     if request.method == 'POST':
@@ -19,11 +25,11 @@ def home(request):
                 send_mail('booking confirmation','we receive your booking',settings.DEFAULT_FROM_EMAIL,['nypels.alexandre@outlook.com'])
             except SMTPException as e:
                 messages.add_message(request, messages.ERROR, 'We\'ve got an error from our server. Please give us a call to book a table. 0208 444 767', extra_tags='alert')
-                return redirect('home')
+                return redirect('booking')
 
             form.save()
             messages.add_message(request, messages.SUCCESS, 'We\'ve got your booking! Check your email for the confirmation.', extra_tags='booking_confirm')
-            return redirect('home')
+            return redirect('booking')
 
         else:
             messages.add_message(request, messages.ERROR, 'We found an error in the form!', extra_tags='alert')
@@ -32,4 +38,4 @@ def home(request):
         'form': form
     }
 
-    return render(request, 'home/home.html', context)
+    return render(request, 'home/booking.html', context)

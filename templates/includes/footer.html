@@ -1,21 +1,3 @@
-{% with request.resolver_match.url_name as url_name %}
-    {% if url_name != 'checkout_1' and url_name != 'checkout_2' and url_name != 'checkout_3' %}
-        {% if basket_items %}
-            {% if product_count and product_count > 0 %}
-                <div id="basketItemFooter" class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
-                    <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
-                        <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded-lg">
-                            <span>{{ product_count }}</span>
-                        </div>
-                        <p class="text-center font-bold">View Basket</p>
-                        <span class="text-center font-semibold text-2xl">£{{ total|floatformat:2 }}</span>
-                    </div>
-                </div>
-            {% endif %}
-        {% endif %}
-    {% endif %}
-{% endwith %}
-
 {% if basket_items %}
     <div class="w-full bg-secondaryColor py-6 hidden md:block">
         <p class="text-contrastColor font-barlow font-medium text-center text-lg">© 2023 by Alex Nypels.</p>

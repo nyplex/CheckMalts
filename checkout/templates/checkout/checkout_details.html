@@ -117,12 +117,12 @@
         {% if url_name == 'checkout_1' %}
             {% if basket_items %}
                 {% if product_count and product_count > 0 %}
-                    <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryColor z-50">
+                    <div class="md:hidden fixed bottom-0 left-0 w-full max-w-[100vw] h-[70px] bg-secondaryHoverDarker z-50">
                         <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
-                            <div class="font-semibold text-center bg-secondaryHoverDarker p-2 rounded">
-                                <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> MENU</a>
+                            <div class="font-semibold text-center">
+                                <a href="{% url 'order' %}"><i class="fa-solid fa-angle-left mr-1"></i> BACK</a>
                             </div>
-                            <button type="submit" form="detailsForm" class="text-center font-bold">CONTINUE</button>
+                            <button type="submit" form="detailsForm" class="text-center font-bold">CONTINUE <i class="fa-solid fa-angle-right mr-1"></i></button>
                         </div>
                     </div>
                 {% endif %}

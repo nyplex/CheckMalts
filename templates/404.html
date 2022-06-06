@@ -1,1 +1,24 @@
-<h1 class="mt-[100px] text-white text-center text-6xl">OUPS 404 error</h1>
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}CheckMalt|404{% endblock page_title %}
+
+{% block content %}
+
+
+
+
+<div class="max-w-screen-md mx-auto w-full pt-[70px] min-h-[100vh] pb-[100px]">
+	<!-- Reservation form -->
+    <div id="reservationContainer" class="md:max-w-[290px] w-full md:border-2 border-secondaryColor mx-auto mt-12 py-4 md:px-4 order-2 rounded">
+        <h3 class="text-primaryColor font-barlow font-medium text-2xl text-center mb-4">OUPS! 404 NOT FOUND.</h3>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+<!-- <script src="{% static 'dist/booking.bundle.js.gz' %}"></script> -->
+{% endblock extrajs %}

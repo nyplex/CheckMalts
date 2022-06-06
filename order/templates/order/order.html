@@ -22,7 +22,7 @@
     <div class="md:w-[20%] hidden md:block">
         {% for category in categories %}
             {% if selected == category.id %}
-            <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-secondaryHoverDarker pl-2 cursor-pointer">{{ category|upper }}</a>
+                <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-secondaryHoverDarker pl-2 cursor-pointer">{{ category|upper }}</a>
             {% else %}
                 <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 hover:bg-secondaryColor border-l-8 border-transparent pl-2 cursor-pointer">{{ category|upper }}</a>
             {% endif %}
@@ -33,13 +33,13 @@
     <div class="md:w-[55%] pb-20 md:border-x-2 border-secondaryHoverDarker">
         <!-- Page header -->
         <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
-            <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center">Order Here</h1>
-            <p class="text-primaryColor font-barlow font-normal text-base text-center mx-auto w-[80%] mt-2">
+            <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center mt-4 md:mt-0">Order Here</h1>
+            <p class="text-primaryColor font-barlow font-normal text-base text-center mx-auto md:w-[80%] w-full mt-2">
                 At CheckMalt all of our Cocktails are hand-made by the best bartenders in the industry. 
             </p>
         </div>
         <!-- Menu categories => only visible on small device -->
-        <select id="category_select_input" class="w-full md:hidden mt-2 md:text-lg text-3xl bg-secondaryHoverDarker font-semibold font-barlow text-primaryColor">
+        <select id="category_select_input" class="w-full md:hidden mt-2 md:text-lg text-xl font-semibold font-barlow">
             {% for category in categories %}
                 {% if selected == category.id %}
                     <option selected value="{{ category.id }}">{{ category|title }}</option>
@@ -54,9 +54,9 @@
             {% if sub_categories %}
                 <!-- Load each sub_categories -->
                 {% for sub_category in sub_categories %}
-                    <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-3xl pl-2 text-secondaryColor focus:bg-transparent hover:text-primaryColor cursor-pointer hover:bg-secondaryColor font-barlow font-semibold py-2 subCategoryCollapse"><i class="fa-solid fa-circle-dot text-base align-middle mr-2"></i>{{ sub_category.friendly_name|upper }}</h3>
+                    <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-xl pl-2 text-white bg-secondaryColor focus:bg-transparent cursor-pointer md:hover:bg-secondaryColor font-barlow font-semibold py-2 subCategoryCollapse">{{ sub_category.friendly_name|upper }} <i class="fa-solid fa-angle-down text-xl ml-2"></i></h3>
                     <!-- load the cocktails inside the sub_category -->
-                    <div class="w-full hidden">
+                    <div class="w-full md:hidden">
                         {% for cocktail in cocktails %}
                             {% if cocktail.sub_category.name == sub_category.name %}
                                 {% include 'order/includes/individual_item.html' %}

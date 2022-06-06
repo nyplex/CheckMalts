@@ -2,23 +2,22 @@
 
 <nav class="bg-black md:border-gray-200 px-2 sm:px-4 py-2.5 rounded z-50 fixed w-full border-b-4 md:border-b-0 border-secondaryHoverDarker">
     {% with request.resolver_match.url_name as url_name %}
-    <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <div class="md:container flex flex-wrap justify-between items-center md:mx-auto">
         <!-- Basket footer on mobile -->
-        {% with request.resolver_match.url_name as url_name %}
             {% if basket_items %}
                 {% if product_count and product_count > 0 %}
                     <!-- Checkmalt logo -->
-                    <a href="{% url 'home' %}" class="md:flex items-center hidden">
+                    <a href="{% url 'home' %}" class="md:flex items-center">
                         <img src="{% static 'media/logo.png' %}"
                             class="mr-3 first-line:sm:h-9 max-w-[40px] max-h-[40px] w-[40px] h-[40px]" alt="Flowbite Logo" />
                         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor hidden lg:block">CheckMalt</span>
                     </a>
-                    <div id="basketItemFooter" class="md:hidden">
-                        <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-2xl">
+                    <div id="basketItemFooter" class="md:hidden rounded-lg">
+                        <div class="flex flex-row justify-around items-center h-full text-primaryColor font-barlow text-xl">
                             <div class="font-semibold text-center bg-secondaryHoverDarker rounded-full px-2">
                                 <span>{{ product_count }}</span>
                             </div>
-                            <p class="text-center font-bold ml-2">Basket</p>
+                            <p class="text-center font-bold"><i class="fa-solid fa-basket-shopping"></i></p>
                         </div>
                     </div>
                 {% endif %}
@@ -30,7 +29,6 @@
                     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor hidden lg:block">CheckMalt</span>
                 </a>
             {% endif %}
-        {% endwith %}
 
         <div class="flex items-center md:order-2">
             {% if request.user.is_authenticated %}

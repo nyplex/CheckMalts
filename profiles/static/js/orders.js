@@ -20,7 +20,8 @@ $('*[data-td-order]').on('click', (e) => {
     }
     $(nextTr).toggle()
     $(currentTr).toggleClass('bg-secondaryHoverDarker border-b-2')
-    $(currentBtn).toggleClass('bg-secondaryHoverDarker bg-secondaryColor hover:bg-secondaryColor hover:bg-secondaryHoverLighter')
+    $(currentBtn).toggleClass('hover:text-secondaryColor hover:text-white')
+    
     $(currentIcon).toggleClass('fa-angle-down fa-angle-up')
 
 })

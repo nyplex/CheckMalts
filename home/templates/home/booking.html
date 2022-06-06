@@ -24,7 +24,7 @@
                             <img src="{% static 'media/horse-icon.png' %}" alt="chess icon" class="max-w-[70px] mx-auto mb-4">
                             <h3 class="mb-4 text-xl font-normal text-primaryColor font-barlow">{{ message }}</h3>
                             <a href="{% url 'menu' %}" class="secondary-btn font-semibold text-lg px-2 py-0.5">See our menu</a>
-                            <a href="" class="primary-btn font-semibold text-lg px-2 py-1 border-2">Coktail Match</a>
+                            <a href="{% url 'match' %}" class="primary-btn font-semibold text-lg px-2 py-1 border-2">Coktail Match</a>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
 
 <div class="max-w-screen-md mx-auto w-full pt-[70px] min-h-[100vh] pb-[100px]">
 	<!-- Reservation form -->
-    <div id="reservationContainer" class="md:max-w-[290px] w-full border-2 border-secondaryColor mx-auto mt-12 py-4 px-4 order-2 rounded">
+    <div id="reservationContainer" class="md:max-w-[290px] w-full md:border-2 border-secondaryColor mx-auto mt-12 py-4 md:px-4 order-2 rounded">
         <h3 class="text-primaryColor font-barlow font-medium text-2xl text-center mb-4">Reservations</h3>
         <form method="POST" action="{% url 'booking' %}" class="form mb-2" enctype="multipart/form-data" autocomplete="false" id="reservationForm">
             {% csrf_token %}

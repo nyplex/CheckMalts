@@ -45,13 +45,22 @@ export let update_span_counter = () => {
 }
 
 
-//On the order page when page is ready, open the first sub_category if exists.
 $(document).ready((e) => {
-	$('.subCategoryCollapse').first().addClass('bg-secondaryColor text-primaryColor').removeClass('text-secondaryColor').next().show()
+	$('.subCategoryCollapse').first().next().show()
 })
+
+
 //Subcategory collapsible function
 $('.subCategoryCollapse').on('click', (e) => {
-	let content = $(e.target).next()
-	$(e.target).toggleClass('bg-secondaryColor').toggleClass('text-primaryColor').toggleClass('text-secondaryColor')
-	$(content).slideToggle('slow')
+	let target = $(e.target)
+	let content;
+	if (target.is('h3')) {
+		content = $(e.target).next()
+		$(e.target).children().first().toggleClass('fa-angle-down fa-angle-up')
+	}else if (target.is('i')) {
+		content = $(e.target).parent().next()
+		$(e.target).toggleClass('fa-angle-down fa-angle-up')
+	}
+	$(content).slideToggle(500)
+	
 })

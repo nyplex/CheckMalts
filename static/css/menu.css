@@ -12,9 +12,6 @@
 
 }
 
-#menuTitle {
-    text-shadow: -1vmin -1vmin 0 white;
-}
 
 @media only screen and (max-width: 768px) {
     #menuBackground {

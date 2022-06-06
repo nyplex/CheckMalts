@@ -11,7 +11,10 @@
 
 <!-- Main header -->
 <div class="h-[100vh] w-full relative overflow-x-hidden bg-contrastColor py-4" id="menuHeaderContainer">
-	<h1 class="top-[-5%] left-[50%] text-8xl font-barlow font-extrabold text-secondaryColor absolute translate-x-[-50%] translate-y-[-50%] z-0 text-center" id="menuTitle">OUR MENU</h1>
+    <div id="menuTitle" class="top-[-5%] left-[50%] text-8xl font-barlow font-light text-secondaryColor absolute translate-x-[-50%] translate-y-[-50%] z-0 text-center">
+        <h1>OUR MENU</h1>
+      </div>
+	<!-- <h1 class="" id="menuTitle">OUR MENU</h1> -->
     <div class="w-full flex flex-row justify-center max-w-full pt-[100px] z-30 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
         <img src="{% static 'menu/images/knight.png' %}" alt="Chess Knight Illustration" class="w-[40%] scale-x-[-1] z-50 max-w-[300px]" id="chessIllustrationHeader1">
         <img src="{% static 'menu/images/knight.png' %}" alt="Chess Knight Illustration" class="w-[40%] z-50 max-w-[300px]" id="chessIllustrationHeader2">
@@ -79,7 +82,7 @@
             </div>
             <!-- Illustration for each categories -->
             <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration" data-sectionimage>
-                <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-50 md:opacity-1">
+                <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-0 md:opacity-1">
             </div>
         </div>
     {% endfor %}

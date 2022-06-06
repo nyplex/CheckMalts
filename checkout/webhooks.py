@@ -19,6 +19,9 @@ def webhook(request):
     print('hhhhheeeeeeellllllooooooo')
     print('hhhhhhhheeeeerrrreeee')
     endpoint_secret = os.environ.get('STRIPE_WH_ENDPOINT_SECRET')
+    
+    print('endpoint_secret')
+    print(endpoint_secret)
     event = None
 
     payload = request.body

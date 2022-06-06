@@ -29,14 +29,22 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
+        
+        
 
         # Update the order to pending=False, send SMS and email to confirm order  + estimation time
         intent = event['data']['object']
         pid = intent['id']
         order_id = intent['metadata']['order_id']
         payment_details = intent['charges']['data'][0]
+        
+        print('heheellllo')
 
         order = Order.objects.get(pk=order_id)
+        
+        print('orderrrrrr')
+        print(order)
+        
         bag = order.original_bag
         bag.replace('[', '{')
         bag.replace(']', '}')
@@ -52,13 +60,14 @@ class StripeWH_Handler:
         attempt = 1
         while attempt <= 5:
             try:
-                payment = Order.objects.get(
+                payment = Payment.objects.get(
                     payment_intent=pid,
                     order=order
                 )
                 order_exists = True
                 break
-            except Order.DoesNotExist:
+            except Payment.DoesNotExist:
+                print('eeeerrrrrroooooooor 1')
                 attempt += 1
                 time.sleep(1)
 

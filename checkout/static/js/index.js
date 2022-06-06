@@ -34,36 +34,3 @@ $('#id_tips').on('input', (e) => {
     $('#tips').text('£' + tips)
     $('#grandTotal').text('£' + parseFloat(grandTotal).toFixed(2))
 })
-
-
-
-// Ajax call to get prep time & display it on order confirmation page
-export let getPrepTime = (orderID) => {
-    console.log('ajax call');
-    $.ajax({
-     url: '/checkout/preptime',
-     type: 'post',
-     data: {
-         'order': orderID
-     },
-     success: function(response){
-      // Perform operation on the return value
-      if(response.e) {
-          console.log(response);
-          console.log('error!!');
-      }else{
-        $('#prepTimeTxt').text(response.time + 'min')
-        $('#prepTimeLoader').addClass('hidden')
-        $('#prepTimeData').removeClass('hidden')
-        clearInterval(PrepTimeAjaxInterval)
-      }
-     },
-     error: function (xhr, ajaxOptions, thrownError) {
-        if(xhr.status == 500) {
-            window.location.replace("/order");
-        }
-    }
-    });
-}
-   
-

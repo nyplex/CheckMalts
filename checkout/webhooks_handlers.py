@@ -37,13 +37,8 @@ class StripeWH_Handler:
         pid = intent['id']
         order_id = intent['metadata']['order_id']
         payment_details = intent['charges']['data'][0]
-        
-        print('heheellllo')
 
         order = Order.objects.get(pk=order_id)
-        
-        print('orderrrrrr')
-        print(order)
         
         bag = order.original_bag
         bag.replace('[', '{')
@@ -65,17 +60,12 @@ class StripeWH_Handler:
                     order=order
                 )
                 order_exists = True
-                print('errrorrrr 2')
                 break
             except Payment.DoesNotExist:
-                print('eeeerrrrrroooooooor 1')
                 attempt += 1
                 time.sleep(1)
 
         if order_exists:
-            print('order exsistsssssssssss')
-            send_confirmation_email(order, total_prep_time)
-            send_confirmation_sms(order, total_prep_time)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
                 status=200)

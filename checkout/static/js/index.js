@@ -38,7 +38,8 @@ $('#id_tips').on('input', (e) => {
 
 
 // Ajax call to get prep time & display it on order confirmation page
-function getPrepTime(orderID){
+export let getPrepTime = (orderID) => {
+    console.log('ajax call');
     $.ajax({
      url: '/checkout/preptime',
      type: 'post',
@@ -50,7 +51,6 @@ function getPrepTime(orderID){
       if(response.e) {
           console.log(response);
           console.log('error!!');
-          PrepTimeAjaxInterval = setInterval(getPrepTime(orderID),5000);
       }else{
         $('#prepTimeTxt').text(response.time + 'min')
         $('#prepTimeLoader').addClass('hidden')
@@ -67,12 +67,3 @@ function getPrepTime(orderID){
 }
    
 
-$(document).ready(function(){
-    let loader = $('#prepTimeLoader').hasClass('hidden')
-    let prepTimeData = $('#prepTimeData').hasClass('hidden')
-    if(!loader && prepTimeData){
-        let orderURL = window.location.pathname.split('/')
-        let orderID = orderURL[3]
-        PrepTimeAjaxInterval = setInterval(getPrepTime(orderID),1000);
-    }
-});

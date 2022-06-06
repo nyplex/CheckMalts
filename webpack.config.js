@@ -13,6 +13,7 @@ module.exports = {
         order: './order/static/order/js/index.js',
         stripe: './checkout/static/js/stripe_elements.js',
         checkout_detail: './checkout/static/js/index.js',
+        checkout_confirmation: './checkout/static/js/confirmation.js',
         profiles: './profiles/static/js/index.js',
         match: './match/static/match/js/index.js',
         booking: './home/static/home/js/booking.js'

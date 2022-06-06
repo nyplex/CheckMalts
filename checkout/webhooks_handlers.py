@@ -57,17 +57,23 @@ class StripeWH_Handler:
         order.save()
         
         order_exists = False
-        try:
-            payment = Payment.objects.get(
-                payment_intent=pid,
-                order=order
-            )
-            order_exists = True
-        except Payment.DoesNotExist:
-            print('eeeerrrrrroooooooor 1')
-            time.sleep(1)
+        attempt = 1
+        while attempt <= 5:
+            try:
+                payment = Payment.objects.get(
+                    payment_intent=pid,
+                    order=order
+                )
+                order_exists = True
+                print('errrorrrr 2')
+                break
+            except Payment.DoesNotExist:
+                print('eeeerrrrrroooooooor 1')
+                attempt += 1
+                time.sleep(1)
 
         if order_exists:
+            print('order exsistsssssssssss')
             send_confirmation_email(order, total_prep_time)
             send_confirmation_sms(order, total_prep_time)
             return HttpResponse(

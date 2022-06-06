@@ -50,7 +50,7 @@ function getPrepTime(orderID){
       if(response.e) {
           console.log(response);
           console.log('error!!');
-          PrepTimeAjaxInterval = setInterval(getPrepTime(orderID),1000);
+          PrepTimeAjaxInterval = setInterval(getPrepTime(orderID),5000);
       }else{
         $('#prepTimeTxt').text(response.time + 'min')
         $('#prepTimeLoader').addClass('hidden')

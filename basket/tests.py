@@ -39,7 +39,7 @@ class BasketView(TestCase):
         self.assertTemplateUsed(response, 'order/order.html')
         self.assertContains(
             response, 'Browse our menu and start adding items to your order')
-        self.assertContains(response, '<p>£0.00</p>')
+        self.assertContains(response, '<p class="md:text-base text-2xl">£0.00</p>')
         self.assertContains(response, '(0 item)')
 
 
@@ -54,7 +54,7 @@ class BasketView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'order/order.html')
         self.assertContains(response, '(3 items)')
-        self.assertContains(response, '<p>£30.00</p>')
+        self.assertContains(response, '<p class="md:text-base text-2xl">£30.00</p>')
         self.assertContains(
             response, '<p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "test note"</p>')
 

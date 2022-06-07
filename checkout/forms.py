@@ -35,11 +35,11 @@ class CheckoutOneForm(forms.Form):
         try:
             phone_number = phonenumbers.parse(mobileNumber, None)
         except:
-            raise forms.ValidationError("Invalid phone number 001")
+            raise forms.ValidationError("Invalid phone number")
         
         if not re.match(r'(\+[0-9]+\s*)?(\([0-9]+\))?[\s0-9\-]+[0-9]+', mobileNumber):
-            raise forms.ValidationError("Invalid phone number 002")
+            raise forms.ValidationError("Invalid phone number")
         if not phonenumbers.is_possible_number(phone_number):
-            raise forms.ValidationError("Invalid phone number 003")
+            raise forms.ValidationError("Invalid phone number")
         
         return mobileNumber

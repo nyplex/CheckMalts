@@ -105,7 +105,7 @@ class CheckoutDetailsView(TestCase):
         checkout_session['step1'] = True
 
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
         self.assertEqual(self.client.session.get(
             'checkout_session'), checkout_session)
     
@@ -239,7 +239,7 @@ class CheckoutDetailsView(TestCase):
         
         user = UserProfile.objects.get(pk=1)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(self.client.session.get(
             'checkout_session'), checkout_session)
         self.assertEqual(user.mobile, '07666666541') 

@@ -63,7 +63,7 @@ class OrderView(TestCase):
     
     def test_open_valid_modal(self):
         client = Client()
-        response = client.post('/order/item-detail', data={'item_id': 1})
+        response = client.post('/order/item-detail', data={'item_id': 1, 'match_modal': False})
         self.assertEquals(response.status_code, 200)
         self.assertContains(
             response, '<div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">')
@@ -73,7 +73,8 @@ class OrderView(TestCase):
         cocktail = Cocktail.objects.get(pk=1)
         self.assertEqual(response.context['cocktail'], cocktail)
     
-    
+
+
     def test_open_invalid_modal(self):
         client = Client()
         response = client.post('/order/item-detail', data={'item_id': 5})

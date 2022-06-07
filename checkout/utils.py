@@ -31,11 +31,10 @@ def send_confirmation_sms(order, total_prep_time):
         auth_token = os.environ['TWILIO_AUTH_TOKEN']
         client = Client(account_sid, auth_token)
         user_phone = order.user_profile.mobile
+        prep_time = str(total_prep_time)
         message = client.messages \
                         .create(
-                            body=f"CheckMalt - Order Confirmation. Your order ID is #{order.id}." \
-                            "Your order should be ready in approx. {total_prep_time}min. We will send you" \
-                            "a message when it's time to get your order.",
+                            body=f"CheckMalt - Order Confirmation. Your order ID is #{order.id}. Your order should be ready in approx. {prep_time}min. We will send you a message when it's time to get your order.",
                             from_='+17752563749',
                             to=user_phone
                         )

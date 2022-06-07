@@ -30,7 +30,7 @@
                         <div class="flex flex-row md:justify-start justify-between font-barlow md:font-normal font-medium md:text-lg text-2xl w-full items-center">
                             <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">
                                 {% if item.cocktail.friendly_name|length > 15 %}
-                                    {{ item.cocktail.friendly_name|title|slice:15 }}...
+                                    {{ item.cocktail.friendly_name|title|slice:12 }}...
                                 {% else %}
                                     {{ item.cocktail.friendly_name|title }}
                                 {% endif %}

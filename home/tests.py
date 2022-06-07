@@ -30,7 +30,7 @@ class MakeReservationTests(TestCase):
             'booking_time': '1600',
             'booking_size': '5'
             }
-        response = self.client.post('', data=data)
+        response = self.client.post('/booking', data=data)
         
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         messages = [msg for msg in get_messages(response.wsgi_request)]

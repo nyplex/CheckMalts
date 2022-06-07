@@ -1,5 +1,10 @@
-<div class="w-full bg-secondaryColor py-6">
-    <p class="text-contrastColor font-barlow font-medium text-center text-lg">© 2023 by Alex Nypels.</p>
-</div>
+{% with request.resolver_match.url_name as url_name %}
+    {% if url_name == 'checkout_1' or url_name == 'checkout_2' %}
+    {% else %}
+        <div class="w-full bg-secondaryColor py-6">
+            <p class="text-contrastColor font-barlow font-medium text-center text-lg">© 2023 by Alex Nypels.</p>
+        </div>
+    {% endif %}
+{% endwith %}
 
 

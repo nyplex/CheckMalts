@@ -2,9 +2,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import Order, OrderLine, PendingOrders
+from .models import *
 from menu.models import Cocktail
-import json
 import os
 from twilio.rest import Client
 
@@ -38,6 +37,21 @@ def send_confirmation_sms(order, total_prep_time):
                             from_='+17752563749',
                             to=user_phone
                         )
+
+def send_order_ready_sms(order):
+        """ Send the user a confirmation SMS """
+        account_sid = os.environ['TWILIO_ACCOUNT_SID']
+        auth_token = os.environ['TWILIO_AUTH_TOKEN']
+        client = Client(account_sid, auth_token)
+        user_phone = order.user_profile.mobile
+        first_name = order.user_profile.user.first_name
+        message = client.messages \
+                        .create(
+                            body=f"CheckMalt - Hey {first_name}, your order is ready. If you have a table we will bring your order to you. Otherwise it is time to go and grap your drinks. Cheers!.",
+                            from_='+17752563749',
+                            to=user_phone
+                        )
+
 
 
 def send_order_failed_email(order):

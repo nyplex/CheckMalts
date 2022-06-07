@@ -5,37 +5,37 @@ from match.models import MatchingQuestions
 # Create your models here.
 
 
-class Ingredient(models.Model):
+# class Ingredient(models.Model):
 
-    UNITCHOICES = [('cl', 'cl'), ('unit', 'unit')]
+#     UNITCHOICES = [('cl', 'cl'), ('unit', 'unit')]
 
-    CATEGORYCHOICES = [('gin', 'Gin'), ('rum', 'Rum'), ('vodka', 'Vodka'), ('soft', 'Soft drink'), ('garnish', 'Garnish'),
-                       ('tequila', 'Tequila'), ('whiskey', 'Whiskey'), ('liqueur',
-                                                                        'Liqueur'), ('brandy', 'Brandy'), ('wine', 'Wine'),
-                       ('beer', 'Beer')]
+#     CATEGORYCHOICES = [('gin', 'Gin'), ('rum', 'Rum'), ('vodka', 'Vodka'), ('soft', 'Soft drink'), ('garnish', 'Garnish'),
+#                        ('tequila', 'Tequila'), ('whiskey', 'Whiskey'), ('liqueur',
+#                                                                         'Liqueur'), ('brandy', 'Brandy'), ('wine', 'Wine'),
+#                        ('beer', 'Beer')]
 
-    name = models.CharField(null=False, blank=False, unique=True,
-                            max_length=100, validators=[MinLengthValidator(3)])
+#     name = models.CharField(null=False, blank=False, unique=True,
+#                             max_length=100, validators=[MinLengthValidator(3)])
 
-    friendly_name = models.CharField(
-        null=True, blank=True, unique=True, max_length=100, validators=[MinLengthValidator(3)])
+#     friendly_name = models.CharField(
+#         null=True, blank=True, unique=True, max_length=100, validators=[MinLengthValidator(3)])
 
-    out_of_stock = models.BooleanField(null=False, blank=True, default=False)
-    unit = models.CharField(null=False, blank=False,
-                            default='cl', max_length=10, choices=UNITCHOICES)
+#     out_of_stock = models.BooleanField(null=False, blank=True, default=False)
+#     unit = models.CharField(null=False, blank=False,
+#                             default='cl', max_length=10, choices=UNITCHOICES)
 
-    price_per_unit = models.FloatField(null=False, blank=False, validators=[
-                                       MinValueValidator(0), MaxValueValidator(10000)])
-    allowed_for_creation = models.BooleanField(
-        null=False, blank=True, default=False)
-    has_alcohol = models.BooleanField(null=False, blank=True, default=False)
-    alcohol_volume = models.FloatField(null=True, blank=True, validators=[
-                                       MinValueValidator(0), MaxValueValidator(1000)], default=0)
-    category = models.CharField(
-        null=True, blank=False, choices=CATEGORYCHOICES, max_length=100)
+#     price_per_unit = models.FloatField(null=False, blank=False, validators=[
+#                                        MinValueValidator(0), MaxValueValidator(10000)])
+#     allowed_for_creation = models.BooleanField(
+#         null=False, blank=True, default=False)
+#     has_alcohol = models.BooleanField(null=False, blank=True, default=False)
+#     alcohol_volume = models.FloatField(null=True, blank=True, validators=[
+#                                        MinValueValidator(0), MaxValueValidator(1000)], default=0)
+#     category = models.CharField(
+#         null=True, blank=False, choices=CATEGORYCHOICES, max_length=100)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Cocktail(models.Model):
@@ -50,7 +50,7 @@ class Cocktail(models.Model):
     net_price = models.FloatField(blank=True, null=True, validators=[
                               MinValueValidator(0), MaxValueValidator(10000)])
     description = models.TextField(blank=True, null=True, max_length=5000)
-    ingredients = models.ManyToManyField(Ingredient, through='Recipe')
+    # ingredients = models.ManyToManyField(Ingredient, through='Recipe')
     out_of_stock = models.BooleanField(null=False, blank=False, default=False)
     has_alcohol = models.BooleanField(null=False, blank=False, default=False)
     prep_time = models.FloatField(null=False, blank=False, validators=[
@@ -72,32 +72,32 @@ class Cocktail(models.Model):
     def __str__(self):
         return self.friendly_name
 
-    def recipe(self):
-        return Recipe.objects.filter(cocktail=self)
+    # def recipe(self):
+    #     return Recipe.objects.filter(cocktail=self)
     
-    def save(self, *args, **kwargs):
-        recipe = Recipe.objects.filter(cocktail=self.id)
-        net_price = 0
+    # def save(self, *args, **kwargs):
+    #     recipe = Recipe.objects.filter(cocktail=self.id)
+    #     net_price = 0
         
-        for r in recipe:
-            net_price += r.ingredient.price_per_unit * r.quantity
+    #     for r in recipe:
+    #         net_price += r.ingredient.price_per_unit * r.quantity
 
-        self.net_price = net_price
+    #     self.net_price = net_price
         
-        super().save(*args, **kwargs)
+    #     super().save(*args, **kwargs)
 
 
-class Recipe(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    cocktail = models.ForeignKey(Cocktail, on_delete=models.CASCADE)
-    quantity = models.FloatField(blank=False, null=False, validators=[
-                                 MinValueValidator(0.1), MaxValueValidator(1000)])
+# class Recipe(models.Model):
+#     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+#     cocktail = models.ForeignKey(Cocktail, on_delete=models.CASCADE)
+#     quantity = models.FloatField(blank=False, null=False, validators=[
+#                                  MinValueValidator(0.1), MaxValueValidator(1000)])
 
-    class Meta:
-        unique_together = [['ingredient', 'cocktail']]
+#     class Meta:
+#         unique_together = [['ingredient', 'cocktail']]
 
-    def __str__(self):
-        return f'{self.ingredient.name}({self.quantity}{self.ingredient.unit})'
+#     def __str__(self):
+#         return f'{self.ingredient.name}({self.quantity}{self.ingredient.unit})'
 
 
 class Category(models.Model):

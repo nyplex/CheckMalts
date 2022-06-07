@@ -70,9 +70,9 @@ class AccountView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/my_orders.html')
         self.assertContains(
-            response, '<td class="px-6 py-4">#1</td>')
+            response, '<td class="px-6 py-4 hidden md:block">#1</td>')
         self.assertContains(
-            response, '<td class="px-6 py-4">£15.00</td>')
+            response, '<td class="px-6 py-4 hidden md:table-cell">£15.00</td>')
         self.assertContains(
             response, '<h1 class="text-primaryColor font-barlow font-semibold text-3xl mb-4">My Orders</h1>')
     
@@ -112,7 +112,7 @@ class AccountView(TestCase):
             'first_name': 'NewFirstName',
             'last_name': 'NewLastName',
             'email': 'newemail@gmail.com',
-            'mobile': '07802354504'
+            'mobile': '+447802355444'
         }
         response = self.client.post(reverse('account'), data=data)
 
@@ -124,7 +124,7 @@ class AccountView(TestCase):
         self.assertEqual(userprofile.user.first_name, 'NewFirstName')
         self.assertEqual(userprofile.user.last_name, 'NewLastName')
         self.assertEqual(userprofile.user.email, 'newemail@gmail.com')
-        self.assertEqual(userprofile.mobile, '07802354504')
+        self.assertEqual(userprofile.mobile, '+447802355444')
     
     
     def test_account_invalid_post(self):
@@ -133,7 +133,7 @@ class AccountView(TestCase):
             'first_name': 'NewFirstName',
             'last_name': 'NewLastName',
             'email': 'jon2.doe@gmail.com',
-            'mobile': '07802354504'
+            'mobile': '+447802355444'
         }
         response = self.client.post(reverse('account'), data=data)
 

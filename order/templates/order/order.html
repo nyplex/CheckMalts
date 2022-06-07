@@ -22,7 +22,7 @@
     <div class="md:w-[20%] hidden md:block">
         {% for category in categories %}
             {% if selected == category.id %}
-                <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-secondaryHoverDarker pl-2 cursor-pointer">{{ category|upper }}</a>
+                <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 bg-secondaryColor border-l-8 border-white pl-2 cursor-pointer">{{ category|upper }}</a>
             {% else %}
                 <a href="?category={{ category.id }}" class="text-left block font-semibold font-barlow text-primaryColor w-full py-3 hover:bg-secondaryColor border-l-8 border-transparent pl-2 cursor-pointer">{{ category|upper }}</a>
             {% endif %}
@@ -56,7 +56,7 @@
                 {% for sub_category in sub_categories %}
                     <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-xl pl-2 text-white bg-secondaryColor focus:bg-transparent cursor-pointer md:hover:bg-secondaryColor font-barlow font-semibold py-2 subCategoryCollapse">{{ sub_category.friendly_name|upper }} <i class="fa-solid fa-angle-down text-xl ml-2"></i></h3>
                     <!-- load the cocktails inside the sub_category -->
-                    <div class="w-full md:hidden">
+                    <div class="w-full">
                         {% for cocktail in cocktails %}
                             {% if cocktail.sub_category.name == sub_category.name %}
                                 {% include 'order/includes/individual_item.html' %}

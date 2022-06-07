@@ -134,5 +134,15 @@
 
 
 {% block extrajs %}
+    <script>
+        const phoneInputField = document.querySelector("#id_mobileNumber");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            initialCountry: "gb",
+            preferredCountries: ["us", "gb", "fr", "be"],
+            utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+    </script>
     <script src="{% static 'dist/checkout_detail.bundle.js.gz' %}"></script>
+    
 {% endblock %}

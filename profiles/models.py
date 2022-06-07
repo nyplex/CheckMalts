@@ -23,20 +23,20 @@ class UserProfile(models.Model):
     def clean(self):
         try:
             mobileNumber = self.mobile.replace(' ', '')
-            phone_number = phonenumbers.parse(mobileNumber, "GB")
+            phone_number = phonenumbers.parse(mobileNumber, None)
         except:
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number"})
+                {'mobile': "Invalid Mobile Number 001"})
     
-        if not re.match(r'^\d+$', mobileNumber):
+        if not re.match(r'(\+[0-9]+\s*)?(\([0-9]+\))?[\s0-9\-]+[0-9]+', mobileNumber):
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number"})
+                {'mobile': "Invalid Mobile Number 002"})
         if not phonenumbers.is_possible_number(phone_number):
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number"})
+                {'mobile': "Invalid Mobile Number 003"})
         if len(self.mobile) < 11:
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number"})
+                {'mobile': "Invalid Mobile Number 004"})
 
 
 @receiver(post_save, sender=User)

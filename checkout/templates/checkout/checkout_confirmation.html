@@ -29,8 +29,8 @@
                     If you are seatted at a table, we will come to you with your order.
                 </p>
                 <div class="flex md:flex-row flex-col gap-4 justify-around items-center">
-                    <button class="font-barlow transition-all text-secondaryHoverDarker text-2xl font-semibold border-2 rounded border-secondaryHoverDarker px-4 py-2 hover:bg-secondaryHoverDarker hover:text-white">New Order</button>
-                    <button class="font-barlow bg-secondaryHoverDarker text-contrastColor text-2xl font-semibold px-4 py-2 rounded border-2 border-secondaryHoverDarker hover:border-secondaryColor hover:bg-secondaryColor hover:text-white">Design your Cocktail</button>
+                    <a href="{% url 'order' %}" class="font-barlow transition-all text-secondaryHoverDarker text-2xl font-semibold border-2 rounded border-secondaryHoverDarker px-4 py-2 hover:bg-secondaryHoverDarker hover:text-white">NEW ORDER</a>
+                    <a href="{% url 'match' %}" class="font-barlow bg-secondaryHoverDarker text-contrastColor text-2xl font-semibold px-4 py-2 rounded border-2 border-secondaryHoverDarker hover:border-secondaryColor hover:bg-secondaryColor hover:text-white">COCKTAILS MATCH</a>
                 </div>
             </div>
         </div>

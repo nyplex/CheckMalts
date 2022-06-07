@@ -45,9 +45,6 @@ export let update_span_counter = () => {
 }
 
 
-$(document).ready((e) => {
-	$('.subCategoryCollapse').first().next().show()
-})
 
 
 //Subcategory collapsible function
@@ -63,4 +60,15 @@ $('.subCategoryCollapse').on('click', (e) => {
 	}
 	$(content).slideToggle(500)
 	
+})
+
+
+
+//Edit remove btns animation
+$('.basketItemContainer').on('mouseover', (e) => {
+	$(e.currentTarget).next().animate({'marginRight':'0'},300);
+})
+
+$('.basketMainItemContainer').on('mouseleave', (e) => {
+	$(e.currentTarget).children().next().animate({'marginRight':'-35'},200);
 })

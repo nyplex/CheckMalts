@@ -34,3 +34,15 @@ $('#id_tips').on('input', (e) => {
     $('#tips').text('£' + tips)
     $('#grandTotal').text('£' + parseFloat(grandTotal).toFixed(2))
 })
+
+$('#detailsForm').on('submit', (e) => {
+    e.preventDefault()
+    let data = $("input[name='mobileNumber']").val()
+    const phoneNumber = phoneInput.getNumber();
+    if (phoneInput.isValidNumber()) {
+        $('input[name=mobileNumber]').val(phoneNumber)
+        $('#detailsForm').unbind('submit').submit();
+    } else {
+        $('#id_mobileNumber').css('border', 'solid 2px red')
+    }
+})

@@ -33,13 +33,13 @@ class CheckoutOneForm(forms.Form):
         mobileNumber = self.cleaned_data['mobileNumber'].replace(' ', '')
         
         try:
-            phone_number = phonenumbers.parse(mobileNumber, "GB")
+            phone_number = phonenumbers.parse(mobileNumber, None)
         except:
-            raise forms.ValidationError("Invalid phone number")
+            raise forms.ValidationError("Invalid phone number 001")
         
-        if not re.match(r'^\d+$', mobileNumber):
-            raise forms.ValidationError("Invalid phone number")
+        if not re.match(r'(\+[0-9]+\s*)?(\([0-9]+\))?[\s0-9\-]+[0-9]+', mobileNumber):
+            raise forms.ValidationError("Invalid phone number 002")
         if not phonenumbers.is_possible_number(phone_number):
-            raise forms.ValidationError("Invalid phone number")
+            raise forms.ValidationError("Invalid phone number 003")
         
         return mobileNumber

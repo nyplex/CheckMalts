@@ -10,7 +10,7 @@
 <div id="menuBackground" class="w-full h-[100vh] fixed z-[-100]"></div>
 
 <!-- Main header -->
-<div class="h-[100vh] w-full relative overflow-x-hidden bg-contrastColor py-4" id="menuHeaderContainer">
+<div class="h-[100vh] w-full relative overflow-x-hidden bg-contrastColor py-4 overflow-hidden" id="menuHeaderContainer">
     <div id="menuTitle" class="top-[-5%] left-[50%] text-8xl font-barlow font-light text-secondaryColor absolute translate-x-[-50%] translate-y-[-50%] z-0 text-center menuStyle">
         <h1>OUR MENU</h1>
       </div>
@@ -82,7 +82,7 @@
             </div>
             <!-- Illustration for each categories -->
             <div class="md:max-w-[30%] w-full max-h-full h-full md:static absolute right-4" id="{{category.name}}SectionIllustration" data-sectionimage>
-                <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full opacity-0 md:opacity-1">
+                <img src="{% static 'menu/images/menu/' %}{{ category.name }}.png" alt="Cocktail Illustration" class="ml-auto h-full max-h-full hidden md:block md:opacity-1">
             </div>
         </div>
     {% endfor %}

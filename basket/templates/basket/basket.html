@@ -8,7 +8,7 @@
     </div>
 
     <!-- Basket header -->
-    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal mb-6 md:mb-0 md:text-base text-3xl text-primaryColor border-b-2 border-secondaryHoverDarker py-4">
+    <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal mb-6 md:mb-4 md:text-base text-3xl text-primaryColor border-b-2 border-secondaryHoverDarker py-4">
         <p class="md:font-normal font-semibold">My Order</p>
         <p class="md:text-base text-lg">
             {% if product_count > 1 %}
@@ -20,39 +20,52 @@
     </div>
 
     <!-- Basket content -->
-    <div class="md:max-h-[350px] md:min-h-[200px] overflow-auto pb-8" id="basket_container">
+    <div class="md:max-h-[350px] md:min-h-[200px] overflow-y-auto overflow-x-hidden pb-8" id="basket_container">
         {% if basket_items %}
             <!-- Each item in basket -->
             {% for item in basket_items %}
-                <div class="w-full p-2 mr-auto bg-black text-primaryColor">
-                    <!-- Item qty + item title & item subtotal -->
-                    <div class="flex flex-row md:justify-start justify-between font-barlow md:font-normal font-medium md:text-base text-2xl w-full items-center">
-                        <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">{{ item.cocktail.friendly_name|title }} {% if item.size %}({{ item.size }}){% endif %}</span></span>
-                        <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
-                    </div>
-                    <div>
-                        {% if item.note %}
-                            <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
-                        {% endif %}
+                <div class="w-full p-2 mr-auto bg-black text-primaryColor flex flex-row items-center justify-between relative basketMainItemContainer">
+                    <div class="basketItemContainer cursor-pointer w-full">
+                        <!-- Item qty + item title & item subtotal -->
+                        <div class="flex flex-row md:justify-start justify-between font-barlow md:font-normal font-medium md:text-lg text-2xl w-full items-center">
+                            <span class="mr-2 max-w-[70%]">{{ item.quantity }}x <span class="font-normal">
+                                {% if item.cocktail.friendly_name|length > 15 %}
+                                    {{ item.cocktail.friendly_name|title|slice:15 }}...
+                                {% else %}
+                                    {{ item.cocktail.friendly_name|title }}
+                                {% endif %}
+                                {% if item.size %}({{ item.size }}){% endif %}</span></span>
+                            <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
+                        </div>
+                        <div>
+                            {% if item.note %}
+                                <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
+                            {% endif %}
 
-                        <div class="ml-4 mt-1 md:text-base text-lg max-w-[70%]">
-                            <!-- Edit btn -->
-                            <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %}data-item-size="{{ item.size }}"{% endif %} {% if item.note %}data-item-note="{{ item.note }}"{% endif %} class="text-center text-white font-barlow md:font-medium font-light border-2 border-green-600 hover:bg-green-800 md:text-xs text-base px-3 rounded">Edit</button>
-                            <!-- Form to remove item form basket -->
-                            <form action="{% url 'remove_from_basket' item.item_id %}" method="POST" class="inline-block">
-                                {% csrf_token %}
-                                {% if item.size %}
-                                    <input type="hidden" name="item_size" value="{{ item.size }}">
-                                {% endif %}
-                                {% if item.note %}
-                                    <input type="hidden" name="item_note" value="{{ item.note }}">
-                                {% endif %}
-                                    <input type="hidden" name="item_quantity" value="{{ item.quantity }}">
-                                <button type="submit" class="text-center md:text-xs text-base text-red-500 font-barlow md:font-medium font-light ml-8 hover:text-white border-2 border-red-600 hover:bg-red-800 px-3 rounded">Remove</button>
-                            </form>
+                            <div class="ml-4 mt-1 md:text-base text-lg max-w-[70%] hidden">
+                                <!-- Edit btn -->
+                                
+                                <!-- Form to remove item form basket -->
+                                <form action="{% url 'remove_from_basket' item.item_id %}" method="POST" class="inline-block">
+                                    {% csrf_token %}
+                                    {% if item.size %}
+                                        <input type="hidden" name="item_size" value="{{ item.size }}">
+                                    {% endif %}
+                                    {% if item.note %}
+                                        <input type="hidden" name="item_note" value="{{ item.note }}">
+                                    {% endif %}
+                                        <input type="hidden" name="item_quantity" value="{{ item.quantity }}">
+                            </div>
                         </div>
                     </div>
+                    <div class="text-white text-2xl md:text-base flex flex-col justify-center gap-1 h-full ml-4 mr-[-35px]">
+                        <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %}data-item-size="{{ item.size }}"{% endif %} {% if item.note %}data-item-note="{{ item.note }}"{% endif %} class="text-center text-green-400 hover:text-green-600" type="button"><i class="fa-solid fa-pen"></i></button>
+
+                        <button type="submit" class="text-center text-red-500 hover:text-red-700"><i class="fa-solid fa-circle-minus"></i></button>
+                        </form>
+                    </div>
                 </div>
+                <hr class="w-[50%] mx-auto">
             {% endfor %}
         {% else %}
             <?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 483.1 483.1" style="fill:rgb(116, 116, 116);width:30%;margin-left:auto;margin-right:auto; margin-top:20px;margin-bottom:20px" xml:space="preserve">

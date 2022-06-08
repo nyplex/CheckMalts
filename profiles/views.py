@@ -75,16 +75,6 @@ def my_orders(request):
 
 
 
-
-
-@login_required()
-def my_favourites(request):
-    return render(request, 'profiles/my_favourites.html')
-
-
-
-
-
 class MyPasswordChangeView(PasswordChangeView):
     """
     Custom class to override the password change view 

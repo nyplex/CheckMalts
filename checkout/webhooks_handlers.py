@@ -74,6 +74,7 @@ class StripeWH_Handler:
             for i in json.loads(bag):
                 try:
                     cocktail = Cocktail.objects.get(pk=int(i['item_id']))
+                    cocktail.ordered = cocktail.ordered + 1
                     quantity = int(i['quantity'])
                     subtotal = float(i['sub_total'])
                     size = None

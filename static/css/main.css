@@ -141,3 +141,8 @@ body::-webkit-scrollbar-thumb {
 	background-color: darkgrey;
 	outline: 1px solid slategrey;
 }
+
+
+.iti--allow-dropdown {
+	width: 100%;
+}

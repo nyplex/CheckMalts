@@ -96,11 +96,19 @@
         }
     },
     {
-        "pk": 13,
+        "pk": 14,
         "model": "menu.subCategory",
         "fields": {
             "name": "cider beer",
             "friendly_name": "Ciders"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "draft beer",
+            "friendly_name": "Draft"
         }
     }
 ]

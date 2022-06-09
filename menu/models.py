@@ -43,22 +43,22 @@ class Cocktail(models.Model):
                             MinLengthValidator(4)], unique=True)
     friendly_name = models.CharField(
         max_length=50, null=True, blank=True, unique=True, validators=[MinLengthValidator(4)])
-    # slug = models.SlugField(max_length=100, null=False,
-    #                         unique=True, validators=[validate_slug])
+    slug = models.SlugField(max_length=100, null=True,
+                             unique=True, validators=[validate_slug])
     price = models.FloatField(blank=False, null=False, default=0, validators=[
                               MinValueValidator(0), MaxValueValidator(10000)])
-    # net_price = models.FloatField(blank=True, null=True, validators=[
-    #                           MinValueValidator(0), MaxValueValidator(10000)])
+    net_price = models.FloatField(blank=True, null=True, validators=[
+                               MinValueValidator(0), MaxValueValidator(10000)])
     description = models.TextField(blank=True, null=True, max_length=5000)
     # ingredients = models.ManyToManyField(Ingredient, through='Recipe')
     out_of_stock = models.BooleanField(null=False, blank=False, default=False)
-    # has_alcohol = models.BooleanField(null=False, blank=False, default=False)
+    has_alcohol = models.BooleanField(null=False, blank=False, default=False)
     prep_time = models.FloatField(null=False, blank=False, validators=[
                                     MinValueValidator(0), MaxValueValidator(1000)])
     image = models.ImageField(
         null=False, blank=True, upload_to='products_images/', default='products_images/default.png')
-    # rating = models.FloatField(null=True, blank=True, validators=[
-    #                            MaxValueValidator(5), MinValueValidator(0)])
+    rating = models.FloatField(null=True, blank=True, validators=[
+                                MaxValueValidator(5), MinValueValidator(0)])
     ordered = models.IntegerField(null=False, blank=True, default=0)
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
@@ -75,16 +75,11 @@ class Cocktail(models.Model):
     # def recipe(self):
     #     return Recipe.objects.filter(cocktail=self)
     
-    # def save(self, *args, **kwargs):
-    #     recipe = Recipe.objects.filter(cocktail=self.id)
-    #     net_price = 0
+    def save(self, *args, **kwargs):
+        net_price = self.price - (self.price * 0.3)
+        self.net_price = net_price
         
-    #     for r in recipe:
-    #         net_price += r.ingredient.price_per_unit * r.quantity
-
-    #     self.net_price = net_price
-        
-    #     super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 # class Recipe(models.Model):

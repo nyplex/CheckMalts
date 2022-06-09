@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from profiles.models import UserProfile
 from .forms import CheckoutOneForm
-from .models import Order, OrderLine
+from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from basket.contexts import basket_contents
@@ -189,7 +189,7 @@ def get_prep_time(request):
             if order.user_profile != user_profile:
                 return JsonResponse({'e': 'error3'})
             else:
-                prep_time = calculate_total_prep_time(order)
+                prep_time = calculate_total_prep_time(order, PendingOrders)
                 return JsonResponse({'time': prep_time})
     else:
         return JsonResponse({'e': 'error4'})

@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import *
 from menu.models import Cocktail
+from .models import *
 import os
 from twilio.rest import Client
 
@@ -68,8 +68,8 @@ def send_order_failed_email(order):
         msg.send()
         
 
-def calculate_prep_time_per_order(order):
-    order_line = OrderLine.objects.filter(order=order)
+def calculate_prep_time_per_order(order_line):
+    
     order_prep_time = 0
     
     for i in order_line:
@@ -84,7 +84,7 @@ def calculate_prep_time_per_order(order):
     return order_prep_time
 
 
-def calculate_total_prep_time(order):
+def calculate_total_prep_time(order, PendingOrders):
     current_pending_order = PendingOrders.objects.filter(order=order).first()
     pending_orders = PendingOrders.objects.filter(pk__lt=current_pending_order.id)
     prep_time = 0

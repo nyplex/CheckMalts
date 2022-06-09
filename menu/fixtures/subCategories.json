@@ -76,7 +76,7 @@
         "model": "menu.subCategory",
         "fields": {
             "name": "lager beer",
-            "friendly_name": "Lager"
+            "friendly_name": "Lagers"
         }
     },
     {
@@ -91,8 +91,16 @@
         "pk": 13,
         "model": "menu.subCategory",
         "fields": {
-            "name": "IPA beer",
-            "friendly_name": "IPA"
+            "name": "stout beer",
+            "friendly_name": "Stout"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "cider beer",
+            "friendly_name": "Ciders"
         }
     }
 ]

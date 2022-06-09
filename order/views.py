@@ -23,7 +23,7 @@ def order(request):
     else:
         category = int(request.GET.get('category'))
 
-    cocktails = Cocktail.objects.filter(category=category)
+    cocktails = Cocktail.objects.filter(category=category, out_of_stock=False)
     sub_categories = SubCategory.objects.filter(category__id=category)
 
     context = {

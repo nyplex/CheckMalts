@@ -1,0 +1,675 @@
+[
+    {
+        "pk": 1,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Regular coke 330ml",
+            "friendly_name": "Regular Coke",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 2,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Diet coke 330ml",
+            "friendly_name": "Diet Coke",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 3,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Coke Zero 330ml",
+            "friendly_name": "Coke Zero",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 4,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sprite 330ml",
+            "friendly_name": "Sprite",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 5,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sprite Zero 330ml",
+            "friendly_name": "Sprite Zero",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 6,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Fanta Orange 330ml",
+            "friendly_name": "Fanta Orange",
+            "price": 2.5,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 7,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Still BELU water",
+            "friendly_name": "Still BELU water",
+            "price": 1.1,
+            "description": "Glass bottle 500ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 8,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Still BELU water",
+            "friendly_name": "Still BELU water",
+            "price": 1.75,
+            "description": "Glass bottle 1L",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 9,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sparkling BELU water",
+            "friendly_name": "Sparkling BELU water",
+            "price": 1.1,
+            "description": "Glass bottle 500ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 10,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Sparkling BELU water",
+            "friendly_name": "Sparkling BELU water",
+            "price": 1.75,
+            "description": "Glass bottle 1L",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 11,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Fevertree tonic",
+            "friendly_name": "Fevertree tonic",
+            "price": 1.5,
+            "description": "Can 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 12,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Red Bull",
+            "friendly_name": "Red Bull",
+            "price": 2.7,
+            "description": "Can 450ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 13,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Ginger Beer",
+            "friendly_name": "Ginger Beer",
+            "price": 1.8,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 14,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Orange Juice",
+            "friendly_name": "Orange Juice",
+            "price": 1.25,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 15,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Apple Juice",
+            "friendly_name": "Apple Juice",
+            "price": 1.25,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 16,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Cranberry Juice",
+            "friendly_name": "Cranberry Juice",
+            "price": 1.25,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 17,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Pineapple Juice",
+            "friendly_name": "Pineapple Juice",
+            "price": 1.25,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 6,
+            "has_size": false,
+            "sub_category": null
+        }
+    },
+    {
+        "pk": 18,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Tiger beer bottle 330",
+            "friendly_name": "Tiger bottle",
+            "price": 3.75,
+            "description": "Glass bottle 3300ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 19,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Tiger beer 1/2 pint",
+            "friendly_name": "Tiger 1/2 pint",
+            "price": 4.1,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 20,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Tiger beer pint",
+            "friendly_name": "Tiger pint",
+            "price": 4.95,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 21,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Heineken bottle 330",
+            "friendly_name": "Heineken",
+            "price": 3.75,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 22,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Heineken 1/2 pint",
+            "friendly_name": "Heineken 1/2 pint",
+            "price": 3.95,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 23,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Heineken pint",
+            "friendly_name": "Heineken pint",
+            "price": 4.90,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 24,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Corona bottle 330ml",
+            "friendly_name": "Corona",
+            "price": 3.8,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 25,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Kirin bottle 330ml",
+            "friendly_name": "Kirin",
+            "price": 3.8,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 26,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Asahi bottle 330ml",
+            "friendly_name": "Asahi",
+            "price": 3.85,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 27,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Asahi 1/2 pint",
+            "friendly_name": "Asahi 1/2 pint",
+            "price": 3.95,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 27,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Asahi pint",
+            "friendly_name": "Asahi pint",
+            "price": 4.80,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 28,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Desperados bottle 330",
+            "friendly_name": "Desperados",
+            "price": 4.20,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 11
+        }
+    },
+    {
+        "pk": 29,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Guinness 1/2 pint",
+            "friendly_name": "Guinness 1/2 pint",
+            "price": 4.1,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 30,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Guinness pint",
+            "friendly_name": "Guinness pint",
+            "price": 5.25,
+            "description": "",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 31,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Thornbridge",
+            "friendly_name": "Thornbridge",
+            "price": 3.75,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 12
+        }
+    },
+    {
+        "pk": 32,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Kernel",
+            "friendly_name": "Kernel",
+            "price": 3.75,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 12
+        }
+    },
+    {
+        "pk": 33,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Galway Bay",
+            "friendly_name": "Galway Bay",
+            "price": 3.9,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 12
+        }
+    },
+    {
+        "pk": 34,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Little Creatures IPA",
+            "friendly_name": "Little Creatures IPA",
+            "price": 3.85,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 12
+        }
+    },
+    {
+        "pk": 35,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Lagunitas IPA",
+            "friendly_name": "Lagunitas IPA",
+            "price": 3.85,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 12
+        }
+    },
+    {
+        "pk": 36,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Strongbow",
+            "friendly_name": "Strongbow",
+            "price": 3.75,
+            "description": "Glass bottle 330ml",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 14
+        }
+    },
+    {
+        "pk": 37,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Strongbow 1/2 pint",
+            "friendly_name": "Strongbow 1/2 pint",
+            "price": 3.95,
+            "description": "Cider",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 38,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Strongbow pint",
+            "friendly_name": "Strongbow pint",
+            "price": 5.1,
+            "description": "Cider",
+            "out_of_stock": false,
+            "prep_time": 0.2,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 15
+        }
+    },
+    {
+        "pk": 39,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Savanna Dry",
+            "friendly_name": "Savanna Dry",
+            "price": 4.2,
+            "description": "Premium Cider",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 14
+        }
+    },
+    {
+        "pk": 40,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Somersby",
+            "friendly_name": "Somersby",
+            "price": 3.8,
+            "description": "Watermelon Cider",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 14
+        }
+    },
+    {
+        "pk": 41,
+        "model": "menu.cocktail",
+        "fields": {
+            "name": "Somersby",
+            "friendly_name": "Somersby",
+            "price": 3.8,
+            "description": "Blackberry Cider",
+            "out_of_stock": false,
+            "prep_time": 0.1,
+            "ordered": 0,
+            "category": 3,
+            "has_size": false,
+            "sub_category": 14
+        }
+    }
+]
+

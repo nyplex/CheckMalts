@@ -68,6 +68,7 @@ class Cocktail(models.Model):
     sizes = models.ManyToManyField('CocktailsSize', blank=True, null=True)
     allow_match = models.BooleanField(null=False, blank=False, default=False)
     matching_questions = models.ManyToManyField(MatchingQuestions, blank=True, null=True)
+    is_mixer = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return self.friendly_name

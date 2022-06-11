@@ -15,6 +15,12 @@ class SubCategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
+class CocktailSizeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'sizes',
+    )
+
 class CocktailAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -42,4 +48,4 @@ admin.site.register(Cocktail, CocktailAdmin)
 # admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
-admin.site.register(CocktailsSize)
+admin.site.register(CocktailsSize, CocktailSizeAdmin)

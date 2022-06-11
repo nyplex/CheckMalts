@@ -3,15 +3,15 @@
         "pk": 1,
         "model": "menu.subCategory",
         "fields": {
-            "name": "fancy cocktails",
-            "friendly_name": "Fancy"
+            "name": "Modern Cocktail's",
+            "friendly_name": "Modern"
         }
     },
     {
         "pk": 2,
         "model": "menu.subCategory",
         "fields": {
-            "name": "classic cocktails",
+            "name": "Classic Cocktail's",
             "friendly_name": "Classic"
         }
     },
@@ -19,16 +19,8 @@
         "pk": 3,
         "model": "menu.subCategory",
         "fields": {
-            "name": "olf fashioned cocktails",
-            "friendly_name": "Old Fashioned"
-        }
-    },
-    {
-        "pk": 4,
-        "model": "menu.subCategory",
-        "fields": {
-            "name": "popular cocktails",
-            "friendly_name": "Popular"
+            "name": "Premium Cocktail's",
+            "friendly_name": "Premium Cocktail's"
         }
     },
     {
@@ -36,7 +28,7 @@
         "model": "menu.subCategory",
         "fields": {
             "name": "non-alcoholic cocktails",
-            "friendly_name": "Vegan Cocktails"
+            "friendly_name": "Mocktail's"
         }
     },
     {
@@ -44,7 +36,7 @@
         "model": "menu.subCategory",
         "fields": {
             "name": "red wine",
-            "friendly_name": "Red wine"
+            "friendly_name": "Red"
         }
     },
     {
@@ -52,7 +44,7 @@
         "model": "menu.subCategory",
         "fields": {
             "name": "white wine",
-            "friendly_name": "White wine"
+            "friendly_name": "White"
         }
     },
     {
@@ -60,15 +52,7 @@
         "model": "menu.subCategory",
         "fields": {
             "name": "sparkling wine",
-            "friendly_name": "Sparkling wine"
-        }
-    },
-    {
-        "pk": 10,
-        "model": "menu.subCategory",
-        "fields": {
-            "name": "champagne",
-            "friendly_name": "Champagne"
+            "friendly_name": "Sparkling & Champagne"
         }
     },
     {
@@ -109,6 +93,62 @@
         "fields": {
             "name": "draft beer",
             "friendly_name": "Draft"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "rose wines",
+            "friendly_name": "Rose"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "gin spirit",
+            "friendly_name": "Gin's"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "Rum spirit",
+            "friendly_name": "Rum's"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "Vodka spirit",
+            "friendly_name": "Vodka's"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "Whiskey/Bourbon spirit",
+            "friendly_name": "Whiskey/Bourbon's"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "liquors spirits",
+            "friendly_name": "Liquors"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "menu.subCategory",
+        "fields": {
+            "name": "Tequila spirits",
+            "friendly_name": "Tequila's"
         }
     }
 ]

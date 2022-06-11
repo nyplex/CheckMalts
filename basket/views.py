@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from menu.models import Cocktail
+from menu.models import Category, Cocktail
 from django.contrib import messages
 from django.http import Http404, HttpResponseRedirect, JsonResponse, HttpResponse, HttpResponseServerError
 from django.template.loader import render_to_string
@@ -7,7 +7,7 @@ from django.middleware import csrf
 from django.conf import settings
 import re
 
-from order.views import calculate_price_by_size
+from order.views import calculate_price_by_size, format_add_basket
 
 # Create your views here.
 
@@ -15,6 +15,7 @@ from order.views import calculate_price_by_size
 def add_to_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     quantity = request.POST.get('cocktail_quantity').replace(' ', '')
+    mixer_id = None
     
     if settings.OPEN == False:
         return redirect('order')
@@ -25,6 +26,21 @@ def add_to_basket(request, item_id):
         redirect_url = '/order?category=' + request.POST.get('redirect_url')
     size = None
     note = ''
+    
+    if request.POST.get('cocktail_mixer'):
+        try:
+            mixer_id = int(request.POST.get('cocktail_mixer'))
+            soft_category = Category.objects.get(name='soft')
+            mixer = Cocktail.objects.get(pk=mixer_id, category=soft_category)
+            
+            basket = request.session.get('basket', {})
+            basket = format_add_basket(mixer.id, basket, size, note, 1)
+            request.session['basket'] = basket
+            
+        except:
+            messages.error(request, f'Oups! Error 505. Try again!', extra_tags='alert')
+            return HttpResponseRedirect(redirect_url)
+        
     
     if not quantity:
         raise Http404
@@ -58,58 +74,6 @@ def add_to_basket(request, item_id):
     return HttpResponseRedirect(redirect_url)
 
 
-def format_add_basket(item_id=None, basket=None, size=None, note=None, quantity=None):
-    if item_id in list(basket.keys()):
-        if note:
-            if 'items_by_note' in basket[item_id]:
-                if size:
-                    basket[item_id]['items_by_note'].append(
-                        {'note': note, 'quantity': quantity, 'size': size})
-                else:
-                    basket[item_id]['items_by_note'].append(
-                        {'note': note, 'quantity': quantity})
-            else:
-                if size:
-                    basket[item_id].update(
-                        {'items_by_note': [{'note': note, 'quantity': quantity, 'size': size}]})
-                else:
-                    basket[item_id].update(
-                        {'items_by_note': [{'note': note, 'quantity': quantity}]})
-        else:
-            if 'item' in basket[item_id]:
-                if size:
-                    if size in basket[item_id]['item']['size'].keys():
-                        basket[item_id]['item']['size'][size] += quantity
-                    else:
-                        basket[item_id]['item']['size'].update(
-                            {size: quantity})
-                else:
-                    basket[item_id]['item']['quantity']['quantity'] += quantity
-            else:
-                if size:
-                    basket[item_id].update(
-                        {'item': {'size': {size: quantity}}})
-                else:
-                    basket[item_id].update(
-                        {'item': {'quantity': {'quantity': quantity}}})
-    else:
-        if not note:
-            if size:
-                basket[item_id] = {'item': {'size': {size: quantity}}}
-            else:
-                basket[item_id] = {
-                    'item': {'quantity': {'quantity': quantity}}}
-        else:
-            if size:
-                basket[item_id] = {'items_by_note': [
-                    {'note': note, 'quantity': quantity, 'size': size}]}
-            else:
-                basket[item_id] = {'items_by_note': [
-                    {'note': note, 'quantity': quantity}]}
-    
-    return basket
-
-
 def update_basket(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=item_id)
     qty = request.POST.get('cocktail_quantity').replace(' ', '')
@@ -120,6 +84,11 @@ def update_basket(request, item_id):
     original_size = None
     note = None
     original_note = None
+    
+    if request.POST.get('redirect_url') == 'match_result':
+        redirect_url = '/cocktail-match/result'
+    else:
+        redirect_url = '/order?category=' + request.POST.get('redirect_url')
     
     if not qty or not original_qty:
         return JsonResponse({}, status=500)
@@ -152,10 +121,11 @@ def update_basket(request, item_id):
     
     request.session['basket'] = basket
     messages.success(request, f'Added {qty} `{cocktail.friendly_name.upper()}` to your bag', extra_tags='alert')
-    return redirect('order')
+    return HttpResponseRedirect(redirect_url)
 
 def item_modal(request, item_id):
     cocktail = get_object_or_404(Cocktail, pk=request.POST.get('item_id'))
+    net_price = cocktail.price - (cocktail.price * 0.3)
     qty = request.POST.get('qty')
     size = request.POST.get('size')
     note = request.POST.get('note')
@@ -172,7 +142,7 @@ def item_modal(request, item_id):
         response['price'] = round(cocktail.price * int(qty), 2)
     
     if size:
-        response['price'] = round(calculate_price_by_size(cocktail.price, cocktail.net_price, size) * int(qty), 2)
+        response['price'] = round(calculate_price_by_size(cocktail.price, net_price, size) * int(qty), 2)
         response['size'] = size
     
     if note:

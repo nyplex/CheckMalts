@@ -1,4 +1,5 @@
 {% load static %}
+{% load order_tool %}
 <!-- The Item Modal -->
 <div id="itemModal" class="hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto item-modal">
     <!-- Modal content -->
@@ -99,6 +100,17 @@
                                         {% endfor %}
                                     </select>
                                 </div>
+                                {% if cocktail.category.name == 'spirits' and not response %}
+                                    <div>
+                                        <span class="text-primaryColor text-sm font-barlow font-light">Mixer:</span>
+                                        <select name="cocktail_mixer" data-mixer-option data-order-item-modal="{%if cocktail%}{{ cocktail.id }}{% else %}{{ response.cocktail.id }}{%endif%}" class="border-2 mt-2 rounded py-[3px] max-w-[150px] px-2 border-secondaryColor bg-contrastColor text-primaryColor text-lg w-full focus:ring-0 focus:border-secondaryColor focus:border-2 hover:border-secondaryHoverDarker cursor-pointer">
+                                                <option value="">No Mixer</option>
+                                            {% for soft in cocktails|soft_drinks %}
+                                                <option value="{{soft.id}}">{{ soft.friendly_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                {% endif %}
                             {% elif response.size %}
                                 <div>
                                     <span class="text-primaryColor text-sm font-barlow font-light">Size:</span>

@@ -46,7 +46,7 @@ export let item_modal_behaviour = () => {
             $(modal).hide()
         }
     })
-    $('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
+    $('*[data-size-option], *[data-qty-item], *[data-mixer-option]').on('change', (e) =>{
         update_price(e)
     })
     update_span_counter()

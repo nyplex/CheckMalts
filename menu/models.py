@@ -40,25 +40,25 @@ from match.models import MatchingQuestions
 
 class Cocktail(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False, validators=[
-                            MinLengthValidator(4)], unique=True)
+                            MinLengthValidator(4)], unique=False)
     friendly_name = models.CharField(
-        max_length=50, null=True, blank=True, unique=True, validators=[MinLengthValidator(4)])
-    slug = models.SlugField(max_length=100, null=True,
-                             unique=True, validators=[validate_slug])
+        max_length=50, null=True, blank=True, unique=False, validators=[MinLengthValidator(4)])
+    # slug = models.SlugField(max_length=100, null=True,
+    #                          unique=True, validators=[validate_slug])
     price = models.FloatField(blank=False, null=False, default=0, validators=[
                               MinValueValidator(0), MaxValueValidator(10000)])
-    net_price = models.FloatField(blank=True, null=True, validators=[
-                               MinValueValidator(0), MaxValueValidator(10000)])
+    # net_price = models.FloatField(blank=True, null=True, validators=[
+    #                            MinValueValidator(0), MaxValueValidator(10000)])
     description = models.TextField(blank=True, null=True, max_length=5000)
     # ingredients = models.ManyToManyField(Ingredient, through='Recipe')
     out_of_stock = models.BooleanField(null=False, blank=False, default=False)
-    has_alcohol = models.BooleanField(null=False, blank=False, default=False)
+    # has_alcohol = models.BooleanField(null=False, blank=False, default=False)
     prep_time = models.FloatField(null=False, blank=False, validators=[
                                     MinValueValidator(0), MaxValueValidator(1000)])
     image = models.ImageField(
         null=False, blank=True, upload_to='products_images/', default='products_images/default.png')
-    rating = models.FloatField(null=True, blank=True, validators=[
-                                MaxValueValidator(5), MinValueValidator(0)])
+    # rating = models.FloatField(null=True, blank=True, validators=[
+    #                             MaxValueValidator(5), MinValueValidator(0)])
     ordered = models.IntegerField(null=False, blank=True, default=0)
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)

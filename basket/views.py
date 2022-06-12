@@ -26,20 +26,6 @@ def add_to_basket(request, item_id):
         redirect_url = '/order?category=' + request.POST.get('redirect_url')
     size = None
     note = ''
-    
-    if request.POST.get('cocktail_mixer'):
-        try:
-            mixer_id = int(request.POST.get('cocktail_mixer'))
-            soft_category = Category.objects.get(name='soft')
-            mixer = Cocktail.objects.get(pk=mixer_id, category=soft_category)
-            
-            basket = request.session.get('basket', {})
-            basket = format_add_basket(mixer.id, basket, size, note, 1)
-            request.session['basket'] = basket
-            
-        except:
-            messages.error(request, f'Oups! Error 505. Try again!', extra_tags='alert')
-            return HttpResponseRedirect(redirect_url)
         
     
     if not quantity:
@@ -53,6 +39,7 @@ def add_to_basket(request, item_id):
     
     quantity = int(quantity)
     
+    
     if 'cocktail_size' in request.POST:
         if cocktail.has_size == False:
             raise Http404
@@ -63,6 +50,20 @@ def add_to_basket(request, item_id):
         note = request.POST['cocktail_note']
         if len(note) > 80:
             messages.error(request, f'Special note must between 0 and 80 characters', extra_tags='alert')
+            return HttpResponseRedirect(redirect_url)
+    
+    if request.POST.get('cocktail_mixer'):
+        try:
+            mixer_id = int(request.POST.get('cocktail_mixer'))
+            soft_category = Category.objects.get(name='soft')
+            mixer = Cocktail.objects.get(pk=mixer_id, category=soft_category)
+            
+            basket = request.session.get('basket', {})
+            basket = format_add_basket(mixer.id, basket, None, note, quantity)
+            request.session['basket'] = basket
+            
+        except:
+            messages.error(request, f'Oups! Error 505. Try again!', extra_tags='alert')
             return HttpResponseRedirect(redirect_url)
             
 
@@ -214,6 +215,10 @@ def format_remove_from_basket(item_id=None, basket=None, size=None, note=None, q
                 basket[item_id].pop('items_by_note')
     else:
         if size:
+            print('hhhheeeelllloooo')
+            print(item_id)
+            print(basket)
+            
             if size in list(basket[item_id]['item']['size']):
                 basket[item_id]['item']['size'].pop(size)
             if basket[item_id]['item']['size'] == {}:

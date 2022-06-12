@@ -76,4 +76,3 @@ def match_result(request):
     }
 
     return render(request, 'match/match_result.html', context=context)
-7

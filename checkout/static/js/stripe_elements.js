@@ -45,8 +45,8 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      //return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
-      return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber, // comment this line in production
+      return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
+      //return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber, // comment this line in production
     },
   });
 

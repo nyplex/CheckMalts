@@ -4,7 +4,7 @@ $('*[data-item]').on('click', (e) => {
     let item_id = $(e.currentTarget).data('item-id')
     let qty = $(e.currentTarget).data('item-quantity')
     let size = $(e.currentTarget).data('item-size')
-    let note = $(e.target).data('item-note')
+    let note = $(e.currentTarget).data('item-note')
     let token = $('[name=csrfmiddlewaretoken]').val()
 
     $.ajax({

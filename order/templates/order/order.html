@@ -17,7 +17,7 @@
 </div>
 
 <!-- Main container -->
-<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col min-h-[100vh]">
+<div class="max-w-screen-lg mx-auto w-full md:mt-12 mb-12 flex md:flex-row flex-col md:min-h-[calc(100vh-235px)]">
     <!-- Main menu categories => invisible on small device -->
     <div class="md:w-[20%] hidden md:block">
         {% for category in categories %}
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Items container -->
-    <div class="md:w-[55%] pb-20 md:border-x-2 border-secondaryHoverDarker">
+    <div class="md:w-[55%] md:border-x-2 border-secondaryHoverDarker md:max-h-[calc(100vh-245px)] md:min-h-[385px] md:overflow-y-auto" id="itemsOrderContainer">
         <!-- Page header -->
         <div class="max-w-full mx-auto w-full mb-4 md:mb-0" id="orderHeader">
             <h1 class="text-secondaryColor font-barlow font-semibold text-2xl text-center mt-4 md:mt-0">Order Here</h1>

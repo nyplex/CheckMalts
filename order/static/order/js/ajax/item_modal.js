@@ -26,6 +26,7 @@ export let item_modal = (item_id, e) => {
             $('*[data-size-option]', container).val(size)
             $('*[data-qty-item]', container).val(qty)
             item_modal_behaviour()
+
         },
         error: function (xhr, ajaxOptions, thrownError) {
             if(xhr.status != 200) {
@@ -46,11 +47,39 @@ export let item_modal_behaviour = () => {
             $(modal).hide()
         }
     })
+    $('#plusQty').on('click', (e) => {
+        let currentQty = parseInt($('#modalQty').text())
+        let newQty = currentQty + 1
+        if (newQty >= 10) {
+            newQty = 10
+        }else if (newQty <= 0) {
+            newQty = 0
+        }
+        $('#modalQty').text(newQty)
+        $('#formItemQty').val(newQty)
+        $('#formItemQty').change();
+        
+    })
+
+    $('#minusQty').on('click', (e) => {
+        let currentQty = parseInt($('#modalQty').text())
+        let newQty = currentQty - 1
+        if (newQty >= 10) {
+            newQty = 10
+        }else if (newQty <= 0) {
+            newQty = 0
+        }
+        $('#modalQty').text(newQty)
+        $('#formItemQty').val(newQty)
+        $('#formItemQty').change();
+        
+    })
     $('*[data-size-option], *[data-qty-item], *[data-mixer-option]').on('change', (e) =>{
         update_price(e)
     })
+    $('#requestBtn').on('click', (e) => {
+		$('#requestBtn').slideToggle('slow')
+		$('#requestTextAreaContainer').slideToggle('slow')
+	})
     update_span_counter()
 }
-
-
-

@@ -29,9 +29,10 @@ class CocktailAdmin(admin.ModelAdmin):
         'category',
         'sub_category',
         'allow_match',
-        'out_of_stock'
+        'out_of_stock',
+        'image',
     )
-    list_editable=['out_of_stock']
+    list_editable=['out_of_stock', 'image']
 
 # class IngredientAdmin(admin.ModelAdmin):
 #     list_display = (

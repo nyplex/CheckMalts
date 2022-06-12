@@ -127,9 +127,7 @@ def calculate_price_by_size(price, net_price, size):
 def order_again(request, order_id):
     try:
         order = Order.objects.get(pk=int(order_id))
-        print('error1')
         line_order = order.lineitems.all()
-        print('error2')
         for i in line_order:
             if i.note == None or i.note == '':
                 note = None

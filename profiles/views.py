@@ -21,6 +21,7 @@ def account(request):
         user_profile_form = UserProfileForm(request.POST, instance=profile)
         
         if user_form.is_valid() and user_profile_form.is_valid():
+            
             current_email = EmailAddress.objects.get(user=request.user)
             new_email = user_form.cleaned_data.get('email')
             if current_email.email.strip() != new_email.strip():
@@ -42,6 +43,12 @@ def account(request):
                     
                     messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
             else:
+                update = user_form.save(commit=False)
+                update.user = request.user
+                update.save()
+                
+                f = UserProfileForm(request.POST, instance=profile)
+                user_profile_form.save()
                 messages.success(request, 'Your have updated your personnal data.', extra_tags='alert')
         else:
             messages.error(request, 'There is an error in the form!', extra_tags='alert')
@@ -65,16 +72,6 @@ def my_orders(request):
     }
     
     return render(request, 'profiles/my_orders.html', context)
-
-
-
-
-
-@login_required()
-def my_favourites(request):
-    return render(request, 'profiles/my_favourites.html')
-
-
 
 
 

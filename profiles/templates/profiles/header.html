@@ -16,12 +16,9 @@
             </div>
             <!-- Navbar -->
             <div class="h-[50%] pb-2 pt-2 bg-secondaryHoverDarker">
-                <div class="flex flex-row justify-between items-center text-lg font-barlow font-semibold">
+                <div class="flex flex-row justify-around items-center text-lg font-barlow font-semibold">
                     <a href="{% url 'account' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'account' %}md:border-white border-transparent text-white{% else %}border-secondaryHoverDarker{% endif %}">
                         ACCOUNT
-                    </a>
-                    <a href="{% url 'my_favourites' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_cocktails' %}md:border-white border-transparent text-white{% else %}border-secondaryHoverDarker{% endif %}">
-                        FAVOURITES
                     </a>
                     <a href="{% url 'my_orders' %}" class="hover:border-white hover:text-white cursor-pointer  border-t-4 px-2 {% if url_name == 'my_orders' %}md:border-white border-transparent text-white{% else %}border-secondaryHoverDarker{% endif %}">
                         ORDERS

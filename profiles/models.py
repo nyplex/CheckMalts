@@ -26,17 +26,17 @@ class UserProfile(models.Model):
             phone_number = phonenumbers.parse(mobileNumber, None)
         except:
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number 001"})
+                {'mobile': "Invalid Mobile Number"})
     
         if not re.match(r'(\+[0-9]+\s*)?(\([0-9]+\))?[\s0-9\-]+[0-9]+', mobileNumber):
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number 002"})
+                {'mobile': "Invalid Mobile Number"})
         if not phonenumbers.is_possible_number(phone_number):
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number 003"})
+                {'mobile': "Invalid Mobile Number"})
         if len(self.mobile) < 11:
             raise ValidationError(
-                {'mobile': "Invalid Mobile Number 004"})
+                {'mobile': "Invalid Mobile Number"})
 
 
 @receiver(post_save, sender=User)

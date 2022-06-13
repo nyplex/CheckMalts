@@ -2,6 +2,7 @@ from hashlib import blake2b
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
+from checkout.utils import send_order_ready_sms
 from profiles.models import UserProfile
 from menu.models import Cocktail
 from datetime import date
@@ -84,6 +85,7 @@ class PendingOrders(models.Model):
             order = Order.objects.get(pk=pk)
             order.is_done = True
             order.save()
+            send_order_ready_sms(order)
             self.delete()
         else:
             super().save(*args, **kwargs)

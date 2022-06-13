@@ -36,7 +36,7 @@ class CheckoutDetailsView(TestCase):
         user.save()
 
         user_profile = UserProfile.objects.get(user=user)
-        user_profile.mobile = '07808808808'
+        user_profile.mobile = '+44802555444'
         user_profile.save()
 
     def test_checkout_details_view(self):
@@ -84,7 +84,7 @@ class CheckoutDetailsView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'checkout/checkout_details.html')
         self.assertContains(
-            response, '<input type="text" name="mobileNumber" maxlength="25" minlength="7" value="07808808808"')
+            response, '<input type="text" name="mobileNumber" maxlength="25" minlength="7" value="+44802555444"')
 
     def test_checkout_valid_post(self):
         self.client.login(username='testuser', password='12345')
@@ -94,7 +94,7 @@ class CheckoutDetailsView(TestCase):
         basket.save()
 
         data = {
-            'mobileNumber': '07808808808',
+            'mobileNumber': '+44802555444',
             'tableNumber': '2',
             'tips': '10'
         }
@@ -104,7 +104,6 @@ class CheckoutDetailsView(TestCase):
         checkout_session['tips'] = 10
         checkout_session['step1'] = True
 
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEquals(response.status_code, 302)
         self.assertEqual(self.client.session.get(
             'checkout_session'), checkout_session)
@@ -118,7 +117,7 @@ class CheckoutDetailsView(TestCase):
         basket.save()
 
         data = {
-            'mobileNumber': '07808808808',
+            'mobileNumber': '+44802555444',
             'tableNumber': 'a',
             'tips': '10'
         }
@@ -227,7 +226,7 @@ class CheckoutDetailsView(TestCase):
         basket.save()
 
         data = {
-            'mobileNumber': '07666666541',
+            'mobileNumber': '+447802355444',
             'tableNumber': '11',
             'tips': '10'
         }
@@ -242,7 +241,7 @@ class CheckoutDetailsView(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.client.session.get(
             'checkout_session'), checkout_session)
-        self.assertEqual(user.mobile, '07666666541') 
+        self.assertEqual(user.mobile, '+447802355444') 
     
     
 class CheckoutPaymentView(TestCase):

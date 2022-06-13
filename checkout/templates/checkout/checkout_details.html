@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
+    <!-- Main container -->
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        <!-- Checkout header -->
         {% include 'checkout/checkout.html' %}
 
         <div class="max-w-screen-lg mx-auto w-full flex flex-row justify-between pb-8">
-            <!-- Basket Container -->
+            <!-- Basket Container only on large screen -->
             <div class="w-[30%] pt-4 border-r-2 border-secondaryHoverDarker hidden md:block">
                 <div class="md:max-h-[350px] md:min-h-[200px] overflow-auto" id="basket_container">
                     <!-- Each item in basket -->
@@ -29,7 +28,9 @@
                         </div>
                     {% endfor %}
                 </div>
+
                 <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto">
+
                 <!-- Subtotal, Tips & Grand Total -->
                 <div class="w-full bg-contrastColor">
                     <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-3xl text-primaryColor pt-4 pb-2">
@@ -47,6 +48,7 @@
                 </div>
             </div>
 
+            <!-- Details container -->
             <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-20">
                 <div>
                     <h2 class="font-medium font-barlow text-primaryColor text-3xl">Let's add some details</h2>
@@ -55,7 +57,9 @@
                     </p>
                     <!-- Detail's form -->
                     <form action="#" method="POST" class="mt-12" id="detailsForm">
+
                         {% csrf_token %}
+
                         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
                             <!-- User's mobile number -->
                             <div class="md:w-[45%] w-full relative">
@@ -65,6 +69,7 @@
                                     <p class="input-errors">{{error}}</p>
                                 {% endfor %}
                             </div>
+
                             <!-- Table Number -->
                             <div class="md:w-[45%] w-full relative">
                                 {{form.tableNumber}}
@@ -80,7 +85,7 @@
                         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8">
                             <!-- Standard service charge -->
                             <div class="md:w-[45%] w-full flex flex-row justify-between items-start text-primaryColor text-xl relative">
-                                <div data-standardTips="10" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
+                                <div data-standardTips="10" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker text-secondaryHoverDarker border-secondaryHoverDarker">
                                     <p>10%</p>
                                 </div>
                                 <div data-standardTips="12" class="w-[30%] py-2 text-center flex flex-row items-center justify-center border-2 border-primaryColor rounded cursor-pointer hover:border-secondaryHoverDarker hover:text-secondaryHoverDarker">
@@ -90,6 +95,7 @@
                                     <span>15%</span>
                                 </div>
                             </div>
+
                             <!-- Custom service charge -->
                             <div class="md:w-[45%] w-full relative">
                                 {{form.tips}}
@@ -101,8 +107,10 @@
                                 <span class="absolute text-primaryColor font-barlow font-light text-sm top-[-10px] left-[15px] px-2 bg-contrastColor">Service Charge £</span>
                             </div>
                         </div>
+
                     </form>
                 </div>
+                
                 <!-- Back and submit button -->
                 <div class="flex flex-row justify-between items-center w-full self-end pb-4">
                     <a href="{% url 'order' %}" class="text-white hidden md:block  max-w-[45%] bg-secondaryHoverDarker hover:bg-secondaryColor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-lg w-full py-2.5 text-center"><i class="fa-solid fa-angle-left mr-1"></i> BACK TO MENU</a>

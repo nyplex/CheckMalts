@@ -5,12 +5,16 @@ export let update_price = (e) => {
     let token = $('[name=csrfmiddlewaretoken]').val()
     let qty = 1
     let size
+    let mixer = 0
     
     if($('*[data-qty-item]', parent).val()) {
         qty = $('*[data-qty-item]', parent).val()
     }
     if($('*[data-size-option]', parent).val()) {
         size = $('*[data-size-option]', parent).val()
+    }
+    if($('*[data-mixer-option]', parent).val()) {
+        mixer = $('*[data-mixer-option]', parent).val()
     }
 
     $.ajax({
@@ -20,6 +24,7 @@ export let update_price = (e) => {
             'item_id': item_id,
             'size': size,
             'quantity': qty,
+            'mixer': mixer,
             'csrfmiddlewaretoken': token
         },
         success: function (response) {

@@ -11,6 +11,7 @@
         <div class="max-w-screen-lg mx-auto w-full min-h-[300px]">
             <!-- Basket Container -->
             <div class="w-full">
+                <!-- cocktail match form -->
                 <form action="" method="POST" id="matchForm">
                     {% csrf_token %}
                     <div id="matchIntro" class="w-full mx-auto text-center min-h-[300px] flex flex-col justify-around">
@@ -151,6 +152,9 @@
                                 <label for="tequila" class="match-btn">
                                     <input data-match-answer-btn type="checkbox" name="tequilla" id="tequila" class="hidden"> TEQUILLA
                                 </label>
+                                <label for="gin" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="gin" id="gin" class="hidden"> GIN
+                                </label>
                             </div>
                             <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
                         </div>
@@ -164,14 +168,14 @@
                     <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
                         <div>
                             <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
-                                {{ random|random_letter }}
+                                With or without alcohol?
                             </p>
                             <div class="mb-8 flex md:flex-row flex-col items-center justify-center gap-8">
-                                <label for="nameYes" class="match-btn">
-                                    <input data-match-answer-btn type="checkbox" name="" id="nameYes" class="hidden"> YES
+                                <label for="with_alc" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="with_alc" id="with_alc" class="hidden"> WITH
                                 </label>
-                                <label for="nameNo" class="match-btn">
-                                    <input data-match-answer-btn type="checkbox" name="" id="nameNo" class="hidden"> NO
+                                <label for="without_alc" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="without_alc" id="without_alc" class="hidden"> WITHOUT
                                 </label>
                             </div>
                             <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
@@ -183,6 +187,74 @@
                     </div>
 
                     <!-- 8th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Feezy or still ?
+                            </p>
+                            <div class="mb-8 flex md:flex-row flex-col items-center justify-center gap-8">
+                                <label for="feezy" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="feezy" id="feezy" class="hidden"> FEEZY
+                                </label>
+                                <label for="still" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="still" id="still" class="hidden"> STILL
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between md:mt-0 mt-8">
+                            <button data-match-back type="button" class="std-btn w-[45%]"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn w-[45%]">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+
+                    <!-- 9th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Amaretto or whisky ?
+                            </p>
+                            <div class="mb-8 flex md:flex-row flex-col items-center justify-center gap-8">
+                                <label for="amaretto" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="amaretto" id="amaretto" class="hidden"> AMARETTO
+                                </label>
+                                <label for="whisky" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="whisky" id="whisky" class="hidden"> WHISKY
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between md:mt-0 mt-8">
+                            <button data-match-back type="button" class="std-btn w-[45%]"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn w-[45%]">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+
+                    <!-- 10th match question -->
+                    <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
+                        <div>
+                            <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
+                                Red or white ?
+                            </p>
+                            <div class="mb-8 flex md:flex-row flex-col items-center justify-center gap-8">
+                                <label for="red" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="red" id="red" class="hidden"> RED
+                                </label>
+                                <label for="white" class="match-btn">
+                                    <input data-match-answer-btn type="checkbox" name="white" id="white" class="hidden"> WHITE
+                                </label>
+                            </div>
+                            <span class="text-lg font-barlow font-medium text-red-600 mb-8 match-error hidden">You must select an answer.</span>
+                        </div>
+                        <div class="flex flex-row justify-between md:mt-0 mt-8">
+                            <button data-match-back type="button" class="std-btn w-[45%]"><i class="fa-solid fa-angle-left ml-1"></i> BACK</button>
+                            <button data-match-next type="button" class="std-btn w-[45%]">NEXT <i class="fa-solid fa-angle-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 11th match question -->
                     <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
                         <div>
                             <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">
@@ -204,7 +276,7 @@
                         </div>
                     </div>
 
-                    <!-- 9th match question -->
+                    <!-- 12th match question -->
                     <div class="w-full mx-auto text-center min-h-[300px] hidden flex-col justify-between">
                         <div>
                             <p class="font-medium font-barlow text-primaryColor text-2xl mb-8">

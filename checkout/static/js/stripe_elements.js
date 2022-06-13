@@ -1,7 +1,4 @@
 const stripe = Stripe("pk_test_51KyyMtEUSVW7Sz1sy5Jl5Lu3V8WargxHJh4yfUGKupPIRwZ7oxurpMWedQ9z1SXipvxMTdKk5U2CxnXVVQ2cV05S00WBkcxrrj");
-
-
-
 let elements;
 let orderNumber;
 
@@ -45,7 +42,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      // return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
+      //return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
       return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber, // comment this line in production
     },
   });

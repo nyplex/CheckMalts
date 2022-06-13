@@ -32,6 +32,13 @@ getItemModal()
 
 // Change the max character span on textarea special note input when user type
 export let update_span_counter = () => {
+	let textContainer = $('#cocktail_note').val()
+	if (textContainer.length > 0 || textContainer.length < 80) {
+		let total = 80 - textContainer.length
+		$("#noteCharCompter").text(total)
+	}else{
+		$("#noteCharCompter").text(0)
+	}
 	$("#cocktail_note").on("input", (e) => {
 		let len = $(e.target).val().length
 		let total = 80 - len
@@ -44,7 +51,10 @@ export let update_span_counter = () => {
 	})
 }
 
-
+//On the order page when page is ready, open the first sub_category if exists.
+$(document).ready((e) => {
+	$('.subCategoryCollapse').first().next().show()
+})
 
 
 //Subcategory collapsible function

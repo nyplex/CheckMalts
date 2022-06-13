@@ -2,9 +2,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import Order, OrderLine, PendingOrders
 from menu.models import Cocktail
-import json
+from .models import *
 import os
 from twilio.rest import Client
 
@@ -31,14 +30,28 @@ def send_confirmation_sms(order, total_prep_time):
         auth_token = os.environ['TWILIO_AUTH_TOKEN']
         client = Client(account_sid, auth_token)
         user_phone = order.user_profile.mobile
+        prep_time = str(total_prep_time)
         message = client.messages \
                         .create(
-                            body=f"CheckMalt - Order Confirmation. Your order ID is #{order.id}." \
-                            "Your order should be ready in approx. {total_prep_time}min. We will send you" \
-                            "a message when it's time to get your order.",
-                            from_='+17752563749',
+                            body=f"CheckMalt - Order Confirmation. Your order ID is #{order.id}. Your order should be ready in approx. {prep_time}min. We will send you a message when it's time to get your order.",
+                            from_='+447897035269',
                             to=user_phone
                         )
+
+def send_order_ready_sms(order):
+        """ Send the user a confirmation SMS """
+        account_sid = os.environ['TWILIO_ACCOUNT_SID']
+        auth_token = os.environ['TWILIO_AUTH_TOKEN']
+        client = Client(account_sid, auth_token)
+        user_phone = order.user_profile.mobile
+        first_name = order.user_profile.user.first_name
+        message = client.messages \
+                        .create(
+                            body=f"CheckMalt - Hey {first_name}, your order is ready. If you have a table we will bring your order to you. Otherwise it is time to go and grap your drinks. Cheers!.",
+                            from_='+447897035269',
+                            to=user_phone
+                        )
+
 
 
 def send_order_failed_email(order):
@@ -55,8 +68,8 @@ def send_order_failed_email(order):
         msg.send()
         
 
-def calculate_prep_time_per_order(order):
-    order_line = OrderLine.objects.filter(order=order)
+def calculate_prep_time_per_order(order_line):
+    
     order_prep_time = 0
     
     for i in order_line:
@@ -71,7 +84,7 @@ def calculate_prep_time_per_order(order):
     return order_prep_time
 
 
-def calculate_total_prep_time(order):
+def calculate_total_prep_time(order, PendingOrders):
     current_pending_order = PendingOrders.objects.filter(order=order).first()
     pending_orders = PendingOrders.objects.filter(pk__lt=current_pending_order.id)
     prep_time = 0

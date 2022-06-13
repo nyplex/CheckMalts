@@ -30,7 +30,7 @@ class MakeReservationTests(TestCase):
             'booking_time': '1600',
             'booking_size': '5'
             }
-        response = self.client.post('', data=data)
+        response = self.client.post('/booking', data=data)
         
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         messages = [msg for msg in get_messages(response.wsgi_request)]
@@ -49,7 +49,7 @@ class MakeReservationTests(TestCase):
             'booking_time': '1600',
             'booking_size': '5'
             }
-        response = self.client.post('', data=data)
+        response = self.client.post('/booking', data=data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         messages = list(response.context['messages'])
         self.assertEqual(str(messages[0]), 'We found an error in the form!')
@@ -134,7 +134,7 @@ class NavbarView(TestCase):
         response = client.get(reverse('home'))
         self.assertEquals(response.status_code, 200)
         self.assertContains(
-            response, '<a href="#" class="navbar-link">MATCH</a>')
+            response, '<a href="/cocktail-match/" class="navbar-link">MATCH</a>')
     
 
 

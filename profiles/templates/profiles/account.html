@@ -16,7 +16,7 @@
             Change and update your personal information. Keep in mind that by changing your email adress, you will have to use the new one to log in.
         </p>
     </div>
-    <form action="{% url 'account' %}" method="POST" class="mx-auto w-full">
+    <form action="{% url 'account' %}" method="POST" class="mx-auto w-full" id="accountForm">
         {% csrf_token %}
         <div class="flex md:flex-row flex-col gap-8 md:gap-0 justify-between md:mt-12 mt-8 w-full">
             <!-- user's first name -->
@@ -66,5 +66,17 @@
 {% endblock content %}
 
 {% block extrajs %}
+
+<script>
+    const phoneInputField = document.querySelector("#id_mobile");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "gb",
+        preferredCountries: ["us", "gb", "fr", "be"],
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
     
+        
+</script>
+<script src="{% static 'dist/profiles.bundle.js.gz' %}"></script>
 {% endblock extrajs %}

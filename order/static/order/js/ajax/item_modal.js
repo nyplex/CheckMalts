@@ -1,6 +1,7 @@
 import { update_span_counter } from ".."
 import { update_price } from "./update_price"
 
+//Open item modal to add item to basket
 export let item_modal = (item_id, e) => {
     let parent = $(e.target).parent().parent()
     let qty = $('*[data-qty-item]', parent).val()
@@ -26,6 +27,7 @@ export let item_modal = (item_id, e) => {
             $('*[data-size-option]', container).val(size)
             $('*[data-qty-item]', container).val(qty)
             item_modal_behaviour()
+
         },
         error: function (xhr, ajaxOptions, thrownError) {
             if(xhr.status != 200) {
@@ -36,7 +38,9 @@ export let item_modal = (item_id, e) => {
     })
 }
 
+//Define modal's behavior
 export let item_modal_behaviour = () => {
+    //Listen to close the modal
     $('#closeItemModal').on('click', (e) => {
         $('#itemModal').hide()
     })
@@ -46,11 +50,48 @@ export let item_modal_behaviour = () => {
             $(modal).hide()
         }
     })
-    $('*[data-size-option], *[data-qty-item]').on('change', (e) =>{
+
+    //Listen add + item
+    $('#plusQty').on('click', (e) => {
+        let currentQty = parseInt($('#modalQty').text())
+        let newQty = currentQty + 1
+        if (newQty >= 10) {
+            newQty = 10
+        }else if (newQty <= 0) {
+            newQty = 0
+        }
+        $('#modalQty').text(newQty)
+        $('#formItemQty').val(newQty)
+        $('#formItemQty').change();
+        
+    })
+
+    //Listen minus - item
+    $('#minusQty').on('click', (e) => {
+        let currentQty = parseInt($('#modalQty').text())
+        let newQty = currentQty - 1
+        if (newQty >= 10) {
+            newQty = 10
+        }else if (newQty <= 0) {
+            newQty = 0
+        }
+        $('#modalQty').text(newQty)
+        $('#formItemQty').val(newQty)
+        $('#formItemQty').change();
+        
+    })
+
+    //Listen size, qty & mixer change to update price
+    $('*[data-size-option], *[data-qty-item], *[data-mixer-option]').on('change', (e) =>{
         update_price(e)
     })
+
+    //Listen for special request and handle animation
+    $('#requestBtn').on('click', (e) => {
+		$('#requestBtn').slideToggle('slow')
+		$('#requestTextAreaContainer').slideToggle('slow')
+	})
+
+    //Listen for input on request 
     update_span_counter()
 }
-
-
-

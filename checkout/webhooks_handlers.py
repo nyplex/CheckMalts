@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import Order, OrderLine, Payment, PendingOrders
+from .models import *
 from .utils import *
 from menu.models import Cocktail
 import json
@@ -24,14 +24,12 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
+    
 
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        
-        
-
         # Update the order to pending=False, send SMS and email to confirm order  + estimation time
         intent = event['data']['object']
         pid = intent['id']
@@ -74,6 +72,7 @@ class StripeWH_Handler:
             for i in json.loads(bag):
                 try:
                     cocktail = Cocktail.objects.get(pk=int(i['item_id']))
+                    cocktail.ordered = cocktail.ordered + 1
                     quantity = int(i['quantity'])
                     subtotal = float(i['sub_total'])
                     size = None
@@ -91,9 +90,10 @@ class StripeWH_Handler:
                     print('One of the products in your bag wasn\'t found in our database.')
 
             # Add the order to the PendingOrders in DB & get prep time
+            order_line = OrderLine.objects.filter(order=order)
             PendingOrders.objects.create(
-                order=order, estim_prep_time=calculate_prep_time_per_order(order))
-            total_prep_time = calculate_total_prep_time(order)
+                order=order, estim_prep_time=calculate_prep_time_per_order(order_line))
+            total_prep_time = calculate_total_prep_time(order, PendingOrders)
 
             # Save the payment details in DB
             card = payment_details['payment_method_details']['card']
@@ -107,8 +107,8 @@ class StripeWH_Handler:
                                 card_exp_year=card['exp_year'], card_last4=card['last4'])
 
 
-        send_confirmation_email(order, total_prep_time)
-        send_confirmation_sms(order, total_prep_time)
+        #send_confirmation_email(order, total_prep_time)
+        #send_confirmation_sms(order, total_prep_time)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)

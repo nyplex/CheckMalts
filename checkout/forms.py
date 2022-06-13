@@ -1,7 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator, MaxValueValidator
 import phonenumbers
 import re
 
@@ -29,17 +26,17 @@ class CheckoutOneForm(forms.Form):
         self.fields['tableNumber'].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
         self.fields['tips'].widget.attrs['class'] = 'login-form-input rounded-sm w-full focus:border-secondaryHoverDarker focus:ring-0 text-primaryColor text-lg'
 
+
     def clean_mobileNumber(self):
         mobileNumber = self.cleaned_data['mobileNumber'].replace(' ', '')
-        
         try:
             phone_number = phonenumbers.parse(mobileNumber, None)
         except:
-            raise forms.ValidationError("Invalid phone number 001")
+            raise forms.ValidationError("Invalid phone number")
         
         if not re.match(r'(\+[0-9]+\s*)?(\([0-9]+\))?[\s0-9\-]+[0-9]+', mobileNumber):
-            raise forms.ValidationError("Invalid phone number 002")
+            raise forms.ValidationError("Invalid phone number")
         if not phonenumbers.is_possible_number(phone_number):
-            raise forms.ValidationError("Invalid phone number 003")
+            raise forms.ValidationError("Invalid phone number")
         
         return mobileNumber

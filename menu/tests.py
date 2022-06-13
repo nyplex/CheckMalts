@@ -16,7 +16,8 @@ class MenuView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'menu/menu.html')
         self.assertContains(
-            response, '<div class="h-[100vh] w-full relative overflow-x-hidden bg-contrastColor py-4" id="menuHeaderContainer">')
+            response, '<div class="h-[100vh] w-full relative overflow-x-hidden bg-contrastColor py-4 overflow-hidden" id="menuHeaderContainer"')
         self.assertIn('cocktails', response.context)
         self.assertIn('categories', response.context)
         self.assertIn('subCategories', response.context)
+        

@@ -23,17 +23,14 @@ class Booking(models.Model):
     ]
 
     booking_email = models.EmailField(null=False, blank=False, max_length=200)
-
     booking_name = models.CharField(
         null=False, blank=False, max_length=50, validators=[MinLengthValidator(4)])
-
     booking_date = models.DateField(null=False, blank=False, max_length=50)
-
     booking_time = models.CharField(
         null=False, blank=False, choices=BOOKINGTIMEOPTIONS, max_length=10)
-
     booking_size = models.CharField(
         null=False, blank=False, choices=BOOKINGSIZEOPTIONS, max_length=10)
+
 
     def clean(self):
         data = self.booking_date
@@ -43,8 +40,10 @@ class Booking(models.Model):
             raise ValidationError(
                 {'booking_date': "Booking date must be in the future."})
     
+    
     def __str__(self):
         return self.booking_name
+    
     
     def save(self, *args, **kwargs):
         """

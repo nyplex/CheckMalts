@@ -5,7 +5,7 @@ $('#matchStartBtn').on('click', (e) => {
     $('#matchIntro').removeClass('flex').addClass('hidden')
     $('#matchFirst').removeClass('hidden').addClass('flex')
     questionNo += 1
-    $('#matchQuestionNo').text(questionNo + '/9')
+    $('#matchQuestionNo').text(questionNo + '/12')
 })
 
 //Change and unique checked when user click on answer
@@ -28,7 +28,7 @@ $('*[data-match-back]').on('click', (e) => {
     let previous = $(parent).prev().removeClass('hidden').addClass('flex')
     $('.match-error').addClass('hidden')
     questionNo -= 1
-    $('#matchQuestionNo').text(questionNo + '/9')
+    $('#matchQuestionNo').text(questionNo + '/12')
 })
 
 //Go to next question & check one answer has been selected
@@ -39,7 +39,7 @@ $('*[data-match-next]').on('click', (e) => {
             let parent = $(e.target).parent().parent().removeClass('flex').addClass('hidden')
             $(parent).next().removeClass('hidden').addClass('flex')
             questionNo += 1
-            $('#matchQuestionNo').text(questionNo + '/9')
+            $('#matchQuestionNo').text(questionNo + '/12')
             return
         }else {
             let input = $(e.target).parent().parent()

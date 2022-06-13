@@ -2,11 +2,13 @@ let loader = $('#prepTimeLoader').hasClass('hidden')
 let prepTimeData = $('#prepTimeData').hasClass('hidden')
 let orderID
 
+//Get the product ID from the url
 if(!loader && prepTimeData){
     let orderURL = window.location.pathname.split('/')
     orderID = orderURL[3]
 }
 
+// Ajax call to get the prep_time on the confirmation page
 var myInterval = setInterval(function(){
     $.ajax({
         url: '/checkout/preptime',
@@ -17,8 +19,7 @@ var myInterval = setInterval(function(){
         success: function(response){
          // Perform operation on the return value
          if(response.e) {
-             console.log(response);
-             console.log('error!!');
+            console.log('waiting for server to respond...');
          }else{
            $('#prepTimeTxt').text(response.time + 'min')
            $('#prepTimeLoader').addClass('hidden')

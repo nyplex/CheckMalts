@@ -35,8 +35,8 @@
         "pk": 5,
         "model": "menu.category",
         "fields": {
-            "name": "liqueur",
-            "friendly_name": "Liqueur"
+            "name": "spirits",
+            "friendly_name": "Spirits"
         }
     },
     {

@@ -127,3 +127,41 @@ body {
 	border: solid 2px white;
 	background: transparent;
 }
+
+
+body::-webkit-scrollbar {
+	width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+
+#itemsOrderContainer::-webkit-scrollbar {
+	width: 3px;
+}
+
+#itemsOrderContainer::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#itemsOrderContainer::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+
+.iti--allow-dropdown {
+	width: 100%;
+}
+
+#itemModalContainer {
+	background: rgb(27,27,27);
+	background: linear-gradient(253deg, rgba(27,27,27,1) 0%, rgba(0,0,0,1) 48%, rgba(32,32,32,1) 100%);
+}

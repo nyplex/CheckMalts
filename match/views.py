@@ -29,7 +29,6 @@ def match(request):
 
     if request.method == 'POST':
         data_list = request.POST
-
         # Validate the forms and data
         for answer in answers_list:
             if not any(data in data_list for data in answer):
@@ -53,9 +52,8 @@ def match(request):
                 continue
             data_match.append(data)
         match_calcul(request, data_match)
-
         return redirect('match_result')
-
+    
     return render(request, 'match/index.html')
 
 

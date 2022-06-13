@@ -1,6 +1,6 @@
 <!-- Baket container -->
 <div class="md:w-[25%] md:flex flex-col fixed md:static top-0 left-0 max-h-[100vh] h-full w-full  max-w-[100vw] pb-4 md:pb-0 md:border-0 bg-contrastColor z-[100] md:z-0 overflow-auto hidden px-2 md:px-0" id="basketContainer">
-    <!-- Close basket modal => only visible on small device -->
+    <!-- Button close basket modal => only visible on small device -->
     <div class="justify-end p-2 md:hidden hidden" id="basketItemCloseBtn">
         <button type="button" class="text-red-400 bg-transparent hover:bg-red-200 hover:text-red-900 rounded text-sm p-1.5 ml-auto inline-flex items-center" id="closeItemModal">
             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
@@ -25,6 +25,7 @@
             <!-- Each item in basket -->
             {% for item in basket_items %}
                 <div class="w-full p-2 mr-auto bg-black text-primaryColor flex flex-row items-center justify-between relative basketMainItemContainer">
+
                     <div class="basketItemContainer cursor-pointer w-full">
                         <!-- Item qty + item title & item subtotal -->
                         <div class="flex flex-row md:justify-start justify-between font-barlow md:font-normal font-medium text-lg w-full items-center">
@@ -37,14 +38,17 @@
                                 {% if item.size %}({{ item.size }}){% endif %}</span></span>
                             <span class="ml-auto">£{{ item.sub_total|floatformat:2 }}</span>
                         </div>
+
+                        
                         <div>
+                            <!-- Item special request -->
                             {% if item.note %}
                                 <p class="text-sm text-gray-400 font-barlow font-normal mb-1 max-w-[70%]">Note: "{{ item.note }}"</p>
                             {% endif %}
 
+                            <!-- Hidden form to remove item form basket -->
                             <div class="ml-4 mt-1 md:text-base text-lg max-w-[70%] hidden">
-                                <!-- Form to remove item form basket -->
-                                <form action="{% url 'remove_from_basket' item.item_id %}" method="POST" class="inline-block">
+                                <form action="{% url 'remove_from_basket' item.item_id %}" method="POST" class="inline-block" id="removeItemForm">
                                     {% csrf_token %}
                                     {% if item.size %}
                                         <input type="hidden" name="item_size" value="{{ item.size }}">
@@ -52,19 +56,23 @@
                                     {% if item.note %}
                                         <input type="hidden" name="item_note" value="{{ item.note }}">
                                     {% endif %}
-                                        <input type="hidden" name="item_quantity" value="{{ item.quantity }}">
+                                    <input type="hidden" name="item_quantity" value="{{ item.quantity }}">
+                                </form>
                             </div>
                         </div>
+
                     </div>
+
+                    <!-- Edit & remove icons -->
                     <div class="text-white text-xl md:text-base flex flex-col justify-center gap-1 h-full ml-4 mr-[-35px]">
                         <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %} data-item-size="{{ item.size }}" {% endif %} {% if item.note %} data-item-note="{{ item.note }}" {% endif %} class="text-center text-green-400 hover:text-green-600" type="button"><i class="fa-solid fa-pen"></i></button>
-
-                        <button type="submit" class="text-center text-red-500 hover:text-red-700"><i class="fa-solid fa-circle-minus"></i></button>
-                        </form>
+                        <button type="submit" form="removeItemForm" class="text-center text-red-500 hover:text-red-700"><i class="fa-solid fa-circle-minus"></i></button>
                     </div>
                 </div>
                 <hr class="w-[50%] mx-auto">
             {% endfor %}
+
+        <!-- If basket is empty, display a generic besket img -->
         {% else %}
             <?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 483.1 483.1" style="fill:rgb(116, 116, 116);width:30%;margin-left:auto;margin-right:auto; margin-top:20px;margin-bottom:20px" xml:space="preserve">
                 <g><path d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6 c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3 C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1 c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"/>
@@ -82,7 +90,7 @@
             <p class="md:font-normal font-normal text-xl">Subtotal</p>
             <p class="md:text-base text-xl">£{{ total|floatformat:2 }}</p>
         </div>
-        <!-- Checkout button -->
+        <!-- Checkout button only if basket not empty -->
         {% if basket_items %}
             <div data-checkoutButton class="w-full px-2">
                 <a href="{% url 'checkout_1' %}" class="text-center hover:bg-gray-300 md:text-lg text-2xl bg-primaryColor px-4 py-2 w-full rounded flex flex-row justify-around items-center font-barlow font-bold md:font-semibold mt-4">CHECKOUT <i class="fa-regular fa-credit-card"></i></a>

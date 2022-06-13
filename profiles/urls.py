@@ -8,14 +8,10 @@ urlpatterns = [
     path('orders', views.my_orders, name='my_orders'),
     
     path('password', views.MyPasswordChangeView.as_view(), name='password'),
-    # path('set-password', allauth_views.password_set, name="account_set_password"),
     path('logout', allauth_views.logout, name='account_logout'),
     path('login', allauth_views.login, name='account_login'),
     path('signup', allauth_views.signup, name='account_signup'),
-    
-    
-    # path("password/change", views.MyPasswordChangeView.as_view(),
-    #     name="account_change_password"),
+
     
     path("password/set", views.SetPasswordCustomView.as_view(), name="account_set_password"),
     path("inactive", allauth_views.account_inactive, name="account_inactive"),

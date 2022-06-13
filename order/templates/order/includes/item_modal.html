@@ -19,6 +19,7 @@
             <div class="md:pb-2 pb-2 pt-0 text-center">
                 <!-- Display on small screen -->
                 <div class="block md:hidden">
+                    <!-- Cocktail name -->
                     <h3 class="mb-4 text-xl font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">
                         {% if cocktail %}
                             {{ cocktail.friendly_name|upper }}
@@ -26,7 +27,9 @@
                             {{ response.cocktail.friendly_name|upper }}
                         {% endif %}
                     </h3>
+                    <!-- Cocktail img -->
                     <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="drink image" class="max-w-[130px] max-h-[130px] xxs:inline-block hidden mx-auto rounded mb-2">
+                    <!-- Cocktail description -->
                     <div class="w-full">
                         <p class="text-sm font-barlow font-light italic text-primaryColor max-w-[100%] w-full text-center mx-auto">
                             {% if cocktail %}
@@ -40,6 +43,7 @@
                 <!-- Display on largr screen -->
                 <div class="hidden md:flex flex-row justify-between mb-8">
                     <div class="mr-4 h-full w-[70%]">
+                        <!-- Cocktail name -->
                         <h3 class="mb-2 text-2xl font-bold text-secondaryHoverDarker font-barlow" id="itemTitle">
                             {% if cocktail %}
                                 {{ cocktail.friendly_name|upper }}
@@ -47,6 +51,7 @@
                                 {{ response.cocktail.friendly_name|upper }}
                             {% endif %}
                         </h3>
+                        <!-- Cocktail description -->
                         <div>
                             <p class="text-sm mb-2 font-barlow font-light italic text-primaryColor text-center mx-auto">
                                 {% if cocktail %}
@@ -57,6 +62,7 @@
                             </p>
                         </div>
                     </div>
+                    <!-- Cocktail img -->
                     <img src="{% if cocktail %}{{ cocktail.image.url }}{% elif response %}{{ response.cocktail.image.url }}{% endif %}" alt="chess icon" class="max-w-[150px] max-h-[150px] mx-auto rounded">
                 </div>
 
@@ -70,8 +76,10 @@
                         {% if response.note %}<input type="hidden" name="original_note" value="{{response.note}}">{% endif %}
                 {% endif %}
                         {% csrf_token %}
+                        <!-- If the modal is open from match view -->
                         {% if match %}
                             <input type="hidden" name="redirect_url" class="p-2 text-black" value="match_result">
+                        <!-- if modal is open from order view -->
                         {% else %}
                             {% if response %}
                                 <input type="hidden" name="redirect_url" class="p-2 text-black" value="{{ response.cocktail.category.id }}">
@@ -88,7 +96,7 @@
                                     <p id="requestBtn" class="text-secondaryColor font-barlow font-medium md:text-base text-xs text-left hover:text-secondaryHoverDarker cursor-pointer"><i class="fa-solid fa-plus"></i> Add them here. We'll do our best to make it happen</p>
                                 {% endif %}
                             </div>
-                            
+                            <!-- Special note text area -->
                             <div class="relative max-h-[80px] h-[80px] w-full mx-auto my-4 {% if not response.note %} hidden {% endif %}" id="requestTextAreaContainer">
                                 <div class="flex absolute inset-y-0 right-2 items-end bottom-2 pointer-events-none">
                                     <span id="noteCharCompter" class="text-primaryColor text-sm font-barlow font-medium px-1 py-[2px] bg-secondaryHoverDarker rounded-full">80</span>
@@ -112,6 +120,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
+                                <!-- If spirit add a mixer input -->
                                 {% if cocktail.category.name == 'spirits' and not response %}
                                     <div class="w-full flex flex-row justify-between items-center">
                                         <span class="text-primaryColor text-xl font-barlow font-medium">Mixer</span>
@@ -137,6 +146,7 @@
                                     </select>
                                 </div>
                             {% endif %}
+
                             <!-- Item Quantity -->
                             <div class="w-full flex flex-row justify-between items-center">
                                 <span class="text-primaryColor text-xl font-barlow font-medium">Quantity</span>
@@ -152,12 +162,14 @@
                                         <option {% if response.qty == 9 %}selected{% endif %} value="9">9</option>
                                         <option {% if response.qty == 10 %}selected{% endif %} value="10">10</option>
                                 </select>
+                                <!-- Qtu UI -->
                                 <div class="font-barlow font-medium text-xl flex flex-row justify-between items-center min-w-[150px] max-w-[150px]">
                                     <i id="minusQty" class="fa-solid fa-circle-minus hover:text-secondaryHoverDarker cursor-pointer"></i>
                                     <span id="modalQty">{% if response.qty %} {{response.qty}} {% else %}1{% endif %}</span>
                                     <i id="plusQty" class="fa-solid fa-circle-plus hover:text-secondaryHoverDarker cursor-pointer mr-[15px]"></i>
                                 </div>
                             </div>
+                            <!-- Cocktail price -->
                             <div class="w-full flex flex-row justify-between items-center">
                                 <span class="text-primaryColor text-xl font-barlow font-medium">Price</span>
                                 <p data-price-item class="text-xl font-barlow font-bold mt-2 text-primaryColor min-w-[150px] max-w-[150px] text-center">
@@ -169,8 +181,7 @@
                                 </p>
                             </div>
                         </div>
-                        
-                        
+                    
                         <!-- Submit button -->
                         <button type="submit" class="border-2 rounded border-secondaryColor bg-secondaryColor px-2 py-1 w-full text-xl font-bold font-barlow hover:border-secondaryHoverDarker hover:bg-secondaryHoverDarker hover:text-white cursor-pointer text-black transition-all duration-300 mt-8">
                             {% if cocktail %}

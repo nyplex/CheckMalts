@@ -9,7 +9,6 @@ from django.template.loader import get_template
 
 def home(request):
     """ A view to return the index page """
-
     return render(request, 'home/home.html')
 
 
@@ -17,9 +16,7 @@ def booking(request):
     """ A view to return the index page """
 
     form = BookingForm()
-
     if request.method == 'POST':
-
         form = BookingForm(request.POST)
         if form.is_valid():
             email = request.POST.get('booking_email').strip()

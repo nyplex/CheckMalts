@@ -1,4 +1,4 @@
-//Dropdown on order table
+//Dropdown on order table (view fulle order function)
 $('*[data-td-order]').on('click', (e) => {
     let target = $(e.target)
     let nextTr;
@@ -21,7 +21,6 @@ $('*[data-td-order]').on('click', (e) => {
     $(nextTr).toggle()
     $(currentTr).toggleClass('bg-secondaryHoverDarker border-b-2')
     $(currentBtn).toggleClass('hover:text-secondaryColor hover:text-white')
-    
     $(currentIcon).toggleClass('fa-angle-down fa-angle-up')
 
 })

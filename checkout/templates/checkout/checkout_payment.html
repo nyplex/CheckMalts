@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
+    <!-- Main container -->
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        <!-- Checkout header -->
         {% include 'checkout/checkout.html' %}
+
         <div class="max-w-screen-lg mx-auto w-full flex flex-row justify-between pb-8">
-            <!-- Basket Container -->
+            <!-- Basket Container only visible on large screen -->
             <div class="w-[30%] pt-4 border-r-2 border-secondaryHoverDarker hidden md:block">
                 <div class="md:max-h-[350px] md:min-h-[200px] overflow-auto" id="basket_container">
                     <!-- Each item in basket -->
@@ -45,7 +45,10 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Payment container -->
             <div class="md:w-[68%] w-full mt-8 md:pl-4 flex flex-col justify-between gap-10">
+                <!-- Amount to pay, only visible on small screen -->
                 <div class="md:hidden">
                     <div class="flex flex-row items-center justify-between px-2 font-barlow font-normal md:text-base text-xl text-primaryColor pt-2 pb-1">
                         <p>Subtotal</p>
@@ -62,6 +65,7 @@
                 </div>
                 <hr class="border-secondaryHoverDarker border-0 border-b-2 w-full mx-auto md:hidden">
                 <h2 class="font-medium font-barlow text-primaryColor text-3xl hidden md:block">Total: £{{ grandTotal|floatformat:2 }}</h2>
+
                 <!-- Payment form -->
                 <form id="payment-form" class="w-full mb-20 md:mb-0">
                     <div id="payment-element">

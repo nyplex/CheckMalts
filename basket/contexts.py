@@ -10,13 +10,16 @@ from order.views import calculate_price_by_size
 
 
 def basket_contents(request):
+    """ 
+    Global method to access basket's data
+    like total, items, etc...
+    """
 
     basket_items = []
     total = 0
     product_count = 0
     basket = request.session.get('basket', {})
 
-    
     for item_id, item_data in basket.items():
         cocktail = get_object_or_404(Cocktail, pk=item_id)
         net_price = cocktail.price - (cocktail.price * 0.3)

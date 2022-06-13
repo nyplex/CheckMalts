@@ -1,5 +1,6 @@
 import { item_modal_behaviour } from "./item_modal"
 
+//Open item modal to update basket
 $('*[data-item]').on('click', (e) => {
     let item_id = $(e.currentTarget).data('item-id')
     let qty = $(e.currentTarget).data('item-quantity')

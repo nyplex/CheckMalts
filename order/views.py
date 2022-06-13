@@ -9,15 +9,12 @@ from django.middleware import csrf
 from django.conf import settings
 
 
-
 def order(request):
     """ A view to render the order page """
-    
+
     if request.session.get('checkout_session'):
         del request.session['checkout_session']
 
-    categories = Category.objects.all()
-    
     if request.GET.get('category') is None:
         category = 1
     elif not Category.objects.filter(pk=request.GET.get('category')).exists():
@@ -25,6 +22,7 @@ def order(request):
     else:
         category = int(request.GET.get('category'))
 
+    categories = Category.objects.all()
     cocktails = Cocktail.objects.filter(category=category, out_of_stock=False)
     sub_categories = SubCategory.objects.filter(category__id=category)
 
@@ -46,14 +44,16 @@ def item_detail(request):
             cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
         except Cocktail.DoesNotExist:
             return JsonResponse({}, status=404)
-    
+
     if request.POST['match_modal'] == 'true':
         match = True
     else:
         match = False
-        
+
     html = render_to_string(
-        'order/includes/item_modal.html', {'cocktail': cocktail, 'csrf_token': csrf.get_token(request), 'match': match})
+        'order/includes/item_modal.html', {'cocktail': cocktail, 
+                                           'csrf_token': csrf.get_token(request), 
+                                           'match': match})
     return HttpResponse(html)
 
 
@@ -66,8 +66,8 @@ def calculate_size_price(request):
             cocktail = Cocktail.objects.get(pk=request.POST['item_id'])
         except Cocktail.DoesNotExist:
             return JsonResponse({}, status=404)
-        
-        net_price = cocktail.price - (cocktail.price * 0.3) 
+
+        net_price = cocktail.price - (cocktail.price * 0.3)
         price = cocktail.price
 
         if cocktail.has_size == True:
@@ -77,7 +77,6 @@ def calculate_size_price(request):
 
                 size = request.POST['size']
                 price = calculate_price_by_size(price, net_price, size)
-                
             else:
                 return JsonResponse({}, status=404)
 
@@ -99,12 +98,14 @@ def calculate_size_price(request):
                 if mixer.category.name != 'soft':
                     return JsonResponse({}, status=404)
                 price += mixer.price
-        
+
         return JsonResponse({"response": price}, status=200)
-    
 
 
 def calculate_price_by_size(price, net_price, size):
+    """
+    A method to calculte the price of product with size
+    """
     diff = price - net_price
     match size:
         case 'small' | 'single':
@@ -120,11 +121,14 @@ def calculate_price_by_size(price, net_price, size):
             price = round(price * 3, 1)
         case _:
             raise Http404
-    
+
     return price
 
 
 def order_again(request, order_id):
+    """
+    A view to hanble the order again function
+    """
     try:
         order = Order.objects.get(pk=int(order_id))
         line_order = order.lineitems.all()
@@ -133,7 +137,7 @@ def order_again(request, order_id):
                 note = None
             else:
                 note = i.note
-            
+
             if i.cocktail_size == None or i.cocktail_size == '':
                 cocktail_size = None
             else:
@@ -143,12 +147,12 @@ def order_again(request, order_id):
             if request.session['basket']:
                 del request.session['basket']
             basket = request.session.get('basket', {})
-            basket = format_add_basket(i.cocktail.id, basket, cocktail_size, note, quantity)
+            basket = format_add_basket(
+                i.cocktail.id, basket, cocktail_size, note, quantity)
             request.session['basket'] = basket
         return redirect('checkout_1')
     except:
         return redirect('my_orders')
-    
 
 
 def format_add_basket(item_id=None, basket=None, size=None, note=None, quantity=None):
@@ -199,5 +203,5 @@ def format_add_basket(item_id=None, basket=None, size=None, note=None, quantity=
             else:
                 basket[item_id] = {'items_by_note': [
                     {'note': note, 'quantity': quantity}]}
-    
+
     return basket

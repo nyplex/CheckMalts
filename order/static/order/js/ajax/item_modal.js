@@ -1,6 +1,7 @@
 import { update_span_counter } from ".."
 import { update_price } from "./update_price"
 
+//Open item modal to add item to basket
 export let item_modal = (item_id, e) => {
     let parent = $(e.target).parent().parent()
     let qty = $('*[data-qty-item]', parent).val()
@@ -37,7 +38,9 @@ export let item_modal = (item_id, e) => {
     })
 }
 
+//Define modal's behavior
 export let item_modal_behaviour = () => {
+    //Listen to close the modal
     $('#closeItemModal').on('click', (e) => {
         $('#itemModal').hide()
     })
@@ -47,6 +50,8 @@ export let item_modal_behaviour = () => {
             $(modal).hide()
         }
     })
+
+    //Listen add + item
     $('#plusQty').on('click', (e) => {
         let currentQty = parseInt($('#modalQty').text())
         let newQty = currentQty + 1
@@ -61,6 +66,7 @@ export let item_modal_behaviour = () => {
         
     })
 
+    //Listen minus - item
     $('#minusQty').on('click', (e) => {
         let currentQty = parseInt($('#modalQty').text())
         let newQty = currentQty - 1
@@ -74,12 +80,18 @@ export let item_modal_behaviour = () => {
         $('#formItemQty').change();
         
     })
+
+    //Listen size, qty & mixer change to update price
     $('*[data-size-option], *[data-qty-item], *[data-mixer-option]').on('change', (e) =>{
         update_price(e)
     })
+
+    //Listen for special request and handle animation
     $('#requestBtn').on('click', (e) => {
 		$('#requestBtn').slideToggle('slow')
 		$('#requestTextAreaContainer').slideToggle('slow')
 	})
+
+    //Listen for input on request 
     update_span_counter()
 }

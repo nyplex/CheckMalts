@@ -11,7 +11,6 @@ class BookingAdmin(admin.ModelAdmin):
         'booking_size',
         'booking_email',
     )
-    
     ordering = ('booking_date',)
 
 

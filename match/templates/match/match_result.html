@@ -5,19 +5,22 @@
 {% block content %}
 {% csrf_token %}
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        <!-- Match header -->
         {% include 'match/header.html' %}
         <div class="max-w-screen-lg mx-auto w-full min-h-[350px]">
-            <!-- Basket Container -->
+            <!-- Result container -->
             <div class="w-full">
                 <div class="w-full mx-auto text-center">
                     <p class="font-medium font-barlow text-primaryColor text-xl block text-center mb-8">
                         Here are your matches. Not happy with the result?<br>
                         Click <a href="{% url 'match' %}" class="text-bold text-secondaryHoverDarker">HERE</a> to try again! 
                     </p>
-                    <!-- {{ cocktail.0.name }} £{{cocktail.0.price}} => {{cocktail.1}}% -->
                 </div>
+
                 <div class="flex flex-row items-center justify-between gap-12 flex-wrap">
+                    <!-- Each result item -->
                     {% for cocktail in cocktails %}
+                    
                         <div data-toggle-modal data-order-item-modal="{{ cocktail.0.id }}" class="min-w-[220px] md:max-w-[250px] w-[70%] mx-auto min-h-[285px] max-h-[285px] rounded p-4 border-2 border-secondaryHoverDarker">
                             {% if cocktail.1 >= 70 %}
                                 <button class="text-lg bg-green-700 px-2 rounded mb-4 text-white font-barlow font-normal cursor-default">

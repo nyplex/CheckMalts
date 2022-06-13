@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
+    <!-- Main container -->
     <div class="md:min-h-[100vh] md:mb-20 mx-2">
+        <!-- Checkout header -->
         {% include 'checkout/checkout.html' %}
+
         <div class="max-w-screen-lg mx-auto w-full flex md:flex-row flex-col md:justify-between pb-8">
             <div class="md:w-[30%] pt-4 flex flex-row md:flex-col justify-around md:justify-start">
                 <div class="text-white font-barlow text-center border-2 border-secondaryHoverDarker rounded py-8 px-4 text-3xl font-medium">
@@ -35,8 +35,6 @@
             </div>
         </div>
     </div>
-
-
 {% endblock content %}
 
 {% block extrajs %}

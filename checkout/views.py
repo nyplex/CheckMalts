@@ -1,16 +1,19 @@
-import json
 from django.shortcuts import get_object_or_404, render, redirect
 from allauth.account.decorators import login_required
-from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from django.contrib import messages
+
+from basket.contexts import basket_contents
+
 from profiles.models import UserProfile
 from .forms import CheckoutOneForm
 from .models import *
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from basket.contexts import basket_contents
 from .utils import *
+
 import stripe
+import json
 import os
 if os.path.exists("env.py"):
     import env
@@ -23,7 +26,6 @@ def checkout_details(request):
     and create a checkout session to store tips & table Number.
     Finally will store True into session if this first step is completed
     """
-    #request.session['checkout_session'] = {}
         
     current_user = UserProfile.objects.get(user=request.user.id)
     checkout_session = {}

@@ -17,8 +17,6 @@ export let update_price = (e) => {
         mixer = $('*[data-mixer-option]', parent).val()
     }
 
-    console.log(mixer);
-
     $.ajax({
         type: 'POST',
         url: '/order/size-price',

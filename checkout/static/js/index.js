@@ -1,5 +1,6 @@
 var PrepTimeAjaxInterval;
 
+//Get the tips when the page is loaded
 let update_tips_data = (value) => {
     let total = $('#subtotal').text()
     total = total.substring(1)
@@ -10,8 +11,8 @@ let update_tips_data = (value) => {
     $('#tips').text('£' + tips)
     $('#grandTotal').text('£' + parseFloat(grandTotal).toFixed(2))
 }
-
 update_tips_data(10)
+
 
 //Update serivce charge when user click on tips buttons
 $('*[data-standardTips]').on('click', (e) => {
@@ -41,6 +42,8 @@ $('#id_tips').on('input', (e) => {
     $('#grandTotal').text('£' + parseFloat(grandTotal).toFixed(2))
 })
 
+
+//Submit the details payment form and format the phone number
 $('#detailsForm').on('submit', (e) => {
     e.preventDefault()
     let data = $("input[name='mobileNumber']").val()

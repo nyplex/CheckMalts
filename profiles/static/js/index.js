@@ -1,5 +1,7 @@
 import './orders.js'
 
+//Prevent update account form to be submited 
+//and check if phone number is valild  
 $('#accountForm').on('submit', (e) => {
     e.preventDefault()
     let data = $("input[name='mobile']").val()

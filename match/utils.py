@@ -1,11 +1,12 @@
-
-
 from .models import MatchingQuestions
-from menu.models import Category, Cocktail
-import operator
+from menu.models import Cocktail
 
 
 def match_calcul(request, data):
+    """
+    Method to calcul the match result and 
+    store it into session 
+    """
     
     answers = []
     ids_container = []
@@ -28,8 +29,6 @@ def match_calcul(request, data):
         
     marklist = sorted(duplicate_dict.items(), key=lambda x:x[1], reverse=True)
     sortdict = dict(marklist)
-    
-
     result = request.session.get('match_result', {})
     result = sortdict
     

@@ -1,7 +1,7 @@
 from allauth.account.forms import SignupForm, LoginForm, ChangePasswordForm, SetPasswordForm
+from django.contrib.auth.models import User
 from .models import UserProfile
 from django import forms
-from django.contrib.auth.models import User
 
 
 

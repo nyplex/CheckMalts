@@ -30,9 +30,6 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        
-        
-
         # Update the order to pending=False, send SMS and email to confirm order  + estimation time
         intent = event['data']['object']
         pid = intent['id']

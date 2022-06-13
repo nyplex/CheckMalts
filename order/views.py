@@ -144,7 +144,7 @@ def order_again(request, order_id):
                 cocktail_size = i.size
 
             quantity = int(i.quantity)
-            if request.session['basket']:
+            if 'basket' in request.session:
                 del request.session['basket']
             basket = request.session.get('basket', {})
             basket = format_add_basket(

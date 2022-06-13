@@ -107,8 +107,8 @@ class StripeWH_Handler:
                                 card_exp_year=card['exp_year'], card_last4=card['last4'])
 
 
-        #send_confirmation_email(order, total_prep_time)
-        #send_confirmation_sms(order, total_prep_time)
+        send_confirmation_email(order, total_prep_time)
+        send_confirmation_sms(order, total_prep_time)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)

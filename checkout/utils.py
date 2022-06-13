@@ -48,7 +48,7 @@ def send_order_ready_sms(order):
         message = client.messages \
                         .create(
                             body=f"CheckMalt - Hey {first_name}, your order is ready. If you have a table we will bring your order to you. Otherwise it is time to go and grap your drinks. Cheers!.",
-                            from_='+17752563749',
+                            from_='+447897035269',
                             to=user_phone
                         )
 

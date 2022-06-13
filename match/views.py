@@ -17,7 +17,11 @@ def match(request):
         ['single', 'double'],
         ['hard', 'calm'],
         ['romantic', 'after_work', 'party'],
-        ['vodka', 'rum', 'tequilla'],
+        ['vodka', 'rum', 'tequilla', 'gin'],
+        ['with_alc', 'without_alc'],
+        ['feezy', 'still'],
+        ['amaretto', 'whisky'],
+        ['red', 'white'],
         ['working_tomorrow', 'no_working_tomorrow'],
         ['enjoy', 'no_enjoy']
     ]
@@ -34,7 +38,7 @@ def match(request):
                 return redirect('match')
 
         for data in data_list:
-            if data == 'no_working_tomorrow' or data == 'csrfmiddlewaretoken':
+            if data == 'csrfmiddlewaretoken':
                 continue
             if data == 'no_enjoy' or data == 'enjoy':
                 enjoyDB = EnjoyCheckMalt.objects.get(pk=1)
@@ -59,10 +63,12 @@ def match_result(request):
     """ A view to return the result of the match """
 
     result = request.session.get('match_result')
-    questions = 7
+    questions = list(result.values())[0]
+
     cocktails = []
     for key in result:
         percentage = 100 - (round(abs((result[key] - questions) / ((result[key] + questions) / 2) * 100) / 10) * 10)
+        
         if percentage <= 10 and percentage >= -10:
             percentage = 10
         if percentage <= -10:

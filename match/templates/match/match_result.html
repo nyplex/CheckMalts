@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex flex-row items-center justify-between gap-12 flex-wrap">
                     {% for cocktail in cocktails %}
-                        <div data-toggle-modal data-order-item-modal="{{ cocktail.0.id }}" class="min-w-[220px] md:max-w-[220px] w-[70%] mx-auto min-h-[220px] rounded p-4 border-2 border-secondaryHoverDarker">
+                        <div data-toggle-modal data-order-item-modal="{{ cocktail.0.id }}" class="min-w-[220px] md:max-w-[250px] w-[70%] mx-auto min-h-[285px] max-h-[285px] rounded p-4 border-2 border-secondaryHoverDarker">
                             {% if cocktail.1 >= 70 %}
                                 <button class="text-lg bg-green-700 px-2 rounded mb-4 text-white font-barlow font-normal cursor-default">
                                     {{cocktail.1}}% MATCH
@@ -32,7 +32,9 @@
                                     {{cocktail.1}}% MATCH
                                 </button>
                             {% endif %}
-                            <img src="{{ cocktail.0.image.url }}" alt="drink image" class="max-w-[100px] mx-auto rounded">
+                            <div>
+                                <img src="{{ cocktail.0.image.url }}" alt="drink image" class="max-w-[100px] max-h-[100px] mx-auto rounded">
+                            </div>
                             <p class="font-medium font-barlow text-primaryColor text-xl block text-center mt-2">
                                 {% if cocktail.0.name|length > 15 %}
                                     {{ cocktail.0.name|slice:15 }}...

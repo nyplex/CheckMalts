@@ -8,9 +8,10 @@
 </head>
 <body>
 
-    <h1>YOUR ORDE HAS BEEN CONFIRMED</h1>
+    <h1>YOUR ORDER HAS BEEN CONFIRMED</h1>
+    <h3>Hello {{ order.user_profile.user.first_name }}</h3>
     <p>You order should be ready in {{ prep_time }}min</p>
-    <p>order for {{ order.user_profile.user.first_name }}</p>
+    <p>order ID is #{{ order.id }}</p>
     
 </body>
 </html>

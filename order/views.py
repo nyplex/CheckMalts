@@ -129,6 +129,8 @@ def order_again(request, order_id):
     """
     A view to hanble the order again function
     """
+    if 'basket' in request.session:
+        del request.session['basket']
     try:
         order = Order.objects.get(pk=int(order_id))
         line_order = order.lineitems.all()
@@ -144,8 +146,6 @@ def order_again(request, order_id):
                 cocktail_size = i.cocktail_size
 
             quantity = int(i.quantity)
-            if 'basket' in request.session:
-                del request.session['basket']
             basket = request.session.get('basket', {})
             basket = format_add_basket(
                 i.cocktail.id, basket, cocktail_size, note, quantity)

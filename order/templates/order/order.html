@@ -53,11 +53,11 @@
             <!-- Check if the category has a sub_category -->
             {% if sub_categories %}
                 <!-- Load each sub_categories -->
-                {% for sub_category in sub_categories %}
+                {% for sub_category in sub_categories|dictsort:"name" %}
                     <h3 id="subCategoryTitle{{sub_category.id}}" class="md:text-lg text-xl pl-2 border-b-2 border-white text-white bg-secondaryHoverDarker focus:bg-transparent cursor-pointer font-barlow font-semibold py-2 subCategoryCollapse">{{ sub_category.friendly_name|upper }} <i class="fa-solid fa-angle-down text-xl ml-2"></i></h3>
                     <!-- load the cocktails inside the sub_category -->
                     <div class="w-full hidden">
-                        {% for cocktail in cocktails %}
+                        {% for cocktail in cocktails|dictsort:"name"  %}
                             {% if cocktail.sub_category.name == sub_category.name %}
                                 {% include 'order/includes/individual_item.html' %}
                             {% endif %}

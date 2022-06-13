@@ -141,7 +141,7 @@ def order_again(request, order_id):
             if i.cocktail_size == None or i.cocktail_size == '':
                 cocktail_size = None
             else:
-                cocktail_size = i.size
+                cocktail_size = i.cocktail_size
 
             quantity = int(i.quantity)
             if 'basket' in request.session:

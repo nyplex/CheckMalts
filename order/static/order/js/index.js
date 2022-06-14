@@ -75,10 +75,11 @@ $('.subCategoryCollapse').on('click', (e) => {
 
 
 //Edit remove btns animation
-$('.basketItemContainer').on('mouseover', (e) => {
-	$(e.currentTarget).next().animate({'marginRight':'0'},300);
-})
-
-$('.basketMainItemContainer').on('mouseleave', (e) => {
-	$(e.currentTarget).children().next().animate({'marginRight':'-35'},200);
-})
+if ($(window).width() > 768) {
+	$('.basketItemContainer').on('mouseover', (e) => {
+		$(e.currentTarget).next().animate({'marginRight':'0'},300);
+	})
+	$('.basketMainItemContainer').on('mouseleave', (e) => {
+		$(e.currentTarget).children().next().animate({'marginRight':'-35'},200);
+	})
+}

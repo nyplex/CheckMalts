@@ -31,7 +31,13 @@ async function initialize() {
   elements = stripe.elements({ appearance, clientSecret });
 
   const paymentElement = elements.create("payment");
+  paymentElement.on("ready", function(){
+    $('#paymentLoader').hide()
+    $('#paymentSubmitBtn').removeClass('hidden').addClass('flex')
+    $('#smallPaymentBtn').removeClass('hidden').addClass('fixed')
+  })
   paymentElement.mount("#payment-element");
+  
 }
 
 async function handleSubmit(e) {
@@ -42,8 +48,8 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      //return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
-      return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber, // comment this line in production
+      return_url: "https://checkmalt.herokuapp.com/checkout/confirmation/" + orderNumber, //uncomment this line in production
+      //return_url: "http://127.0.0.1:8000/checkout/confirmation/" + orderNumber, // comment this line in production
     },
   });
 
@@ -116,6 +122,6 @@ function setLoading(isLoading) {
     document.querySelector("#spinner").classList.add("hidden");
     document.querySelector("#spinnerMobile").classList.add("hidden");
     document.querySelector("#button-text").classList.remove("hidden");
-    document.querySelector("#button-text-mobile").classList.add("hidden");
+    document.querySelector("#button-text-mobile").classList.remove("hidden");
   }
 }

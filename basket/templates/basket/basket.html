@@ -25,7 +25,6 @@
             <!-- Each item in basket -->
             {% for item in basket_items %}
                 <div class="w-full p-2 mr-auto bg-black text-primaryColor flex flex-row items-center justify-between relative basketMainItemContainer">
-
                     <div class="basketItemContainer cursor-pointer w-full">
                         <!-- Item qty + item title & item subtotal -->
                         <div class="flex flex-row md:justify-start justify-between font-barlow md:font-normal font-medium text-lg w-full items-center">
@@ -64,7 +63,7 @@
                     </div>
 
                     <!-- Edit & remove icons -->
-                    <div class="text-white text-xl md:text-base flex flex-col justify-center gap-1 h-full ml-4 mr-[-35px]">
+                    <div class="text-white text-xl md:text-base flex flex-col justify-center gap-1 h-full ml-4 md:mr-[-35px]">
                         <button data-item data-item-id="{{ item.item_id }}" data-item-quantity="{{ item.quantity }}" {% if item.size %} data-item-size="{{ item.size }}" {% endif %} {% if item.note %} data-item-note="{{ item.note }}" {% endif %} class="text-center text-green-400 hover:text-green-600" type="button"><i class="fa-solid fa-pen"></i></button>
                         <button type="submit" form="removeItemForm" class="text-center text-red-500 hover:text-red-700"><i class="fa-solid fa-circle-minus"></i></button>
                     </div>

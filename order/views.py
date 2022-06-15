@@ -87,7 +87,7 @@ def calculate_size_price(request):
         else:
             qty = 1
 
-        price = round(price * qty, 1)
+        price = round(price * qty, 2)
 
         if request.POST['mixer']:
             if (int(request.POST['mixer'])) != 0:
@@ -112,13 +112,13 @@ def calculate_price_by_size(price, net_price, size):
             price = price
         case 'medium':
             price = price = round(
-                (((net_price * 2) / 3) * 2) + diff, 1)
+                (((net_price * 2) / 3) * 2) + diff, 2)
         case 'large':
-            price = round((net_price * 2) + diff, 1)
+            price = round((net_price * 2) + diff, 2)
         case 'double':
-            price = round(price * 2, 1)
+            price = round(price * 2, 2)
         case 'triple':
-            price = round(price * 3, 1)
+            price = round(price * 3, 2)
         case _:
             raise Http404
 

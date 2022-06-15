@@ -58,7 +58,7 @@ export let item_modal_behaviour = () => {
         if (newQty >= 10) {
             newQty = 10
         }else if (newQty <= 0) {
-            newQty = 0
+            newQty = 1
         }
         $('#modalQty').text(newQty)
         $('#formItemQty').val(newQty)
@@ -73,7 +73,7 @@ export let item_modal_behaviour = () => {
         if (newQty >= 10) {
             newQty = 10
         }else if (newQty <= 0) {
-            newQty = 0
+            newQty = 1
         }
         $('#modalQty').text(newQty)
         $('#formItemQty').val(newQty)

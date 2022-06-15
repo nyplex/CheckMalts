@@ -51,11 +51,6 @@ export let update_span_counter = () => {
 	})
 }
 
-//On the order page when page is ready, open the first sub_category if exists.
-$(document).ready((e) => {
-	$('.subCategoryCollapse').first().next().show()
-})
-
 
 //Subcategory collapsible function
 $('.subCategoryCollapse').on('click', (e) => {

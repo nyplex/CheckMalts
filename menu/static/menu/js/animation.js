@@ -30,8 +30,8 @@ section_title.forEach((section) => {
 	let section_title_animation = gsap.timeline({
 		scrollTrigger: scroll_menu_options
 	});
-	section_title_animation.from(section, {y: -100,opacity: 0,duration: 1.5})
-	section_title_animation.to(section, {y: 0,opacity: 1,duration: 1.5})
+	section_title_animation.from(section, {y: -100,opacity: 0,duration: .5})
+	section_title_animation.to(section, {y: 0,opacity: 1,duration: 0.5})
 })
 
 
@@ -41,8 +41,8 @@ section_content.forEach((section) => {
 	let section_content_animation = gsap.timeline({
 		scrollTrigger: scroll_menu_options
 	});
-	section_content_animation.from(section, {x: -150,opacity: 0,duration: 1.5})
-	section_content_animation.to(section, {x: 0,opacity: 1,duration: 0})
+	section_content_animation.from(section, {x: -150,opacity: 0,duration: 0.6})
+	section_content_animation.to(section, {x: 0,opacity: 1,duration: 0.6})
 })
 
 
@@ -52,8 +52,8 @@ section_image.forEach((section) => {
 	let section_image_animation = gsap.timeline({
 		scrollTrigger: scroll_menu_options
 	});
-	section_image_animation.from(section, {x: 150,opacity: 0,duration: 1.5})
-	section_image_animation.to(section, {x: 0,opacity: 1,duration: 0})
+	section_image_animation.from(section, {x: 150,opacity: 0,duration: 0.6})
+	section_image_animation.to(section, {x: 0,opacity: 1,duration: 0.6})
 })
 
 

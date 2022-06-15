@@ -77,15 +77,3 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
     headerTitleAnimation
     .to('#jagerCanvas', { opacity: 1, duration: 5 }, 5)
 }
-
-
-gsap.to("#header_chess_logo", {
-    width: 100,
-    scrollTrigger: {
-      trigger: ".headerPin",
-      start: "150 top+=150",
-      end: "bottom top+=250",
-      scrub: 1,
-      markers: false,
-    }
-  });

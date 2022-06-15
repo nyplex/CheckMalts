@@ -23,8 +23,11 @@ def booking(request):
             try:
                 cust_email = email
                 subject = 'We\'ve got your booking!'
+                booking_time = request.POST.get('booking_time').strip()
+                l = len(booking_time)
+                booking_time = booking_time[:2] + ':' + booking_time[l - 2:]
                 context = {
-                    'booking_time': request.POST.get('booking_time').strip(),
+                    'booking_time': booking_time,
                     'booking_name': request.POST.get('booking_name').strip(),
                     'booking_size': request.POST.get('booking_size'),
                     'booking_date': request.POST.get('booking_date'),

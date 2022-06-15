@@ -20,6 +20,16 @@ $('*[data-match-answer-btn]').on('change', (e) => {
     $(parent).removeClass('match-btn').addClass('match-active-btn').prop('checked', true)
     $(e.target).prop('checked', true)
     
+    if(questionNo >= 12) {
+        $('#matchForm').submit()
+    }else{
+        question = $(e.target).parent().parent().parent().parent().removeClass('flex').addClass('hidden')
+        $(question).next().removeClass('hidden').addClass('flex')
+        questionNo += 1
+        $('#matchQuestionNo').text(questionNo + '/12')
+    }
+    
+    
 })
 
 //Go back to prevouis question
@@ -31,8 +41,8 @@ $('*[data-match-back]').on('click', (e) => {
     $('#matchQuestionNo').text(questionNo + '/12')
 })
 
-//Go to next question & check one answer has been selected
-$('*[data-match-next]').on('click', (e) => {
+
+let nextQuestion = (e) => {
     let inputs = $(e.target).parent().parent().find('input')
     for(let i = 0; i < inputs.length; i++) {
         if($(inputs[i]).is(':checked')) {
@@ -47,4 +57,22 @@ $('*[data-match-next]').on('click', (e) => {
             $(error).removeClass('hidden')
         }
     }
-})
+}
+
+// //Go to next question & check one answer has been selected
+// $('*[data-match-next]').on('click', (e) => {
+//     let inputs = $(e.target).parent().parent().find('input')
+//     for(let i = 0; i < inputs.length; i++) {
+//         if($(inputs[i]).is(':checked')) {
+//             let parent = $(e.target).parent().parent().removeClass('flex').addClass('hidden')
+//             $(parent).next().removeClass('hidden').addClass('flex')
+//             questionNo += 1
+//             $('#matchQuestionNo').text(questionNo + '/12')
+//             return
+//         }else {
+//             let input = $(e.target).parent().parent()
+//             let error = input.find('span')
+//             $(error).removeClass('hidden')
+//         }
+//     }
+// })

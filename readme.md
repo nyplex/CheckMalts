@@ -154,7 +154,7 @@ CheckMalt has been deployed on Heroku and AWS. Heroku stored all the back-end co
 This project use different technologies (webpack, tailwindCSS, jQuery etc..), in order to have a working version of the project on your local machine, please follow these steps using your terminal:
 
 - Install python in your machine and node.js
-- clone the git repo on your local machine (git clone https://github.com/nyplex/checkmalt)
+- clone the git repo on your local machine (git clone https://github.com/nyplex/checkmalts)
 - cd into the project folder
 - run "npm intall" , in order to install all the dependencies.
 - run "npm run build" in order to bundle all the files.

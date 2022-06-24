@@ -21,12 +21,12 @@ module.exports = {
     optimization: {
       usedExports: true, // <- remove unused function
     },
-    mode: "development", //change to production
+    mode: "production", //change to production
     output: {
         filename: 'dist/[name].bundle.js',
         path: path.resolve(__dirname, "static/"),
     },
-    devtool: 'inline-source-map', //remove on production
+    //devtool: 'inline-source-map', //remove on production
     module: {
         rules: [
             {

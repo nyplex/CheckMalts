@@ -1,7 +1,6 @@
 /********** HOME PAGE **********/
 /* Header */
 .headerPin {
-	position: absolute;
 	height: 100vh;
 	max-height: 100vh;
 	margin-top: 0px;
@@ -20,7 +19,6 @@
 	z-index: -1;
 	max-height: 100vh;
 	overflow-x: hidden;
-	opacity: 0;
 }
 
 

@@ -10,7 +10,7 @@
                     <a href="{% url 'home' %}" class="md:flex items-center">
                         <img src="{% static 'media/logo.png' %}"
                             class="mr-3 first-line:sm:h-9 max-w-[40px] max-h-[40px] w-[40px] h-[40px]" alt="Flowbite Logo" />
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor hidden lg:block">CheckMalt</span>
+                        <span class="self-center text-xl font-semibold whitespace-nowrap hidden lg:block">CheckMalt</span>
                     </a>
                     <div id="basketItemFooter" class="md:hidden rounded-lg">
                         <div class="relative items-center h-full text-primaryColor font-barlow text-2xl">
@@ -26,7 +26,7 @@
                 <a href="{% url 'home' %}" class="flex items-center">
                     <img src="{% static 'media/logo.png' %}"
                         class="mr-3 first-line:sm:h-9 max-w-[40px] max-h-[40px] w-[40px] h-[40px]" alt="Flowbite Logo" />
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-primaryColor hidden lg:block">CheckMalt</span>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap hidden lg:block">CheckMalt</span>
                 </a>
             {% endif %}
 
@@ -34,7 +34,7 @@
             {% if request.user.is_authenticated %}
                 <!-- Icon user's dropdown menu -->
                 <button type="button"
-                    class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                    class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
                     id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown">
                     <span class="sr-only">Open user menu</span>
                     <!-- Profile picture -->
@@ -52,9 +52,9 @@
                     id="dropdown">
                     <!-- User's details -->
                     <div class="py-3 px-4 z-50">
-                        <span class="block text-2xl text-gray-900 dark:text-primaryColor">{{ user.first_name }}</span>
+                        <span class="block text-2xl text-gray-900">{{ user.first_name }}</span>
                         <span
-                            class="block text-2xl font-medium text-gray-500 truncate dark:text-gray-400">{{ user.email }}</span>
+                            class="block text-2xl font-medium text-gray-500 truncate">{{ user.email }}</span>
                     </div>
                     <!-- User menu links -->
                     <ul class="py-2 z-50" aria-labelledby="dropdown">
@@ -83,7 +83,7 @@
 
             <!-- Burger menu icon -->
             <button data-collapse-toggle="mobile-menu-2" type="button"
-                class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 aria-controls="mobile-menu-2" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

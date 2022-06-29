@@ -23,11 +23,11 @@ class AccountView(TestCase):
         size1.save()
         size2.save()
         size3.save()
-        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1',
-                                price=10, net_price=5, prep_time=1, 
+        Cocktail.objects.create(name='test1', friendly_name='test1',
+                                price=10, prep_time=1, 
                                 category=Category.objects.get(pk=1))
-        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', 
-                             price=15, net_price=7, prep_time=1, category=Category.objects.get(pk=2), 
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', 
+                             price=15, prep_time=1, category=Category.objects.get(pk=2), 
                              has_size=True)
         cocktail2.save()
         cocktail2.sizes.add(size1)

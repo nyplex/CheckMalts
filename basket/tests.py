@@ -12,7 +12,6 @@ from django.core import mail
 
 class BasketView(TestCase):
 
-
     @classmethod
     def setUpTestData(cls):
         Category.objects.create(name='test1', friendly_name='test1')
@@ -23,9 +22,9 @@ class BasketView(TestCase):
         size1.save()
         size2.save()
         size3.save()
-        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1', price=10, net_price=5,
+        Cocktail.objects.create(name='test1', friendly_name='test1', price=10,
                                 prep_time=1, category=Category.objects.get(pk=1))
-        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', price=15, net_price=7,
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', price=15,
                              prep_time=1, category=Category.objects.get(pk=2), has_size=True)
         cocktail2.save()
         cocktail2.sizes.add(size1)
@@ -162,7 +161,7 @@ class BasketView(TestCase):
             '/basket/add/1/', data={'cocktail_quantity': '2', 'redirect_url': '1', 'cocktail_note': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'})
         messages = [msg for msg in get_messages(response.wsgi_request)]
         
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 404)
         self.assertEqual(str(messages[0]), 'Special note must between 0 and 80 characters')
     
     

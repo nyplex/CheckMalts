@@ -126,28 +126,13 @@ I have used 1 font on this application, the main one is "Barlow".
 
 <h1 align="center">Testing</h1>
 
-As this project is most complex project I have made so far, I have decided to spend more time on testing to avoid any bugs and make sure the application is full functional. You can find in each django app a file called tests.py. This file is a series of mini tests I wrote to test all functionality of my application and also test the code in case of any errors or wrong user's inputs. Find below how to run the test in the terminal. Most of the time I wrote the tests before coding the application and once the a feature was coded, I just run the test. 
+I have decided to spend more time on testing to avoid any bugs and make sure the application is full functional. You can find in each django app a file called tests.py. This file is a series of mini tests I wrote to test all functionality of my application and also test the code in case of any errors or wrong user's inputs. Find below how to run the test in the terminal. Most of the time I wrote the tests before coding the application and once the a feature was coded, I just run the test. 
 
 I also used the google dev. tool to test the performance and the front-end code. 
 
 
 <h1 align="center">Deployment</h1>
 
-Flask BLog has been deployed on Heroku and AWS, click [here.](http://nyplex-flask-blog.herokuapp.com/) to check the live application.
-
-This project use different technologies (webpack, tailwindCSS, jQuery etc..), in order to have a working version of the project on your local machine, please follow these steps using your terminal:
-
-- Install python in your machine and node.js
-- clone the git repo on your local machine (git clone https://github.com/nyplex/Flask_blog.git)
-- cd into the project folder
-- run "npm intall" , in order to install all the dependencies. 
-- run "npm run build" in order to bundle all the files.
-- run "pip3 install -r requirements.txt"
-- run "python run.py"
-
-You must have node.js & git install on your machine.
-
------------------
 
 CheckMalt has been deployed on Heroku and AWS. Heroku stored all the back-end code and AWS (S3 bucket) store all the static files (JS, CSS) and all the media. Finally the database is stored on a heroku-postgres server. 
 

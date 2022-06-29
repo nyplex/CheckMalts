@@ -73,7 +73,4 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
           markers: false
         }  
     });
-       
-    headerTitleAnimation
-    .to('#jagerCanvas', { opacity: 1, duration: 5 }, 5)
 }

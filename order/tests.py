@@ -22,9 +22,9 @@ class OrderView(TestCase):
         size1.save()
         size2.save()
         size3.save()
-        Cocktail.objects.create(name='test1', friendly_name='test1', slug='test-1', price=10, net_price=5,
+        Cocktail.objects.create(name='test1', friendly_name='test1', price=10,
                                 prep_time=1, category=Category.objects.get(pk=1))
-        cocktail2 = Cocktail(name='test2', friendly_name='test2', slug='test-2', price=15, net_price=7,
+        cocktail2 = Cocktail(name='test2', friendly_name='test2', price=15,
                                 prep_time=1, category=Category.objects.get(pk=2), has_size=True)
         cocktail2.save()
         cocktail2.sizes.add(size1)
@@ -89,7 +89,7 @@ class OrderView(TestCase):
         
     def test_update_price_on_quantity(self):
         client = Client()
-        response = client.post('/order/size-price', data={'quantity': 3, 'item_id': 1})
+        response = client.post('/order/size-price', data={'quantity': 3, 'item_id': 1, 'mixer': 0})
         self.assertEquals(response.status_code, 200)
         self.assertJSONEqual(response.content, {'response': 30})
     
@@ -107,7 +107,7 @@ class OrderView(TestCase):
     
     def test_update_price_on_size(self):
         client = Client()
-        response = client.post('/order/size-price', data={'quantity': 1, 'size': 'small', 'item_id': 2})
+        response = client.post('/order/size-price', data={'quantity': 1, 'size': 'small', 'item_id': 2, 'mixer': 0})
         self.assertEquals(response.status_code, 200)
         self.assertJSONEqual(response.content, {'response': 15})
     

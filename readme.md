@@ -6,6 +6,13 @@
 CheckMalt is a fictive cocktail bar situed in London. Using their website, the clients will be able to order the drinks online. The clients also have to possiblity to book a the table directly from the application. They can have access their personnal account and see their post orders. Last but not least, checkmalt app have a feature called 'Cocktail Match', where the client who don't know what to order will have to asnwer a few questions and system will propose the perfect match with a selection of drinks depending of their taste.
 The main goals of this application are for users to get information of the bar (menu, location, opening time ...), to order online, to book a table and finally to get the perfect match. 
 
+To make an order please use this 'test credit card' :
+
+card number: 4242 4242 4242 4242
+exp. date: 12/23 (or any future date)
+CCV: 123 (any 3 digits numbers)
+postcode (if asked): any (ex: SE10 5ER)
+
 
 <h1 align="center">UX</h1>
  
